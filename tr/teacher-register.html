@@ -1,0 +1,4062 @@
+html
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Öğretmen Ol | Bulbeni.org</title>
+<meta content="Create your professional teacher profile on Bulbeni.org." name="description"/>
+<style>
+
+/* =========================================================
+   BULBENI DESIGN SYSTEM
+========================================================= */
+
+:root{
+
+    --blue:#2859c7;
+    --blue-dark:#1b439d;
+    --blue-light:#edf3ff;
+
+    --teal:#35a59d;
+    --green:#299969;
+
+    --text:#172033;
+    --text-soft:#4e586b;
+    --muted:#7a8495;
+
+    --border:#e3e8f0;
+    --background:#f6f8fb;
+    --white:#ffffff;
+
+    --danger:#d9534f;
+
+    --shadow:
+        0 24px 70px rgba(20,35,65,.08);
+
+    --radius:20px;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+    background:var(--background);
+
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    height:82px;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 5%;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    text-decoration:none;
+
+}
+
+
+.logo img{
+
+    display:block;
+
+    width:auto;
+
+    height:58px;
+
+    max-width:210px;
+
+    object-fit:contain;
+
+}
+
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+.header-question{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+.sign-in{
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--blue);
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.page{
+
+    width:min(1320px,94%);
+
+    margin:
+        42px auto
+        80px;
+
+}
+
+
+.intro{
+
+    text-align:center;
+
+    margin-bottom:36px;
+
+}
+
+
+.intro h1{
+
+    margin:0 0 12px;
+
+    font-size:
+        clamp(30px,4vw,45px);
+
+    letter-spacing:-1.7px;
+
+}
+
+
+.intro p{
+
+    max-width:680px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   TWO COLUMN ONBOARDING
+========================================================= */
+
+.workspace{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        390px;
+
+    gap:28px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.form-area{
+
+    min-width:0;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-container{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:20px 24px;
+
+    margin-bottom:18px;
+
+    box-shadow:
+        0 8px 30px rgba(20,35,65,.04);
+
+}
+
+
+.progress-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+
+.progress-label{
+
+    font-size:13px;
+
+    color:var(--muted);
+
+}
+
+
+.progress-number{
+
+    color:var(--blue);
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.progress-bar{
+
+    height:7px;
+
+    background:#edf0f5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+    height:100%;
+
+    width:14.28%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--teal)
+        );
+
+    transition:
+        width .45s ease;
+
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+
+.step{
+
+    display:none;
+
+    padding:
+        42px;
+
+    animation:
+        stepEnter .38s ease;
+
+}
+
+
+.step.active{
+
+    display:block;
+
+}
+
+
+@keyframes stepEnter{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   STEP HEADER
+========================================================= */
+
+.step-header{
+
+    margin-bottom:32px;
+
+}
+
+
+.step-header h2{
+
+    margin:0 0 9px;
+
+    font-size:28px;
+
+    letter-spacing:-.8px;
+
+}
+
+
+.step-header p{
+
+    margin:0;
+
+    color:var(--muted);
+
+    line-height:1.65;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+   FIELDS
+========================================================= */
+
+.field{
+
+    margin-bottom:24px;
+
+}
+
+
+.field label{
+
+    display:block;
+
+    margin-bottom:9px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.required{
+
+    color:var(--danger);
+
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+select,
+textarea{
+
+    width:100%;
+
+    padding:
+        14px 15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:12px;
+
+    background:white;
+
+    color:var(--text);
+
+    outline:none;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+
+}
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--blue);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(40,89,199,.09);
+
+}
+
+
+textarea{
+
+    min-height:135px;
+
+    resize:vertical;
+
+    line-height:1.65;
+
+}
+
+
+.grid-2{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:18px;
+
+}
+
+
+/* =========================================================
+   PORTRAIT UPLOAD
+========================================================= */
+
+.portrait-area{
+
+    display:grid;
+
+    grid-template-columns:
+        130px 1fr;
+
+    gap:24px;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:#fafbfd;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:17px;
+
+}
+
+
+.portrait-preview{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    background:#eaf0f8;
+
+    border:
+        4px solid white;
+
+    box-shadow:
+        0 8px 25px
+        rgba(20,35,65,.1);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.portrait-preview img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+
+}
+
+
+.portrait-placeholder{
+
+    color:var(--blue);
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+
+.portrait-info h3{
+
+    margin:
+        0 0 7px;
+
+    font-size:16px;
+
+}
+
+
+.portrait-info p{
+
+    margin:
+        0 0 14px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.6;
+
+}
+
+
+.upload-button{
+
+    display:inline-block;
+
+    padding:
+        10px 15px;
+
+    border-radius:10px;
+
+    background:var(--blue);
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.upload-button input{
+
+    display:none;
+
+}
+
+
+/* =========================================================
+   OPTION CARDS
+========================================================= */
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+
+.option{
+
+    position:relative;
+
+}
+
+
+.option input{
+
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+
+.option label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    min-height:68px;
+
+    padding:14px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    background:white;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+
+.option label:hover{
+
+    border-color:#b9c8e5;
+
+    transform:translateY(-1px);
+
+}
+
+
+.option input:checked + label{
+
+    background:var(--blue-light);
+
+    border-color:var(--blue);
+
+    box-shadow:
+        0 6px 20px
+        rgba(40,89,199,.08);
+
+}
+
+
+.option-icon{
+
+    width:38px;
+
+    height:38px;
+
+    flex-shrink:0;
+
+    border-radius:10px;
+
+    background:#f0f3f7;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+    font-weight:800;
+
+}
+
+
+.option input:checked
++ label
+.option-icon{
+
+    background:var(--blue);
+
+    color:white;
+
+}
+
+
+.option-title{
+
+    font-size:13px;
+
+    font-weight:750;
+
+}
+
+
+.option-description{
+
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+   TEACHING LEVELS
+========================================================= */
+
+.level-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.level-card{
+
+    position:relative;
+
+}
+
+
+.level-card input{
+
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+
+.level-card label{
+
+    display:block;
+
+    padding:18px 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+
+.level-card label:hover{
+
+    border-color:#b9c8e5;
+
+}
+
+
+.level-card input:checked + label{
+
+    border-color:var(--blue);
+
+    background:var(--blue-light);
+
+    box-shadow:
+        0 6px 20px
+        rgba(40,89,199,.08);
+
+}
+
+
+.level-code{
+
+    color:var(--blue);
+
+    font-weight:900;
+
+    font-size:18px;
+
+}
+
+
+.level-name{
+
+    margin-top:5px;
+
+    font-size:12px;
+
+    font-weight:750;
+
+}
+
+
+.level-description{
+
+    margin-top:4px;
+
+    font-size:10px;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   UPLOAD DOCUMENTS
+========================================================= */
+
+.upload-section{
+
+    margin-bottom:27px;
+
+}
+
+
+.upload-title{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    margin-bottom:6px;
+
+}
+
+
+.upload-description{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    margin-bottom:12px;
+
+}
+
+
+.upload-box{
+
+    border:
+        1.5px dashed #cbd4e2;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:#fafbfd;
+
+    transition:.2s ease;
+
+}
+
+
+.upload-box.dragging{
+
+    border-color:var(--blue);
+
+    background:var(--blue-light);
+
+}
+
+
+.upload-box strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    font-size:13px;
+
+}
+
+
+.upload-box span{
+
+    font-size:11px;
+
+    color:var(--muted);
+
+}
+
+
+.upload-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:12px;
+
+    background:var(--blue-light);
+
+    color:var(--blue);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:
+        0 auto 11px;
+
+    font-weight:900;
+
+}
+
+
+.upload-box .upload-button{
+
+    margin-top:13px;
+
+}
+
+
+.file-list{
+
+    margin-top:9px;
+
+}
+
+
+.file-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:10px 12px;
+
+    margin-bottom:6px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:10px;
+
+    background:#fafbfd;
+
+    font-size:12px;
+
+}
+
+
+.file-name{
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+
+.remove-file{
+
+    border:0;
+
+    background:none;
+
+    color:var(--danger);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.check-row{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+.check-row input{
+
+    margin-top:3px;
+
+    accent-color:var(--blue);
+
+}
+
+
+.check-row label{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   FORM FOOTER
+========================================================= */
+
+.form-footer{
+
+    padding:
+        20px 42px;
+
+    border-top:
+        1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fcfdff;
+
+}
+
+
+.btn{
+
+    border:0;
+
+    border-radius:11px;
+
+    padding:
+        13px 22px;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    transition:.2s ease;
+
+}
+
+
+.btn:hover{
+
+    transform:translateY(-1px);
+
+}
+
+
+.btn-secondary{
+
+    background:#eef1f5;
+
+    color:#586274;
+
+}
+
+
+.btn-primary{
+
+    background:var(--blue);
+
+    color:white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(40,89,199,.2);
+
+}
+
+
+.btn-primary:hover{
+
+    background:var(--blue-dark);
+
+}
+
+
+.btn-success{
+
+    background:var(--green);
+
+    color:white;
+
+}
+
+
+.hidden{
+
+    display:none!important;
+
+}
+
+
+/* =========================================================
+   RIGHT LIVE PROFILE CARD
+========================================================= */
+
+.profile-column{
+
+    position:sticky;
+
+    top:105px;
+
+}
+
+
+.profile-heading{
+
+    margin:
+        0 0 12px 5px;
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.live-card{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.live-cover{
+
+    height:105px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,.8),
+            transparent 25%
+        ),
+        linear-gradient(
+            125deg,
+            #e9f0ff,
+            #edf8f6
+        );
+
+    position:relative;
+
+}
+
+
+.live-status{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:
+        6px 9px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.8);
+
+    backdrop-filter:blur(8px);
+
+    font-size:10px;
+
+    color:var(--muted);
+
+}
+
+
+.status-dot{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+}
+
+
+.live-body{
+
+    padding:
+        0 24px 25px;
+
+}
+
+
+.live-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    margin-top:-45px;
+
+    border:
+        5px solid white;
+
+    background:#edf1f7;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.live-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+
+}
+
+
+.live-avatar-placeholder{
+
+    font-size:29px;
+
+    color:var(--blue);
+
+    font-weight:900;
+
+}
+
+
+.live-name{
+
+    margin-top:14px;
+
+    font-size:22px;
+
+    font-weight:850;
+
+    letter-spacing:-.5px;
+
+    word-break:break-word;
+
+}
+
+
+.live-subject{
+
+    color:var(--blue);
+
+    font-size:13px;
+
+    font-weight:750;
+
+    margin-top:5px;
+
+}
+
+
+.live-location{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:7px;
+
+}
+
+
+.live-divider{
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:
+        19px 0;
+
+}
+
+
+.live-bio{
+
+    color:var(--text-soft);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    min-height:60px;
+
+}
+
+
+.live-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:16px;
+
+}
+
+
+.live-tag{
+
+    padding:
+        6px 9px;
+
+    border-radius:20px;
+
+    background:var(--blue-light);
+
+    color:var(--blue);
+
+    font-size:10px;
+
+    font-weight:750;
+
+}
+
+
+.live-info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:9px;
+
+    margin-top:18px;
+
+}
+
+
+.live-info{
+
+    padding:
+        11px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:11px;
+
+}
+
+
+.live-info-label{
+
+    font-size:9px;
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+
+.live-info-value{
+
+    margin-top:4px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+
+.profile-note{
+
+    margin-top:13px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================================================
+   REVIEW SCREEN
+========================================================= */
+
+.review-box{
+
+    border:
+        1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:20px;
+
+    background:#fafbfd;
+
+}
+
+
+.review-title{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+
+.review-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:
+        10px 0;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size:12px;
+
+}
+
+
+.review-row:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.review-label{
+
+    color:var(--muted);
+
+}
+
+
+.review-value{
+
+    font-weight:700;
+
+    text-align:right;
+
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.success-screen{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    text-align:center;
+
+    padding:
+        70px 30px;
+
+}
+
+
+.success-icon{
+
+    width:72px;
+
+    height:72px;
+
+    margin:
+        0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eaf8f1;
+
+    color:var(--green);
+
+    font-size:30px;
+
+    font-weight:900;
+
+}
+
+
+.success-screen h2{
+
+    font-size:29px;
+
+    margin:0 0 10px;
+
+}
+
+
+.success-screen p{
+
+    max-width:570px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.field.error input,
+.field.error select,
+.field.error textarea{
+
+    border-color:var(--danger);
+
+}
+
+
+.error-message{
+
+    display:none;
+
+    color:var(--danger);
+
+    font-size:11px;
+
+    margin-top:6px;
+
+}
+
+
+.field.error .error-message{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .workspace{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .profile-column{
+
+        position:relative;
+
+        top:auto;
+
+        grid-row:1;
+
+    }
+
+
+    .form-area{
+
+        grid-row:2;
+
+    }
+
+
+    .profile-heading{
+
+        margin-top:0;
+
+    }
+
+
+    .live-card{
+
+        max-width:600px;
+
+        margin:auto;
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .header{
+
+        height:72px;
+
+        padding:
+            0 20px;
+
+    }
+
+
+    .logo img{
+
+        height:50px;
+
+        max-width:180px;
+
+    }
+
+
+    .header-question{
+
+        display:none;
+
+    }
+
+
+    .page{
+
+        width:94%;
+
+        margin-top:25px;
+
+    }
+
+
+    .step{
+
+        padding:
+            28px 20px;
+
+    }
+
+
+    .grid-2{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .options{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .level-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .portrait-area{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+
+    .portrait-preview{
+
+        margin:auto;
+
+    }
+
+
+    .form-footer{
+
+        padding:
+            18px 20px;
+
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .level-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .form-footer{
+
+        flex-direction:column-reverse;
+
+        gap:10px;
+
+    }
+
+
+    .form-footer .btn{
+
+        width:100%;
+
+    }
+
+
+    .live-body{
+
+        padding:
+            0 18px 22px;
+
+    }
+
+}
+
+
+/* LANGUAGE SWITCH */
+.language-switch{display:flex;align-items:center;gap:4px;padding:4px;border:1px solid var(--border);border-radius:999px;background:#fff;}
+.language-switch a{padding:8px 13px;border-radius:999px;text-decoration:none;font-size:12px;font-weight:800;color:var(--muted);transition:.2s ease;}
+.language-switch a:hover{color:var(--blue);}
+.language-switch a.active{background:var(--blue);color:#fff;}
+@media(max-width:700px){.header-question{display:none}.header-right{gap:8px}.language-switch a{padding:7px 10px;font-size:11px}}
+
+</style>
+</head>
+<body>
+<!-- =========================================================
+     HEADER
+========================================================= -->
+<header class="header">
+<a class="logo" href="index.html">
+<!-- logo.jpg must be in the SAME folder as this HTML -->
+<img alt="Bulbeni.org" src="../logo.jpg"/>
+</a>
+<div class="header-right">
+<div class="header-question">
+            Zaten hesabınız var mı?
+        </div>
+<button class="sign-in" type="button">
+            Giriş yap
+        </button>
+<div aria-label="Dil seçimi" class="language-switch">
+<a class="active" href="../teacher-register.html">English</a>
+<a href="teacher-register.html">Türkçe</a>
+</div>
+</div>
+</header>
+<main class="page">
+<!-- =====================================================
+         INTRO
+    ====================================================== -->
+<section class="intro">
+<h1>
+            Profesyonel profilinizi oluşturun
+        </h1>
+<p>
+            Öğrencilere kim olduğunuzu, ne öğrettiğinizi ve
+            hedeflerine ulaşmalarına nasıl yardımcı olabileceğinizi anlatın.
+            Her adımı tamamladıkça profesyonel profiliniz
+            şekillenecek.
+        </p>
+</section>
+<!-- =====================================================
+         WORKSPACE
+    ====================================================== -->
+<div class="workspace">
+<!-- =================================================
+             FORM AREA
+        ================================================== -->
+<div class="form-area">
+<!-- PROGRESS -->
+<div class="progress-container">
+<div class="progress-top">
+<span class="progress-label" id="stepLabel">
+                        Kişisel bilgiler
+                    </span>
+<span class="progress-number" id="stepNumber">
+                        1 / 7
+                    </span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+</div>
+<!-- FORM -->
+<form class="form-card" id="teacherForm" novalidate="">
+<!-- =========================================
+                     STEP 1
+                ========================================== -->
+<section class="step active">
+<div class="step-header">
+<h2>
+                            Sizinle başlayalım
+                        </h2>
+<p>
+                            Profesyonel öğretmen kimliğinizin
+                            temelini oluşturalım.
+                        </p>
+</div>
+<!-- PORTRAIT -->
+<div class="field">
+<label>
+                            Profesyonel portre
+                        </label>
+<div class="portrait-area">
+<div class="portrait-preview" id="portraitPreview">
+<img alt="Öğretmen portresi" id="portraitImage"/>
+<div class="portrait-placeholder" id="portraitPlaceholder">
+                                    T
+                                </div>
+</div>
+<div class="portrait-info">
+<h3>
+                                    Profesyonel bir fotoğraf ekleyin
+                                </h3>
+<p>
+                                    Net ve samimi bir portre, öğrencilerin
+                                    öğretmen seçerken kendilerini daha güvende
+                                    hissetmelerine yardımcı olur.
+                                    JPG veya PNG önerilir.
+                                </p>
+<label class="upload-button">
+
+                                    Portre yükle
+
+                                    <input accept=".jpg,.jpeg,.png,.webp" id="portraitInput" type="file"/>
+</label>
+</div>
+</div>
+</div>
+<div class="grid-2">
+<div class="field">
+<label>
+                                Ad
+                                <span class="required">*</span>
+</label>
+<input id="firstName" placeholder="örn. Sarah" required="" type="text"/>
+<div class="error-message">
+                                Lütfen adınızı girin.
+                            </div>
+</div>
+<div class="field">
+<label>
+                                Soyad
+                                <span class="required">*</span>
+</label>
+<input id="lastName" placeholder="örn. Johnson" required="" type="text"/>
+<div class="error-message">
+                                Lütfen soyadınızı girin.
+                            </div>
+</div>
+</div>
+<div class="grid-2">
+<div class="field">
+<label>
+                                E-posta adresi
+                                <span class="required">*</span>
+</label>
+<input id="email" placeholder="siz@example.com" required="" type="email"/>
+<div class="error-message">
+                                Lütfen geçerli bir e-posta adresi girin.
+                            </div>
+</div>
+<div class="field">
+<label>
+                                Şifre
+                                <span class="required">*</span>
+</label>
+<input autocomplete="new-password" id="password" minlength="8" placeholder="Şifre oluşturun" required="" type="password"/>
+<div class="password-hint">
+                                En az 8 karakter kullanın.
+                            </div>
+<div class="error-message">
+                                Şifreniz en az 8 karakter olmalıdır.
+                            </div>
+</div>
+<div class="field">
+<label>
+                                Şifreyi doğrula
+                                <span class="required">*</span>
+</label>
+<input autocomplete="new-password" id="confirmPassword" minlength="8" placeholder="Şifrenizi tekrar girin" required="" type="password"/>
+<div class="password-hint">
+                                Aynı şifreyi tekrar girin.
+                            </div>
+<div class="error-message">
+                                Şifreler eşleşmiyor.
+                            </div>
+</div>
+<div class="field">
+<label>
+                                Telefon numarası
+                            </label>
+<input id="phone" placeholder="+90 5XX XXX XX XX" type="tel"/>
+</div>
+</div>
+<div class="grid-2">
+<div class="field">
+<label>
+                                Ülke
+                                <span class="required">*</span>
+</label>
+<select id="country" required="">
+<option value="">
+                                    Ülke seçin
+                                </option>
+<option>
+                                    Türkiye
+                                </option>
+<option>
+                                    Birleşik Krallık
+                                </option>
+<option>
+                                    Amerika Birleşik Devletleri
+                                </option>
+<option>
+                                    Kanada
+                                </option>
+<option>
+                                    Almanya
+                                </option>
+<option>
+                                    Avustralya
+                                </option>
+<option>
+                                    Iran
+                                </option>
+<option>
+                                    Diğer
+                                </option>
+</select>
+</div>
+<div class="field">
+<label>
+                                Şehir
+                            </label>
+<input id="city" placeholder="örn. İstanbul" type="text"/>
+</div>
+</div>
+</section>
+<!-- =========================================
+                     STEP 2
+                ========================================== -->
+<section class="step">
+<div class="step-header">
+<h2>
+                            Ne öğretiyorsunuz?
+                        </h2>
+<p>
+                            Ana ders alanınızı ve rahatlıkla ders verebildiğiniz
+                            tüm seviyeleri seçin.
+                        </p>
+</div>
+<div class="field">
+<label>
+                            Ana öğretim alanı
+                            <span class="required">*</span>
+</label>
+<div class="options">
+<div class="option">
+<input id="subjectEnglish" name="subject" type="radio" value="English"/>
+<label for="subjectEnglish">
+<div class="option-icon">
+                                        EN
+                                    </div>
+<div>
+<div class="option-title">
+                                            English
+                                        </div>
+<div class="option-description">
+                                            Genel ve akademik İngilizce
+                                        </div>
+</div>
+</label>
+</div>
+<div class="option">
+<input id="subjectMath" name="subject" type="radio" value="Mathematics"/>
+<label for="subjectMath">
+<div class="option-icon">
+                                        ∑
+                                    </div>
+<div>
+<div class="option-title">
+                                            Matematik
+                                        </div>
+<div class="option-description">
+                                            Okul ve ileri düzey matematik
+                                        </div>
+</div>
+</label>
+</div>
+<div class="option">
+<input id="subjectScience" name="subject" type="radio" value="Science"/>
+<label for="subjectScience">
+<div class="option-icon">
+                                        SCI
+                                    </div>
+<div>
+<div class="option-title">
+                                            Fen Bilimleri
+                                        </div>
+<div class="option-description">
+                                            Biyoloji, kimya ve fizik
+                                        </div>
+</div>
+</label>
+</div>
+<div class="option">
+<input id="subjectLanguages" name="subject" type="radio" value="Languages"/>
+<label for="subjectLanguages">
+<div class="option-icon">
+                                        文
+                                    </div>
+<div>
+<div class="option-title">
+                                            Diller
+                                        </div>
+<div class="option-description">
+                                            Modern ve klasik diller
+                                        </div>
+</div>
+</label>
+</div>
+<div class="option">
+<input id="subjectTest" name="subject" type="radio" value="Test Preparation"/>
+<label for="subjectTest">
+<div class="option-icon">
+                                        A+
+                                    </div>
+<div>
+<div class="option-title">
+                                            Sınav Hazırlığı
+                                        </div>
+<div class="option-description">
+                                            IELTS, TOEFL, SAT ve daha fazlası
+                                        </div>
+</div>
+</label>
+</div>
+<div class="option">
+<input id="subjectOther" name="subject" type="radio" value="Other"/>
+<label for="subjectOther">
+<div class="option-icon">
+                                        +
+                                    </div>
+<div>
+<div class="option-title">
+                                            Diğer
+                                        </div>
+<div class="option-description">
+                                            Başka bir ders
+                                        </div>
+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="field">
+<label>
+                            Öğretim seviyeleri
+                            <span class="required">*</span>
+</label>
+<div class="level-grid">
+<div class="level-card">
+<input id="levelPreschool" name="levels" type="checkbox" value="Preschool"/>
+<label for="levelPreschool">
+<div class="level-code">
+                                        PK
+                                    </div>
+<div class="level-name">
+                                        Okul Öncesi
+                                    </div>
+<div class="level-description">
+                                        Erken yaş öğrencileri
+                                    </div>
+</label>
+</div>
+<div class="level-card">
+<input id="levelPrimary" name="levels" type="checkbox" value="Primary"/>
+<label for="levelPrimary">
+<div class="level-code">
+                                        P
+                                    </div>
+<div class="level-name">
+                                        İlkokul
+                                    </div>
+<div class="level-description">
+                                        Temel eğitim
+                                    </div>
+</label>
+</div>
+<div class="level-card">
+<input id="levelMiddle" name="levels" type="checkbox" value="Middle School"/>
+<label for="levelMiddle">
+<div class="level-code">
+                                        M
+                                    </div>
+<div class="level-name">
+                                        Ortaokul
+                                    </div>
+<div class="level-description">
+                                        11–14 yaş
+                                    </div>
+</label>
+</div>
+<div class="level-card">
+<input id="levelHigh" name="levels" type="checkbox" value="High School"/>
+<label for="levelHigh">
+<div class="level-code">
+                                        H
+                                    </div>
+<div class="level-name">
+                                        Lise
+                                    </div>
+<div class="level-description">
+                                        14–18 yaş
+                                    </div>
+</label>
+</div>
+<div class="level-card">
+<input id="levelUniversity" name="levels" type="checkbox" value="University"/>
+<label for="levelUniversity">
+<div class="level-code">
+                                        U
+                                    </div>
+<div class="level-name">
+                                        Üniversite
+                                    </div>
+<div class="level-description">
+                                        Yükseköğretim
+                                    </div>
+</label>
+</div>
+<div class="level-card">
+<input id="levelAdults" name="levels" type="checkbox" value="Adults"/>
+<label for="levelAdults">
+<div class="level-code">
+                                        A
+                                    </div>
+<div class="level-name">
+                                        Yetişkinler
+                                    </div>
+<div class="level-description">
+                                        Yetişkin öğrenciler
+                                    </div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================
+                     STEP 3
+                ========================================== -->
+<section class="step">
+<div class="step-header">
+<h2>
+                            Deneyiminiz
+                        </h2>
+<p>
+                            Öğrencilerin profesyonel geçmişinizi
+                            anlamasına yardımcı olun.
+                        </p>
+</div>
+<div class="grid-2">
+<div class="field">
+<label>
+                                Öğretmenlik deneyimi
+                                <span class="required">*</span>
+</label>
+<select id="experience" required="">
+<option value="">
+                                    Seçin
+                                </option>
+<option>
+                                    1 yıldan az
+                                </option>
+<option>
+                                    1–2 yıl
+                                </option>
+<option>
+                                    3–5 yıl
+                                </option>
+<option>
+                                    6–10 yıl
+                                </option>
+<option>
+                                    11–15 yıl
+                                </option>
+<option>
+                                    16–20 yıl
+                                </option>
+<option>
+                                    20+ yıl
+                                </option>
+</select>
+</div>
+<div class="field">
+<label>
+                                Highest qualification
+                            </label>
+<select id="qualification">
+<option value="">
+                                    Seçin
+                                </option>
+<option>
+                                    Lisans
+                                </option>
+<option>
+                                    Yüksek Lisans
+                                </option>
+<option>
+                                    Doktora / PhD
+                                </option>
+<option>
+                                    Mesleki Sertifika
+                                </option>
+<option>
+                                    Diğer
+                                </option>
+</select>
+</div>
+</div>
+<div class="field">
+<label>
+                            Üniversite / Kurum
+                        </label>
+<input id="institution" placeholder="örn. Manchester Üniversitesi" type="text"/>
+</div>
+<div class="field">
+<label>
+                            Profesyonel tanıtım
+                            <span class="required">*</span>
+</label>
+<textarea id="bio" placeholder="Öğrencilere deneyiminizden, öğretim yaklaşımınızdan ve derslerinizi etkili kılan özelliklerden bahsedin..." required=""></textarea>
+<div class="error-message">
+                            Lütfen profesyonel bir tanıtım yazın.
+                        </div>
+</div>
+</section>
+<!-- =========================================
+                     STEP 4
+                ========================================== -->
+<section class="step">
+<div class="step-header">
+<h2>
+                            Nasıl ders veriyorsunuz?
+                        </h2>
+<p>
+                            Öğrencilerin sizinle öğrenme deneyiminin
+                            nasıl olduğunu anlamasına yardımcı olun.
+                        </p>
+</div>
+<div class="field">
+<label>
+                            Ders formatı
+                        </label>
+<div class="options">
+<div class="option">
+<input id="formatOnline" name="formats" type="checkbox" value="Online"/>
+<label for="formatOnline">
+<div class="option-icon">
+                                        ↗
+                                    </div>
+<div>
+<div class="option-title">
+                                            Online
+                                        </div>
+<div class="option-description">
+                                            Video dersleri
+                                        </div>
+</div>
+</label>
+</div>
+<div class="option">
+<input id="formatFace" name="formats" type="checkbox" value="Face-to-face"/>
+<label for="formatFace">
+<div class="option-icon">
+                                        ●
+                                    </div>
+<div>
+<div class="option-title">
+                                            Yüz yüze
+                                        </div>
+<div class="option-description">
+                                            Yüz yüze dersler
+                                        </div>
+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="field">
+<label>
+                            Öğretim tarzı
+                        </label>
+<div class="options">
+<div class="option">
+<input id="styleStructured" name="styles" type="checkbox" value="Structured"/>
+<label for="styleStructured">
+                                    Yapılandırılmış ve sistematik
+                                </label>
+</div>
+<div class="option">
+<input id="styleInteractive" name="styles" type="checkbox" value="Interactive"/>
+<label for="styleInteractive">
+                                    Etkileşimli ve ilgi çekici
+                                </label>
+</div>
+<div class="option">
+<input id="styleExam" name="styles" type="checkbox" value="Exam focused"/>
+<label for="styleExam">
+                                    Sınav odaklı
+                                </label>
+</div>
+<div class="option">
+<input id="styleConversation" name="styles" type="checkbox" value="Conversation based"/>
+<label for="styleConversation">
+                                    Konuşma odaklı
+                                </label>
+</div>
+</div>
+</div>
+<div class="grid-2">
+<div class="field">
+<label>
+                                Saatlik ücret
+                            </label>
+<input id="rate" min="0" placeholder="örn. 750" type="number"/>
+</div>
+<div class="field">
+<label>
+                                Para birimi
+                            </label>
+<select id="currency">
+<option>
+                                    TRY
+                                </option>
+<option>
+                                    USD
+                                </option>
+<option>
+                                    EUR
+                                </option>
+<option>
+                                    GBP
+                                </option>
+</select>
+</div>
+</div>
+</section>
+<!-- =========================================
+                     STEP 5 DOCUMENTS
+                ========================================== -->
+<section class="step">
+<div class="step-header">
+<h2>
+                            Niteliklerinizi doğrulayın
+                        </h2>
+<p>
+                            Profesyonel belgelerinizi yükleyin.
+                            Bu belgeler doğrulama amacıyla kullanılır
+                            ve herkese açık olarak gösterilmez.
+                        </p>
+</div>
+<!-- DEGREE -->
+<div class="upload-section">
+<div class="upload-title">
+                            Diploma / Derece
+                        </div>
+<div class="upload-description">
+                            En yüksek ilgili akademik yeterliliğinizi yükleyin.
+                        </div>
+<div class="upload-box" data-upload="degree">
+<div class="upload-icon">
+                                ↑
+                            </div>
+<strong>
+                                Belgenizi buraya bırakın
+                            </strong>
+<span>
+                                PDF, JPG veya PNG · Maksimum 10 MB
+                            </span>
+<br/>
+<label class="upload-button">
+
+                                Dosya seç
+
+                                <input accept=".pdf,.jpg,.jpeg,.png" id="degreeInput" type="file"/>
+</label>
+</div>
+<div class="file-list" id="degreeFiles"></div>
+</div>
+<!-- CERTIFICATES -->
+<div class="upload-section">
+<div class="upload-title">
+                            Öğretmenlik sertifikaları
+                        </div>
+<div class="upload-description">
+                            TEFL, TESOL, CELTA, öğretmenlik lisansları,
+                            mesleki sertifikalar vb.
+                        </div>
+<div class="upload-box" data-upload="certificates">
+<div class="upload-icon">
+                                ↑
+                            </div>
+<strong>
+                                Sertifikalarınızı yükleyin
+                            </strong>
+<span>
+                                Birden fazla dosya desteklenir
+                            </span>
+<br/>
+<label class="upload-button">
+
+                                Dosyaları seç
+
+                                <input accept=".pdf,.jpg,.jpeg,.png" id="certificateInput" multiple="" type="file"/>
+</label>
+</div>
+<div class="file-list" id="certificateFiles"></div>
+</div>
+<!-- CV -->
+<div class="upload-section">
+<div class="upload-title">
+                            CV / Özgeçmiş
+                        </div>
+<div class="upload-description">
+                            Güncel profesyonel CV’nizi yükleyin.
+                        </div>
+<div class="upload-box" data-upload="cv">
+<div class="upload-icon">
+                                ↑
+                            </div>
+<strong>
+                                CV’nizi yükleyin
+                            </strong>
+<span>
+                                PDF veya DOCX · Maksimum 10 MB
+                            </span>
+<br/>
+<label class="upload-button">
+
+                                Dosya seç
+
+                                <input accept=".pdf,.doc,.docx" id="cvInput" type="file"/>
+</label>
+</div>
+<div class="file-list" id="cvFiles"></div>
+</div>
+<div class="check-row">
+<input id="documentConsent" type="checkbox"/>
+<label for="documentConsent">
+                            Yüklediğim belgelerin bana ait olduğunu
+                            ve doğru bilgiler içerdiğini onaylıyorum.
+                        </label>
+</div>
+</section>
+<!-- =========================================
+                     STEP 6
+                ========================================== -->
+<section class="step">
+<div class="step-header">
+<h2>
+                            Profesyonel detaylarınızı ekleyin
+                        </h2>
+<p>
+                            Öğrencilere uzmanlığınız hakkında
+                            biraz daha bilgi verin.
+                        </p>
+</div>
+<div class="field">
+<label>
+                            Ders verebildiğiniz diller
+                        </label>
+<input id="languages" placeholder="örn. İngilizce, Türkçe, Farsça" type="text"/>
+</div>
+<div class="field">
+<label>
+                            Uzmanlık alanları
+                        </label>
+<textarea id="expertise" placeholder="örn. IELTS hazırlığı, akademik yazma, konuşma, iş İngilizcesi..."></textarea>
+</div>
+<div class="grid-2">
+<div class="field">
+<label>
+                                Web sitesi
+                            </label>
+<input id="website" placeholder="https://" type="url"/>
+</div>
+<div class="field">
+<label>
+                                LinkedIn
+                            </label>
+<input id="linkedin" placeholder="https://linkedin.com/in/..." type="url"/>
+</div>
+</div>
+<div class="check-row">
+<input id="profileConsent" type="checkbox"/>
+<label for="profileConsent">
+                            Bulbeni.org’un sağladığım bilgilerle profesyonel
+                            bir öğretmen profili oluşturmasını kabul ediyorum.
+                        </label>
+</div>
+</section>
+<!-- =========================================
+                     STEP 7 REVIEW
+                ========================================== -->
+<section class="step">
+<div class="step-header">
+<h2>
+                            Profiliniz hazır
+                        </h2>
+<p>
+                            Göndermeden önce bilgilerinizi gözden geçirin.
+                            Geri dönerek istediğiniz alanı düzenleyebilirsiniz.
+                        </p>
+</div>
+<div class="review-box">
+<div class="review-title">
+                            Kayıt özeti
+                        </div>
+<div class="review-row">
+<span class="review-label">
+                                Öğretmen
+                            </span>
+<span class="review-value" id="reviewName">
+                                —
+                            </span>
+</div>
+<div class="review-row">
+<span class="review-label">
+                                Ders alanı
+                            </span>
+<span class="review-value" id="reviewSubject">
+                                —
+                            </span>
+</div>
+<div class="review-row">
+<span class="review-label">
+                                Öğretim seviyeleri
+                            </span>
+<span class="review-value" id="reviewLevels">
+                                —
+                            </span>
+</div>
+<div class="review-row">
+<span class="review-label">
+                                Deneyim
+                            </span>
+<span class="review-value" id="reviewExperience">
+                                —
+                            </span>
+</div>
+<div class="review-row">
+<span class="review-label">
+                                Format
+                            </span>
+<span class="review-value" id="reviewFormats">
+                                —
+                            </span>
+</div>
+<div class="review-row">
+<span class="review-label">
+                                Saatlik ücret
+                            </span>
+<span class="review-value" id="reviewRate">
+                                —
+                            </span>
+</div>
+</div>
+</section>
+<!-- =========================================
+                     BUTTONS
+                ========================================== -->
+<div class="form-footer">
+<button class="btn btn-secondary" id="backBtn" type="button">
+                        Geri
+                    </button>
+<button class="btn btn-primary" id="nextBtn" type="button">
+                        Devam et
+                    </button>
+<button class="btn btn-success hidden" id="submitBtn" type="submit">
+                        Profili gönder
+                    </button>
+</div>
+</form>
+</div>
+<!-- =================================================
+             LIVE PROFILE
+        ================================================== -->
+<aside class="profile-column">
+<div class="profile-heading">
+                Canlı profil önizlemesi
+            </div>
+<div class="live-card">
+<div class="live-cover">
+<div class="live-status">
+<span class="status-dot"></span>
+
+                        Profil önizlemesi
+
+                    </div>
+</div>
+<div class="live-body">
+<div class="live-avatar" id="liveAvatar">
+<img alt="Öğretmen" id="livePortrait"/>
+<div class="live-avatar-placeholder" id="livePlaceholder">
+                            T
+                        </div>
+</div>
+<div class="live-name" id="liveName">
+                        Adınız Soyadınız
+                    </div>
+<div class="live-subject" id="liveSubject">
+                        Öğretim alanınız
+                    </div>
+<div class="live-location" id="liveLocation">
+                        Konumunuz
+                    </div>
+<div class="live-divider"></div>
+<div class="live-bio" id="liveBio">
+                        Formu doldurdukça profesyonel tanıtımınız
+                        burada görünecek.
+                    </div>
+<div class="live-tags" id="liveTags">
+<span class="live-tag">
+                            Öğretim seviyeleriniz
+                        </span>
+</div>
+<div class="live-info-grid">
+<div class="live-info">
+<div class="live-info-label">
+                                Deneyim
+                            </div>
+<div class="live-info-value" id="liveExperience">
+                                —
+                            </div>
+</div>
+<div class="live-info">
+<div class="live-info-label">
+                                Ücret
+                            </div>
+<div class="live-info-value" id="liveRate">
+                                —
+                            </div>
+</div>
+</div>
+<div class="profile-note">
+
+                        Profilinizi oluşturdukça bu önizleme
+                        otomatik olarak güncellenir.
+
+                    </div>
+</div>
+</div>
+</aside>
+</div>
+<!-- =====================================================
+         SUCCESS
+    ====================================================== -->
+<section class="success-screen hidden" id="successScreen">
+<div class="success-icon">
+            ✓
+        </div>
+<h2>
+            Bulbeni’ye hoş geldiniz
+        </h2>
+<p>
+            Öğretmen kaydınız tamamlandı.
+            Belgeleriniz şimdi incelenebilir ve
+            profesyonel profiliniz öğrenciler için hazırlanabilir.
+        </p>
+</section>
+</main>
+<script>
+
+/* =========================================================
+   STEP SYSTEM
+========================================================= */
+
+const steps =
+    document.querySelectorAll(".step");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const backBtn =
+    document.getElementById("backBtn");
+
+const submitBtn =
+    document.getElementById("submitBtn");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const stepLabel =
+    document.getElementById("stepLabel");
+
+const stepNumber =
+    document.getElementById("stepNumber");
+
+
+let currentStep = 0;
+
+
+const stepNames = [
+
+    "Kişisel bilgiler",
+    "Öğretim alanları",
+    "Öğretmenlik deneyimi",
+    "Öğretim tarzı",
+    "Profesyonel belgeler",
+    "Profesyonel detaylar",
+    "Profili gözden geçir"
+
+];
+
+
+/* =========================================================
+   STEP DISPLAY
+========================================================= */
+
+function showStep(index){
+
+    steps.forEach(
+        (step,i) => {
+
+            step.classList.toggle(
+                "active",
+                i === index
+            );
+
+        }
+    );
+
+
+    const percentage =
+        ((index + 1) / steps.length) * 100;
+
+
+    progressFill.style.width =
+        percentage + "%";
+
+
+    stepLabel.textContent =
+        stepNames[index];
+
+
+    stepNumber.textContent =
+        `${index + 1} / ${steps.length}`;
+
+
+    backBtn.style.visibility =
+        index === 0
+            ? "hidden"
+            : "visible";
+
+
+    if(index === steps.length - 1){
+
+        nextBtn.classList.add("hidden");
+
+        submitBtn.classList.remove("hidden");
+
+        updateLiveProfile();
+
+        generateReview();
+
+    }
+
+    else{
+
+        nextBtn.classList.remove("hidden");
+
+        submitBtn.classList.add("hidden");
+
+    }
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   GET CHECKED VALUES
+========================================================= */
+
+function getValues(name){
+
+    return Array.from(
+        document.querySelectorAll(
+            `input[name="${name}"]:checked`
+        )
+    ).map(
+        input => input.value
+    );
+
+}
+
+
+/* =========================================================
+   LIVE PROFILE
+========================================================= */
+
+function updateLiveProfile(){
+
+    const first =
+        document.getElementById("firstName")
+        .value
+        .trim();
+
+
+    const last =
+        document.getElementById("lastName")
+        .value
+        .trim();
+
+
+    const name =
+        `${first} ${last}`.trim();
+
+
+    const subject =
+        document.querySelector(
+            'input[name="subject"]:checked'
+        )?.value;
+
+
+    const city =
+        document.getElementById("city")
+        .value
+        .trim();
+
+
+    const country =
+        document.getElementById("country")
+        .value;
+
+
+    const experience =
+        document.getElementById("experience")
+        .value;
+
+
+    const rate =
+        document.getElementById("rate")
+        .value;
+
+
+    const currency =
+        document.getElementById("currency")
+        .value;
+
+
+    const bio =
+        document.getElementById("bio")
+        .value
+        .trim();
+
+
+    /* NAME */
+
+    document.getElementById(
+        "liveName"
+    ).textContent =
+        name || "Adınız Soyadınız";
+
+
+    /* AVATAR INITIAL */
+
+    document.getElementById(
+        "livePlaceholder"
+    ).textContent =
+        first
+            ? first.charAt(0).toUpperCase()
+            : "T";
+
+
+    /* SUBJECT */
+
+    document.getElementById(
+        "liveSubject"
+    ).textContent =
+        subject
+            ? subject + " Öğretmen"
+            : "Öğretim alanınız";
+
+
+    /* LOCATION */
+
+    const location =
+        [city,country]
+        .filter(Boolean)
+        .join(", ");
+
+
+    document.getElementById(
+        "liveLocation"
+    ).textContent =
+        location ||
+        "Konumunuz";
+
+
+    /* BIO */
+
+    document.getElementById(
+        "liveBio"
+    ).textContent =
+        bio ||
+        "Formu doldurdukça profesyonel tanıtımınız burada görünecek.";
+
+
+    /* EXPERIENCE */
+
+    document.getElementById(
+        "liveExperience"
+    ).textContent =
+        experience || "—";
+
+
+    /* RATE */
+
+    document.getElementById(
+        "liveRate"
+    ).textContent =
+        rate
+            ? `${rate} ${currency} / saat`
+            : "—";
+
+
+    /* TAGS */
+
+    const tags =
+        document.getElementById(
+            "liveTags"
+        );
+
+
+    tags.innerHTML = "";
+
+
+    const levels =
+        getValues("levels");
+
+
+    const formats =
+        getValues("formats");
+
+
+    const styles =
+        getValues("styles");
+
+
+    const allTags =
+        [
+            ...levels,
+            ...formats,
+            ...styles
+        ];
+
+
+    if(allTags.length === 0){
+
+        const placeholder =
+            document.createElement("span");
+
+        placeholder.className =
+            "live-tag";
+
+        placeholder.textContent =
+            "Öğretim seviyeleriniz";
+
+        tags.appendChild(
+            placeholder
+        );
+
+    }
+
+
+    allTags.forEach(
+        value => {
+
+            const tag =
+                document.createElement("span");
+
+            tag.className =
+                "live-tag";
+
+            tag.textContent =
+                value;
+
+            tags.appendChild(tag);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LIVE INPUT LISTENERS
+========================================================= */
+
+document
+.querySelectorAll(
+    "#teacherForm input, #teacherForm select, #teacherForm textarea"
+)
+.forEach(
+    element => {
+
+        element.addEventListener(
+            "input",
+            updateLiveProfile
+        );
+
+        element.addEventListener(
+            "change",
+            updateLiveProfile
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PORTRAIT UPLOAD
+========================================================= */
+
+const portraitInput =
+    document.getElementById(
+        "portraitInput"
+    );
+
+
+const portraitImage =
+    document.getElementById(
+        "portraitImage"
+    );
+
+
+const portraitPlaceholder =
+    document.getElementById(
+        "portraitPlaceholder"
+    );
+
+
+const livePortrait =
+    document.getElementById(
+        "livePortrait"
+    );
+
+
+const livePlaceholder =
+    document.getElementById(
+        "livePlaceholder"
+    );
+
+
+portraitInput.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+
+        if(!file)
+            return;
+
+
+        if(
+            !file.type.startsWith("image/")
+        ){
+
+            alert(
+                "Lütfen bir görsel dosyası seçin."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            file.size >
+            10 * 1024 * 1024
+        ){
+
+            alert(
+                "Lütfen 10 MB’dan küçük bir görsel seçin."
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event){
+
+                const image =
+                    event.target.result;
+
+
+                /* FORM PORTRAIT */
+
+                portraitImage.src =
+                    image;
+
+                portraitImage.style.display =
+                    "block";
+
+                portraitPlaceholder.style.display =
+                    "none";
+
+
+                /* LIVE CARD PORTRAIT */
+
+                livePortrait.src =
+                    image;
+
+                livePortrait.style.display =
+                    "block";
+
+                livePlaceholder.style.display =
+                    "none";
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+function validateStep(){
+
+    const current =
+        steps[currentStep];
+
+
+    let valid = true;
+
+
+    current
+    .querySelectorAll(
+        "input[required], select[required], textarea[required]"
+    )
+    .forEach(
+        field => {
+
+            const parent =
+                field.closest(".field");
+
+
+            if(
+                !field.value.trim()
+            ){
+
+                parent?.classList.add(
+                    "error"
+                );
+
+                valid = false;
+
+            }
+
+            else{
+
+                parent?.classList.remove(
+                    "error"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* EMAIL + PASSWORD */
+
+    if(currentStep === 0){
+
+        const email =
+            document.getElementById("email");
+
+        if(
+            email.value.trim() &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(email.value)
+        ){
+            email.closest(".field")
+                .classList.add("error");
+            valid = false;
+        }
+
+        const password =
+            document.getElementById("password");
+
+        const confirmPassword =
+            document.getElementById("confirmPassword");
+
+        if(password.value.length < 8){
+            password.closest(".field")
+                .classList.add("error");
+            valid = false;
+        }
+
+        if(
+            !confirmPassword.value ||
+            confirmPassword.value !== password.value
+        ){
+            confirmPassword.closest(".field")
+                .classList.add("error");
+            valid = false;
+        }
+
+    }
+
+
+    /* SUBJECT + LEVEL */
+
+    if(currentStep === 1){
+
+        const subject =
+            document.querySelector(
+                'input[name="subject"]:checked'
+            );
+
+
+        const levels =
+            getValues("levels");
+
+
+        if(!subject){
+
+            alert(
+                "Lütfen ana öğretim alanınızı seçin."
+            );
+
+            valid = false;
+
+        }
+
+
+        if(levels.length === 0){
+
+            alert(
+                "Lütfen en az bir öğretim seviyesi seçin."
+            );
+
+            valid = false;
+
+        }
+
+    }
+
+
+    /* DOCUMENT CONSENT */
+
+    if(currentStep === 4){
+
+        const consent =
+            document.getElementById(
+                "documentConsent"
+            );
+
+
+        if(!consent.checked){
+
+            alert(
+                "Lütfen belge bilgilerinizin doğruluğunu onaylayın."
+            );
+
+            valid = false;
+
+        }
+
+    }
+
+
+    return valid;
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+nextBtn.addEventListener(
+    "click",
+    function(){
+
+        if(!validateStep())
+            return;
+
+
+        if(
+            currentStep <
+            steps.length - 1
+        ){
+
+            currentStep++;
+
+            showStep(
+                currentStep
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+backBtn.addEventListener(
+    "click",
+    function(){
+
+        if(currentStep > 0){
+
+            currentStep--;
+
+            showStep(
+                currentStep
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DOCUMENT UPLOAD SYSTEM
+========================================================= */
+
+const uploadedFiles = {
+
+    degree:[],
+    certificates:[],
+    cv:[]
+
+};
+
+
+function setupUploader(
+    inputId,
+    outputId,
+    storageKey,
+    multiple
+){
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+
+    const output =
+        document.getElementById(
+            outputId
+        );
+
+
+    input.addEventListener(
+        "change",
+        function(){
+
+            const files =
+                Array.from(
+                    this.files
+                );
+
+
+            if(!multiple){
+
+                uploadedFiles[
+                    storageKey
+                ] = [];
+
+            }
+
+
+            files.forEach(
+                file => {
+
+                    if(
+                        file.size >
+                        10 * 1024 * 1024
+                    ){
+
+                        alert(
+                            `${file.name} 10 MB’dan büyük.`
+                        );
+
+                        return;
+
+                    }
+
+
+                    uploadedFiles[
+                        storageKey
+                    ].push(file);
+
+                }
+            );
+
+
+            renderFiles(
+                storageKey,
+                output
+            );
+
+
+            input.value = "";
+
+        }
+    );
+
+}
+
+
+function renderFiles(
+    key,
+    output
+){
+
+    output.innerHTML = "";
+
+
+    uploadedFiles[key]
+    .forEach(
+        (file,index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "file-item";
+
+
+            const name =
+                document.createElement(
+                    "span"
+                );
+
+
+            name.className =
+                "file-name";
+
+
+            name.textContent =
+                file.name;
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+
+            remove.type =
+                "button";
+
+
+            remove.className =
+                "remove-file";
+
+
+            remove.textContent =
+                "Kaldır";
+
+
+            remove.addEventListener(
+                "click",
+                function(){
+
+                    uploadedFiles[key]
+                        .splice(index,1);
+
+
+                    renderFiles(
+                        key,
+                        output
+                    );
+
+                }
+            );
+
+
+            item.appendChild(name);
+
+            item.appendChild(remove);
+
+            output.appendChild(item);
+
+        }
+    );
+
+}
+
+
+setupUploader(
+    "degreeInput",
+    "degreeFiles",
+    "degree",
+    false
+);
+
+
+setupUploader(
+    "certificateInput",
+    "certificateFiles",
+    "certificates",
+    true
+);
+
+
+setupUploader(
+    "cvInput",
+    "cvFiles",
+    "cv",
+    false
+);
+
+
+/* =========================================================
+   DRAG & DROP
+========================================================= */
+
+document
+.querySelectorAll(".upload-box")
+.forEach(
+    box => {
+
+        box.addEventListener(
+            "dragover",
+            event => {
+
+                event.preventDefault();
+
+                box.classList.add(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        box.addEventListener(
+            "dragleave",
+            () => {
+
+                box.classList.remove(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        box.addEventListener(
+            "drop",
+            event => {
+
+                event.preventDefault();
+
+                box.classList.remove(
+                    "dragging"
+                );
+
+
+                const key =
+                    box.dataset.upload;
+
+
+                const files =
+                    Array.from(
+                        event
+                        .dataTransfer
+                        .files
+                    );
+
+
+                uploadedFiles[key] =
+                    key === "certificates"
+                        ? files
+                        : files.slice(0,1);
+
+
+                const outputId =
+                    key === "degree"
+                        ? "degreeFiles"
+                        : key === "cv"
+                            ? "cvFiles"
+                            : "certificateFiles";
+
+
+                renderFiles(
+                    key,
+                    document.getElementById(
+                        outputId
+                    )
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function generateReview(){
+
+    const first =
+        document.getElementById(
+            "firstName"
+        ).value.trim();
+
+
+    const last =
+        document.getElementById(
+            "lastName"
+        ).value.trim();
+
+
+    const subject =
+        document.querySelector(
+            'input[name="subject"]:checked'
+        )?.value || "—";
+
+
+    const levels =
+        getValues("levels");
+
+
+    const experience =
+        document.getElementById(
+            "experience"
+        ).value || "—";
+
+
+    const formats =
+        getValues("formats");
+
+
+    const rate =
+        document.getElementById(
+            "rate"
+        ).value;
+
+
+    const currency =
+        document.getElementById(
+            "currency"
+        ).value;
+
+
+    document.getElementById(
+        "reviewName"
+    ).textContent =
+        `${first} ${last}`.trim()
+        || "—";
+
+
+    document.getElementById(
+        "reviewSubject"
+    ).textContent =
+        subject;
+
+
+    document.getElementById(
+        "reviewLevels"
+    ).textContent =
+        levels.length
+            ? levels.join(", ")
+            : "—";
+
+
+    document.getElementById(
+        "reviewExperience"
+    ).textContent =
+        experience;
+
+
+    document.getElementById(
+        "reviewFormats"
+    ).textContent =
+        formats.length
+            ? formats.join(", ")
+            : "—";
+
+
+    document.getElementById(
+        "reviewRate"
+    ).textContent =
+        rate
+            ? `${rate} ${currency} / saat`
+            : "—";
+
+}
+
+
+/* =========================================================
+   REMOVE ERRORS WHEN EDITING
+========================================================= */
+
+document
+.querySelectorAll(
+    "input, select, textarea"
+)
+.forEach(
+    element => {
+
+        element.addEventListener(
+            "input",
+            function(){
+
+                this
+                .closest(".field")
+                ?.classList.remove(
+                    "error"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+document
+.getElementById(
+    "teacherForm"
+)
+.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        if(!validateStep())
+            return;
+
+
+        const consent =
+            document.getElementById(
+                "profileConsent"
+            );
+
+
+        if(!consent.checked){
+
+            alert(
+                "Lütfen profesyonel profilinizin oluşturulmasını kabul edin."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         FRONT-END DEMONSTRATION ONLY.
+
+         The next stage will connect this form
+         to the Bulbeni backend.
+
+         At that point:
+         - teacher account is created
+         - portrait is uploaded securely
+         - documents are stored privately
+         - profile is saved in database
+         - verification status is created
+        */
+
+
+        document
+        .getElementById(
+            "teacherForm"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+        document
+        .querySelector(
+            ".progress-container"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+        document
+        .querySelector(
+            ".profile-column"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+
+        document
+        .getElementById(
+            "successScreen"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+showStep(0);
+
+updateLiveProfile();
+
+</script>
+</body>
+</html>

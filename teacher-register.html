@@ -1,0 +1,5438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Become a Teacher | Bulbeni.org</title>
+
+<meta
+    name="description"
+    content="Create your professional teacher profile on Bulbeni.org."
+>
+
+<style>
+
+/* =========================================================
+   BULBENI DESIGN SYSTEM
+========================================================= */
+
+:root{
+
+    --blue:#2859c7;
+    --blue-dark:#1b439d;
+    --blue-light:#edf3ff;
+
+    --teal:#35a59d;
+    --green:#299969;
+
+    --text:#172033;
+    --text-soft:#4e586b;
+    --muted:#7a8495;
+
+    --border:#e3e8f0;
+    --background:#f6f8fb;
+    --white:#ffffff;
+
+    --danger:#d9534f;
+
+    --shadow:
+        0 24px 70px rgba(20,35,65,.08);
+
+    --radius:20px;
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+    background:var(--background);
+
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    height:82px;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 5%;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    text-decoration:none;
+
+}
+
+
+.logo img{
+
+    display:block;
+
+    width:auto;
+
+    height:58px;
+
+    max-width:210px;
+
+    object-fit:contain;
+
+}
+
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+
+.header-question{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+.sign-in{
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--blue);
+
+    font-weight:700;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.page{
+
+    width:min(1320px,94%);
+
+    margin:
+        42px auto
+        80px;
+
+}
+
+
+.intro{
+
+    text-align:center;
+
+    margin-bottom:36px;
+
+}
+
+
+.intro h1{
+
+    margin:0 0 12px;
+
+    font-size:
+        clamp(30px,4vw,45px);
+
+    letter-spacing:-1.7px;
+
+}
+
+
+.intro p{
+
+    max-width:680px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   TWO COLUMN ONBOARDING
+========================================================= */
+
+.workspace{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        390px;
+
+    gap:28px;
+
+    align-items:start;
+
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.form-area{
+
+    min-width:0;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress-container{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:20px 24px;
+
+    margin-bottom:18px;
+
+    box-shadow:
+        0 8px 30px rgba(20,35,65,.04);
+
+}
+
+
+.progress-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+
+.progress-label{
+
+    font-size:13px;
+
+    color:var(--muted);
+
+}
+
+
+.progress-number{
+
+    color:var(--blue);
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.progress-bar{
+
+    height:7px;
+
+    background:#edf0f5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+    height:100%;
+
+    width:14.28%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--teal)
+        );
+
+    transition:
+        width .45s ease;
+
+}
+
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.form-card{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+
+.step{
+
+    display:none;
+
+    padding:
+        42px;
+
+    animation:
+        stepEnter .38s ease;
+
+}
+
+
+.step.active{
+
+    display:block;
+
+}
+
+
+@keyframes stepEnter{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   STEP HEADER
+========================================================= */
+
+.step-header{
+
+    margin-bottom:32px;
+
+}
+
+
+.step-header h2{
+
+    margin:0 0 9px;
+
+    font-size:28px;
+
+    letter-spacing:-.8px;
+
+}
+
+
+.step-header p{
+
+    margin:0;
+
+    color:var(--muted);
+
+    line-height:1.65;
+
+    font-size:14px;
+
+}
+
+
+/* =========================================================
+   FIELDS
+========================================================= */
+
+.field{
+
+    margin-bottom:24px;
+
+}
+
+
+.field label{
+
+    display:block;
+
+    margin-bottom:9px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.required{
+
+    color:var(--danger);
+
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+select,
+textarea{
+
+    width:100%;
+
+    padding:
+        14px 15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:12px;
+
+    background:white;
+
+    color:var(--text);
+
+    outline:none;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+
+}
+
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--blue);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(40,89,199,.09);
+
+}
+
+
+textarea{
+
+    min-height:135px;
+
+    resize:vertical;
+
+    line-height:1.65;
+
+}
+
+
+.grid-2{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:18px;
+
+}
+
+
+/* =========================================================
+   PORTRAIT UPLOAD
+========================================================= */
+
+.portrait-area{
+
+    display:grid;
+
+    grid-template-columns:
+        130px 1fr;
+
+    gap:24px;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:#fafbfd;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:17px;
+
+}
+
+
+.portrait-preview{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    background:#eaf0f8;
+
+    border:
+        4px solid white;
+
+    box-shadow:
+        0 8px 25px
+        rgba(20,35,65,.1);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.portrait-preview img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+
+}
+
+
+.portrait-placeholder{
+
+    color:var(--blue);
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+
+.portrait-info h3{
+
+    margin:
+        0 0 7px;
+
+    font-size:16px;
+
+}
+
+
+.portrait-info p{
+
+    margin:
+        0 0 14px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.6;
+
+}
+
+
+.upload-button{
+
+    display:inline-block;
+
+    padding:
+        10px 15px;
+
+    border-radius:10px;
+
+    background:var(--blue);
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.upload-button input{
+
+    display:none;
+
+}
+
+
+/* =========================================================
+   OPTION CARDS
+========================================================= */
+
+.options{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+
+.option{
+
+    position:relative;
+
+}
+
+
+.option input{
+
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+
+.option label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    min-height:68px;
+
+    padding:14px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    background:white;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+
+.option label:hover{
+
+    border-color:#b9c8e5;
+
+    transform:translateY(-1px);
+
+}
+
+
+.option input:checked + label{
+
+    background:var(--blue-light);
+
+    border-color:var(--blue);
+
+    box-shadow:
+        0 6px 20px
+        rgba(40,89,199,.08);
+
+}
+
+
+.option-icon{
+
+    width:38px;
+
+    height:38px;
+
+    flex-shrink:0;
+
+    border-radius:10px;
+
+    background:#f0f3f7;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+    font-weight:800;
+
+}
+
+
+.option input:checked
++ label
+.option-icon{
+
+    background:var(--blue);
+
+    color:white;
+
+}
+
+
+.option-title{
+
+    font-size:13px;
+
+    font-weight:750;
+
+}
+
+
+.option-description{
+
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+   TEACHING LEVELS
+========================================================= */
+
+.level-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+
+.level-card{
+
+    position:relative;
+
+}
+
+
+.level-card input{
+
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+
+}
+
+
+.level-card label{
+
+    display:block;
+
+    padding:18px 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+}
+
+
+.level-card label:hover{
+
+    border-color:#b9c8e5;
+
+}
+
+
+.level-card input:checked + label{
+
+    border-color:var(--blue);
+
+    background:var(--blue-light);
+
+    box-shadow:
+        0 6px 20px
+        rgba(40,89,199,.08);
+
+}
+
+
+.level-code{
+
+    color:var(--blue);
+
+    font-weight:900;
+
+    font-size:18px;
+
+}
+
+
+.level-name{
+
+    margin-top:5px;
+
+    font-size:12px;
+
+    font-weight:750;
+
+}
+
+
+.level-description{
+
+    margin-top:4px;
+
+    font-size:10px;
+
+    color:var(--muted);
+
+}
+
+
+/* =========================================================
+   UPLOAD DOCUMENTS
+========================================================= */
+
+.upload-section{
+
+    margin-bottom:27px;
+
+}
+
+
+.upload-title{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    margin-bottom:6px;
+
+}
+
+
+.upload-description{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    margin-bottom:12px;
+
+}
+
+
+.upload-box{
+
+    border:
+        1.5px dashed #cbd4e2;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    background:#fafbfd;
+
+    transition:.2s ease;
+
+}
+
+
+.upload-box.dragging{
+
+    border-color:var(--blue);
+
+    background:var(--blue-light);
+
+}
+
+
+.upload-box strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    font-size:13px;
+
+}
+
+
+.upload-box span{
+
+    font-size:11px;
+
+    color:var(--muted);
+
+}
+
+
+.upload-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:12px;
+
+    background:var(--blue-light);
+
+    color:var(--blue);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:
+        0 auto 11px;
+
+    font-weight:900;
+
+}
+
+
+.upload-box .upload-button{
+
+    margin-top:13px;
+
+}
+
+
+.file-list{
+
+    margin-top:9px;
+
+}
+
+
+.file-item{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:10px 12px;
+
+    margin-bottom:6px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:10px;
+
+    background:#fafbfd;
+
+    font-size:12px;
+
+}
+
+
+.file-name{
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+
+.remove-file{
+
+    border:0;
+
+    background:none;
+
+    color:var(--danger);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.check-row{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+.check-row input{
+
+    margin-top:3px;
+
+    accent-color:var(--blue);
+
+}
+
+
+.check-row label{
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================================
+   FORM FOOTER
+========================================================= */
+
+.form-footer{
+
+    padding:
+        20px 42px;
+
+    border-top:
+        1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fcfdff;
+
+}
+
+
+.btn{
+
+    border:0;
+
+    border-radius:11px;
+
+    padding:
+        13px 22px;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    transition:.2s ease;
+
+}
+
+
+.btn:hover{
+
+    transform:translateY(-1px);
+
+}
+
+
+.btn-secondary{
+
+    background:#eef1f5;
+
+    color:#586274;
+
+}
+
+
+.btn-primary{
+
+    background:var(--blue);
+
+    color:white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(40,89,199,.2);
+
+}
+
+
+.btn-primary:hover{
+
+    background:var(--blue-dark);
+
+}
+
+
+.btn-success{
+
+    background:var(--green);
+
+    color:white;
+
+}
+
+
+.hidden{
+
+    display:none!important;
+
+}
+
+
+/* =========================================================
+   RIGHT LIVE PROFILE CARD
+========================================================= */
+
+.profile-column{
+
+    position:sticky;
+
+    top:105px;
+
+}
+
+
+.profile-heading{
+
+    margin:
+        0 0 12px 5px;
+
+    font-size:12px;
+
+    color:var(--muted);
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+
+.live-card{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+}
+
+
+.live-cover{
+
+    height:105px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,.8),
+            transparent 25%
+        ),
+        linear-gradient(
+            125deg,
+            #e9f0ff,
+            #edf8f6
+        );
+
+    position:relative;
+
+}
+
+
+.live-status{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:
+        6px 9px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.8);
+
+    backdrop-filter:blur(8px);
+
+    font-size:10px;
+
+    color:var(--muted);
+
+}
+
+
+.status-dot{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+}
+
+
+.live-body{
+
+    padding:
+        0 24px 25px;
+
+}
+
+
+.live-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    margin-top:-45px;
+
+    border:
+        5px solid white;
+
+    background:#edf1f7;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.live-avatar img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:none;
+
+}
+
+
+.live-avatar-placeholder{
+
+    font-size:29px;
+
+    color:var(--blue);
+
+    font-weight:900;
+
+}
+
+
+.live-name{
+
+    margin-top:14px;
+
+    font-size:22px;
+
+    font-weight:850;
+
+    letter-spacing:-.5px;
+
+    word-break:break-word;
+
+}
+
+
+.live-subject{
+
+    color:var(--blue);
+
+    font-size:13px;
+
+    font-weight:750;
+
+    margin-top:5px;
+
+}
+
+
+.live-location{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:7px;
+
+}
+
+
+.live-divider{
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:
+        19px 0;
+
+}
+
+
+.live-bio{
+
+    color:var(--text-soft);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+    min-height:60px;
+
+}
+
+
+.live-tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:16px;
+
+}
+
+
+.live-tag{
+
+    padding:
+        6px 9px;
+
+    border-radius:20px;
+
+    background:var(--blue-light);
+
+    color:var(--blue);
+
+    font-size:10px;
+
+    font-weight:750;
+
+}
+
+
+.live-info-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:9px;
+
+    margin-top:18px;
+
+}
+
+
+.live-info{
+
+    padding:
+        11px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:11px;
+
+}
+
+
+.live-info-label{
+
+    font-size:9px;
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+
+.live-info-value{
+
+    margin-top:4px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+
+.profile-note{
+
+    margin-top:13px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================================================
+   REVIEW SCREEN
+========================================================= */
+
+.review-box{
+
+    border:
+        1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:20px;
+
+    background:#fafbfd;
+
+}
+
+
+.review-title{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+
+.review-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    padding:
+        10px 0;
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size:12px;
+
+}
+
+
+.review-row:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.review-label{
+
+    color:var(--muted);
+
+}
+
+
+.review-value{
+
+    font-weight:700;
+
+    text-align:right;
+
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.success-screen{
+
+    background:white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    text-align:center;
+
+    padding:
+        70px 30px;
+
+}
+
+
+.success-icon{
+
+    width:72px;
+
+    height:72px;
+
+    margin:
+        0 auto 20px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#eaf8f1;
+
+    color:var(--green);
+
+    font-size:30px;
+
+    font-weight:900;
+
+}
+
+
+.success-screen h2{
+
+    font-size:29px;
+
+    margin:0 0 10px;
+
+}
+
+
+.success-screen p{
+
+    max-width:570px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.field.error input,
+.field.error select,
+.field.error textarea{
+
+    border-color:var(--danger);
+
+}
+
+
+.error-message{
+
+    display:none;
+
+    color:var(--danger);
+
+    font-size:11px;
+
+    margin-top:6px;
+
+}
+
+
+.field.error .error-message{
+
+    display:block;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .workspace{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .profile-column{
+
+        position:relative;
+
+        top:auto;
+
+        grid-row:1;
+
+    }
+
+
+    .form-area{
+
+        grid-row:2;
+
+    }
+
+
+    .profile-heading{
+
+        margin-top:0;
+
+    }
+
+
+    .live-card{
+
+        max-width:600px;
+
+        margin:auto;
+
+    }
+
+}
+
+
+@media(max-width:700px){
+
+    .header{
+
+        height:72px;
+
+        padding:
+            0 20px;
+
+    }
+
+
+    .logo img{
+
+        height:50px;
+
+        max-width:180px;
+
+    }
+
+
+    .header-question{
+
+        display:none;
+
+    }
+
+
+    .page{
+
+        width:94%;
+
+        margin-top:25px;
+
+    }
+
+
+    .step{
+
+        padding:
+            28px 20px;
+
+    }
+
+
+    .grid-2{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .options{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .level-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .portrait-area{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+
+    .portrait-preview{
+
+        margin:auto;
+
+    }
+
+
+    .form-footer{
+
+        padding:
+            18px 20px;
+
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .level-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .form-footer{
+
+        flex-direction:column-reverse;
+
+        gap:10px;
+
+    }
+
+
+    .form-footer .btn{
+
+        width:100%;
+
+    }
+
+
+    .live-body{
+
+        padding:
+            0 18px 22px;
+
+    }
+
+}
+
+
+/* LANGUAGE SWITCH */
+.language-switch{display:flex;align-items:center;gap:4px;padding:4px;border:1px solid var(--border);border-radius:999px;background:#fff;}
+.language-switch a{padding:8px 13px;border-radius:999px;text-decoration:none;font-size:12px;font-weight:800;color:var(--muted);transition:.2s ease;}
+.language-switch a:hover{color:var(--blue);}
+.language-switch a.active{background:var(--blue);color:#fff;}
+@media(max-width:700px){.header-question{display:none}.header-right{gap:8px}.language-switch a{padding:7px 10px;font-size:11px}}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <!-- logo.jpg must be in the SAME folder as this HTML -->
+
+        <img
+            src="logo.jpg"
+            alt="Bulbeni.org"
+        >
+
+    </a>
+
+
+    <div class="header-right">
+
+        <div class="header-question">
+            Already have an account?
+        </div>
+
+        <button
+            class="sign-in"
+            type="button"
+        >
+            Sign in
+        </button>
+
+        <div class="language-switch" aria-label="Language selection">
+            <a href="teacher-register.html" class="active">English</a>
+            <a href="tr/teacher-register.html">Türkçe</a>
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="page">
+
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <section class="intro">
+
+        <h1>
+            Build your professional profile
+        </h1>
+
+        <p>
+            Tell students who you are, what you teach,
+            and how you can help them reach their goals.
+            Your profile will take shape as you complete
+            each step.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WORKSPACE
+    ====================================================== -->
+
+    <div class="workspace">
+
+
+        <!-- =================================================
+             FORM AREA
+        ================================================== -->
+
+        <div class="form-area">
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-container">
+
+                <div class="progress-top">
+
+                    <span
+                        class="progress-label"
+                        id="stepLabel"
+                    >
+                        Personal information
+                    </span>
+
+                    <span
+                        class="progress-number"
+                        id="stepNumber"
+                    >
+                        1 / 7
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form
+                class="form-card"
+                id="teacherForm"
+                novalidate
+            >
+
+
+                <!-- =========================================
+                     STEP 1
+                ========================================== -->
+
+                <section class="step active">
+
+                    <div class="step-header">
+
+                        <h2>
+                            Let's start with you
+                        </h2>
+
+                        <p>
+                            Create the foundation of your
+                            professional teacher identity.
+                        </p>
+
+                    </div>
+
+
+                    <!-- PORTRAIT -->
+
+                    <div class="field">
+
+                        <label>
+                            Professional portrait
+                        </label>
+
+
+                        <div class="portrait-area">
+
+
+                            <div
+                                class="portrait-preview"
+                                id="portraitPreview"
+                            >
+
+                                <img
+                                    id="portraitImage"
+                                    alt="Teacher portrait"
+                                >
+
+                                <div
+                                    class="portrait-placeholder"
+                                    id="portraitPlaceholder"
+                                >
+                                    T
+                                </div>
+
+                            </div>
+
+
+                            <div class="portrait-info">
+
+                                <h3>
+                                    Add a professional photo
+                                </h3>
+
+                                <p>
+                                    A clear, friendly portrait helps
+                                    students feel confident when
+                                    choosing a teacher.
+                                    JPG or PNG recommended.
+                                </p>
+
+
+                                <label
+                                    class="upload-button"
+                                >
+
+                                    Upload portrait
+
+                                    <input
+                                        type="file"
+                                        id="portraitInput"
+                                        accept=".jpg,.jpeg,.png,.webp"
+                                    >
+
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid-2">
+
+
+                        <div class="field">
+
+                            <label>
+                                First name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="firstName"
+                                placeholder="e.g. Sarah"
+                                required
+                            >
+
+                            <div class="error-message">
+                                Please enter your first name.
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Last name
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lastName"
+                                placeholder="e.g. Johnson"
+                                required
+                            >
+
+                            <div class="error-message">
+                                Please enter your last name.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid-2">
+
+
+                        <div class="field">
+
+                            <label>
+                                Email address
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="you@example.com"
+                                required
+                            >
+
+                            <div class="error-message">
+                                Please enter a valid email address.
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Password
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Create a password"
+                                minlength="8"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <div class="password-hint">
+                                At least 8 characters.
+                            </div>
+
+                            <div class="error-message">
+                                Password must be at least 8 characters.
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Confirm password
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Repeat your password"
+                                minlength="8"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <div class="password-hint">
+                                Enter the same password again.
+                            </div>
+
+                            <div class="error-message">
+                                Passwords do not match.
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Phone number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="+90 5XX XXX XX XX"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid-2">
+
+
+                        <div class="field">
+
+                            <label>
+                                Country
+                                <span class="required">*</span>
+                            </label>
+
+                            <select
+                                id="country"
+                                required
+                            >
+
+                                <option value="">
+                                    Select country
+                                </option>
+
+                                <option>
+                                    Türkiye
+                                </option>
+
+                                <option>
+                                    United Kingdom
+                                </option>
+
+                                <option>
+                                    United States
+                                </option>
+
+                                <option>
+                                    Canada
+                                </option>
+
+                                <option>
+                                    Germany
+                                </option>
+
+                                <option>
+                                    Australia
+                                </option>
+
+                                <option>
+                                    Iran
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                placeholder="e.g. Istanbul"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     STEP 2
+                ========================================== -->
+
+                <section class="step">
+
+                    <div class="step-header">
+
+                        <h2>
+                            What do you teach?
+                        </h2>
+
+                        <p>
+                            Select your main subject and all
+                            the levels you are comfortable teaching.
+                        </p>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Main teaching subject
+                            <span class="required">*</span>
+                        </label>
+
+
+                        <div class="options">
+
+
+                            <div class="option">
+
+                                <input
+                                    type="radio"
+                                    name="subject"
+                                    id="subjectEnglish"
+                                    value="English"
+                                >
+
+                                <label
+                                    for="subjectEnglish"
+                                >
+
+                                    <div class="option-icon">
+                                        EN
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            English
+                                        </div>
+
+                                        <div class="option-description">
+                                            General & academic English
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="radio"
+                                    name="subject"
+                                    id="subjectMath"
+                                    value="Mathematics"
+                                >
+
+                                <label
+                                    for="subjectMath"
+                                >
+
+                                    <div class="option-icon">
+                                        ∑
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Mathematics
+                                        </div>
+
+                                        <div class="option-description">
+                                            School & advanced mathematics
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="radio"
+                                    name="subject"
+                                    id="subjectScience"
+                                    value="Science"
+                                >
+
+                                <label
+                                    for="subjectScience"
+                                >
+
+                                    <div class="option-icon">
+                                        SCI
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Science
+                                        </div>
+
+                                        <div class="option-description">
+                                            Biology, chemistry & physics
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="radio"
+                                    name="subject"
+                                    id="subjectLanguages"
+                                    value="Languages"
+                                >
+
+                                <label
+                                    for="subjectLanguages"
+                                >
+
+                                    <div class="option-icon">
+                                        文
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Languages
+                                        </div>
+
+                                        <div class="option-description">
+                                            Modern & classical languages
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="radio"
+                                    name="subject"
+                                    id="subjectTest"
+                                    value="Test Preparation"
+                                >
+
+                                <label
+                                    for="subjectTest"
+                                >
+
+                                    <div class="option-icon">
+                                        A+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Test Preparation
+                                        </div>
+
+                                        <div class="option-description">
+                                            IELTS, TOEFL, SAT & more
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="radio"
+                                    name="subject"
+                                    id="subjectOther"
+                                    value="Other"
+                                >
+
+                                <label
+                                    for="subjectOther"
+                                >
+
+                                    <div class="option-icon">
+                                        +
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Other
+                                        </div>
+
+                                        <div class="option-description">
+                                            Another subject
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label>
+                            Teaching levels
+                            <span class="required">*</span>
+                        </label>
+
+
+                        <div class="level-grid">
+
+
+                            <div class="level-card">
+
+                                <input
+                                    type="checkbox"
+                                    name="levels"
+                                    id="levelPreschool"
+                                    value="Preschool"
+                                >
+
+                                <label
+                                    for="levelPreschool"
+                                >
+
+                                    <div class="level-code">
+                                        PK
+                                    </div>
+
+                                    <div class="level-name">
+                                        Preschool
+                                    </div>
+
+                                    <div class="level-description">
+                                        Early learners
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="level-card">
+
+                                <input
+                                    type="checkbox"
+                                    name="levels"
+                                    id="levelPrimary"
+                                    value="Primary"
+                                >
+
+                                <label
+                                    for="levelPrimary"
+                                >
+
+                                    <div class="level-code">
+                                        P
+                                    </div>
+
+                                    <div class="level-name">
+                                        Primary
+                                    </div>
+
+                                    <div class="level-description">
+                                        Elementary
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="level-card">
+
+                                <input
+                                    type="checkbox"
+                                    name="levels"
+                                    id="levelMiddle"
+                                    value="Middle School"
+                                >
+
+                                <label
+                                    for="levelMiddle"
+                                >
+
+                                    <div class="level-code">
+                                        M
+                                    </div>
+
+                                    <div class="level-name">
+                                        Middle School
+                                    </div>
+
+                                    <div class="level-description">
+                                        Ages 11–14
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="level-card">
+
+                                <input
+                                    type="checkbox"
+                                    name="levels"
+                                    id="levelHigh"
+                                    value="High School"
+                                >
+
+                                <label
+                                    for="levelHigh"
+                                >
+
+                                    <div class="level-code">
+                                        H
+                                    </div>
+
+                                    <div class="level-name">
+                                        High School
+                                    </div>
+
+                                    <div class="level-description">
+                                        Ages 14–18
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="level-card">
+
+                                <input
+                                    type="checkbox"
+                                    name="levels"
+                                    id="levelUniversity"
+                                    value="University"
+                                >
+
+                                <label
+                                    for="levelUniversity"
+                                >
+
+                                    <div class="level-code">
+                                        U
+                                    </div>
+
+                                    <div class="level-name">
+                                        University
+                                    </div>
+
+                                    <div class="level-description">
+                                        Higher education
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="level-card">
+
+                                <input
+                                    type="checkbox"
+                                    name="levels"
+                                    id="levelAdults"
+                                    value="Adults"
+                                >
+
+                                <label
+                                    for="levelAdults"
+                                >
+
+                                    <div class="level-code">
+                                        A
+                                    </div>
+
+                                    <div class="level-name">
+                                        Adults
+                                    </div>
+
+                                    <div class="level-description">
+                                        Adult learners
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     STEP 3
+                ========================================== -->
+
+                <section class="step">
+
+                    <div class="step-header">
+
+                        <h2>
+                            Your experience
+                        </h2>
+
+                        <p>
+                            Help students understand your
+                            professional background.
+                        </p>
+
+                    </div>
+
+
+                    <div class="grid-2">
+
+
+                        <div class="field">
+
+                            <label>
+                                Teaching experience
+                                <span class="required">*</span>
+                            </label>
+
+                            <select
+                                id="experience"
+                                required
+                            >
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>
+                                    Less than 1 year
+                                </option>
+
+                                <option>
+                                    1–2 years
+                                </option>
+
+                                <option>
+                                    3–5 years
+                                </option>
+
+                                <option>
+                                    6–10 years
+                                </option>
+
+                                <option>
+                                    11–15 years
+                                </option>
+
+                                <option>
+                                    16–20 years
+                                </option>
+
+                                <option>
+                                    20+ years
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Highest qualification
+                            </label>
+
+                            <select
+                                id="qualification"
+                            >
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>
+                                    Bachelor's Degree
+                                </option>
+
+                                <option>
+                                    Master's Degree
+                                </option>
+
+                                <option>
+                                    Doctorate / PhD
+                                </option>
+
+                                <option>
+                                    Professional Certification
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label>
+                            University / Institution
+                        </label>
+
+                        <input
+                            type="text"
+                            id="institution"
+                            placeholder="e.g. University of Manchester"
+                        >
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label>
+                            Professional introduction
+                            <span class="required">*</span>
+                        </label>
+
+                        <textarea
+                            id="bio"
+                            required
+                            placeholder="Tell students about your experience, teaching philosophy and what makes your lessons effective..."
+                        ></textarea>
+
+                        <div class="error-message">
+                            Please write a professional introduction.
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     STEP 4
+                ========================================== -->
+
+                <section class="step">
+
+                    <div class="step-header">
+
+                        <h2>
+                            How do you teach?
+                        </h2>
+
+                        <p>
+                            Help students understand what
+                            learning with you feels like.
+                        </p>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Lesson format
+                        </label>
+
+
+                        <div class="options">
+
+
+                            <div class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="formats"
+                                    id="formatOnline"
+                                    value="Online"
+                                >
+
+                                <label
+                                    for="formatOnline"
+                                >
+
+                                    <div class="option-icon">
+                                        ↗
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Online
+                                        </div>
+
+                                        <div class="option-description">
+                                            Video lessons
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="formats"
+                                    id="formatFace"
+                                    value="Face-to-face"
+                                >
+
+                                <label
+                                    for="formatFace"
+                                >
+
+                                    <div class="option-icon">
+                                        ●
+                                    </div>
+
+                                    <div>
+
+                                        <div class="option-title">
+                                            Face-to-face
+                                        </div>
+
+                                        <div class="option-description">
+                                            In-person lessons
+                                        </div>
+
+                                    </div>
+
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label>
+                            Teaching style
+                        </label>
+
+
+                        <div class="options">
+
+
+                            <div class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="styles"
+                                    id="styleStructured"
+                                    value="Structured"
+                                >
+
+                                <label
+                                    for="styleStructured"
+                                >
+                                    Structured & systematic
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="styles"
+                                    id="styleInteractive"
+                                    value="Interactive"
+                                >
+
+                                <label
+                                    for="styleInteractive"
+                                >
+                                    Interactive & engaging
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="styles"
+                                    id="styleExam"
+                                    value="Exam focused"
+                                >
+
+                                <label
+                                    for="styleExam"
+                                >
+                                    Exam focused
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="option">
+
+                                <input
+                                    type="checkbox"
+                                    name="styles"
+                                    id="styleConversation"
+                                    value="Conversation based"
+                                >
+
+                                <label
+                                    for="styleConversation"
+                                >
+                                    Conversation based
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="grid-2">
+
+
+                        <div class="field">
+
+                            <label>
+                                Hourly rate
+                            </label>
+
+                            <input
+                                type="number"
+                                id="rate"
+                                placeholder="e.g. 750"
+                                min="0"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Currency
+                            </label>
+
+                            <select
+                                id="currency"
+                            >
+
+                                <option>
+                                    TRY
+                                </option>
+
+                                <option>
+                                    USD
+                                </option>
+
+                                <option>
+                                    EUR
+                                </option>
+
+                                <option>
+                                    GBP
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     STEP 5 DOCUMENTS
+                ========================================== -->
+
+                <section class="step">
+
+                    <div class="step-header">
+
+                        <h2>
+                            Verify your qualifications
+                        </h2>
+
+                        <p>
+                            Upload your professional documents.
+                            These documents are for verification
+                            and will not be displayed publicly.
+                        </p>
+
+                    </div>
+
+
+                    <!-- DEGREE -->
+
+                    <div class="upload-section">
+
+                        <div class="upload-title">
+                            Degree / Diploma
+                        </div>
+
+                        <div class="upload-description">
+                            Upload your highest relevant academic qualification.
+                        </div>
+
+
+                        <div
+                            class="upload-box"
+                            data-upload="degree"
+                        >
+
+                            <div class="upload-icon">
+                                ↑
+                            </div>
+
+                            <strong>
+                                Drop your document here
+                            </strong>
+
+                            <span>
+                                PDF, JPG or PNG · Maximum 10 MB
+                            </span>
+
+                            <br>
+
+                            <label class="upload-button">
+
+                                Choose file
+
+                                <input
+                                    type="file"
+                                    id="degreeInput"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                >
+
+                            </label>
+
+                        </div>
+
+
+                        <div
+                            class="file-list"
+                            id="degreeFiles"
+                        ></div>
+
+                    </div>
+
+
+
+                    <!-- CERTIFICATES -->
+
+                    <div class="upload-section">
+
+                        <div class="upload-title">
+                            Teaching certificates
+                        </div>
+
+                        <div class="upload-description">
+                            TEFL, TESOL, CELTA, teaching licenses,
+                            professional certificates, etc.
+                        </div>
+
+
+                        <div
+                            class="upload-box"
+                            data-upload="certificates"
+                        >
+
+                            <div class="upload-icon">
+                                ↑
+                            </div>
+
+                            <strong>
+                                Upload your certificates
+                            </strong>
+
+                            <span>
+                                Multiple files supported
+                            </span>
+
+                            <br>
+
+                            <label class="upload-button">
+
+                                Choose files
+
+                                <input
+                                    type="file"
+                                    id="certificateInput"
+                                    multiple
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                >
+
+                            </label>
+
+                        </div>
+
+
+                        <div
+                            class="file-list"
+                            id="certificateFiles"
+                        ></div>
+
+                    </div>
+
+
+
+                    <!-- CV -->
+
+                    <div class="upload-section">
+
+                        <div class="upload-title">
+                            CV / Resume
+                        </div>
+
+                        <div class="upload-description">
+                            Upload your current professional CV.
+                        </div>
+
+
+                        <div
+                            class="upload-box"
+                            data-upload="cv"
+                        >
+
+                            <div class="upload-icon">
+                                ↑
+                            </div>
+
+                            <strong>
+                                Upload your CV
+                            </strong>
+
+                            <span>
+                                PDF or DOCX · Maximum 10 MB
+                            </span>
+
+                            <br>
+
+                            <label class="upload-button">
+
+                                Choose file
+
+                                <input
+                                    type="file"
+                                    id="cvInput"
+                                    accept=".pdf,.doc,.docx"
+                                >
+
+                            </label>
+
+                        </div>
+
+
+                        <div
+                            class="file-list"
+                            id="cvFiles"
+                        ></div>
+
+                    </div>
+
+
+
+                    <div class="check-row">
+
+                        <input
+                            type="checkbox"
+                            id="documentConsent"
+                        >
+
+                        <label
+                            for="documentConsent"
+                        >
+                            I confirm that the documents I upload
+                            belong to me and contain accurate information.
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     STEP 6
+                ========================================== -->
+
+                <section class="step">
+
+                    <div class="step-header">
+
+                        <h2>
+                            Add your professional details
+                        </h2>
+
+                        <p>
+                            Give students a little more information
+                            about your expertise.
+                        </p>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Languages you can teach in
+                        </label>
+
+                        <input
+                            type="text"
+                            id="languages"
+                            placeholder="e.g. English, Turkish, Persian"
+                        >
+
+                    </div>
+
+
+
+                    <div class="field">
+
+                        <label>
+                            Areas of expertise
+                        </label>
+
+                        <textarea
+                            id="expertise"
+                            placeholder="e.g. IELTS preparation, academic writing, speaking, business English..."
+                        ></textarea>
+
+                    </div>
+
+
+
+                    <div class="grid-2">
+
+
+                        <div class="field">
+
+                            <label>
+                                Website
+                            </label>
+
+                            <input
+                                type="url"
+                                id="website"
+                                placeholder="https://"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                LinkedIn
+                            </label>
+
+                            <input
+                                type="url"
+                                id="linkedin"
+                                placeholder="https://linkedin.com/in/..."
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="check-row">
+
+                        <input
+                            type="checkbox"
+                            id="profileConsent"
+                        >
+
+                        <label
+                            for="profileConsent"
+                        >
+                            I agree to Bulbeni.org creating a professional
+                            teacher profile using the information I provide.
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     STEP 7 REVIEW
+                ========================================== -->
+
+                <section class="step">
+
+                    <div class="step-header">
+
+                        <h2>
+                            Your profile is ready
+                        </h2>
+
+                        <p>
+                            Review your information before submitting.
+                            You can go back and edit anything.
+                        </p>
+
+                    </div>
+
+
+                    <div class="review-box">
+
+                        <div class="review-title">
+                            Registration summary
+                        </div>
+
+
+                        <div class="review-row">
+
+                            <span class="review-label">
+                                Teacher
+                            </span>
+
+                            <span
+                                class="review-value"
+                                id="reviewName"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="review-row">
+
+                            <span class="review-label">
+                                Subject
+                            </span>
+
+                            <span
+                                class="review-value"
+                                id="reviewSubject"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="review-row">
+
+                            <span class="review-label">
+                                Teaching levels
+                            </span>
+
+                            <span
+                                class="review-value"
+                                id="reviewLevels"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="review-row">
+
+                            <span class="review-label">
+                                Experience
+                            </span>
+
+                            <span
+                                class="review-value"
+                                id="reviewExperience"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="review-row">
+
+                            <span class="review-label">
+                                Format
+                            </span>
+
+                            <span
+                                class="review-value"
+                                id="reviewFormats"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="review-row">
+
+                            <span class="review-label">
+                                Hourly rate
+                            </span>
+
+                            <span
+                                class="review-value"
+                                id="reviewRate"
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =========================================
+                     BUTTONS
+                ========================================== -->
+
+                <div class="form-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="backBtn"
+                    >
+                        Back
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="nextBtn"
+                    >
+                        Continue
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success hidden"
+                        id="submitBtn"
+                    >
+                        Submit profile
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LIVE PROFILE
+        ================================================== -->
+
+        <aside class="profile-column">
+
+            <div class="profile-heading">
+                Live profile preview
+            </div>
+
+
+            <div class="live-card">
+
+
+                <div class="live-cover">
+
+                    <div class="live-status">
+
+                        <span class="status-dot"></span>
+
+                        Profile preview
+
+                    </div>
+
+                </div>
+
+
+                <div class="live-body">
+
+
+                    <div
+                        class="live-avatar"
+                        id="liveAvatar"
+                    >
+
+                        <img
+                            id="livePortrait"
+                            alt="Teacher"
+                        >
+
+                        <div
+                            class="live-avatar-placeholder"
+                            id="livePlaceholder"
+                        >
+                            T
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="live-name"
+                        id="liveName"
+                    >
+                        Your Name
+                    </div>
+
+
+                    <div
+                        class="live-subject"
+                        id="liveSubject"
+                    >
+                        Your teaching subject
+                    </div>
+
+
+                    <div
+                        class="live-location"
+                        id="liveLocation"
+                    >
+                        Your location
+                    </div>
+
+
+                    <div class="live-divider"></div>
+
+
+                    <div
+                        class="live-bio"
+                        id="liveBio"
+                    >
+                        Your professional introduction will
+                        appear here as you complete the form.
+                    </div>
+
+
+                    <div
+                        class="live-tags"
+                        id="liveTags"
+                    >
+
+                        <span class="live-tag">
+                            Your teaching levels
+                        </span>
+
+                    </div>
+
+
+                    <div class="live-info-grid">
+
+
+                        <div class="live-info">
+
+                            <div class="live-info-label">
+                                Experience
+                            </div>
+
+                            <div
+                                class="live-info-value"
+                                id="liveExperience"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <div class="live-info">
+
+                            <div class="live-info-label">
+                                Rate
+                            </div>
+
+                            <div
+                                class="live-info-value"
+                                id="liveRate"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="profile-note">
+
+                        This preview updates automatically
+                        as you build your profile.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         SUCCESS
+    ====================================================== -->
+
+    <section
+        class="success-screen hidden"
+        id="successScreen"
+    >
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Welcome to Bulbeni
+        </h2>
+
+        <p>
+            Your teacher registration has been completed.
+            Your documents can now be reviewed and your
+            professional profile prepared for students.
+        </p>
+
+    </section>
+
+
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =========================================================
+   SUPABASE CONFIGURATION
+========================================================= */
+
+const SUPABASE_URL = "https://bisufzfsziqsevmixtso.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_VdXkeGE870ajVyHph5Ak5Q_AujUOA9P";
+
+let supabaseClient = null;
+
+function getSupabaseClient(){
+    if(supabaseClient) return supabaseClient;
+    if(!window.supabase || typeof window.supabase.createClient !== "function"){
+        throw new Error("Bulbeni could not load its connection service. Please check your internet connection and refresh the page.");
+    }
+    supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY,
+        { auth: { persistSession:true, autoRefreshToken:true, detectSessionInUrl:true } }
+    );
+    return supabaseClient;
+}
+
+
+/* =========================================================
+   STEP SYSTEM
+========================================================= */
+
+const steps =
+    document.querySelectorAll(".step");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const backBtn =
+    document.getElementById("backBtn");
+
+const submitBtn =
+    document.getElementById("submitBtn");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const stepLabel =
+    document.getElementById("stepLabel");
+
+const stepNumber =
+    document.getElementById("stepNumber");
+
+
+let currentStep = 0;
+
+
+const stepNames = [
+
+    "Personal information",
+    "Teaching subjects",
+    "Teaching experience",
+    "Teaching style",
+    "Professional documents",
+    "Professional details",
+    "Review profile"
+
+];
+
+
+/* =========================================================
+   STEP DISPLAY
+========================================================= */
+
+function showStep(index){
+
+    steps.forEach(
+        (step,i) => {
+
+            step.classList.toggle(
+                "active",
+                i === index
+            );
+
+        }
+    );
+
+
+    const percentage =
+        ((index + 1) / steps.length) * 100;
+
+
+    progressFill.style.width =
+        percentage + "%";
+
+
+    stepLabel.textContent =
+        stepNames[index];
+
+
+    stepNumber.textContent =
+        `${index + 1} / ${steps.length}`;
+
+
+    backBtn.style.visibility =
+        index === 0
+            ? "hidden"
+            : "visible";
+
+
+    if(index === steps.length - 1){
+
+        nextBtn.classList.add("hidden");
+
+        submitBtn.classList.remove("hidden");
+
+        updateLiveProfile();
+
+        generateReview();
+
+    }
+
+    else{
+
+        nextBtn.classList.remove("hidden");
+
+        submitBtn.classList.add("hidden");
+
+    }
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   GET CHECKED VALUES
+========================================================= */
+
+function getValues(name){
+
+    return Array.from(
+        document.querySelectorAll(
+            `input[name="${name}"]:checked`
+        )
+    ).map(
+        input => input.value
+    );
+
+}
+
+
+/* =========================================================
+   LIVE PROFILE
+========================================================= */
+
+function updateLiveProfile(){
+
+    const first =
+        document.getElementById("firstName")
+        .value
+        .trim();
+
+
+    const last =
+        document.getElementById("lastName")
+        .value
+        .trim();
+
+
+    const name =
+        `${first} ${last}`.trim();
+
+
+    const subject =
+        document.querySelector(
+            'input[name="subject"]:checked'
+        )?.value;
+
+
+    const city =
+        document.getElementById("city")
+        .value
+        .trim();
+
+
+    const country =
+        document.getElementById("country")
+        .value;
+
+
+    const experience =
+        document.getElementById("experience")
+        .value;
+
+
+    const rate =
+        document.getElementById("rate")
+        .value;
+
+
+    const currency =
+        document.getElementById("currency")
+        .value;
+
+
+    const bio =
+        document.getElementById("bio")
+        .value
+        .trim();
+
+
+    /* NAME */
+
+    document.getElementById(
+        "liveName"
+    ).textContent =
+        name || "Your Name";
+
+
+    /* AVATAR INITIAL */
+
+    document.getElementById(
+        "livePlaceholder"
+    ).textContent =
+        first
+            ? first.charAt(0).toUpperCase()
+            : "T";
+
+
+    /* SUBJECT */
+
+    document.getElementById(
+        "liveSubject"
+    ).textContent =
+        subject
+            ? subject + " Teacher"
+            : "Your teaching subject";
+
+
+    /* LOCATION */
+
+    const location =
+        [city,country]
+        .filter(Boolean)
+        .join(", ");
+
+
+    document.getElementById(
+        "liveLocation"
+    ).textContent =
+        location ||
+        "Your location";
+
+
+    /* BIO */
+
+    document.getElementById(
+        "liveBio"
+    ).textContent =
+        bio ||
+        "Your professional introduction will appear here as you complete the form.";
+
+
+    /* EXPERIENCE */
+
+    document.getElementById(
+        "liveExperience"
+    ).textContent =
+        experience || "—";
+
+
+    /* RATE */
+
+    document.getElementById(
+        "liveRate"
+    ).textContent =
+        rate
+            ? `${rate} ${currency} / hour`
+            : "—";
+
+
+    /* TAGS */
+
+    const tags =
+        document.getElementById(
+            "liveTags"
+        );
+
+
+    tags.innerHTML = "";
+
+
+    const levels =
+        getValues("levels");
+
+
+    const formats =
+        getValues("formats");
+
+
+    const styles =
+        getValues("styles");
+
+
+    const allTags =
+        [
+            ...levels,
+            ...formats,
+            ...styles
+        ];
+
+
+    if(allTags.length === 0){
+
+        const placeholder =
+            document.createElement("span");
+
+        placeholder.className =
+            "live-tag";
+
+        placeholder.textContent =
+            "Your teaching levels";
+
+        tags.appendChild(
+            placeholder
+        );
+
+    }
+
+
+    allTags.forEach(
+        value => {
+
+            const tag =
+                document.createElement("span");
+
+            tag.className =
+                "live-tag";
+
+            tag.textContent =
+                value;
+
+            tags.appendChild(tag);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LIVE INPUT LISTENERS
+========================================================= */
+
+document
+.querySelectorAll(
+    "#teacherForm input, #teacherForm select, #teacherForm textarea"
+)
+.forEach(
+    element => {
+
+        element.addEventListener(
+            "input",
+            updateLiveProfile
+        );
+
+        element.addEventListener(
+            "change",
+            updateLiveProfile
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PORTRAIT UPLOAD
+========================================================= */
+
+let portraitFile = null;
+
+const portraitInput =
+    document.getElementById(
+        "portraitInput"
+    );
+
+
+const portraitImage =
+    document.getElementById(
+        "portraitImage"
+    );
+
+
+const portraitPlaceholder =
+    document.getElementById(
+        "portraitPlaceholder"
+    );
+
+
+const livePortrait =
+    document.getElementById(
+        "livePortrait"
+    );
+
+
+const livePlaceholder =
+    document.getElementById(
+        "livePlaceholder"
+    );
+
+
+portraitInput.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+
+        if(!file)
+            return;
+
+
+        if(
+            !file.type.startsWith("image/")
+        ){
+
+            alert(
+                "Please select an image file."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            file.size >
+            10 * 1024 * 1024
+        ){
+
+            alert(
+                "Please choose an image smaller than 10 MB."
+            );
+
+            return;
+
+        }
+
+
+        portraitFile = file;
+
+        const portraitInfo = document.querySelector(".portrait-info p");
+        if(portraitInfo) portraitInfo.textContent = file.name + " selected";
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event){
+
+                const image =
+                    event.target.result;
+
+
+                /* FORM PORTRAIT */
+
+                portraitImage.src =
+                    image;
+
+                portraitImage.style.display =
+                    "block";
+
+                portraitPlaceholder.style.display =
+                    "none";
+
+
+                /* LIVE CARD PORTRAIT */
+
+                livePortrait.src =
+                    image;
+
+                livePortrait.style.display =
+                    "block";
+
+                livePlaceholder.style.display =
+                    "none";
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+function validateStep(){
+
+    const current =
+        steps[currentStep];
+
+
+    let valid = true;
+
+
+    current
+    .querySelectorAll(
+        'input[required]:not([type="radio"]):not([type="checkbox"]):not([type="file"]), select[required], textarea[required]'
+    )
+    .forEach(
+        field => {
+
+            const parent =
+                field.closest(".field");
+
+
+            if(!String(field.value || "").trim()){
+
+                parent?.classList.add(
+                    "error"
+                );
+
+                valid = false;
+
+            }
+
+            else{
+
+                parent?.classList.remove(
+                    "error"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* EMAIL + PASSWORD */
+
+    if(currentStep === 0){
+
+        const email =
+            document.getElementById("email");
+
+        if(
+            email.value.trim() &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(email.value)
+        ){
+            email.closest(".field")
+                .classList.add("error");
+            valid = false;
+        }
+
+        const password =
+            document.getElementById("password");
+
+        const confirmPassword =
+            document.getElementById("confirmPassword");
+
+        if(password.value.length < 8){
+            password.closest(".field")
+                .classList.add("error");
+            valid = false;
+        }
+
+        if(
+            !confirmPassword.value ||
+            confirmPassword.value !== password.value
+        ){
+            confirmPassword.closest(".field")
+                .classList.add("error");
+            valid = false;
+        }
+
+    }
+
+
+    /* SUBJECT + LEVEL */
+
+    if(currentStep === 1){
+
+        const subject =
+            document.querySelector(
+                'input[name="subject"]:checked'
+            );
+
+
+        const levels =
+            getValues("levels");
+
+
+        if(!subject){
+
+            alert(
+                "Please select your main teaching subject."
+            );
+
+            valid = false;
+
+        }
+
+
+        if(levels.length === 0){
+
+            alert(
+                "Please select at least one teaching level."
+            );
+
+            valid = false;
+
+        }
+
+    }
+
+
+    /* DOCUMENT CONSENT */
+
+    if(currentStep === 4){
+
+        const consent =
+            document.getElementById(
+                "documentConsent"
+            );
+
+
+        if(!consent.checked){
+
+            alert(
+                "Please confirm your document information."
+            );
+
+            valid = false;
+
+        }
+
+    }
+
+
+    return valid;
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+nextBtn.addEventListener(
+    "click",
+    function(){
+
+        if(!validateStep())
+            return;
+
+
+        if(
+            currentStep <
+            steps.length - 1
+        ){
+
+            currentStep++;
+
+            showStep(
+                currentStep
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+backBtn.addEventListener(
+    "click",
+    function(){
+
+        if(currentStep > 0){
+
+            currentStep--;
+
+            showStep(
+                currentStep
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DOCUMENT UPLOAD SYSTEM
+========================================================= */
+
+const uploadedFiles = {
+
+    degree:[],
+    certificates:[],
+    cv:[]
+
+};
+
+
+function setupUploader(
+    inputId,
+    outputId,
+    storageKey,
+    multiple
+){
+
+    const input =
+        document.getElementById(
+            inputId
+        );
+
+
+    const output =
+        document.getElementById(
+            outputId
+        );
+
+
+    input.addEventListener(
+        "change",
+        function(){
+
+            const files =
+                Array.from(
+                    this.files
+                );
+
+
+            if(!multiple){
+
+                uploadedFiles[
+                    storageKey
+                ] = [];
+
+            }
+
+
+            files.forEach(
+                file => {
+
+                    if(
+                        file.size >
+                        10 * 1024 * 1024
+                    ){
+
+                        alert(
+                            `${file.name} is larger than 10 MB.`
+                        );
+
+                        return;
+
+                    }
+
+
+                    uploadedFiles[
+                        storageKey
+                    ].push(file);
+
+                }
+            );
+
+
+            renderFiles(
+                storageKey,
+                output
+            );
+
+
+            input.value = "";
+
+        }
+    );
+
+}
+
+
+function renderFiles(
+    key,
+    output
+){
+
+    output.innerHTML = "";
+
+
+    uploadedFiles[key]
+    .forEach(
+        (file,index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "file-item";
+
+
+            const name =
+                document.createElement(
+                    "span"
+                );
+
+
+            name.className =
+                "file-name";
+
+
+            name.textContent =
+                file.name;
+
+
+            const remove =
+                document.createElement(
+                    "button"
+                );
+
+
+            remove.type =
+                "button";
+
+
+            remove.className =
+                "remove-file";
+
+
+            remove.textContent =
+                "Remove";
+
+
+            remove.addEventListener(
+                "click",
+                function(){
+
+                    uploadedFiles[key]
+                        .splice(index,1);
+
+
+                    renderFiles(
+                        key,
+                        output
+                    );
+
+                }
+            );
+
+
+            item.appendChild(name);
+
+            item.appendChild(remove);
+
+            output.appendChild(item);
+
+        }
+    );
+
+}
+
+
+setupUploader(
+    "degreeInput",
+    "degreeFiles",
+    "degree",
+    false
+);
+
+
+setupUploader(
+    "certificateInput",
+    "certificateFiles",
+    "certificates",
+    true
+);
+
+
+setupUploader(
+    "cvInput",
+    "cvFiles",
+    "cv",
+    false
+);
+
+
+/* =========================================================
+   DRAG & DROP
+========================================================= */
+
+document
+.querySelectorAll(".upload-box")
+.forEach(
+    box => {
+
+        box.addEventListener(
+            "dragover",
+            event => {
+
+                event.preventDefault();
+
+                box.classList.add(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        box.addEventListener(
+            "dragleave",
+            () => {
+
+                box.classList.remove(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        box.addEventListener(
+            "drop",
+            event => {
+
+                event.preventDefault();
+
+                box.classList.remove(
+                    "dragging"
+                );
+
+
+                const key =
+                    box.dataset.upload;
+
+
+                const files =
+                    Array.from(
+                        event
+                        .dataTransfer
+                        .files
+                    );
+
+
+                uploadedFiles[key] =
+                    key === "certificates"
+                        ? files
+                        : files.slice(0,1);
+
+
+                const outputId =
+                    key === "degree"
+                        ? "degreeFiles"
+                        : key === "cv"
+                            ? "cvFiles"
+                            : "certificateFiles";
+
+
+                renderFiles(
+                    key,
+                    document.getElementById(
+                        outputId
+                    )
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   REVIEW
+========================================================= */
+
+function generateReview(){
+
+    const first =
+        document.getElementById(
+            "firstName"
+        ).value.trim();
+
+
+    const last =
+        document.getElementById(
+            "lastName"
+        ).value.trim();
+
+
+    const subject =
+        document.querySelector(
+            'input[name="subject"]:checked'
+        )?.value || "—";
+
+
+    const levels =
+        getValues("levels");
+
+
+    const experience =
+        document.getElementById(
+            "experience"
+        ).value || "—";
+
+
+    const formats =
+        getValues("formats");
+
+
+    const rate =
+        document.getElementById(
+            "rate"
+        ).value;
+
+
+    const currency =
+        document.getElementById(
+            "currency"
+        ).value;
+
+
+    document.getElementById(
+        "reviewName"
+    ).textContent =
+        `${first} ${last}`.trim()
+        || "—";
+
+
+    document.getElementById(
+        "reviewSubject"
+    ).textContent =
+        subject;
+
+
+    document.getElementById(
+        "reviewLevels"
+    ).textContent =
+        levels.length
+            ? levels.join(", ")
+            : "—";
+
+
+    document.getElementById(
+        "reviewExperience"
+    ).textContent =
+        experience;
+
+
+    document.getElementById(
+        "reviewFormats"
+    ).textContent =
+        formats.length
+            ? formats.join(", ")
+            : "—";
+
+
+    document.getElementById(
+        "reviewRate"
+    ).textContent =
+        rate
+            ? `${rate} ${currency} / hour`
+            : "—";
+
+}
+
+
+/* =========================================================
+   REMOVE ERRORS WHEN EDITING
+========================================================= */
+
+document
+.querySelectorAll(
+    "input, select, textarea"
+)
+.forEach(
+    element => {
+
+        element.addEventListener(
+            "input",
+            function(){
+
+                this
+                .closest(".field")
+                ?.classList.remove(
+                    "error"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+document
+.getElementById(
+    "teacherForm"
+)
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+        if(!validateStep())
+            return;
+
+        const consent =
+            document.getElementById(
+                "profileConsent"
+            );
+
+        if(!consent.checked){
+
+            alert(
+                "Please agree to creating your professional profile."
+            );
+
+            return;
+
+        }
+
+        const email =
+            document.getElementById("email")
+                .value.trim()
+                .toLowerCase();
+
+        const password =
+            document.getElementById("password")
+                .value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword")
+                .value;
+
+        if(password.length < 8 || password !== confirmPassword){
+            alert("Please check your password before submitting.");
+            return;
+        }
+
+        const originalText =
+            submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Creating your account...";
+
+        try {
+
+            const supabase = getSupabaseClient();
+
+            /* =====================================================
+               1. CREATE SUPABASE AUTH ACCOUNT
+            ====================================================== */
+
+            const { data: authData, error: authError } =
+                await supabase.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            first_name: document.getElementById("firstName").value.trim(),
+                            last_name: document.getElementById("lastName").value.trim(),
+                            account_type: "teacher"
+                        }
+                    }
+                });
+
+            if(authError)
+                throw authError;
+
+            const user = authData.user;
+
+            if(!user){
+                throw new Error("Supabase did not return a user account.");
+            }
+
+            /*
+             If email confirmation is enabled, Supabase normally returns
+             no authenticated session after sign-up. The RLS policies we
+             created require an authenticated user before profile data can
+             be inserted. For the first end-to-end test, disable email
+             confirmation in Supabase Auth settings. We can add a polished
+             email-confirmation/resume flow afterward.
+            */
+
+            if(!authData.session){
+                throw new Error(
+                    "Your account was created, but email confirmation is enabled. " +
+                    "For this first test, turn off email confirmation in Supabase " +
+                    "Authentication settings, then submit the form again."
+                );
+            }
+
+            /* =====================================================
+               2. CREATE TEACHER PROFILE
+            ====================================================== */
+
+            const subject =
+                document.querySelector(
+                    'input[name="subject"]:checked'
+                )?.value || null;
+
+            const levels = getValues("levels");
+            const formats = getValues("formats");
+
+            const languages =
+                document.getElementById("languages")
+                    .value
+                    .split(",")
+                    .map(v => v.trim())
+                    .filter(Boolean);
+
+            const qualification =
+                document.getElementById("qualification")
+                    .value || null;
+
+            const institution =
+                document.getElementById("institution")
+                    .value.trim() || null;
+
+            const education = [qualification, institution]
+                .filter(Boolean)
+                .join(" — ") || null;
+
+            const profilePayload = {
+                user_id: user.id,
+                first_name: document.getElementById("firstName").value.trim(),
+                last_name: document.getElementById("lastName").value.trim(),
+                email,
+                phone: document.getElementById("phone").value.trim() || null,
+                country: document.getElementById("country").value || null,
+                city: document.getElementById("city").value.trim() || null,
+                headline: subject,
+                bio: document.getElementById("bio").value.trim() || null,
+                education,
+                experience: document.getElementById("experience").value || null,
+                price: document.getElementById("rate").value
+                    ? Number(document.getElementById("rate").value)
+                    : null,
+                currency: document.getElementById("currency").value || "TRY",
+                website: document.getElementById("website").value.trim() || null,
+                profile_status: "draft",
+                is_visible: false
+            };
+
+            submitBtn.textContent = "Saving your profile...";
+
+            const { data: teacher, error: teacherError } =
+                await supabase
+                    .from("teachers")
+                    .insert(profilePayload)
+                    .select("id")
+                    .single();
+
+            if(teacherError)
+                throw teacherError;
+
+            const teacherId = teacher.id;
+
+            /* =====================================================
+               3. SAVE SUBJECTS
+            ====================================================== */
+
+            if(subject){
+                const { error } = await supabase
+                    .from("teacher_subjects")
+                    .insert({
+                        teacher_id: teacherId,
+                        subject
+                    });
+
+                if(error) throw error;
+            }
+
+            /* =====================================================
+               4. SAVE TEACHING LEVELS
+            ====================================================== */
+
+            if(levels.length){
+                const { error } = await supabase
+                    .from("teacher_levels")
+                    .insert(
+                        levels.map(level => ({
+                            teacher_id: teacherId,
+                            level
+                        }))
+                    );
+
+                if(error) throw error;
+            }
+
+            /* =====================================================
+               5. SAVE LANGUAGES
+            ====================================================== */
+
+            if(languages.length){
+                const { error } = await supabase
+                    .from("teacher_languages")
+                    .insert(
+                        languages.map(language => ({
+                            teacher_id: teacherId,
+                            language
+                        }))
+                    );
+
+                if(error) throw error;
+            }
+
+            /* =====================================================
+               6. SAVE TEACHING MODES
+            ====================================================== */
+
+            if(formats.length){
+                const { error } = await supabase
+                    .from("teacher_modes")
+                    .insert(
+                        formats.map(mode => ({
+                            teacher_id: teacherId,
+                            mode
+                        }))
+                    );
+
+                if(error) throw error;
+            }
+
+            /* =====================================================
+               7. UPLOAD PORTRAIT
+            ====================================================== */
+
+            if(portraitFile){
+
+                submitBtn.textContent = "Uploading your portrait...";
+
+                const safeName = portraitFile.name
+                    .replace(/[^a-zA-Z0-9._-]/g, "-");
+
+                const portraitPath =
+                    `${user.id}/${crypto.randomUUID()}-${safeName}`;
+
+                const { error: uploadError } =
+                    await supabase.storage
+                        .from("teacher-portraits")
+                        .upload(
+                            portraitPath,
+                            portraitFile,
+                            {
+                                contentType: portraitFile.type,
+                                upsert: false
+                            }
+                        );
+
+                if(uploadError)
+                    throw uploadError;
+
+                const { error: photoUpdateError } =
+                    await supabase
+                        .from("teachers")
+                        .update({
+                            profile_photo_path: portraitPath
+                        })
+                        .eq("id", teacherId);
+
+                if(photoUpdateError)
+                    throw photoUpdateError;
+            }
+
+            /* =====================================================
+               8. UPLOAD DOCUMENTS + SAVE DOCUMENT RECORDS
+            ====================================================== */
+
+            const documentGroups = [
+                {
+                    type: "degree",
+                    files: uploadedFiles.degree
+                },
+                {
+                    type: "certificate",
+                    files: uploadedFiles.certificates
+                },
+                {
+                    type: "cv",
+                    files: uploadedFiles.cv
+                }
+            ];
+
+            const documentRows = [];
+
+            for(const group of documentGroups){
+
+                for(const file of group.files){
+
+                    submitBtn.textContent =
+                        `Uploading ${file.name}...`;
+
+                    const safeName = file.name
+                        .replace(/[^a-zA-Z0-9._-]/g, "-");
+
+                    const storagePath =
+                        `${user.id}/${crypto.randomUUID()}-${safeName}`;
+
+                    const { error: uploadError } =
+                        await supabase.storage
+                            .from("teacher-documents")
+                            .upload(
+                                storagePath,
+                                file,
+                                {
+                                    contentType: file.type || "application/octet-stream",
+                                    upsert: false
+                                }
+                            );
+
+                    if(uploadError)
+                        throw uploadError;
+
+                    documentRows.push({
+                        teacher_id: teacherId,
+                        document_type: group.type,
+                        file_name: file.name,
+                        storage_path: storagePath,
+                        file_type: file.type || null,
+                        file_size: file.size,
+                        verification_status: "pending"
+                    });
+                }
+            }
+
+            if(documentRows.length){
+                const { error: documentError } =
+                    await supabase
+                        .from("teacher_documents")
+                        .insert(documentRows);
+
+                if(documentError)
+                    throw documentError;
+            }
+
+            /* =====================================================
+               9. MARK APPLICATION AS SUBMITTED
+            ====================================================== */
+
+            submitBtn.textContent = "Submitting application...";
+
+            const { error: finalUpdateError } =
+                await supabase
+                    .from("teachers")
+                    .update({
+                        profile_status: "submitted",
+                        is_visible: false
+                    })
+                    .eq("id", teacherId);
+
+            if(finalUpdateError)
+                throw finalUpdateError;
+
+            /* =====================================================
+               10. SHOW SUCCESS SCREEN
+            ====================================================== */
+
+            document
+                .getElementById("teacherForm")
+                .classList.add("hidden");
+
+            document
+                .querySelector(".progress-container")
+                .classList.add("hidden");
+
+            document
+                .querySelector(".profile-column")
+                .classList.add("hidden");
+
+            document
+                .getElementById("successScreen")
+                .classList.remove("hidden");
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        } catch(error){
+
+            console.error("Bulbeni registration error:", error);
+
+            alert(
+                "We couldn't complete your registration.\n\n" +
+                (error?.message || "Please try again.")
+            );
+
+        } finally {
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+showStep(0);
+
+updateLiveProfile();
+
+</script>
+
+
+</body>
+
+</html>
