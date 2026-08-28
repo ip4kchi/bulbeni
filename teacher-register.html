@@ -2424,6 +2424,686 @@ textarea:focus::placeholder{
 }
 </style>
 
+
+<style id="mobile-footer-cleanup">
+@media (max-width:700px){
+    .profile-column{
+        display:block !important;
+        width:100% !important;
+    }
+    body{
+        overflow-x:hidden;
+    }
+    main.page{
+        padding-bottom:24px;
+    }
+    .workspace{
+        display:block;
+    }
+}
+</style>
+
+
+<style id="portrait-upload-capture-ui">
+.portrait-choice-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    margin-top:12px;
+}
+.portrait-action{
+    appearance:none;
+    border:1px solid var(--border,#dfe7e4);
+    background:#fff;
+    border-radius:12px;
+    padding:13px 14px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    text-align:left;
+    cursor:pointer;
+    color:var(--text,#172322);
+    transition:.18s ease;
+}
+.portrait-action:hover{
+    border-color:#2A9D8F;
+    background:#f8fcfb;
+    transform:translateY(-1px);
+}
+.portrait-action-icon{
+    width:32px;
+    height:32px;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    background:#eef6f4;
+    color:#2A9D8F;
+    font-size:18px;
+    flex:0 0 auto;
+}
+.portrait-action span:last-child{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+.portrait-action strong{
+    font-size:11px;
+    line-height:1.2;
+}
+.portrait-action small{
+    font-size:9px;
+    color:rgba(65,78,78,.5);
+    line-height:1.2;
+}
+.portrait-preview{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:12px;
+    padding:10px;
+    border:1px solid #dfe7e4;
+    border-radius:12px;
+    background:#f8fbfa;
+}
+.portrait-preview img{
+    width:58px;
+    height:58px;
+    object-fit:cover;
+    border-radius:50%;
+    border:2px solid #fff;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.portrait-preview-info{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    flex:1;
+    min-width:0;
+}
+.portrait-preview-info strong{
+    font-size:11px;
+}
+.portrait-preview-info span{
+    font-size:9px;
+    color:rgba(65,78,78,.55);
+}
+.portrait-remove{
+    border:0;
+    background:transparent;
+    color:#a34b42;
+    font-size:10px;
+    font-weight:750;
+    cursor:pointer;
+}
+.camera-panel{
+    margin-top:12px;
+    padding:10px;
+    border:1px solid #dfe7e4;
+    border-radius:14px;
+    background:#101817;
+}
+.camera-panel video{
+    display:block;
+    width:100%;
+    max-height:300px;
+    object-fit:cover;
+    border-radius:9px;
+    transform:scaleX(-1);
+}
+.camera-actions{
+    display:flex;
+    gap:8px;
+    margin-top:9px;
+}
+.camera-actions button{
+    flex:1;
+    min-height:38px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:10px;
+    font-weight:800;
+}
+.camera-capture{
+    border:0;
+    background:#2A9D8F;
+    color:#fff;
+}
+.camera-cancel{
+    border:1px solid rgba(255,255,255,.2);
+    background:transparent;
+    color:#fff;
+}
+.camera-hint{
+    margin:8px 2px 0;
+    color:rgba(255,255,255,.55);
+    font-size:9px;
+}
+.portrait-status{
+    margin-top:7px;
+    min-height:14px;
+    color:#a34b42;
+    font-size:9px;
+}
+@media(max-width:700px){
+    .portrait-choice-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+
+<style id="mobile-live-preview-fix">
+@media(max-width:700px){
+    .profile-column{
+        display:block !important;
+        width:100% !important;
+        margin-top:24px !important;
+    }
+
+    .profile-heading{
+        display:block !important;
+    }
+
+    .live-card{
+        width:100% !important;
+        max-width:none !important;
+    }
+
+    .portrait-preview{
+        position:relative;
+        z-index:5;
+    }
+
+    .portrait-remove{
+        position:relative;
+        z-index:10;
+        min-width:56px;
+        min-height:34px;
+        padding:7px 10px;
+        touch-action:manipulation;
+    }
+}
+</style>
+
+
+<style id="portrait-mobile-button-fix">
+.portrait-choice-grid,
+.portrait-action,
+#uploadPortraitBtn,
+#capturePortraitBtn{
+    position:relative;
+    z-index:50;
+    pointer-events:auto !important;
+}
+.portrait-action{
+    appearance:none;
+    -webkit-appearance:none;
+    touch-action:manipulation;
+    user-select:none;
+    -webkit-user-select:none;
+}
+#portraitInput{
+    position:absolute !important;
+    width:1px !important;
+    height:1px !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+}
+@media(max-width:700px){
+    .portrait-choice-grid{
+        position:relative;
+        z-index:100;
+    }
+    .portrait-action{
+        min-height:52px;
+        width:100%;
+        cursor:pointer;
+    }
+}
+</style>
+
+
+<style id="mobile-portrait-copy-polish">
+/* Keep the portrait helper copy quiet and secondary on mobile. */
+.portrait-field .field-optional{
+    font-size:9px !important;
+    font-weight:500 !important;
+    font-style:italic !important;
+    color:rgba(65,78,78,.48) !important;
+    letter-spacing:0 !important;
+}
+.portrait-field .field-help{
+    font-size:10px !important;
+    line-height:1.45 !important;
+    font-weight:400 !important;
+    font-style:italic !important;
+    color:rgba(65,78,78,.52) !important;
+    margin:4px 0 9px !important;
+}
+@media(max-width:700px){
+    .portrait-field .field-label-row{
+        align-items:baseline !important;
+    }
+
+    .portrait-field .field-label{
+        font-size:11px !important;
+        font-weight:750 !important;
+    }
+
+    .portrait-field .field-optional{
+        font-size:8px !important;
+        font-weight:450 !important;
+        font-style:italic !important;
+        color:rgba(65,78,78,.45) !important;
+    }
+
+    .portrait-field .field-help{
+        font-size:9px !important;
+        line-height:1.4 !important;
+        font-weight:400 !important;
+        font-style:italic !important;
+        color:rgba(65,78,78,.48) !important;
+        margin-top:3px !important;
+    }
+}
+</style>
+
+
+<style id="premium-taxonomy-grid">
+/* Premium compact taxonomy layout */
+.taxonomy-area-block{
+    margin-bottom:18px;
+}
+.taxonomy-group{
+    border:1px solid #e5ebe9;
+    border-radius:12px;
+    background:#fff;
+    overflow:hidden;
+    margin-bottom:9px;
+}
+.taxonomy-group-title{
+    padding:10px 12px;
+    background:#fafcfb;
+    border-bottom:1px solid #edf1f0;
+}
+.taxonomy-parent{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    cursor:pointer;
+}
+.taxonomy-parent span{
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:-.1px;
+}
+.taxonomy-course-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:7px;
+    padding:10px;
+    background:#fff;
+}
+.taxonomy-course{
+    position:relative;
+    display:flex;
+    align-items:center;
+    min-height:36px;
+    padding:7px 9px;
+    border:1px solid #e7edeb;
+    border-radius:9px;
+    background:#fff;
+    cursor:pointer;
+    transition:
+        border-color .16s ease,
+        background .16s ease,
+        box-shadow .16s ease,
+        transform .16s ease;
+}
+.taxonomy-course:hover{
+    border-color:#b8d9d3;
+    background:#f8fcfb;
+    transform:translateY(-1px);
+}
+.taxonomy-course:has(input:checked){
+    border-color:#2A9D8F;
+    background:#eef8f5;
+    box-shadow:0 2px 7px rgba(42,157,143,.10);
+}
+.taxonomy-course input{
+    width:14px;
+    height:14px;
+    flex:0 0 auto;
+    margin:0 7px 0 0;
+    accent-color:#2A9D8F;
+}
+.taxonomy-course span{
+    font-size:9.5px;
+    line-height:1.25;
+    color:#344241;
+    font-weight:600;
+}
+.taxonomy-course:has(input:checked) span{
+    color:#1d6f66;
+    font-weight:750;
+}
+.taxonomy-area-title{
+    margin-bottom:9px;
+}
+
+/* Keep long taxonomy labels elegant instead of stretching the card. */
+.taxonomy-course span{
+    overflow-wrap:anywhere;
+}
+
+@media(max-width:900px){
+    .taxonomy-course-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+}
+
+@media(max-width:700px){
+    .taxonomy-course-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:6px;
+        padding:8px;
+    }
+    .taxonomy-course{
+        min-height:34px;
+        padding:6px 7px;
+        border-radius:8px;
+    }
+    .taxonomy-course input{
+        width:13px;
+        height:13px;
+        margin-right:6px;
+    }
+    .taxonomy-course span{
+        font-size:9px;
+    }
+}
+
+@media(max-width:390px){
+    .taxonomy-course-grid{
+        grid-template-columns:1fr 1fr;
+    }
+    .taxonomy-course span{
+        font-size:8.5px;
+    }
+}
+</style>
+
+
+<style id="premium-intro-video-ui">
+.intro-video-field{
+    margin-top:22px;
+}
+.video-upload-action{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:13px 14px;
+    border:1px solid #e2e9e7;
+    border-radius:12px;
+    background:#fff;
+    color:var(--text,#172322);
+    text-align:left;
+    cursor:pointer;
+    touch-action:manipulation;
+    transition:.18s ease;
+}
+.video-upload-action:hover{
+    border-color:#2A9D8F;
+    background:#f8fcfb;
+    transform:translateY(-1px);
+}
+.video-action-icon{
+    width:32px;
+    height:32px;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    background:#eef6f4;
+    color:#2A9D8F;
+    font-size:13px;
+    flex:0 0 auto;
+}
+.video-upload-action span:last-child{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+.video-upload-action strong{
+    font-size:11px;
+    line-height:1.2;
+}
+.video-upload-action small{
+    font-size:9px;
+    color:rgba(65,78,78,.5);
+    font-style:italic;
+}
+.video-preview-panel{
+    margin-top:10px;
+    padding:9px;
+    border:1px solid #dfe7e4;
+    border-radius:12px;
+    background:#f8fbfa;
+}
+.video-preview-panel video{
+    display:block;
+    width:100%;
+    max-height:260px;
+    border-radius:9px;
+    background:#101817;
+}
+.video-preview-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-top:9px;
+}
+.video-preview-meta > div:first-child{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    min-width:0;
+}
+.video-preview-meta strong{
+    font-size:10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.video-preview-meta span{
+    font-size:9px;
+    color:rgba(65,78,78,.55);
+}
+.video-preview-actions{
+    display:flex;
+    gap:7px;
+    flex:0 0 auto;
+}
+.video-preview-actions button{
+    border:0;
+    background:transparent;
+    color:#2A9D8F;
+    font-size:9px;
+    font-weight:800;
+    cursor:pointer;
+    padding:6px;
+}
+.video-preview-actions button:last-child{
+    color:#a34b42;
+}
+.video-status{
+    min-height:14px;
+    margin-top:6px;
+    font-size:9px;
+    line-height:1.4;
+    color:#a34b42;
+}
+@media(max-width:700px){
+    .intro-video-field{
+        margin-top:19px;
+    }
+    .intro-video-field .field-label{
+        font-size:11px !important;
+        font-weight:750 !important;
+    }
+    .intro-video-field .field-optional{
+        font-size:8px !important;
+        font-weight:450 !important;
+        font-style:italic !important;
+        color:rgba(65,78,78,.45) !important;
+    }
+    .intro-video-field .field-help{
+        font-size:9px !important;
+        line-height:1.4 !important;
+        font-style:italic !important;
+        color:rgba(65,78,78,.48) !important;
+    }
+    .video-preview-meta{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+    .video-preview-actions{
+        width:100%;
+    }
+    .video-preview-actions button{
+        flex:1;
+        border:1px solid #e2e9e7;
+        border-radius:8px;
+        background:#fff;
+    }
+}
+</style>
+
+
+<style id="live-video-preview-ui">
+.live-video-card{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:9px 10px;
+    border:1px solid #dce9e5;
+    border-radius:10px;
+    background:#f4faf8;
+}
+.live-video-play{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#2A9D8F;
+    color:#fff;
+    font-size:10px;
+}
+.live-video-card > span:nth-child(2){
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    flex:1;
+}
+.live-video-card strong{
+    font-size:10px;
+}
+.live-video-card small{
+    font-size:8px;
+    color:rgba(65,78,78,.55);
+}
+.live-video-badge{
+    font-size:7px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    font-weight:850;
+    color:#2A9D8F;
+}
+</style>
+
+
+<style id="video-copy-polish">
+/* Only the optional label and short helper sentence are muted/italic. */
+.intro-video-field .field-optional{
+    font-size:9px !important;
+    font-weight:450 !important;
+    font-style:italic !important;
+    color:rgba(65,78,78,.45) !important;
+    letter-spacing:0 !important;
+}
+.intro-video-field .field-help{
+    font-size:10px !important;
+    line-height:1.45 !important;
+    font-weight:400 !important;
+    font-style:italic !important;
+    color:rgba(65,78,78,.48) !important;
+    margin:4px 0 9px !important;
+}
+@media(max-width:700px){
+    .intro-video-field .field-optional{
+        font-size:8px !important;
+        font-weight:450 !important;
+        font-style:italic !important;
+        color:rgba(65,78,78,.45) !important;
+    }
+    .intro-video-field .field-help{
+        font-size:9px !important;
+        line-height:1.4 !important;
+        font-weight:400 !important;
+        font-style:italic !important;
+        color:rgba(65,78,78,.48) !important;
+        margin-top:3px !important;
+    }
+}
+</style>
+
+
+<style id="live-video-available-style">
+.live-video-available{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:9px 11px;
+    border:1px solid #dce9e5;
+    border-radius:10px;
+    background:#f6faf9;
+}
+.live-video-icon{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    flex:0 0 auto;
+    background:#e7f3f0;
+    color:#2A9D8F;
+    font-size:8px;
+}
+.live-video-available span:nth-child(2){
+    flex:1;
+    font-size:10px;
+    font-weight:750;
+    color:#344241;
+}
+.live-video-available strong{
+    font-size:7px;
+    letter-spacing:.55px;
+    text-transform:uppercase;
+    font-weight:850;
+    color:#2A9D8F;
+}
+@media(max-width:700px){
+    .live-video-available{
+        padding:8px 9px;
+    }
+    .live-video-available span:nth-child(2){
+        font-size:9px;
+    }
+}
+</style>
+
 </head>
 
 
@@ -2568,23 +3248,130 @@ textarea:focus::placeholder{
 
                     <div class="field">
                         <label>Professional portrait</label>
-                        <div class="portrait-area">
-                            <div class="portrait-preview" id="portraitPreview">
-                                <img id="portraitImage" alt="Teacher portrait">
-                                <div class="portrait-placeholder" id="portraitPlaceholder">T</div>
-                            </div>
-                            <div class="portrait-info">
-                                <h3>Add a professional photo</h3>
-                                <p>A clear portrait helps people feel confident when choosing a professional. JPG, PNG or WEBP · up to 10 MB</p>
-                                <label class="upload-button">
-                                    Upload portrait
-                                    <input type="file" id="portraitInput" accept=".jpg,.jpeg,.png,.webp">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                        
+<div class="portrait-field">
 
-                    <div class="field-grid">
+    <div class="field-label-row">
+        <label class="field-label">Profile portrait</label>
+        <span class="field-optional">Required</span>
+    </div>
+
+    <p class="field-help">
+        Choose either an existing portrait or capture one now.
+    </p>
+
+    <div class="portrait-choice-grid">
+
+        <button type="button" class="portrait-action" id="capturePortraitBtn">
+            <span class="portrait-action-icon">◎</span>
+            <span>
+                <strong>Capture portrait</strong>
+                <small>Use your camera</small>
+            </span>
+        </button>
+
+        <button type="button" class="portrait-action" id="uploadPortraitBtn">
+            <span class="portrait-action-icon">↑</span>
+            <span>
+                <strong>Upload portrait</strong>
+                <small>Choose a photo</small>
+            </span>
+        </button>
+
+    </div>
+
+    <input
+        type="file"
+        id="portraitInput"
+        name="portrait"
+        accept="image/*"
+        hidden
+    >
+
+    <div class="portrait-preview" id="portraitPreview" hidden>
+        <img id="portraitPreviewImage" alt="Portrait preview">
+
+        <div class="portrait-preview-info">
+            <strong id="portraitPreviewTitle">Portrait selected</strong>
+            <span id="portraitPreviewSource"></span>
+        </div>
+
+        <button type="button" class="portrait-remove" id="removePortraitBtn">
+            Remove
+        </button>
+    </div>
+
+    <div class="camera-panel" id="cameraPanel" hidden>
+        <video id="portraitCamera" autoplay playsinline muted></video>
+        <canvas id="portraitCanvas" hidden></canvas>
+
+        <div class="camera-actions">
+            <button type="button" class="camera-capture" id="takePortraitBtn">
+                Capture
+            </button>
+            <button type="button" class="camera-cancel" id="cancelCameraBtn">
+                Cancel
+            </button>
+        </div>
+
+        <p class="camera-hint">
+            Allow camera access when your browser asks.
+        </p>
+    </div>
+
+    <div class="portrait-status" id="portraitStatus"></div>
+
+</div>
+
+
+<div class="intro-video-field">
+
+    <div class="field-label-row">
+        <label class="field-label">Introduction video</label>
+        <span class="field-optional">Optional · up to 30 sec</span>
+    </div>
+
+    <p class="field-help">
+        A short introduction helps learners and organizations get to know you.
+    </p>
+
+    <button type="button" class="video-upload-action" id="uploadIntroVideoBtn">
+        <span class="video-action-icon">▶</span>
+        <span>
+            <strong>Add introduction video</strong>
+            <small>Maximum 30 seconds</small>
+        </span>
+    </button>
+
+    <input
+        type="file"
+        id="introVideoInput"
+        name="introVideo"
+        accept="video/mp4,video/quicktime,video/webm"
+        hidden
+    >
+
+    <div class="video-preview-panel" id="introVideoPreview" hidden>
+        <video id="introVideoPlayer" controls playsinline preload="metadata"></video>
+
+        <div class="video-preview-meta">
+            <div>
+                <strong id="introVideoName">Introduction video</strong>
+                <span id="introVideoDuration"></span>
+            </div>
+
+            <div class="video-preview-actions">
+                <button type="button" id="replaceIntroVideoBtn">Replace</button>
+                <button type="button" id="removeIntroVideoBtn">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-status" id="introVideoStatus"></div>
+
+</div>
+
+<div class="field-grid">
                         <div class="field">
                             <label>First name <span class="required">*</span></label>
                             <input type="text" id="firstName" placeholder="e.g. Sarah" required>
@@ -2944,7 +3731,16 @@ textarea:focus::placeholder{
                         <div class="live-chips live-chips-secondary" id="liveStyles"></div>
                     </div>
 
-                    <div class="live-info-grid">
+                    
+<div class="preview-section" id="liveVideoSection" hidden>
+    <div class="live-video-available">
+        <span class="live-video-icon">▶</span>
+        <span>Video available</span>
+        <strong>Premium</strong>
+    </div>
+</div>
+
+<div class="live-info-grid">
                         <div class="live-info">
                             <div class="live-info-label">Experience</div>
                             <div class="live-info-value" id="liveExperience">—</div>
@@ -5014,34 +5810,618 @@ document.querySelectorAll('input[type="password"]').forEach(field => {
 </script>
 
 
-document.addEventListener("change", function(event){
-    if(event.target.closest("#teacherForm")){
-        updateLiveProfile();
-    }
-});
-
-document.addEventListener("input", function(event){
-    if(event.target.closest("#teacherForm")){
-        updateLiveProfile();
-    }
-});
 
 
+
+
+
+<script>document.addEventListener("DOMContentLoaded",()=>{ renderTeacherSpecializations(); updateLiveProfile(); });</script>
 <script id="live-preview-complete-listener">
-document.addEventListener("input", function(event){
-    if(event.target.closest("#teacherForm")){
+document.addEventListener("input", function(event) {
+    if (event.target.closest("#teacherForm")) {
         updateLiveProfile();
     }
 });
 
-document.addEventListener("change", function(event){
-    if(event.target.closest("#teacherForm")){
+document.addEventListener("change", function(event) {
+    if (event.target.closest("#teacherForm")) {
         updateLiveProfile();
     }
 });
 </script>
 
-<script>document.addEventListener("DOMContentLoaded",()=>{ renderTeacherSpecializations(); updateLiveProfile(); });</script>
+<script id="portrait-upload-capture-js">
+(function(){
+
+    function initPortraitControls(){
+
+        const uploadBtn = document.getElementById("uploadPortraitBtn");
+        const captureBtn = document.getElementById("capturePortraitBtn");
+        const input = document.getElementById("portraitInput");
+        const preview = document.getElementById("portraitPreview");
+        const previewImage = document.getElementById("portraitPreviewImage");
+        const previewTitle = document.getElementById("portraitPreviewTitle");
+        const previewSource = document.getElementById("portraitPreviewSource");
+        const removeBtn = document.getElementById("removePortraitBtn");
+        const cameraPanel = document.getElementById("cameraPanel");
+        const video = document.getElementById("portraitCamera");
+        const canvas = document.getElementById("portraitCanvas");
+        const takeBtn = document.getElementById("takePortraitBtn");
+        const cancelBtn = document.getElementById("cancelCameraBtn");
+        const status = document.getElementById("portraitStatus");
+
+        if(!uploadBtn || !captureBtn || !input){
+            return;
+        }
+
+        let cameraStream = null;
+        let portraitObjectUrl = null;
+
+        function setStatus(message){
+            if(status) status.textContent = message || "";
+        }
+
+        function stopCamera(){
+            if(cameraStream){
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+
+            if(video){
+                video.pause();
+                video.srcObject = null;
+            }
+
+            if(cameraPanel){
+                cameraPanel.hidden = true;
+            }
+        }
+
+        function setLivePortrait(url){
+            const livePortrait = document.getElementById("livePortrait");
+            const livePlaceholder = document.getElementById("livePlaceholder");
+
+            if(livePortrait){
+                if(url){
+                    livePortrait.src = url;
+                    livePortrait.style.display = "block";
+                }else{
+                    livePortrait.removeAttribute("src");
+                    livePortrait.style.display = "none";
+                }
+            }
+
+            if(livePlaceholder){
+                livePlaceholder.style.display = url ? "none" : "";
+            }
+        }
+
+        function showPortrait(fileOrBlob, sourceLabel, fileName){
+
+            if(portraitObjectUrl){
+                URL.revokeObjectURL(portraitObjectUrl);
+            }
+
+            portraitObjectUrl = URL.createObjectURL(fileOrBlob);
+
+            if(previewImage){
+                previewImage.src = portraitObjectUrl;
+            }
+
+            if(previewTitle){
+                previewTitle.textContent = "Portrait selected";
+            }
+
+            if(previewSource){
+                previewSource.textContent =
+                    sourceLabel + (fileName ? " · " + fileName : "");
+            }
+
+            if(preview){
+                preview.hidden = false;
+            }
+
+            setLivePortrait(portraitObjectUrl);
+            setStatus("");
+
+            // Keep the real file input synchronized for the existing
+            // registration/storage code.
+            try{
+                const file = fileOrBlob instanceof File
+                    ? fileOrBlob
+                    : new File(
+                        [fileOrBlob],
+                        fileName || "captured-portrait.jpg",
+                        {type:fileOrBlob.type || "image/jpeg"}
+                    );
+
+                if(typeof DataTransfer !== "undefined"){
+                    const transfer = new DataTransfer();
+                    transfer.items.add(file);
+                    input.files = transfer.files;
+                }
+            }catch(error){
+                console.warn("Could not synchronize portrait file input:", error);
+            }
+
+            if(typeof updateLiveProfile === "function"){
+                updateLiveProfile();
+            }
+        }
+
+        // Upload: direct user gesture -> native file picker.
+        uploadBtn.type = "button";
+        uploadBtn.addEventListener("click", function(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+            stopCamera();
+            setStatus("");
+
+            // Reset first so the same photo can be selected again after removal.
+            input.value = "";
+
+            try{
+                input.click();
+            }catch(error){
+                console.error(error);
+                setStatus("Please use Capture portrait or choose a photo manually.");
+            }
+        });
+
+        input.addEventListener("change", function(){
+
+            const file = input.files && input.files[0];
+
+            if(!file){
+                return;
+            }
+
+            if(!file.type || !file.type.startsWith("image/")){
+                input.value = "";
+                setStatus("Please choose an image file.");
+                return;
+            }
+
+            showPortrait(file, "Uploaded", file.name);
+        });
+
+        // Capture: getUserMedia is called directly from this click handler.
+        captureBtn.type = "button";
+        captureBtn.addEventListener("click", async function(event){
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            setStatus("");
+
+            if(!navigator.mediaDevices ||
+               !navigator.mediaDevices.getUserMedia){
+
+                setStatus(
+                    "Camera access is unavailable here. Please upload a portrait instead."
+                );
+                return;
+            }
+
+            stopCamera();
+
+            try{
+
+                cameraStream =
+                    await navigator.mediaDevices.getUserMedia({
+                        video:{
+                            facingMode:{ideal:"user"},
+                            width:{ideal:1280},
+                            height:{ideal:1280}
+                        },
+                        audio:false
+                    });
+
+                if(video){
+                    video.srcObject = cameraStream;
+                    cameraPanel.hidden = false;
+                    await video.play();
+                }
+
+            }catch(error){
+
+                console.error("Camera error:", error);
+                stopCamera();
+
+                if(error && error.name === "NotAllowedError"){
+                    setStatus(
+                        "Camera permission was denied. Please allow camera access or upload a portrait instead."
+                    );
+                }else if(error && error.name === "NotFoundError"){
+                    setStatus(
+                        "No camera was found. Please upload a portrait instead."
+                    );
+                }else if(error && error.name === "NotReadableError"){
+                    setStatus(
+                        "Your camera is being used by another app. Please close it or upload a portrait instead."
+                    );
+                }else{
+                    setStatus(
+                        "We couldn't access the camera. Please upload a portrait instead."
+                    );
+                }
+            }
+        });
+
+        takeBtn.type = "button";
+        takeBtn.addEventListener("click", function(event){
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            if(!video || !video.videoWidth || !video.videoHeight){
+                setStatus("Camera is not ready yet. Please try again.");
+                return;
+            }
+
+            const size =
+                Math.min(video.videoWidth, video.videoHeight);
+
+            canvas.width = size;
+            canvas.height = size;
+
+            const context = canvas.getContext("2d");
+
+            // Mirror selfie so it feels natural to the teacher.
+            context.save();
+            context.translate(size,0);
+            context.scale(-1,1);
+
+            const sx = (video.videoWidth - size) / 2;
+            const sy = (video.videoHeight - size) / 2;
+
+            context.drawImage(
+                video,
+                sx, sy, size, size,
+                0, 0, size, size
+            );
+
+            context.restore();
+
+            canvas.toBlob(function(blob){
+
+                if(!blob){
+                    setStatus(
+                        "We couldn't capture the photo. Please try again."
+                    );
+                    return;
+                }
+
+                stopCamera();
+
+                showPortrait(
+                    blob,
+                    "Captured with camera",
+                    "captured-portrait.jpg"
+                );
+
+            },"image/jpeg",0.92);
+        });
+
+        cancelBtn.type = "button";
+        cancelBtn.addEventListener("click", function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            stopCamera();
+            setStatus("");
+        });
+
+        removeBtn.type = "button";
+        removeBtn.addEventListener("click", function(event){
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            stopCamera();
+
+            if(portraitObjectUrl){
+                URL.revokeObjectURL(portraitObjectUrl);
+                portraitObjectUrl = null;
+            }
+
+            input.value = "";
+
+            if(preview){
+                preview.hidden = true;
+            }
+
+            if(previewImage){
+                previewImage.removeAttribute("src");
+            }
+
+            if(previewSource){
+                previewSource.textContent = "";
+            }
+
+            setLivePortrait(null);
+            setStatus("");
+
+            if(typeof updateLiveProfile === "function"){
+                updateLiveProfile();
+            }
+        });
+
+        window.addEventListener("beforeunload", stopCamera);
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", initPortraitControls);
+    }else{
+        initPortraitControls();
+    }
+
+})();
+</script>
+
+
+<script id="premium-intro-video-js">
+(function(){
+
+    function initIntroVideo(){
+
+        const button = document.getElementById("uploadIntroVideoBtn");
+        const input = document.getElementById("introVideoInput");
+        const preview = document.getElementById("introVideoPreview");
+        const player = document.getElementById("introVideoPlayer");
+        const nameEl = document.getElementById("introVideoName");
+        const durationEl = document.getElementById("introVideoDuration");
+        const replaceBtn = document.getElementById("replaceIntroVideoBtn");
+        const removeBtn = document.getElementById("removeIntroVideoBtn");
+        const status = document.getElementById("introVideoStatus");
+        const liveSection = document.getElementById("liveVideoSection");
+        const liveDuration = document.getElementById("liveVideoDuration");
+
+        if(!button || !input || !preview || !player) return;
+
+        let objectUrl = null;
+        let selectedFile = null;
+
+        function statusMessage(message){
+            if(status) status.textContent = message || "";
+        }
+
+        function formatDuration(seconds){
+            if(!Number.isFinite(seconds)) return "";
+            const total = Math.round(seconds);
+            const min = Math.floor(total / 60);
+            const sec = total % 60;
+            return `${min}:${String(sec).padStart(2,"0")}`;
+        }
+
+        function clearPreview(){
+
+            if(objectUrl){
+                URL.revokeObjectURL(objectUrl);
+                objectUrl = null;
+            }
+
+            selectedFile = null;
+            input.value = "";
+            player.removeAttribute("src");
+            player.load();
+
+            preview.hidden = true;
+            nameEl.textContent = "Introduction video";
+            durationEl.textContent = "";
+
+            if(liveSection){
+                liveSection.hidden = true;
+            }
+
+            statusMessage("");
+
+            if(typeof updateLiveProfile === "function"){
+                updateLiveProfile();
+            }
+        }
+
+        function reject(message){
+            input.value = "";
+            statusMessage(message);
+        }
+
+        button.type = "button";
+        button.addEventListener("click", function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            input.click();
+        });
+
+        replaceBtn.type = "button";
+        replaceBtn.addEventListener("click", function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            input.click();
+        });
+
+        removeBtn.type = "button";
+        removeBtn.addEventListener("click", function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            clearPreview();
+        });
+
+        input.addEventListener("change", function(){
+
+            const file = input.files && input.files[0];
+
+            if(!file) return;
+
+            if(!file.type.startsWith("video/")){
+                reject("Please choose a video file.");
+                return;
+            }
+
+            // Protect against excessively large uploads while retaining a
+            // practical high-quality ceiling for a 30-second introduction.
+            const maxBytes = 100 * 1024 * 1024;
+
+            if(file.size > maxBytes){
+                reject("Please choose a video smaller than 100 MB.");
+                return;
+            }
+
+            if(objectUrl){
+                URL.revokeObjectURL(objectUrl);
+            }
+
+            selectedFile = file;
+            objectUrl = URL.createObjectURL(file);
+
+            player.src = objectUrl;
+            player.load();
+
+            player.onloadedmetadata = function(){
+
+                const duration = player.duration;
+
+                if(!Number.isFinite(duration)){
+                    reject("We couldn't read the video's duration.");
+                    return;
+                }
+
+                if(duration > 30.05){
+                    clearPreview();
+                    statusMessage(
+                        "Your introduction video must be 30 seconds or shorter."
+                    );
+                    return;
+                }
+
+                preview.hidden = false;
+                nameEl.textContent = file.name;
+                durationEl.textContent =
+                    `${formatDuration(duration)} · Maximum 0:30`;
+
+                if(liveSection){
+                    liveSection.hidden = false;
+                }
+
+                if(liveDuration){
+                    liveDuration.textContent =
+                        `${formatDuration(duration)} · up to 0:30`;
+                }
+
+                statusMessage("");
+
+                if(typeof updateLiveProfile === "function"){
+                    updateLiveProfile();
+                }
+            };
+
+            player.onerror = function(){
+                clearPreview();
+                statusMessage(
+                    "This video format could not be previewed. Please try MP4, MOV, or WebM."
+                );
+            };
+        });
+
+        window.addEventListener("beforeunload", function(){
+            if(objectUrl){
+                URL.revokeObjectURL(objectUrl);
+            }
+        });
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", initIntroVideo);
+    }else{
+        initIntroVideo();
+    }
+
+})();
+</script>
+
+
+<script id="live-video-available-toggle">
+(function(){
+    function initLiveVideoIndicator(){
+        const input = document.getElementById("introVideoInput");
+        const section = document.getElementById("liveVideoSection");
+        if(!input || !section) return;
+
+        let objectUrl = null;
+
+        function hide(){
+            section.hidden = true;
+        }
+
+        function validate(){
+            const file = input.files && input.files[0];
+
+            if(!file){
+                hide();
+                return;
+            }
+
+            if(!file.type || !file.type.startsWith("video/")){
+                hide();
+                return;
+            }
+
+            if(objectUrl){
+                URL.revokeObjectURL(objectUrl);
+                objectUrl = null;
+            }
+
+            objectUrl = URL.createObjectURL(file);
+
+            const probe = document.createElement("video");
+            probe.preload = "metadata";
+            probe.muted = true;
+            probe.playsInline = true;
+
+            probe.onloadedmetadata = function(){
+                const duration = probe.duration;
+
+                if(Number.isFinite(duration) && duration <= 30.05){
+                    section.hidden = false;
+                }else{
+                    hide();
+                }
+
+                URL.revokeObjectURL(objectUrl);
+                objectUrl = null;
+                probe.removeAttribute("src");
+                probe.load();
+            };
+
+            probe.onerror = function(){
+                hide();
+                if(objectUrl){
+                    URL.revokeObjectURL(objectUrl);
+                    objectUrl = null;
+                }
+            };
+
+            probe.src = objectUrl;
+        }
+
+        input.addEventListener("change", validate);
+
+        // If the existing remove handler clears the input, keep the indicator
+        // synchronized without interfering with the existing portrait logic.
+        const observer = new MutationObserver(validate);
+        observer.observe(input, {attributes:true, attributeFilter:["value"]});
+
+        validate();
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", initLiveVideoIndicator);
+    }else{
+        initLiveVideoIndicator();
+    }
+})();
+</script>
+
 </body>
 
 </html>
