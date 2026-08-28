@@ -215,7 +215,7 @@
 
 
         .brand-logo {
-    width: 200px;
+    width: 110px;
     height: auto;
     max-height: 65px;
     display: block;
@@ -4852,6 +4852,285 @@ html{scroll-behavior:smooth;}
 }
 </style>
 
+
+<style id="desktop-header-toolbar-spacing">
+/* Slightly separate the desktop navigation controls from the logo. */
+@media (min-width: 701px) {
+    .nav-links {
+        margin-left: auto;
+        margin-right: 38px !important;
+    }
+
+    .nav-actions {
+        gap: 11px !important;
+    }
+}
+</style>
+
+
+<style id="find-your-match-logo-spacing">
+/* Move the first desktop navigation item farther to the right of the logo. */
+@media (min-width: 701px) {
+    .nav-links {
+        margin-left: 54px !important;
+    }
+}
+</style>
+
+
+<style id="desktop-find-match-spacing-final">
+@media (min-width: 701px) {
+    .main-nav {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .nav-primary {
+        margin-left: 58px !important;
+    }
+}
+</style>
+
+
+<style id="ultra-premium-page-entry">
+/* Ultra-premium homepage entrance: quiet, cinematic fade + lift. */
+html{
+    background:#fff;
+}
+body{
+    opacity:0;
+    transform:translateY(8px);
+    transition:
+        opacity 1600ms cubic-bezier(.22,1,.36,1),
+        transform 1900ms cubic-bezier(.22,1,.36,1);
+}
+body.page-ready{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Respect visitors who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce){
+    body{
+        opacity:1;
+        transform:none;
+        transition:none;
+    }
+}
+</style>
+
+
+<style id="hero-orderly-premium-reveal">
+/* A restrained staggered reveal for the interactive hero.
+   Each layer arrives in sequence rather than all at once. */
+@keyframes heroBuilderArrive{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:translateY(0);}
+}
+@keyframes heroPreviewArrive{
+    from{opacity:0;transform:translate3d(12px,8px,0) scale(.985);}
+    to{opacity:1;transform:translate3d(0,0,0) scale(1);}
+}
+@keyframes heroOptionArrive{
+    from{opacity:0;transform:translateY(7px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+@media (min-width:701px){
+    .hero .hero-content > .course-builder{
+        animation:heroBuilderArrive 850ms cubic-bezier(.22,1,.36,1) 700ms both;
+    }
+
+    .hero .request-preview-card{
+        animation:heroPreviewArrive 950ms cubic-bezier(.22,1,.36,1) 900ms both;
+    }
+
+    .hero .hero-accent-line{
+        opacity:0;
+        animation:heroBuilderArrive 700ms cubic-bezier(.22,1,.36,1) 1250ms both;
+    }
+}
+
+/* Once a learner moves through the builder, reveal the newly-created
+   choice cards in a calm left-to-right rhythm. */
+.builder-content.orderly-step-in .builder-option{
+    animation:heroOptionArrive 430ms cubic-bezier(.22,1,.36,1) both;
+}
+.builder-content.orderly-step-in .builder-option:nth-child(1){animation-delay:40ms}
+.builder-content.orderly-step-in .builder-option:nth-child(2){animation-delay:90ms}
+.builder-content.orderly-step-in .builder-option:nth-child(3){animation-delay:140ms}
+.builder-content.orderly-step-in .builder-option:nth-child(4){animation-delay:190ms}
+.builder-content.orderly-step-in .builder-option:nth-child(5){animation-delay:240ms}
+.builder-content.orderly-step-in .builder-option:nth-child(6){animation-delay:290ms}
+.builder-content.orderly-step-in .builder-option:nth-child(7){animation-delay:340ms}
+.builder-content.orderly-step-in .builder-option:nth-child(8){animation-delay:390ms}
+.builder-content.orderly-step-in .builder-option:nth-child(9){animation-delay:440ms}
+
+@media (prefers-reduced-motion:reduce){
+    .hero .hero-content > .course-builder,
+    .hero .request-preview-card,
+    .hero .hero-accent-line,
+    .builder-content.orderly-step-in .builder-option{
+        animation:none !important;
+        opacity:1 !important;
+        transform:none !important;
+    }
+}
+</style>
+
+
+<style id="premium-header-shade">
+@media (min-width: 701px) {
+    .site-header {
+        background: rgba(42, 157, 143, 0.055) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+</style>
+
+
+<style id="visible-logo-color-header-shade">
+/* Subtle Bulbeni-green wash for the actual homepage navigation bar. */
+.navbar {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(42, 157, 143, 0.13) 0%,
+            rgba(42, 157, 143, 0.065) 48%,
+            rgba(42, 157, 143, 0.10) 100%
+        ) !important;
+}
+</style>
+
+
+<style id="header-nav-logo-baseline">
+/* Align the desktop navigation labels vertically with the visual text
+   baseline of the Bulbeni logo. Mobile header remains unchanged. */
+@media (min-width: 701px) {
+    .nav-primary {
+        align-items: baseline !important;
+    }
+
+    .nav-primary a,
+    .nav-primary button {
+        line-height: 1 !important;
+        transform: translateY(1px);
+    }
+}
+</style>
+
+
+<style id="header-final-control-order">
+@media (min-width: 701px) {
+    .nav-actions {
+        display:flex !important;
+        align-items:center !important;
+        gap:12px !important;
+    }
+}
+</style>
+
+
+<style id="header-controls-order-final">
+@media (min-width: 701px) {
+    .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+    }
+    .nav-actions > .nav-teacher-cta { order: 1 !important; }
+    .nav-actions > .nav-login { order: 2 !important; }
+    .nav-actions > .language-control { order: 3 !important; }
+}
+</style>
+
+
+<style id="compact-header-height">
+/* Slightly reduce desktop header height while preserving the existing layout. */
+@media (min-width: 701px) {
+    .navbar {
+        min-height: 62px !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .navbar .nav-link,
+    .navbar .nav-teacher-cta,
+    .navbar .nav-login,
+    .navbar .language-toggle {
+        min-height: 36px !important;
+    }
+}
+</style>
+
+
+<style id="premium-homepage-refinement">
+.fit-section{padding:110px 0 120px;background:#f7faf9;border-top:1px solid rgba(42,157,143,.08)}
+.fit-intro{max-width:720px;margin:0 auto 58px;text-align:center}
+.fit-intro h2{margin:13px 0 18px;font-size:clamp(34px,4.3vw,58px);line-height:1.02;letter-spacing:-.045em;font-weight:780}
+.fit-intro h2 em,.match-demo-copy h3 em{font-style:normal;color:#2A9D8F}
+.fit-intro p{max-width:610px;margin:0 auto;color:rgba(45,61,59,.64);font-size:15px;line-height:1.75}
+.fit-factors{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #dfe9e6;border-bottom:1px solid #dfe9e6}
+.fit-factors>div{min-height:132px;padding:24px 22px;border-right:1px solid #dfe9e6;display:flex;flex-direction:column;justify-content:center}
+.fit-factors>div:last-child{border-right:0}
+.fit-factors span{font-size:9px;color:#2A9D8F;letter-spacing:.12em;font-weight:800;margin-bottom:13px}
+.fit-factors strong{font-size:15px;letter-spacing:-.01em}
+.fit-factors small{margin-top:5px;font-size:11px;color:rgba(45,61,59,.5)}
+.match-demo{margin-top:76px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(360px,1fr);gap:70px;align-items:center}
+.match-demo-kicker{font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#2A9D8F}
+.match-demo-copy h3{margin:12px 0 16px;font-size:clamp(28px,3.2vw,45px);line-height:1.05;letter-spacing:-.04em}
+.match-demo-copy p{max-width:470px;color:rgba(45,61,59,.62);line-height:1.7;font-size:14px}
+.match-demo-card{padding:26px;border:1px solid #dce8e4;border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 18px 50px rgba(31,57,52,.07)}
+.match-demo-card-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid #e7eeec}
+.match-demo-card-top span{font-size:8px;letter-spacing:.13em;font-weight:800;color:rgba(45,61,59,.48)}
+.match-demo-card-top b{font-size:7px;letter-spacing:.1em;color:#2A9D8F;background:#edf8f5;padding:6px 8px;border-radius:99px}
+.match-demo-subject{margin-top:24px;font-size:25px;font-weight:800;letter-spacing:-.03em}
+.match-demo-focus{margin-top:4px;font-size:12px;color:rgba(45,61,59,.58)}
+.match-demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:24px;background:#e7eeec;border:1px solid #e7eeec;border-radius:10px;overflow:hidden}
+.match-demo-grid div{padding:13px;background:#fff;display:flex;flex-direction:column;gap:4px}
+.match-demo-grid small{font-size:7px;letter-spacing:.12em;color:rgba(45,61,59,.42);font-weight:800}
+.match-demo-grid strong{font-size:11px}
+.match-demo-reason{margin-top:16px;padding-top:15px;border-top:1px solid #e7eeec;display:flex;gap:9px;font-size:10px;line-height:1.5;color:rgba(45,61,59,.57)}
+.match-demo-reason span:first-child{color:#2A9D8F;font-weight:900}
+
+.trust-strip{background:#fff;border-top:1px solid #edf2f0;border-bottom:1px solid #edf2f0}
+.trust-strip-inner{min-height:76px;display:flex;align-items:center;justify-content:center;gap:28px}
+.trust-lead{font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:rgba(45,61,59,.38)}
+.trust-items{display:flex;align-items:center;gap:18px}
+.trust-items span{font-size:11px;font-weight:720;color:rgba(45,61,59,.7)}
+.trust-items i{width:3px;height:3px;border-radius:50%;background:#2A9D8F;opacity:.55}
+
+.request-preview-card{transition:box-shadow 500ms cubic-bezier(.22,1,.36,1),transform 500ms cubic-bezier(.22,1,.36,1)}
+.request-preview-card:has(#previewDetails:not([hidden])){box-shadow:0 24px 70px rgba(31,57,52,.10)}
+#previewDetails{animation:premiumPreviewDetails .6s cubic-bezier(.22,1,.36,1)}
+@keyframes premiumPreviewDetails{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+.fit-section{padding:82px 0 90px}
+.fit-factors{grid-template-columns:repeat(2,1fr)}
+.fit-factors>div:nth-child(2n){border-right:0}
+.fit-factors>div:nth-child(n+3){border-top:1px solid #dfe9e6}
+.fit-factors>div:last-child{grid-column:1/-1;border-right:0}
+.match-demo{grid-template-columns:1fr;gap:38px}
+}
+@media(max-width:700px){
+.fit-intro{text-align:left;margin-bottom:42px}
+.fit-intro p{font-size:13px}
+.fit-factors{grid-template-columns:1fr 1fr}
+.fit-factors>div{min-height:108px;padding:18px 15px}
+.fit-factors>div:nth-child(3){border-right:1px solid #dfe9e6}
+.fit-factors>div:nth-child(4){border-right:0}
+.fit-factors>div:last-child{grid-column:1/-1;border-right:0}
+.match-demo{margin-top:55px}
+.match-demo-card{padding:19px;border-radius:14px}
+.trust-strip-inner{min-height:92px;display:block;padding:19px 0}
+.trust-lead{display:block;margin-bottom:12px}
+.trust-items{gap:10px;flex-wrap:wrap}
+.trust-items span{font-size:9px}
+.trust-items i{display:none}
+}
+</style>
+
 </head>
 
 
@@ -4908,7 +5187,10 @@ html{scroll-behavior:smooth;}
     <div class="nav-actions">
 
         <a href="teacher-register.html" class="nav-teacher-cta">Become a Teacher</a>
-<div class="language-control">
+
+        <a href="teacher-login.html" class="nav-login"><span class="desktop-login-label">Log in / Sign up</span><span class="mobile-login-label">Log in</span></a>
+
+        <div class="language-control">
             <button
                 class="language-toggle"
                 type="button"
@@ -4928,8 +5210,6 @@ html{scroll-behavior:smooth;}
                 </button>
             </div>
         </div>
-
-        <a href="teacher-login.html" class="nav-login"><span class="desktop-login-label">Log in / Sign up</span><span class="mobile-login-label">Log in</span></a>
 
     </div>
 
@@ -5200,11 +5480,77 @@ html{scroll-behavior:smooth;}
 
 
 
+
+        <!-- =====================================================
+             PREMIUM MATCHING STORY
+        ====================================================== -->
+
+        <section class="fit-section" aria-labelledby="fit-title">
+            <div class="container">
+                <div class="fit-intro">
+                    <div class="section-label">Built around fit</div>
+                    <h2 id="fit-title">Not just a teacher.<br><em>The right connection.</em></h2>
+                    <p>Bulbeni looks beyond a subject. Your goals, level, format, schedule, budget and preferences all become part of the match.</p>
+                </div>
+
+                <div class="fit-factors" aria-label="What shapes your match">
+                    <div><span>01</span><strong>Expertise</strong><small>What they teach</small></div>
+                    <div><span>02</span><strong>Experience</strong><small>What they know</small></div>
+                    <div><span>03</span><strong>Availability</strong><small>When they can teach</small></div>
+                    <div><span>04</span><strong>Budget</strong><small>What works for you</small></div>
+                    <div><span>05</span><strong>Goals</strong><small>Where you want to go</small></div>
+                </div>
+
+                <div class="match-demo">
+                    <div class="match-demo-copy">
+                        <span class="match-demo-kicker">A clearer way to choose</span>
+                        <h3>See <em>why</em> someone matches.</h3>
+                        <p>Instead of another endless directory, your request becomes a concise matching brief — so the right profile makes sense at a glance.</p>
+                    </div>
+
+                    <article class="match-demo-card">
+                        <div class="match-demo-card-top">
+                            <span>YOUR MATCH PROFILE</span>
+                            <b>GOOD FIT</b>
+                        </div>
+                        <div class="match-demo-subject">English</div>
+                        <div class="match-demo-focus">IELTS Preparation</div>
+                        <div class="match-demo-grid">
+                            <div><small>LEVEL</small><strong>B2 → C1</strong></div>
+                            <div><small>FORMAT</small><strong>Online</strong></div>
+                            <div><small>FREQUENCY</small><strong>2–3 / week</strong></div>
+                            <div><small>BUDGET</small><strong>Within your range</strong></div>
+                        </div>
+                        <div class="match-demo-reason">
+                            <span>✓</span>
+                            <span>Matched to your subject, experience, format and budget preferences.</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- =====================================================
              HOW IT WORKS
         ====================================================== -->
 
+
+
         
+
+        <section class="trust-strip" aria-label="Bulbeni matching principles">
+            <div class="container trust-strip-inner">
+                <span class="trust-lead">Every request is shaped by</span>
+                <div class="trust-items">
+                    <span>Expertise</span><i></i>
+                    <span>Experience</span><i></i>
+                    <span>Availability</span><i></i>
+                    <span>Budget</span><i></i>
+                    <span>Goals</span>
+                </div>
+            </div>
+        </section>
+
 <section id="organizations" class="organizations-section" aria-labelledby="organizations-title">
     <div class="organizations-inner">
         <div class="organizations-heading">
@@ -7038,6 +7384,51 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.innerWidth > 760) closeMenu();
   });
 });
+</script>
+
+
+<script id="ultra-premium-page-entry-script">
+(function(){
+    function revealPage(){
+        requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+                document.body.classList.add("page-ready");
+            });
+        });
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded", revealPage, {once:true});
+    }else{
+        revealPage();
+    }
+})();
+</script>
+
+
+<script id="hero-orderly-premium-reveal-js">
+(function(){
+    function attachBuilderReveal(){
+        const content=document.getElementById("builderContent");
+        if(!content) return;
+
+        const observer=new MutationObserver(function(){
+            content.classList.remove("orderly-step-in");
+            void content.offsetWidth;
+            requestAnimationFrame(function(){
+                content.classList.add("orderly-step-in");
+            });
+        });
+
+        observer.observe(content,{childList:true,subtree:true});
+    }
+
+    if(document.readyState==="loading"){
+        document.addEventListener("DOMContentLoaded",attachBuilderReveal,{once:true});
+    }else{
+        attachBuilderReveal();
+    }
+})();
 </script>
 
 </body>

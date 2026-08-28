@@ -108,9 +108,443 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 
 }
 </style>
 
+
+<style id="organization-portal-premium">
+.login-grid{
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+    gap:18px !important;
+}
+.login-card{
+    padding:29px !important;
+    border-radius:22px !important;
+}
+.organization-card{
+    box-shadow:0 24px 70px rgba(42,157,143,.10);
+}
+.organization-card:before{
+    background:#2A9D8F !important;
+}
+.organization-card .portal-icon{
+    color:#287f75;
+    background:#eaf7f4;
+}
+.organization-card .portal-header h2{
+    color:#246e67;
+}
+.organization-button{
+    background:#2A9D8F !important;
+    box-shadow:0 10px 25px rgba(42,157,143,.20) !important;
+}
+.organization-button:hover{
+    background:#23877c !important;
+}
+.organization-forgot{
+    color:#287f75 !important;
+}
+.organization-card .register-link{
+    color:#287f75 !important;
+}
+.organization-card .portal-note{
+    min-height:66px;
+}
+@media(max-width:1050px){
+    .login-grid{
+        grid-template-columns:1fr 1fr !important;
+    }
+    .organization-card{
+        grid-column:1 / -1;
+    }
+}
+@media(max-width:600px){
+    .login-grid{
+        grid-template-columns:1fr !important;
+    }
+    .organization-card{
+        grid-column:auto;
+    }
+}
+</style>
+
+
+<style id="premium-login-tabs">
+/* ---------------------------------------------------------
+   Premium three-portal login: one elegant surface, one active form.
+--------------------------------------------------------- */
+.login-grid,
+.organization-card{display:none !important;}
+
+.portal-switcher{
+    width:min(680px,100%);
+    margin:0 auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    padding:5px;
+    border:1px solid #e4ece9;
+    border-radius:16px;
+    background:#f5f8f7;
+}
+.portal-tab{
+    appearance:none;
+    border:0;
+    background:transparent;
+    border-radius:12px;
+    padding:13px 10px 12px;
+    cursor:pointer;
+    text-align:center;
+    color:rgba(39,57,54,.55);
+    transition:background .35s cubic-bezier(.22,1,.36,1),
+               color .35s ease,
+               box-shadow .35s cubic-bezier(.22,1,.36,1),
+               transform .35s cubic-bezier(.22,1,.36,1);
+}
+.portal-tab span{
+    display:block;
+    font-size:13px;
+    line-height:1.15;
+    font-weight:800;
+    letter-spacing:-.01em;
+}
+.portal-tab small{
+    display:block;
+    margin-top:4px;
+    font-size:8px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    opacity:.58;
+}
+.portal-tab:hover{
+    color:#2d514c;
+}
+.portal-tab.active{
+    color:#213c38;
+    background:#fff;
+    box-shadow:0 7px 20px rgba(31,57,52,.08);
+}
+.portal-tab[data-portal="organization"].active{
+    color:#246e67;
+}
+
+.portal-panels{
+    position:relative;
+    width:min(520px,100%);
+    margin:22px auto 0;
+}
+.portal-panel{
+    display:none;
+    padding:34px 36px 30px;
+    border:1px solid #e2ebe8;
+    border-radius:24px;
+    background:rgba(255,255,255,.98);
+    box-shadow:0 28px 80px rgba(31,57,52,.09);
+}
+.portal-panel.active{
+    display:block;
+    animation:portalPanelIn .55s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes portalPanelIn{
+    from{opacity:0;transform:translateY(9px) scale(.992)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+.portal-panel-heading{
+    text-align:center;
+    margin-bottom:26px;
+}
+.panel-eyebrow{
+    display:inline-block;
+    font-size:8px;
+    font-weight:850;
+    letter-spacing:.15em;
+    color:#2A9D8F;
+}
+.portal-panel-heading h2{
+    margin:10px 0 8px;
+    font-size:30px;
+    line-height:1.05;
+    letter-spacing:-.035em;
+}
+.portal-panel-heading p{
+    margin:0 auto;
+    max-width:390px;
+    font-size:12px;
+    line-height:1.65;
+    color:rgba(39,57,54,.56);
+}
+.portal-panel .field{margin-bottom:17px;}
+.portal-panel .field label{
+    font-size:9px;
+    font-weight:750;
+    color:rgba(39,57,54,.7);
+}
+.portal-panel .field input{
+    width:100%;
+    box-sizing:border-box;
+    margin-top:7px;
+}
+.portal-panel .login-button{
+    width:100%;
+    margin-top:4px;
+}
+.student-login-button{
+    background:#314f4b !important;
+}
+.organization-button{
+    background:#2A9D8F !important;
+}
+.organization-button:hover{
+    background:#23877c !important;
+}
+.panel-signup{
+    margin-top:20px;
+    padding-top:18px;
+    border-top:1px solid #edf1f0;
+    text-align:center;
+    font-size:10px;
+    color:rgba(39,57,54,.48);
+}
+.panel-signup a{
+    font-weight:750;
+    color:#2A9D8F;
+    text-decoration:none;
+}
+.message{
+    margin-top:12px;
+    text-align:center;
+}
+@media(max-width:600px){
+    .portal-switcher{
+        border-radius:13px;
+    }
+    .portal-tab{
+        padding:11px 5px 10px;
+    }
+    .portal-tab span{font-size:11px}
+    .portal-tab small{font-size:7px}
+    .portal-panels{margin-top:15px}
+    .portal-panel{
+        padding:27px 21px 24px;
+        border-radius:19px;
+    }
+    .portal-panel-heading h2{font-size:27px}
+}
+@media(prefers-reduced-motion:reduce){
+    .portal-panel.active{animation:none}
+    .portal-tab{transition:none}
+}
+</style>
+
+
+<style id="three-portal-colors">
+/* Three distinct portal identities. Active state darkens the selected color. */
+.portal-tab[data-portal="teacher"]{--portal-color:#3B82F6;--portal-dark:#245DB5;}
+.portal-tab[data-portal="student"]{--portal-color:#8B5CF6;--portal-dark:#6339B7;}
+.portal-tab[data-portal="organization"]{--portal-color:#2A9D8F;--portal-dark:#176B61;}
+
+.portal-tab{
+    color:rgba(39,57,54,.52);
+}
+.portal-tab[data-portal="teacher"].active,
+.portal-tab[data-portal="student"].active,
+.portal-tab[data-portal="organization"].active{
+    color:var(--portal-dark);
+    box-shadow:0 7px 20px rgba(31,57,52,.08);
+}
+.portal-tab[data-portal="teacher"].active{
+    background:rgba(59,130,246,.10);
+}
+.portal-tab[data-portal="student"].active{
+    background:rgba(139,92,246,.10);
+}
+.portal-tab[data-portal="organization"].active{
+    background:rgba(42,157,143,.11);
+}
+
+/* Give the active panel a matching accent without making it loud. */
+.portal-panel[data-panel="teacher"] .panel-eyebrow{color:#3B82F6;}
+.portal-panel[data-panel="student"] .panel-eyebrow{color:#8B5CF6;}
+.portal-panel[data-panel="organization"] .panel-eyebrow{color:#2A9D8F;}
+
+.portal-panel[data-panel="teacher"] .login-button{
+    background:#3B82F6 !important;
+    box-shadow:0 10px 25px rgba(59,130,246,.18) !important;
+}
+.portal-panel[data-panel="teacher"] .login-button:hover{background:#245DB5 !important;}
+
+.portal-panel[data-panel="student"] .login-button{
+    background:#8B5CF6 !important;
+    box-shadow:0 10px 25px rgba(139,92,246,.18) !important;
+}
+.portal-panel[data-panel="student"] .login-button:hover{background:#6339B7 !important;}
+
+.portal-panel[data-panel="organization"] .login-button{
+    background:#2A9D8F !important;
+    box-shadow:0 10px 25px rgba(42,157,143,.18) !important;
+}
+.portal-panel[data-panel="organization"] .login-button:hover{background:#176B61 !important;}
+
+.portal-panel[data-panel="teacher"] .panel-signup a,
+.portal-panel[data-panel="teacher"] .forgot-password{color:#245DB5 !important;}
+.portal-panel[data-panel="student"] .panel-signup a,
+.portal-panel[data-panel="student"] .forgot-password{color:#6339B7 !important;}
+.portal-panel[data-panel="organization"] .panel-signup a,
+.portal-panel[data-panel="organization"] .forgot-password{color:#176B61 !important;}
+</style>
+
+
+<style id="apple-glass-portal-tabs">
+/* Apple-inspired liquid-glass interaction for the three portal tabs. */
+.portal-switcher{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    backdrop-filter:blur(18px) saturate(145%);
+    -webkit-backdrop-filter:blur(18px) saturate(145%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.72),
+               0 8px 28px rgba(31,57,52,.055);
+}
+.portal-switcher::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(120deg,rgba(255,255,255,.58),transparent 32%,rgba(255,255,255,.16) 68%,transparent);
+    opacity:.65;
+    z-index:-1;
+}
+.portal-tab{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    border:1px solid transparent;
+    transform:translateZ(0);
+    will-change:transform,box-shadow,background;
+}
+.portal-tab::before{
+    content:"";
+    position:absolute;
+    inset:1px;
+    border-radius:11px;
+    background:
+        radial-gradient(
+            circle at var(--mx,50%) var(--my,50%),
+            rgba(255,255,255,.78) 0%,
+            rgba(255,255,255,.28) 19%,
+            transparent 48%
+        );
+    opacity:0;
+    transition:opacity .45s ease;
+    pointer-events:none;
+    z-index:-1;
+}
+.portal-tab::after{
+    content:"";
+    position:absolute;
+    top:-70%;
+    left:-30%;
+    width:45%;
+    height:240%;
+    transform:rotate(22deg) translateX(-180%);
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.55),
+        transparent
+    );
+    filter:blur(3px);
+    opacity:0;
+    pointer-events:none;
+}
+.portal-tab:hover{
+    transform:translateY(-1px) scale(1.012);
+    border-color:rgba(255,255,255,.8);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.88),
+        inset 0 -1px 0 rgba(255,255,255,.25),
+        0 8px 22px rgba(31,57,52,.09);
+}
+.portal-tab:hover::before{opacity:1;}
+.portal-tab:hover::after{
+    opacity:.75;
+    animation:glassSweep .85s cubic-bezier(.22,1,.36,1) both;
+}
+.portal-tab.active:hover{
+    transform:translateY(-1px) scale(1.018);
+}
+@keyframes glassSweep{
+    from{transform:rotate(22deg) translateX(-180%);}
+    to{transform:rotate(22deg) translateX(420%);}
+}
+.portal-tab:active{
+    transform:translateY(0) scale(.985);
+    transition-duration:.12s;
+}
+.portal-tab[data-portal="teacher"]:hover{
+    background:rgba(59,130,246,.13);
+}
+.portal-tab[data-portal="student"]:hover{
+    background:rgba(139,92,246,.13);
+}
+.portal-tab[data-portal="organization"]:hover{
+    background:rgba(42,157,143,.14);
+}
+@media(prefers-reduced-motion:reduce){
+    .portal-tab,
+    .portal-tab::before,
+    .portal-tab::after{
+        transition:none !important;
+        animation:none !important;
+    }
+}
+</style>
+
+
+<style id="remove-page-welcome">
+/* Remove the large page-level Welcome back heading only. */
+.login-page > h1,
+.login-page-heading h1,
+.auth-page-heading h1{
+    display:none !important;
+}
+</style>
+
+
+<style id="google-translate-switch-style">
+#google_translate_element{
+    position:fixed !important;
+    left:-10000px !important;
+    top:-10000px !important;
+    width:1px !important;
+    height:1px !important;
+    overflow:hidden !important;
+}
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+.goog-te-gadget-icon,
+.goog-te-balloon-frame,
+body > .skiptranslate{
+    display:none !important;
+}
+body{
+    top:0 !important;
+}
+html.translated-ltr,
+html.translated-rtl{
+    margin-top:0 !important;
+}
+</style>
+
+<style id="definitive-language-switch">
+.language-switch{display:flex;align-items:center;gap:3px;padding:3px;border:1px solid rgba(31,72,64,.18);border-radius:999px;background:rgba(255,255,255,.84)}
+.language-option{display:inline-flex;align-items:center;justify-content:center;min-width:34px;padding:7px 10px;border-radius:999px;text-decoration:none;color:rgba(31,72,64,.52);font-size:11px;font-weight:800;line-height:1;transition:background .22s ease,color .22s ease,transform .22s ease}
+.language-option:hover{color:#174F45;background:rgba(31,72,64,.07)}
+.language-option.active{background:#174F45;color:#fff;box-shadow:0 3px 10px rgba(23,79,69,.18)}
+.language-option:active{transform:scale(.96)}
+@media(max-width:700px){.language-option{min-width:32px;padding:7px 9px;font-size:10px}}
+</style>
 </head>
 
 <body>
+<div id="google_translate_element" aria-hidden="true"></div>
 
 <header>
 
@@ -126,50 +560,119 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 
     </a>
 
     <nav class="language-switch" aria-label="Language">
-
-        <a
-            href="teacher-login.html"
-            class="active"
-        >
-            EN
-        </a>
-
-        <a
-            href="tr/teacher-login.html"
-        >
-            TR
-        </a>
-
-    </nav>
+    <a href="teacher-login.html" class="language-option active" aria-current="page">EN</a>
+    <a href="tr/teacher-login.html" class="language-option">TR</a>
+</nav>
 
 </header>
 
 
 <main><div class="login-wrapper">
-<div class="intro"><div class="intro-badge"><span></span>Bulbeni Member Portal</div><h1>Welcome back.</h1><p>Choose your account type below to sign in to Bulbeni.</p></div>
-<div class="login-grid">
-<section class="login-card teacher-card">
-<div class="portal-header"><div class="portal-icon">T</div><div><h2>Teacher</h2><p>Manage your professional profile, documents, availability and students.</p></div></div>
-<div id="teacherMessage" class="message" role="alert"></div>
-<form id="loginForm" novalidate>
-<div class="field"><label for="email">Email address</label><input type="email" id="email" placeholder="you@example.com" autocomplete="email" required></div>
-<div class="field"><div class="password-row"><label for="password">Password</label><button type="button" class="forgot-password" id="forgotPassword">Forgot password?</button></div><input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" required></div>
-<button type="submit" class="login-button teacher-button" id="loginButton">Sign in as Teacher</button>
-</form>
-<div class="register-box"><p>Don't have a teacher account yet?</p><a href="teacher-register.html" class="register-link">Become a Bulbeni teacher →</a></div>
-</section>
-<section class="login-card student-card">
-<div class="portal-header"><div class="portal-icon">S</div><div><h2>Student</h2><p>Access your lessons, teachers, bookings and learning profile.</p></div></div>
-<div id="studentMessage" class="message" role="alert"></div>
-<form id="studentLoginForm" novalidate>
-<div class="field"><label for="studentEmail">Email address</label><input type="email" id="studentEmail" placeholder="you@example.com" autocomplete="email" required></div>
-<div class="field"><div class="password-row"><label for="studentPassword">Password</label><button type="button" class="forgot-password" id="studentForgotPassword">Forgot password?</button></div><input type="password" id="studentPassword" placeholder="Enter your password" autocomplete="current-password" required></div>
-<button type="submit" class="login-button student-button" id="studentLoginButton">Sign in as Student</button>
-</form>
-<div class="register-box"><p>New to Bulbeni?</p><a href="student-register.html" class="register-link">Create a student account →</a></div>
-<div class="portal-note">Your student area will contain your lessons, teacher connections and learning activity.</div>
-</section>
-</div></div></main>
+<div class="intro"><div class="intro-badge"><span></span>Bulbeni Member Portal</div><p>Choose your account type below to sign in to Bulbeni.</p></div>
+
+<div class="portal-switcher" aria-label="Choose your Bulbeni account type">
+    <button class="portal-tab active" type="button" data-portal="teacher" aria-selected="true">
+        <span>Teacher</span>
+        <small>Teach &amp; manage</small>
+    </button>
+    <button class="portal-tab" type="button" data-portal="student" aria-selected="false">
+        <span>Student</span>
+        <small>Learn &amp; connect</small>
+    </button>
+    <button class="portal-tab" type="button" data-portal="organization" aria-selected="false">
+        <span>Organization</span>
+        <small>Hire &amp; manage</small>
+    </button>
+</div>
+
+<div class="portal-panels">
+
+    <section class="portal-panel active" data-panel="teacher">
+        <div class="portal-panel-heading">
+            <span class="panel-eyebrow">TEACHER PORTAL</span>
+            <h2>Welcome back.</h2>
+            <p>Log in to manage your profile, availability and connections.</p>
+        </div>
+
+        <form id="teacherTabLoginForm" novalidate>
+            <div class="field">
+                <label for="teacherTabEmail">Email</label>
+                <input type="email" id="teacherTabEmail" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <div class="field">
+                <div class="password-row">
+                    <label for="teacherTabPassword">Password</label>
+                    <button type="button" class="forgot-password" id="teacherTabForgot">Forgot password?</button>
+                </div>
+                <input type="password" id="teacherTabPassword" placeholder="Enter your password" autocomplete="current-password" required>
+            </div>
+            <button class="login-button" type="submit">Log in</button>
+        </form>
+
+        <div class="panel-signup">
+            New to Bulbeni? <a href="teacher-registration.html">Create a teacher account →</a>
+        </div>
+        <div id="teacherTabMessage" class="message" role="alert"></div>
+    </section>
+
+    <section class="portal-panel" data-panel="student">
+        <div class="portal-panel-heading">
+            <span class="panel-eyebrow">STUDENT PORTAL</span>
+            <h2>Ready to learn?</h2>
+            <p>Log in to continue your learning journey and connect with the right teacher.</p>
+        </div>
+
+        <form id="studentTabLoginForm" novalidate>
+            <div class="field">
+                <label for="studentTabEmail">Email</label>
+                <input type="email" id="studentTabEmail" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <div class="field">
+                <div class="password-row">
+                    <label for="studentTabPassword">Password</label>
+                    <button type="button" class="forgot-password" id="studentTabForgot">Forgot password?</button>
+                </div>
+                <input type="password" id="studentTabPassword" placeholder="Enter your password" autocomplete="current-password" required>
+            </div>
+            <button class="login-button student-login-button" type="submit">Log in</button>
+        </form>
+
+        <div class="panel-signup">
+            New to Bulbeni? <a href="student-registration.html">Create a student account →</a>
+        </div>
+        <div id="studentTabMessage" class="message" role="alert"></div>
+    </section>
+
+    <section class="portal-panel" data-panel="organization">
+        <div class="portal-panel-heading">
+            <span class="panel-eyebrow">ORGANIZATION PORTAL</span>
+            <h2>Find the right people.</h2>
+            <p>Manage your organization and discover teachers and professionals who fit your requirements.</p>
+        </div>
+
+        <form id="organizationTabLoginForm" novalidate>
+            <div class="field">
+                <label for="organizationTabEmail">Work email</label>
+                <input type="email" id="organizationTabEmail" placeholder="name@organization.com" autocomplete="email" required>
+            </div>
+            <div class="field">
+                <div class="password-row">
+                    <label for="organizationTabPassword">Password</label>
+                    <button type="button" class="forgot-password organization-forgot" id="organizationTabForgot">Forgot password?</button>
+                </div>
+                <input type="password" id="organizationTabPassword" placeholder="Enter your password" autocomplete="current-password" required>
+            </div>
+            <button class="login-button organization-button" type="submit">Log in</button>
+        </form>
+
+        <div class="panel-signup">
+            New to Bulbeni? <a href="organization-register.html">Create an organization account →</a>
+        </div>
+        <div id="organizationTabMessage" class="message" role="alert"></div>
+    </section>
+
+</div>
+
 
 
 <footer>
@@ -192,6 +695,271 @@ const studentForm=document.getElementById("studentLoginForm"),studentEmail=docum
 studentForm.addEventListener("submit",async e=>{e.preventDefault();if(!studentEmail.value.trim())return msg(studentMessage,"Please enter your email address.","error");if(!studentPassword.value)return msg(studentMessage,"Please enter your password.","error");if(!init())return msg(studentMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");studentButton.disabled=true;studentButton.textContent="Signing in...";try{const {data,error}=await supabaseClient.auth.signInWithPassword({email:studentEmail.value.trim(),password:studentPassword.value});if(error)throw error;if(!data?.user)throw new Error("No user account was returned.");studentButton.textContent="Signed in ✓";msg(studentMessage,"Your account was authenticated successfully. The student portal is being prepared.","success")}catch(error){console.error(error);msg(studentMessage,error.message?.toLowerCase().includes("email not confirmed")?"Your email address has not been confirmed yet.":"We couldn't sign you in. Please check your email and password.","error");studentButton.disabled=false;studentButton.textContent="Sign in as Student"}});
 studentForgot.addEventListener("click",async()=>{const value=studentEmail.value.trim();if(!value)return msg(studentMessage,"Enter your email address first, then click “Forgot password?”.","error");if(!init())return msg(studentMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");studentForgot.disabled=true;try{const {error}=await supabaseClient.auth.resetPasswordForEmail(value,{redirectTo:location.origin+"/student-reset-password.html"});if(error)throw error;msg(studentMessage,"If an account exists for this email, a password reset link has been sent.","success")}catch(error){console.error(error);msg(studentMessage,"We couldn't send the reset email. Please try again.","error")}finally{studentForgot.disabled=false}});
 </script>
+
+
+<script id="organization-login-functionality">
+(function(){
+    const form = document.getElementById("organizationLoginForm");
+    if(!form) return;
+
+    const email = document.getElementById("organizationEmail");
+    const password = document.getElementById("organizationPassword");
+    const button = document.getElementById("organizationLoginButton");
+    const message = document.getElementById("organizationMessage");
+    const forgot = document.getElementById("organizationForgotPassword");
+
+    function showOrgMessage(text,type){
+        message.textContent = text;
+        message.className = "message " + type;
+    }
+
+    form.addEventListener("submit", async function(event){
+        event.preventDefault();
+
+        const emailValue = email.value.trim();
+
+        if(!emailValue){
+            showOrgMessage("Please enter your work email address.","error");
+            email.focus();
+            return;
+        }
+
+        if(!password.value){
+            showOrgMessage("Please enter your password.","error");
+            password.focus();
+            return;
+        }
+
+        if(typeof initializeSupabase === "function"){
+            if(!initializeSupabase()){
+                showOrgMessage("Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+                return;
+            }
+        }else{
+            showOrgMessage("Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+            return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Logging in...";
+
+        try{
+            const {data,error} = await supabaseClient.auth.signInWithPassword({
+                email:emailValue,
+                password:password.value
+            });
+
+            if(error) throw error;
+            if(!data || !data.user) throw new Error("No user account was returned.");
+
+            button.textContent = "Logged in ✓";
+            showOrgMessage("Welcome back. Redirecting to your organization dashboard...","success");
+
+            setTimeout(function(){
+                window.location.href = "organization-dashboard.html";
+            },700);
+
+        }catch(error){
+            console.error("Bulbeni organization login error:",error);
+
+            const text = error.message &&
+                error.message.toLowerCase().includes("email not confirmed")
+                ? "Your email address has not been confirmed yet."
+                : "We couldn't log you in. Please check your work email and password.";
+
+            showOrgMessage(text,"error");
+            button.disabled = false;
+            button.textContent = "Log in";
+        }
+    });
+
+    forgot.addEventListener("click", async function(){
+        const value = email.value.trim();
+
+        if(!value){
+            showOrgMessage("Enter your work email address first, then click “Forgot password?”.","error");
+            email.focus();
+            return;
+        }
+
+        if(!initializeSupabase()){
+            showOrgMessage("Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+            return;
+        }
+
+        forgot.disabled = true;
+
+        try{
+            const {error} = await supabaseClient.auth.resetPasswordForEmail(
+                value,
+                {redirectTo:window.location.origin + "/organization-reset-password.html"}
+            );
+
+            if(error) throw error;
+
+            showOrgMessage(
+                "If an organization account exists for this email, a password reset link has been sent.",
+                "success"
+            );
+        }catch(error){
+            console.error("Organization password reset error:",error);
+            showOrgMessage("We couldn't send the reset email. Please try again.","error");
+        }finally{
+            forgot.disabled = false;
+        }
+    });
+})();
+</script>
+
+
+<script id="premium-login-tabs-script">
+(function(){
+    function initTabs(){
+        const tabs = document.querySelectorAll(".portal-tab");
+        const panels = document.querySelectorAll(".portal-panel");
+        if(!tabs.length) return;
+
+        tabs.forEach(function(tab){
+            tab.addEventListener("click",function(){
+                const target = tab.dataset.portal;
+
+                tabs.forEach(function(item){
+                    const active = item === tab;
+                    item.classList.toggle("active",active);
+                    item.setAttribute("aria-selected",active ? "true" : "false");
+                });
+
+                panels.forEach(function(panel){
+                    panel.classList.toggle("active",panel.dataset.panel === target);
+                });
+            });
+        });
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded",initTabs,{once:true});
+    }else{
+        initTabs();
+    }
+})();
+</script>
+
+
+<script id="apple-glass-pointer">
+(function(){
+    function initGlass(){
+        document.querySelectorAll(".portal-tab").forEach(function(tab){
+            tab.addEventListener("pointermove",function(event){
+                const rect = tab.getBoundingClientRect();
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                tab.style.setProperty("--mx", x + "%");
+                tab.style.setProperty("--my", y + "%");
+            });
+        });
+    }
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded",initGlass,{once:true});
+    }else{
+        initGlass();
+    }
+})();
+</script>
+
+
+<script id="google-translate-language-switch">
+(function(){
+    const GOOGLE_COOKIE = "googtrans";
+    const SOURCE_LANG = "en";
+    const TARGET_LANG = "tr";
+
+    function getGoogleSelect(){
+        return document.querySelector(".goog-te-combo");
+    }
+
+    window.googleTranslateElementInit = function(){
+        if(!window.google || !google.translate) return;
+        new google.translate.TranslateElement({
+            pageLanguage: SOURCE_LANG,
+            includedLanguages: "en,tr",
+            autoDisplay: false,
+            multilanguagePage: true
+        }, "google_translate_element");
+
+        setTimeout(syncLanguageButton, 500);
+    };
+
+    function setCookie(name,value){
+        document.cookie = name + "=" + value + ";path=/";
+        document.cookie = name + "=" + value + ";path=/;domain=" + location.hostname;
+    }
+
+    function translateToTurkish(){
+        const select = getGoogleSelect();
+        if(!select){
+            // Google's script may still be loading.
+            setTimeout(translateToTurkish, 250);
+            return;
+        }
+
+        select.value = "tr";
+        select.dispatchEvent(new Event("change"));
+        syncLanguageButton();
+    }
+
+    function restoreEnglish(){
+        // Clear the translation cookie for both common cookie paths/domains.
+        document.cookie = GOOGLE_COOKIE + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        document.cookie = GOOGLE_COOKIE + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + location.hostname;
+
+        // Google Translate uses /en/tr as its translation pair.
+        setCookie(GOOGLE_COOKIE, "/en/en");
+        location.reload();
+    }
+
+    function syncLanguageButton(){
+        const buttons = document.querySelectorAll(
+            '[data-language], [data-lang], .language-toggle, .lang-toggle, #languageToggle'
+        );
+
+        buttons.forEach(function(button){
+            if(!button.dataset.googleTranslateBound){
+                button.addEventListener("click", function(event){
+                    event.preventDefault();
+
+                    const current = document.documentElement.lang || SOURCE_LANG;
+                    const translated = document.cookie.indexOf(GOOGLE_COOKIE + "=/en/tr") !== -1 ||
+                        document.querySelector("html.translated-ltr, html.translated-rtl");
+
+                    if(translated || current.toLowerCase().startsWith("tr")){
+                        restoreEnglish();
+                    }else{
+                        translateToTurkish();
+                    }
+                });
+                button.dataset.googleTranslateBound = "true";
+            }
+
+            const translated = document.cookie.indexOf(GOOGLE_COOKIE + "=/en/tr") !== -1;
+            button.setAttribute("aria-label", translated ? "Switch to English" : "Türkçeye geç");
+            button.setAttribute("title", translated ? "English" : "Türkçe");
+        });
+    }
+
+    // Watch for the existing language control if its exact class/id differs.
+    const observer = new MutationObserver(syncLanguageButton);
+    observer.observe(document.documentElement,{childList:true,subtree:true});
+
+    if(document.readyState === "loading"){
+        document.addEventListener("DOMContentLoaded",syncLanguageButton,{once:true});
+    }else{
+        syncLanguageButton();
+    }
+})();
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>
