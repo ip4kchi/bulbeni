@@ -11,7 +11,7 @@
     >
 
     <title>
-        Bulbeni.org — Find Your Match
+        Bulbeni.org — Find the Right Teacher
     </title>
 
     <meta
@@ -4228,6 +4228,80 @@ html{scroll-behavior:smooth;}
 </style>
 
 <!-- Bulbeni navigation terminology: Find Your Match -->
+
+<style id="bulbeni-adaptive-progress">
+/* Adaptive progress indicator — no fixed step count */
+.builder-progress-wrap{
+    position:relative;
+    height:3px;
+    margin:0 0 17px;
+    border-radius:99px;
+    background:#E9EFF1;
+    overflow:hidden;
+}
+.builder-progress-fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:0;
+    max-width:100%;
+    border-radius:99px;
+    background:var(--teal);
+    transition:width .55s cubic-bezier(.22,.8,.22,1);
+}
+</style>
+
+
+<style id="bulbeni-progress-final-state">
+.builder-progress-fill{
+    transition:width .6s cubic-bezier(.22,.8,.22,1);
+}
+</style>
+
+
+<style id="bulbeni-dynamic-right-box">
+.dynamic-journey-meta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 16px;
+    color:rgba(36,53,61,.55);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.045em;
+    text-transform:uppercase;
+    transition:color .3s ease;
+}
+.dynamic-journey-dot{
+    width:6px;
+    height:6px;
+    flex:0 0 6px;
+    border-radius:50%;
+    background:#E87932;
+    box-shadow:0 0 0 4px rgba(232,121,50,.10);
+}
+.dynamic-journey-meta.is-complete{
+    color:#0C8C78;
+}
+.dynamic-journey-meta.is-complete .dynamic-journey-dot{
+    background:#0C8C78;
+    box-shadow:0 0 0 4px rgba(12,140,120,.10);
+}
+</style>
+
+
+<style id="bulbeni-remove-right-preview-progress">
+/* The right preview is a live request summary, not a second progress tracker. */
+#liveRequestPreview .builder-progress-wrap,
+#liveRequestPreview .builder-progress,
+#liveRequestPreview .progress-bar,
+#liveRequestPreview .progress-track,
+#liveRequestPreview [class*="progress"]{
+    display:none !important;
+}
+</style>
+
 </head>
 
 
@@ -4401,7 +4475,6 @@ html{scroll-behavior:smooth;}
             <span class="builder-kicker">BUILD YOUR LEARNING REQUEST</span>
             <h2 id="builderTitle">What would you like to learn?</h2>
         </div>
-        <span class="builder-step" id="builderStep">1 / 5</span>
     </div>
 
     <div class="builder-progress-wrap" aria-hidden="true">
@@ -4495,6 +4568,11 @@ html{scroll-behavior:smooth;}
     </div>
 
     <div class="request-preview-card" id="liveRequestPreview">
+        <div class="dynamic-journey-meta" id="dynamicJourneyMeta" aria-live="polite">
+            <span class="dynamic-journey-dot"></span>
+            <span id="dynamicJourneyText">Your request will build as you choose.</span>
+        </div>
+        
 
         <div class="request-preview-top">
             <div>
@@ -4504,13 +4582,7 @@ html{scroll-behavior:smooth;}
             <div class="preview-check" id="previewCheck">•</div>
         </div>
 
-        <div class="request-progress" id="previewProgress">
-            <span class="active"></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        
 
         <div class="preview-empty" id="previewEmpty">
             <div class="preview-empty-icon">⌁</div>
@@ -5446,14 +5518,13 @@ const builder = document.getElementById("courseBuilder");
 
 if (builder) {
     const titleEl = document.getElementById("builderTitle");
-    const stepEl = document.getElementById("builderStep");
     const pathEl = document.getElementById("builderPath");
     const contentEl = document.getElementById("builderContent");
     const backEl = document.getElementById("builderBack");
     const skipEl = document.getElementById("builderSkip");
     const progressEl = document.getElementById("builderProgress");
 
-    const state = { mode:null, values:{}, path:[] };
+    const state = { mode:null, values:{}, path:[], complete:false };
     const history = [];
 
     const learnTaxonomy = {
@@ -5597,6 +5668,31 @@ if (builder) {
         }
     }
 
+    function updateDynamicJourneyMeta(){
+        const meta = document.getElementById("dynamicJourneyMeta");
+        const text = document.getElementById("dynamicJourneyText");
+        if(!meta || !text) return;
+
+        const choices = Array.isArray(state.path) ? state.path.filter(Boolean) : [];
+        const count = Math.max(0, choices.length - 1);
+
+        if(state.complete){
+            text.textContent = "Your tailored request is complete.";
+            meta.classList.add("is-complete");
+            return;
+        }
+
+        meta.classList.remove("is-complete");
+
+        if(count === 0){
+            text.textContent = "Your request will build as you choose.";
+        }else if(count === 1){
+            text.textContent = "Your request is taking shape.";
+        }else{
+            text.textContent = `${count} choice${count === 1 ? "" : "s"} captured so far.`;
+        }
+    }
+
     function animate(direction="forward"){
         contentEl.classList.remove("step-enter-forward","step-enter-back");
         void contentEl.offsetWidth;
@@ -5604,18 +5700,45 @@ if (builder) {
     }
 
     function update(){
-        const pct=Math.min(100,Math.max(8,((history.length+1)/7)*100));
+        /*
+         * Adaptive progress:
+         * - There is deliberately NO fixed "1 / 7" (or "1 / 5") counter.
+         * - The taxonomy can branch into different numbers of decisions.
+         * - The bar advances only as actual required choices are completed.
+         * - It deliberately stops short of 100% until the request is genuinely complete.
+         */
+        const completed=Math.max(0, history.length-1);
+        const isComplete=!!state.complete;
+
+        let pct=0;
+        if(isComplete){
+            pct=100;
+        }else if(completed>0){
+            /*
+             * Keep a visible unfinished tail while the journey is still active.
+             * The final required choice calls renderFinal(), which sets
+             * state.complete=true before update(), allowing the bar to reach
+             * 100% on the last step immediately before submission.
+             */
+            pct=Math.min(92, Math.max(10, completed*9));
+        }
+
         if(progressEl) progressEl.style.width=pct+"%";
+
         pathEl.innerHTML="";
         (state.path.length?state.path:["Start here"]).slice(-6).forEach((x,i)=>{
             const s=document.createElement("span");s.textContent=x;pathEl.appendChild(s);
-            if(i<Math.min(state.path.length,6)-1){const a=document.createElement("b");a.textContent="›";pathEl.appendChild(a);}
+            if(i<Math.min(state.path.length,6)-1){
+                const a=document.createElement("b");a.textContent="›";pathEl.appendChild(a);
+            }
         });
         updateLivePreview();
+        updateDynamicJourneyMeta();
     }
 
-    function header(title,n=1,total=7){
-        titleEl.textContent=title;stepEl.textContent=`${Math.min(n,total)} / ${total}`;update();
+    function header(title){
+        titleEl.textContent=title;
+        update();
     }
 
     function options(items, callback){
@@ -5630,7 +5753,7 @@ if (builder) {
     }
 
     function startMode(mode){
-        state.mode=mode;state.values={};state.path=[mode==="learn"?"Learn":mode==="hire"?"Hire":"Work"];
+        state.mode=mode;state.values={};state.path=[mode==="learn"?"Learn":mode==="hire"?"Hire":"Work"];state.complete=false;
         history.length=0;history.push("mode");
         if(mode==="learn") renderLearn("learn");
         else if(mode==="hire") renderHiringStart();
@@ -5751,9 +5874,10 @@ if (builder) {
 
 
     function renderFinal(mode){
+        state.complete=true;
         if(mode!=="learn") return;
 
-        header("Your learning request is ready",7,7);
+        header("Your request is ready");
 
         const v=state.values||{};
         const budget=v.budget||"Not specified";
@@ -5790,10 +5914,7 @@ if (builder) {
                 </div>
 
                 <div class="brief-actions">
-                    <button type="button" class="builder-edit"
-                        onclick="window.scrollTo({top:document.getElementById('courseBuilder').offsetTop-40,behavior:'smooth'})">
-                        Edit request
-                    </button>
+                    
                     <a class="builder-submit" href="teachers.html">
                         Find matching teachers <span>→</span>
                     </a>
@@ -6225,7 +6346,7 @@ if (builder) {
     }
 
     function renderHiringReview(){
-        header("Your hiring request is ready",7,7);
+        header("Your request is ready");
         const v=state.values;
         const exp=v.max_relevant_experience?`${v.min_relevant_experience}+ to ${v.max_relevant_experience} years`:`${v.min_relevant_experience}+ years`;
         const budget=v.budget_max_plus?`${Number(v.budget_min).toLocaleString()}–4,500+ TL/hour`:`${Number(v.budget_min).toLocaleString()}–${Number(v.budget_max).toLocaleString()} TL/hour`;
