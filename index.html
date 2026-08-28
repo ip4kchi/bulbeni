@@ -11,7 +11,7 @@
     >
 
     <title>
-        Bulbeni.org — Find the Right Teacher
+        Bulbeni.org — Find Your Match
     </title>
 
     <meta
@@ -2436,7 +2436,42 @@
             }
         }
 
-    </style>
+    
+/* Real globe icon — no font glyph / fake circle */
+.globe-icon{
+    position:relative;
+    width:18px;
+    height:18px;
+    display:block;
+    border:1.7px solid currentColor;
+    border-radius:50%;
+    box-sizing:border-box;
+}
+.globe-icon::before{
+    content:"";
+    position:absolute;
+    left:3px;
+    right:3px;
+    top:-1px;
+    bottom:-1px;
+    border-left:1.2px solid currentColor;
+    border-right:1.2px solid currentColor;
+    border-radius:50%;
+    opacity:.9;
+}
+.globe-icon::after{
+    content:"";
+    position:absolute;
+    left:1px;
+    right:1px;
+    top:7px;
+    height:0;
+    border-top:1.2px solid currentColor;
+    box-shadow:0 -4px 0 -0.3px currentColor,0 4px 0 -0.3px currentColor;
+    opacity:.9;
+}
+
+</style>
 
 
 <style>
@@ -2537,6 +2572,34 @@
 
 
 <style>
+
+/* Live "Your Match" panel */
+.preview-empty{
+    padding:28px 12px 30px;
+    text-align:center;
+}
+.preview-empty-icon{
+    width:52px;height:52px;margin:0 auto 14px;border-radius:16px;
+    display:grid;place-items:center;background:#F0F8F6;color:var(--teal);
+    font-size:25px;font-weight:800;
+}
+.preview-empty h3{
+    color:var(--navy);font-family:"Manrope",sans-serif;font-size:18px;
+    letter-spacing:-.4px;margin-bottom:7px;
+}
+.preview-empty p{
+    max-width:285px;margin:0 auto;color:#7A8D96;font-size:10px;line-height:1.6;
+}
+#previewDetails{animation:previewDetailsIn .42s cubic-bezier(.22,.8,.22,1) both}
+@keyframes previewDetailsIn{
+    from{opacity:0;transform:translateY(7px)}
+    to{opacity:1;transform:translateY(0)}
+}
+.preview-check.complete{background:#EAF7F4;color:var(--teal)}
+
+</style>
+
+<style>
 /* =========================================================
    BULBENI GUIDED COURSE BUILDER
 ========================================================= */
@@ -2617,8 +2680,10 @@
 }
 
 .builder-content{
-    min-height:235px;
+    min-height:0;
+    height:auto;
     animation:builderFade .22s ease;
+    transition:height .42s cubic-bezier(.22,.8,.22,1);
 }
 
 @keyframes builderFade{
@@ -3028,7 +3093,7 @@
     }
 
     .builder-content{
-        min-height:300px;
+        min-height:0;
     }
 
     .request-preview-card{
@@ -3257,196 +3322,912 @@
 @media(max-width:650px){.salary-presets{grid-template-columns:1fr 1fr}.brief-actions{flex-direction:column}.builder-edit{width:100%}}
 </style>
 
-<style id="bulbeni-dual-journey-styles">
-/* Bulbeni dual-journey live matching panel */
-.match-panel {
-    position: relative;
-    overflow: hidden;
-    transition: height .45s cubic-bezier(.22,1,.36,1), transform .35s ease, opacity .35s ease;
-}
-.match-panel .match-content {
-    transition: opacity .22s ease, transform .32s cubic-bezier(.22,1,.36,1);
-}
-.match-panel.is-changing .match-content {
-    opacity: 0;
-    transform: translateY(8px);
-}
-.match-kicker {
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    font-size: .72rem;
-    font-weight: 700;
-    opacity: .58;
-    margin-bottom: .55rem;
-}
-.match-title {
-    margin: 0 0 .45rem;
-}
-.match-subtitle {
-    margin: 0 0 1.25rem;
-    opacity: .68;
-    line-height: 1.55;
-}
-.match-rows {
-    display: grid;
-    gap: .65rem;
-}
-.match-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: .72rem 0;
-    border-bottom: 1px solid rgba(0,0,0,.07);
-}
-.match-row:last-child { border-bottom: 0; }
-.match-label { opacity: .58; font-size: .88rem; }
-.match-value { font-weight: 650; text-align: right; }
-.match-empty { opacity: .42; font-weight: 500; }
-.match-progress {
-    margin-top: 1rem;
-    font-size: .8rem;
-    opacity: .55;
-}
-.match-ready {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0,0,0,.08);
-}
-.match-ready strong { display:block; margin-bottom:.3rem; }
-.match-chip-wrap {
+<style>
+/* =========================================================
+   BULBENI PREMIUM HEADER — CLEAN MARKETPLACE NAVIGATION
+========================================================= */
+.main-nav{
     display:flex;
-    flex-wrap:wrap;
-    gap:.45rem;
-    margin:.9rem 0;
+    align-items:center;
+    justify-content:flex-end;
+    gap:clamp(18px,2.2vw,34px);
 }
-.match-chip {
+
+.main-nav .nav-link{
+    position:relative;
     display:inline-flex;
     align-items:center;
-    min-height:30px;
-    padding:0 .65rem;
-    border-radius:999px;
-    background:rgba(0,0,0,.045);
-    font-size:.78rem;
+    min-height:42px;
+    padding:8px 2px;
+    color:#24353D;
+    text-decoration:none;
+    font-size:13px;
     font-weight:650;
+    letter-spacing:-.1px;
+    transition:color .22s ease, transform .22s ease;
 }
-.match-mode-badge {
+
+.main-nav .nav-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:2px;
+    height:2px;
+    border-radius:2px;
+    background:var(--teal,#0C8C78);
+    transform:scaleX(0);
+    transform-origin:center;
+    transition:transform .22s ease;
+}
+
+.main-nav .nav-link:hover,
+.main-nav .nav-link:focus-visible{
+    color:var(--teal,#0C8C78);
+    transform:translateY(-1px);
+}
+
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link:focus-visible::after{
+    transform:scaleX(1);
+}
+
+.language-control{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.language-toggle{
+    width:40px;
+    height:40px;
+    border:1px solid rgba(31,55,64,.12);
+    border-radius:50%;
+    background:rgba(255,255,255,.78);
+    color:#24353D;
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    transition:background .22s ease,color .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible,
+.language-toggle[aria-expanded="true"]{
+    color:#fff;
+    background:var(--teal,#0C8C78);
+    border-color:var(--teal,#0C8C78);
+    transform:translateY(-1px);
+    box-shadow:0 8px 22px rgba(12,140,120,.18);
+}
+
+.globe-icon{
+    font-size:22px;
+    line-height:1;
+    display:block;
+    transform:scale(1.02);
+}
+
+.language-menu{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+    width:178px;
+    padding:7px;
+    border:1px solid rgba(24,47,56,.09);
+    border-radius:15px;
+    background:#fff;
+    box-shadow:0 18px 45px rgba(24,47,56,.13);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-7px) scale(.98);
+    transform-origin:top right;
+    transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+    z-index:1000;
+}
+
+.language-menu.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0) scale(1);
+}
+
+.language-option{
+    width:100%;
+    min-height:40px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 10px;
+    border:0;
+    border-radius:10px;
+    background:transparent;
+    color:#24353D;
+    cursor:pointer;
+    text-align:left;
+    font:inherit;
+    font-size:12px;
+    transition:background .18s ease,color .18s ease;
+}
+
+.language-option:hover,
+.language-option:focus-visible,
+.language-option.active{
+    background:#F0F8F6;
+    color:var(--teal,#0C8C78);
+}
+
+.language-check{
+    margin-left:auto;
+    opacity:0;
+}
+
+.language-option.active .language-check{
+    opacity:1;
+}
+
+.nav-login{
     display:inline-flex;
     align-items:center;
-    gap:.4rem;
-    padding:.35rem .6rem;
-    border-radius:999px;
-    background:rgba(0,0,0,.045);
-    font-size:.72rem;
+    justify-content:center;
+    min-height:42px;
+    padding:0 20px;
+    border-radius:11px;
+    background:#1267D6;
+    color:#fff !important;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:750;
+    box-shadow:0 8px 20px rgba(18,103,214,.18);
+    transition:background .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+
+.nav-login:hover,
+.nav-login:focus-visible{
+    background:#0B56B8;
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(18,103,214,.25);
+}
+
+.nav-login:active{
+    background:#084A9F;
+    transform:translateY(0);
+}
+
+/* Mobile */
+.mobile-menu{
+    display:none;
+}
+
+@media (max-width: 820px){
+    .main-nav > .nav-link,
+    .main-nav > .language-control{
+        display:none;
+    }
+
+    .main-nav{
+        gap:10px;
+    }
+
+    .main-nav .nav-login{
+        min-height:39px;
+        padding:0 16px;
+    }
+
+    .mobile-menu{
+        position:absolute;
+        left:14px;
+        right:14px;
+        top:calc(100% + 8px);
+        display:flex;
+        flex-direction:column;
+        gap:4px;
+        padding:10px;
+        border:1px solid rgba(24,47,56,.09);
+        border-radius:18px;
+        background:#fff;
+        box-shadow:0 20px 50px rgba(24,47,56,.14);
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-8px);
+        transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+        z-index:999;
+    }
+
+    .mobile-menu.open{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+
+    .mobile-menu-link{
+        display:flex;
+        align-items:center;
+        min-height:48px;
+        padding:0 14px;
+        border:0;
+        border-radius:12px;
+        background:transparent;
+        color:#24353D;
+        text-decoration:none;
+        font:inherit;
+        font-size:14px;
+        font-weight:650;
+        text-align:left;
+        cursor:pointer;
+        transition:background .18s ease,color .18s ease;
+    }
+
+    .mobile-menu-link:hover,
+    .mobile-menu-link:active,
+    .mobile-menu-link:focus-visible{
+        background:#F0F8F6;
+        color:var(--teal,#0C8C78);
+    }
+
+    .mobile-login{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-height:48px;
+        margin-top:5px;
+        border-radius:12px;
+        background:#1267D6;
+        color:#fff;
+        text-decoration:none;
+        font-size:14px;
+        font-weight:750;
+        transition:background .18s ease,transform .18s ease;
+    }
+
+    .mobile-login:active{
+        background:#084A9F;
+        transform:scale(.985);
+    }
+}
+</style>
+
+
+<style>
+/* Final header cleanup */
+header .legacy-login,
+header .old-login,
+header .language-switch,
+header .lang-switch,
+header .tr-language,
+header .old-language{
+    display:none!important;
+}
+</style>
+
+
+<style>
+/* =========================================================
+   FINAL HEADER LAYOUT
+   Primary navigation hugs the logo; utility actions stay far right.
+========================================================= */
+.main-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-left:0;
+    gap:30px;
+}
+
+.nav-primary{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:clamp(18px,2.1vw,32px);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:14px;
+    margin-left:auto;
+}
+
+.main-nav .nav-link{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    min-height:42px;
+    padding:8px 2px;
+    color:#24353D;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:650;
+    letter-spacing:-.1px;
+    transition:color .22s ease, transform .22s ease;
+}
+
+.main-nav .nav-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:2px;
+    height:2px;
+    border-radius:2px;
+    background:var(--teal,#0C8C78);
+    transform:scaleX(0);
+    transform-origin:center;
+    transition:transform .22s ease;
+}
+
+.main-nav .nav-link:hover,
+.main-nav .nav-link:focus-visible{
+    color:var(--teal,#0C8C78);
+    transform:translateY(-1px);
+}
+
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link:focus-visible::after{
+    transform:scaleX(1);
+}
+
+.nav-login{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    padding:0 20px;
+    border-radius:11px;
+    background:#1267D6;
+    color:#fff !important;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:750;
+    box-shadow:0 8px 20px rgba(18,103,214,.18);
+    transition:background .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+
+.nav-login:hover,
+.nav-login:focus-visible{
+    background:#0B56B8;
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(18,103,214,.25);
+}
+
+.nav-login:active{
+    background:#084A9F;
+    transform:translateY(0);
+}
+
+/* Proper globe */
+.globe-icon{
+    position:relative;
+    width:18px;
+    height:18px;
+    display:block;
+    border:1.7px solid currentColor;
+    border-radius:50%;
+    box-sizing:border-box;
+}
+.globe-icon::before{
+    content:"";
+    position:absolute;
+    left:3px;
+    right:3px;
+    top:-1px;
+    bottom:-1px;
+    border-left:1.2px solid currentColor;
+    border-right:1.2px solid currentColor;
+    border-radius:50%;
+}
+.globe-icon::after{
+    content:"";
+    position:absolute;
+    left:1px;
+    right:1px;
+    top:7px;
+    border-top:1.2px solid currentColor;
+    box-shadow:0 -4px 0 -0.3px currentColor,0 4px 0 -0.3px currentColor;
+}
+
+@media(max-width:820px){
+    .main-nav{
+        width:auto;
+        margin-left:auto;
+    }
+
+    .nav-primary{
+        display:none;
+    }
+
+    .nav-actions{
+        gap:9px;
+    }
+
+    .nav-login{
+        min-height:39px;
+        padding:0 16px;
+    }
+}
+</style>
+
+
+<style id="bulbeni-orange-accent">
+:root {
+    --bulbeni-orange: #E87932;
+    --bulbeni-orange-soft: #FFF4EC;
+    --bulbeni-orange-border: rgba(232,121,50,.28);
+}
+
+/* Brand accent: subtle, intentional, not a replacement for the blue CTA */
+.main-nav .nav-link:hover,
+.main-nav .nav-link:focus-visible {
+    color: var(--bulbeni-orange);
+}
+.main-nav .nav-link::after {
+    background: var(--bulbeni-orange);
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible,
+.language-toggle[aria-expanded="true"] {
+    background: var(--bulbeni-orange);
+    border-color: var(--bulbeni-orange);
+    box-shadow: 0 8px 22px rgba(232,121,50,.18);
+}
+
+.language-option:hover,
+.language-option:focus-visible,
+.language-option.active {
+    background: var(--bulbeni-orange-soft);
+    color: var(--bulbeni-orange);
+}
+
+/* Builder selections / progress accents */
+.budget-option.selected,
+.option-card.selected,
+.builder-option.selected,
+.choice-card.selected {
+    border-color: var(--bulbeni-orange) !important;
+    box-shadow: 0 10px 28px rgba(232,121,50,.13);
+}
+.budget-option.selected::before,
+.option-card.selected::before,
+.builder-option.selected::before,
+.choice-card.selected::before {
+    background: var(--bulbeni-orange) !important;
+}
+
+/* Small live-match/progress details */
+.final-badge,
+.match-badge,
+.step-active,
+.progress-active {
+    color: var(--bulbeni-orange);
+}
+.final-badge::before,
+.match-badge::before {
+    background: var(--bulbeni-orange);
+}
+
+/* Orange is an accent; the primary authentication CTA remains blue. */
+.nav-login {
+    background: #1267D6;
+}
+.nav-login:hover,
+.nav-login:focus-visible {
+    background: #0B56B8;
+}
+</style>
+
+
+<style id="bulbeni-orange-hero-accent">
+.hero .eyebrow,
+.hero .hero-eyebrow,
+.hero .section-kicker,
+.hero .overline {
+    color: var(--bulbeni-orange, #E87932);
+}
+</style>
+
+
+<style id="bulbeni-hero-vector-guide">
+/* =========================================================
+   HERO INTERACTION GUIDE
+   Elegant vector paths subtly lead the eye toward the builder.
+========================================================= */
+.builder-vector-guide{
+    position:absolute;
+    inset:-38px -78px -44px -88px;
+    z-index:0;
+    pointer-events:none;
+    opacity:.78;
+    transition:opacity .45s ease,transform .6s cubic-bezier(.22,.8,.22,1);
+}
+
+.builder-vector-guide svg{
+    width:100%;
+    height:100%;
+    overflow:visible;
+}
+
+.guide-line{
+    fill:none;
+    stroke:rgba(24,74,83,.12);
+    stroke-width:1.25;
+    stroke-linecap:round;
+    stroke-dasharray:2 10;
+    vector-effect:non-scaling-stroke;
+}
+
+.guide-line-a{
+    stroke:rgba(232,121,50,.25);
+    stroke-dasharray:1 12;
+    animation:guideFlowA 8s linear infinite;
+}
+
+.guide-line-b{
+    stroke:rgba(12,140,120,.15);
+    animation:guideFlowB 11s linear infinite;
+}
+
+.guide-line-c{
+    stroke:rgba(24,74,83,.09);
+    stroke-dasharray:1 14;
+    animation:guideFlowC 13s linear infinite;
+}
+
+.guide-dot{
+    fill:#E87932;
+    filter:drop-shadow(0 0 5px rgba(232,121,50,.35));
+}
+
+.guide-dot-b{
+    fill:#0C8C78;
+    opacity:.7;
+}
+
+.guide-dot-c{
+    fill:#E87932;
+    opacity:.55;
+}
+
+@keyframes guideFlowA{
+    to{stroke-dashoffset:-120}
+}
+@keyframes guideFlowB{
+    to{stroke-dashoffset:110}
+}
+@keyframes guideFlowC{
+    to{stroke-dashoffset:-130}
+}
+
+/* The vector layer responds when the user engages with the builder. */
+#courseBuilder:hover .builder-vector-guide{
+    opacity:1;
+    transform:scale(1.012);
+}
+
+#courseBuilder:focus-within .builder-vector-guide{
+    opacity:1;
+}
+
+@media(max-width:900px){
+    .builder-vector-guide{
+        inset:-28px -36px -32px -44px;
+        opacity:.58;
+    }
+}
+
+@media(max-width:620px){
+    .builder-vector-guide{
+        inset:-20px -18px -25px -22px;
+        opacity:.45;
+    }
+
+    .guide-line{
+        stroke-width:1;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .guide-line-a,
+    .guide-line-b,
+    .guide-line-c{
+        animation:none;
+    }
+    .guide-dot animateMotion{
+        display:none;
+    }
+}
+</style>
+
+
+<style id="bulbeni-vector-layer-position">
+#courseBuilder{
+    position:relative;
+    z-index:2;
+}
+#courseBuilder > *:not(.builder-vector-guide){
+    position:relative;
+    z-index:1;
+}
+</style>
+
+
+<style id="bulbeni-organizations-section">
+html{scroll-behavior:smooth;}
+
+.organizations-section{
+    position:relative;
+    overflow:hidden;
+    padding:clamp(88px,9vw,140px) 24px;
+    background:#F8F8F5;
+    color:#24353D;
+    scroll-margin-top:90px;
+}
+
+.organizations-section::before{
+    content:"";
+    position:absolute;
+    width:520px;
+    height:520px;
+    right:-230px;
+    top:-190px;
+    border:1px solid rgba(232,121,50,.13);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.organizations-section::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    left:-170px;
+    bottom:-170px;
+    border:1px solid rgba(12,140,120,.10);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.organizations-inner{
+    position:relative;
+    z-index:1;
+    width:min(1160px,100%);
+    margin:0 auto;
+}
+
+.organizations-heading{
+    max-width:720px;
+}
+
+.organizations-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:18px;
+    color:#E87932;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.16em;
+}
+
+.organizations-kicker::before{
+    content:"";
+    width:26px;
+    height:1px;
+    background:#E87932;
+}
+
+.organizations-heading h2{
+    margin:0;
+    color:#172B33;
+    font-size:clamp(38px,5vw,68px);
+    line-height:.98;
+    letter-spacing:-.045em;
+    font-weight:750;
+}
+
+.organizations-heading h2 em{
+    color:#0C8C78;
+    font-style:normal;
+}
+
+.organizations-lead{
+    max-width:650px;
+    margin:26px 0 10px;
+    color:#607178;
+    font-size:17px;
+    line-height:1.65;
+}
+
+.organizations-value{
+    max-width:690px;
+    margin:0;
+    color:#33474F;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.organizations-steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:52px;
+}
+
+.organization-step{
+    min-height:260px;
+    padding:30px;
+    border:1px solid rgba(36,53,61,.09);
+    border-radius:22px;
+    background:rgba(255,255,255,.78);
+    box-shadow:0 15px 45px rgba(24,47,56,.045);
+    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+
+.organization-step:hover{
+    transform:translateY(-5px);
+    border-color:rgba(232,121,50,.25);
+    box-shadow:0 22px 55px rgba(24,47,56,.08);
+}
+
+.organization-number{
+    display:block;
+    margin-bottom:28px;
+    color:#E87932;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.15em;
+}
+
+.organization-step h3{
+    margin:0 0 12px;
+    color:#1D333B;
+    font-size:20px;
+    letter-spacing:-.025em;
+}
+
+.organization-step p{
+    margin:0;
+    color:#65747A;
+    font-size:14px;
+    line-height:1.65;
+}
+
+.organization-step small{
+    display:block;
+    margin-top:18px;
+    color:#0C8C78;
+    font-size:11px;
     font-weight:700;
-    margin-bottom:.8rem;
+    letter-spacing:.02em;
 }
-</style>
 
+.organizations-bottom{
+    margin-top:34px;
+    padding:30px;
+    border-radius:22px;
+    background:#17353D;
+    color:#fff;
+    display:grid;
+    grid-template-columns:1.15fr 1.7fr auto;
+    align-items:center;
+    gap:30px;
+}
 
-<style id="bulbeni-right-panel-fix">
-/* Dedicated right-side hero panel */
-.bulbeni-live-panel {
-    width: 100%;
-    box-sizing: border-box;
-    min-height: 280px;
-    padding: 30px;
-    border-radius: 24px;
-    background: rgba(255,255,255,.94);
-    border: 1px solid rgba(15,23,42,.08);
-    box-shadow: 0 18px 55px rgba(15,23,42,.08);
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+.organizations-quote{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:13px;
+    color:rgba(255,255,255,.65);
+    line-height:1.45;
 }
-.bulbeni-live-panel-inner {
-    width: 100%;
-    transition: opacity .22s ease, transform .32s cubic-bezier(.22,1,.36,1);
+
+.organizations-quote strong{
+    color:#fff;
+    font-size:20px;
+    letter-spacing:-.025em;
 }
-.bulbeni-live-panel.is-changing .bulbeni-live-panel-inner {
-    opacity: 0;
-    transform: translateY(9px);
+
+.organizations-benefits{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
 }
-.bulbeni-live-panel-kicker {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    opacity: .48;
-    margin-bottom: 10px;
+
+.organizations-benefits div{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
 }
-.bulbeni-live-panel h3 {
-    margin: 0 0 8px;
-    font-size: clamp(24px, 2.4vw, 34px);
-    line-height: 1.08;
+
+.organizations-benefits strong{
+    color:#E87932;
+    font-size:10px;
+    letter-spacing:.13em;
 }
-.bulbeni-live-panel p {
-    margin: 0 0 22px;
-    line-height: 1.6;
-    opacity: .62;
+
+.organizations-benefits span{
+    color:rgba(255,255,255,.62);
+    font-size:11px;
+    line-height:1.45;
 }
-.bulbeni-live-panel-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 9px 18px;
+
+.organizations-cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:48px;
+    padding:0 19px;
+    border-radius:11px;
+    background:#E87932;
+    color:#fff;
+    text-decoration:none;
+    white-space:nowrap;
+    font-size:12px;
+    font-weight:800;
+    box-shadow:0 10px 25px rgba(232,121,50,.20);
+    transition:transform .22s ease,background .22s ease,box-shadow .22s ease;
 }
-.bulbeni-live-item {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(15,23,42,.07);
+
+.organizations-cta:hover,
+.organizations-cta:focus-visible{
+    background:#D96720;
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px rgba(232,121,50,.28);
 }
-.bulbeni-live-item span {
-    display: block;
-    font-size: 11px;
-    opacity: .48;
-    margin-bottom: 3px;
+
+.organizations-cta:active{
+    transform:translateY(0);
 }
-.bulbeni-live-item strong {
-    display: block;
-    font-size: 13px;
-    line-height: 1.35;
-}
-.bulbeni-live-empty {
-    opacity: .38;
-    font-weight: 500;
-}
-.bulbeni-live-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-top: 16px;
-}
-.bulbeni-live-chip {
-    padding: 6px 9px;
-    border-radius: 999px;
-    background: rgba(15,23,42,.045);
-    font-size: 11px;
-    font-weight: 700;
-}
-.bulbeni-live-status {
-    margin-top: 17px;
-    font-size: 12px;
-    opacity: .55;
-}
-@media (max-width: 760px) {
-    .bulbeni-live-panel {
-        min-height: 230px;
-        padding: 22px;
+
+@media(max-width:950px){
+    .organizations-steps{
+        grid-template-columns:1fr;
     }
-    .bulbeni-live-panel-grid {
-        grid-template-columns: 1fr;
+    .organization-step{
+        min-height:auto;
+    }
+    .organizations-bottom{
+        grid-template-columns:1fr;
+    }
+    .organizations-benefits{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .organizations-cta{
+        justify-self:start;
+    }
+}
+
+@media(max-width:620px){
+    .organizations-section{
+        padding:72px 18px;
+    }
+    .organizations-heading h2{
+        font-size:40px;
+    }
+    .organizations-lead{
+        font-size:15px;
+    }
+    .organization-step{
+        padding:24px;
+    }
+    .organizations-bottom{
+        padding:23px;
+    }
+    .organizations-benefits{
+        grid-template-columns:1fr 1fr;
+        gap:18px 12px;
+    }
+    .organizations-cta{
+        width:100%;
     }
 }
 </style>
 
-
-<style id="bulbeni-live-panel-visibility-fix">
-.hero-visual .bulbeni-live-panel {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-</style>
-
+<!-- Bulbeni navigation terminology: Find Your Match -->
 </head>
 
 
@@ -3480,19 +4261,41 @@
 
             <!-- NAVIGATION -->
 
-            <nav class="nav-links">
+            <nav class="main-nav" aria-label="Main navigation">
 
-                <a href="#find-teacher">
-                    Find a Teacher
-                </a>
+    <div class="nav-primary">
+        <a href="#courseBuilder" class="nav-link">Find Your Match</a>
+        <a href="#organizations" class="nav-link">For Organizations</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+    </div>
 
-                <a href="#how-it-works">
-                    How It Works
-                </a>
+    <div class="nav-actions">
 
-                <a href="#teachers">
-                    For Teachers
-                </a>
+        <div class="language-control">
+            <button
+                class="language-toggle"
+                type="button"
+                aria-label="Choose language"
+                aria-expanded="false"
+                onclick="toggleLanguageMenu(event)"
+            >
+                <span class="globe-icon" aria-hidden="true"></span>
+            </button>
+
+            <div class="language-menu" id="languageMenu" role="menu">
+                <button type="button" role="menuitem" class="language-option active">
+                    <span>🇬🇧</span> English <span class="language-check">✓</span>
+                </button>
+                <button type="button" role="menuitem" class="language-option">
+                    <span>🇹🇷</span> Türkçe
+                </button>
+            </div>
+        </div>
+
+        <a href="teacher-login.html" class="nav-login">Log in</a>
+
+    </div>
+
 </nav>
 
 
@@ -3512,9 +4315,7 @@
                 </a>
 
 
-               <a href="teacher-login.html" class="login-button">
-    Log in
-</a>
+               
 <button
                     class="mobile-menu"
                     aria-label="Open menu"
@@ -3528,6 +4329,16 @@
         </div>
 
     </header>
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <a href="#courseBuilder" class="mobile-menu-link">Find Your Match</a>
+        <a href="#organizations" class="mobile-menu-link">For Organizations</a>
+        <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
+        <button type="button" class="mobile-menu-link mobile-language">
+            🌐 Language
+        </button>
+        
+    </div>
+
 
 
 
@@ -3653,52 +4464,362 @@
 
                 <div class="hero-visual">
 
-                    <div class="bulbeni-live-panel" data-bulbeni-live-panel="true">
-                        <div class="bulbeni-live-panel-inner">
-                            <div class="bulbeni-live-panel-kicker">Built around your needs</div>
-                            <h3>Your Learning Plan</h3>
-                            <p>Your choices will shape the professionals we recommend.</p>
+    <div class="builder-vector-guide" aria-hidden="true">
+        <svg viewBox="0 0 760 430" preserveAspectRatio="none">
+            <defs>
+                <path id="guidePathA" d="M24 342 C120 385, 174 322, 232 253 C286 189, 352 137, 430 126 C535 112, 628 151, 728 84"/>
+                <path id="guidePathB" d="M8 94 C105 54, 177 77, 238 132 C300 188, 343 241, 430 266 C532 296, 620 257, 748 312"/>
+                <path id="guidePathC" d="M112 12 C164 73, 214 88, 284 78 C373 65, 424 28, 506 42 C588 56, 615 111, 700 139"/>
+            </defs>
 
-                            <div class="bulbeni-live-panel-grid">
-                                <div class="bulbeni-live-item">
-                                    <span>FIELD</span>
-                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
-                                </div>
-                                <div class="bulbeni-live-item">
-                                    <span>SUBJECT / LANGUAGE</span>
-                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
-                                </div>
-                                <div class="bulbeni-live-item">
-                                    <span>SPECIALIZATION</span>
-                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
-                                </div>
-                                <div class="bulbeni-live-item">
-                                    <span>LEVEL</span>
-                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
-                                </div>
-                            </div>
+            <path class="guide-line guide-line-a" d="M24 342 C120 385, 174 322, 232 253 C286 189, 352 137, 430 126 C535 112, 628 151, 728 84"/>
+            <path class="guide-line guide-line-b" d="M8 94 C105 54, 177 77, 238 132 C300 188, 343 241, 430 266 C532 296, 620 257, 748 312"/>
+            <path class="guide-line guide-line-c" d="M112 12 C164 73, 214 88, 284 78 C373 65, 424 28, 506 42 C588 56, 615 111, 700 139"/>
 
-                            <div class="bulbeni-live-status">
-                                Start choosing on the left and your plan will build here.
-                            </div>
-                        </div>
+            <circle class="guide-dot guide-dot-a" r="3.2">
+                <animateMotion dur="8s" repeatCount="indefinite">
+                    <mpath href="#guidePathA"/>
+                </animateMotion>
+            </circle>
+            <circle class="guide-dot guide-dot-b" r="2.8">
+                <animateMotion dur="10s" begin="2s" repeatCount="indefinite">
+                    <mpath href="#guidePathB"/>
+                </animateMotion>
+            </circle>
+            <circle class="guide-dot guide-dot-c" r="2.5">
+                <animateMotion dur="11s" begin="4s" repeatCount="indefinite">
+                    <mpath href="#guidePathC"/>
+                </animateMotion>
+            </circle>
+        </svg>
+    </div>
+
+    <div class="request-preview-card" id="liveRequestPreview">
+
+        <div class="request-preview-top">
+            <div>
+                <span>YOUR MATCH</span>
+                <strong id="previewHeadline">Tell us what you need</strong>
+            </div>
+            <div class="preview-check" id="previewCheck">•</div>
+        </div>
+
+        <div class="request-progress" id="previewProgress">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="preview-empty" id="previewEmpty">
+            <div class="preview-empty-icon">⌁</div>
+            <h3>Your request will build here.</h3>
+            <p>Every click narrows the search and helps Bulbeni understand exactly who you need.</p>
+        </div>
+
+        <div id="previewDetails" hidden>
+            <div class="request-section">
+                <small>FIELD</small>
+                <strong id="previewSubject">Not selected</strong>
+            </div>
+
+            <div class="request-section">
+                <small>FOCUS</small>
+                <strong id="previewGoal">Not selected</strong>
+            </div>
+
+            <div class="request-grid">
+                <div class="request-section">
+                    <small>LEVEL</small>
+                    <strong id="previewLevel">Not selected</strong>
+                </div>
+                <div class="request-section">
+                    <small>FORMAT</small>
+                    <strong id="previewFormat">Not selected</strong>
+                </div>
+            </div>
+
+            <div class="request-section">
+                <small>HOURLY BUDGET</small>
+                <strong id="previewBudget">Not specified</strong>
+            </div>
+
+            <div class="request-section muted-preview">
+                <small>YOUR TEACHER WILL RECEIVE</small>
+                <span>A clear course brief with your goals, preferences and schedule.</span>
+            </div>
+
+            <div class="preview-note">
+                <span>✓</span>
+                <span>No account required to explore teachers.</span>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+</div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             STATS
+        ====================================================== -->
+
+        <section class="stats">
+
+            <div class="container stats-grid">
+
+
+                <div class="stat">
+
+                    <strong>
+                        1:1
+                    </strong>
+
+                    <span>
+                        Personalized matching
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        100%
+                    </strong>
+
+                    <span>
+                        Professional profiles
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        Every Subject
+                    </strong>
+
+                    <span>
+                        Whatever you want to learn
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        Your Goals
+                    </strong>
+
+                    <span>
+                        Your learning journey
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HOW IT WORKS
+        ====================================================== -->
+
+        
+<section id="organizations" class="organizations-section" aria-labelledby="organizations-title">
+    <div class="organizations-inner">
+        <div class="organizations-heading">
+            <span class="organizations-kicker">FOR ORGANIZATIONS</span>
+            <h2 id="organizations-title">The right professional.<br><em>Without the hiring headache.</em></h2>
+            <p class="organizations-lead">
+                Finding the right person shouldn't require endless searching, dozens of CVs,
+                or a complicated HR process.
+            </p>
+            <p class="organizations-value">
+                <strong>Bulbeni turns your needs into a precise search — then brings the most relevant professionals to you.</strong>
+            </p>
+        </div>
+
+        <div class="organizations-steps">
+            <article class="organization-step">
+                <span class="organization-number">01</span>
+                <h3>Tell us what you need</h3>
+                <p>Choose the role, subject, experience, qualifications, availability, budget and other requirements through a simple guided process.</p>
+                <small>No complicated job descriptions required.</small>
+            </article>
+
+            <article class="organization-step">
+                <span class="organization-number">02</span>
+                <h3>Get a shortlist that makes sense</h3>
+                <p>Bulbeni filters candidates against your actual requirements, separating strong matches from near matches so you can see who fits.</p>
+                <small>Clear matches. Less searching.</small>
+            </article>
+
+            <article class="organization-step">
+                <span class="organization-number">03</span>
+                <h3>Choose. Contact. Start.</h3>
+                <p>Review professional profiles, choose the people who fit your needs, and contact them directly through Bulbeni with the complete request already attached.</p>
+                <small>No HR middleman. No unnecessary back-and-forth.</small>
+            </article>
+        </div>
+
+        <div class="organizations-bottom">
+            <div class="organizations-quote">
+                <span>From “We need someone” to</span>
+                <strong>“Here are the right people.”</strong>
+                <span>Contact them directly. Start in minutes.</span>
+            </div>
+
+            <div class="organizations-benefits" aria-label="Why Bulbeni">
+                <div><strong>PRECISION</strong><span>Requirements matched individually.</span></div>
+                <div><strong>EFFICIENCY</strong><span>No CV pile. No endless searching.</span></div>
+                <div><strong>TRANSPARENCY</strong><span>See why a candidate matches.</span></div>
+                <div><strong>CONTROL</strong><span>Decide what is essential or preferred.</span></div>
+            </div>
+
+            <a class="organizations-cta" href="#courseBuilder" data-organization-cta>
+                Find the professionals you need <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section
+            class="section"
+            id="how-it-works"
+        >
+
+            <div class="container">
+
+
+                <div class="section-heading center">
+
+
+                    <div class="section-label">
+                        Simple by design
                     </div>
 
-                    <div class="builder-floating builder-floating-one">
-                        <span class="floating-mini-icon">01</span>
-                        <div>
-                            <strong>Click, don't type.</strong>
-                            <small>Your choices build the request.</small>
+
+                    <h2>
+
+                        Learning starts
+                        with the right connection.
+
+                    </h2>
+
+
+                    <p>
+
+                        Stop scrolling through endless teacher
+                        profiles. Tell us what you need,
+                        discover the right teachers and start
+                        learning.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="steps">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="step-card">
+
+
+                        <div class="step-number">
+                            01
                         </div>
+
+
+                        <h3>
+                            Tell us what you need
+                        </h3>
+
+
+                        <p>
+
+                            Choose your subject, level, goals,
+                            preferred schedule, lesson format
+                            and other requirements.
+
+                        </p>
+
+
                     </div>
 
-                    <div class="builder-floating builder-floating-two">
-                        <span class="floating-mini-icon">02</span>
-                        <div>
-                            <strong>One request. One clear brief.</strong>
-                            <small>Your professional sees it before you connect.</small>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="step-card">
+
+
+                        <div class="step-number">
+                            02
                         </div>
+
+
+                        <h3>
+                            Discover your matches
+                        </h3>
+
+
+                        <p>
+
+                            Explore professional teacher profiles,
+                            compare experience, expertise, reviews
+                            and availability.
+
+                        </p>
+
+
                     </div>
+
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="step-card">
+
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+
+                        <h3>
+                            Start learning
+                        </h3>
+
+
+                        <p>
+
+                            Connect with the teacher who fits
+                            your goals and build your own
+                            learning experience.
+
+                        </p>
+
+
+                    </div>
+
 
                 </div>
 
@@ -3758,7 +4879,7 @@
                         <h3>
 
                             Don't just find a teacher.
-                            Find the right teacher for you.
+                            Find the right professional for what you need.
 
                         </h3>
 
@@ -4118,7 +5239,7 @@
 
                     <div class="cta-actions">
                         <a class="btn btn-white" href="#find-teacher">
-                            Find your teacher <span>→</span>
+                            Find Your Match <span>→</span>
                         </a>
                     </div>
 
@@ -4408,6 +5529,74 @@ if (builder) {
         ["Not sure","Let the professional assess this","level-unknown"]
     ];
 
+
+    function transitionTo(renderFn, direction="forward"){
+        contentEl.classList.add("is-transitioning");
+        const oldHeight = contentEl.getBoundingClientRect().height;
+        contentEl.style.height = oldHeight + "px";
+        contentEl.classList.remove("step-fade-in","step-fade-out","step-enter-forward","step-enter-back");
+        void contentEl.offsetWidth;
+        contentEl.classList.add("step-fade-out");
+
+        window.setTimeout(()=>{
+            renderFn();
+            contentEl.classList.remove("step-fade-out");
+            contentEl.classList.add("step-fade-in");
+            requestAnimationFrame(()=>{
+                contentEl.style.height = contentEl.scrollHeight + "px";
+            });
+            window.setTimeout(()=>{
+                contentEl.style.height = "auto";
+                contentEl.classList.remove("step-fade-in","is-transitioning");
+            }, 430);
+        },170);
+    }
+
+    function updateLivePreview(){
+        const v=state.values||{};
+        const p=state.path||[];
+        const hasSelection=p.length>1;
+        const empty=document.getElementById("previewEmpty");
+        const details=document.getElementById("previewDetails");
+        const headline=document.getElementById("previewHeadline");
+        const check=document.getElementById("previewCheck");
+        const progress=document.getElementById("previewProgress");
+        if(!empty||!details)return;
+
+        if(!hasSelection){
+            empty.hidden=false;
+            details.hidden=true;
+            headline.textContent="Tell us what you need";
+            check.textContent="•";
+            check.classList.remove("complete");
+        }else{
+            empty.hidden=true;
+            details.hidden=false;
+            headline.textContent=state.mode==="hire"?"Your hiring brief":"Your learning brief";
+            check.textContent="✓";
+            check.classList.add("complete");
+
+            const primary=v.language||v.subject||v.role||p[1]||"Your request";
+            const focus=v.language_exam||v.language_purpose||v.discipline||v.specialization||p[p.length-1]||"Building your request";
+
+            document.getElementById("previewSubject").textContent=primary;
+            document.getElementById("previewGoal").textContent=focus;
+            document.getElementById("previewLevel").textContent=v.level||v.teaching_level||"Not selected";
+            document.getElementById("previewFormat").textContent=v.format||v.work_mode||"Not selected";
+
+            let budgetText=v.budget||"Not specified";
+            if(v.budget_min){
+                budgetText=`${Number(v.budget_min).toLocaleString()}–${v.budget_max_plus?"4,500+":Number(v.budget_max).toLocaleString()} TL/hour`;
+            }
+            document.getElementById("previewBudget").textContent=budgetText;
+        }
+
+        if(progress){
+            const active=Math.min(5,Math.max(1,history.length+1));
+            [...progress.children].forEach((el,i)=>el.classList.toggle("active",i<active));
+        }
+    }
+
     function animate(direction="forward"){
         contentEl.classList.remove("step-enter-forward","step-enter-back");
         void contentEl.offsetWidth;
@@ -4422,6 +5611,7 @@ if (builder) {
             const s=document.createElement("span");s.textContent=x;pathEl.appendChild(s);
             if(i<Math.min(state.path.length,6)-1){const a=document.createElement("b");a.textContent="›";pathEl.appendChild(a);}
         });
+        updateLivePreview();
     }
 
     function header(title,n=1,total=7){
@@ -4434,7 +5624,7 @@ if (builder) {
         items.forEach(([label,sub,value])=>{
             const b=document.createElement("button");b.type="button";b.className="builder-option";
             b.innerHTML=`<strong>${label}</strong><small>${sub}</small>`;
-            b.onclick=()=>callback(label,value);grid.appendChild(b);
+            b.onclick=()=>transitionTo(()=>callback(label,value),"forward");grid.appendChild(b);
         });
         animate();
     }
@@ -4450,7 +5640,7 @@ if (builder) {
     function renderModeChooser(){
         header("How can Bulbeni help you?",1);
         options([
-            ["I want to learn","Find a teacher, tutor, trainer or coach.","learn"],
+            ["I want to learn","Find Your Match, tutor, trainer or coach.","learn"],
             ["I want to hire","Find the right professional for your needs.","hire"],
             ["I want to work","Create your professional profile and start your journey.","work"]
         ],(label,value)=>startMode(value));
@@ -4492,16 +5682,129 @@ if (builder) {
     }
 
     function renderLearnBudget(){
-        header("What's your hourly budget?",history.length+1);
-        contentEl.innerHTML=`<div class="builder-question">Choose a comfortable range.</div><div class="budget-options"></div>`;
-        const grid=contentEl.querySelector(".budget-options");
-        ["Under 500 TL","500–750 TL","750–1,000 TL","1,000–1,500 TL","1,500–2,000 TL","2,000+ TL"].forEach(x=>{
-            const b=document.createElement("button");b.className="budget-option";b.type="button";
-            b.innerHTML=`<strong>${x}</strong><small>${x} / hour</small>`;
-            b.onclick=()=>{state.values.budget=x;state.path.push(x);history.push("budget");renderFinal("learn");};
+        header("What is your hourly budget?",history.length+1);
+
+        contentEl.innerHTML=`
+            <div class="budget-intro">
+                <p>Choose the hourly range that feels right for you.</p>
+            </div>
+            <div class="budget-grid" id="learnerBudgetGrid"></div>
+        `;
+
+        const grid=document.getElementById("learnerBudgetGrid");
+        const budgets=[
+            ["Under 500 TL","Under 500 TL / hour"],
+            ["500–750 TL","500–750 TL / hour"],
+            ["750–1,000 TL","750–1,000 TL / hour"],
+            ["1,000–1,500 TL","1,000–1,500 TL / hour"],
+            ["1,500–2,000 TL","1,500–2,000 TL / hour"],
+            ["2,000+ TL","2,000+ TL / hour"]
+        ];
+
+        budgets.forEach(([value,sub])=>{
+            const b=document.createElement("button");
+            b.type="button";
+            b.className="budget-option";
+            b.innerHTML=`<strong>${value}</strong><small>${sub}</small>`;
+
+            b.addEventListener("click",function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+                grid.querySelectorAll(".budget-option").forEach(x=>x.classList.remove("selected"));
+                b.classList.add("selected");
+
+                state.values.budget=value;
+                state.path.push(value);
+                history.push("budget");
+
+                // Do NOT depend on the generic option transition here.
+                // Render the next screen directly after the selection.
+                const currentHeight=contentEl.getBoundingClientRect().height;
+                contentEl.style.height=currentHeight+"px";
+                contentEl.classList.add("step-fade-out");
+
+                setTimeout(()=>{
+                    renderFinal("learn");
+                    contentEl.classList.remove("step-fade-out");
+                    contentEl.classList.add("step-fade-in");
+                    contentEl.style.height=contentEl.scrollHeight+"px";
+
+                    requestAnimationFrame(()=>{
+                        contentEl.style.height="auto";
+                    });
+
+                    setTimeout(()=>{
+                        contentEl.classList.remove("step-fade-in");
+                    },420);
+                },180);
+            });
+
             grid.appendChild(b);
         });
-        backEl.hidden=false;skipEl.hidden=false;skipEl.textContent="Skip for now";animate();
+
+        backEl.hidden=false;
+        skipEl.hidden=true;
+        animate();
+        updateLivePreview();
+    }
+
+
+    function renderFinal(mode){
+        if(mode!=="learn") return;
+
+        header("Your learning request is ready",7,7);
+
+        const v=state.values||{};
+        const budget=v.budget||"Not specified";
+
+        contentEl.innerHTML=`
+            <div class="builder-final">
+                <div class="final-badge">BULBENI LEARNING BRIEF</div>
+                <h3>We've understood what you're looking for.</h3>
+                <p class="brief-line">
+                    Your request has been built from your selections. You can now explore
+                    matching teachers and compare the people who best fit your needs.
+                </p>
+
+                <div class="review-card">
+                    ${v.languages?`<div class="review-row"><span>Learning area</span><strong>${v.languages}</strong></div>`:""}
+                    ${v.english?`<div class="review-row"><span>English focus</span><strong>${v.english}</strong></div>`:""}
+                    ${v["english-exams"]?`<div class="review-row"><span>English exam</span><strong>${v["english-exams"]}</strong></div>`:""}
+                    ${v.ielts?`<div class="review-row"><span>IELTS goal</span><strong>${v.ielts}</strong></div>`:""}
+                    ${v.academic?`<div class="review-row"><span>Academic subject</span><strong>${v.academic}</strong></div>`:""}
+                    ${v.exams?`<div class="review-row"><span>Exam / qualification</span><strong>${v.exams}</strong></div>`:""}
+                    ${v.business?`<div class="review-row"><span>Professional skill</span><strong>${v.business}</strong></div>`:""}
+                    ${v.technology?`<div class="review-row"><span>Technology</span><strong>${v.technology}</strong></div>`:""}
+                    ${v.creative?`<div class="review-row"><span>Creative area</span><strong>${v.creative}</strong></div>`:""}
+                    ${v.personal?`<div class="review-row"><span>Development area</span><strong>${v.personal}</strong></div>`:""}
+                    <div class="review-row"><span>Level</span><strong>${v.level||"Not selected"}</strong></div>
+                    <div class="review-row"><span>Learning format</span><strong>${v.format||"Not selected"}</strong></div>
+                    <div class="review-row"><span>Hourly budget</span><strong>${budget}</strong></div>
+                </div>
+
+                <div class="matching-principles">
+                    <div><b>01</b><span><strong>Relevant teachers first.</strong> Your selections are used to narrow the teacher pool.</span></div>
+                    <div><b>02</b><span><strong>Better fit.</strong> Subject, level, format and budget help improve relevance.</span></div>
+                    <div><b>03</b><span><strong>No explaining it all again.</strong> Your structured request can accompany your teacher selection.</span></div>
+                </div>
+
+                <div class="brief-actions">
+                    <button type="button" class="builder-edit"
+                        onclick="window.scrollTo({top:document.getElementById('courseBuilder').offsetTop-40,behavior:'smooth'})">
+                        Edit request
+                    </button>
+                    <a class="builder-submit" href="teachers.html">
+                        Find matching teachers <span>→</span>
+                    </a>
+                </div>
+            </div>
+        `;
+
+        backEl.hidden=false;
+        skipEl.hidden=true;
+        animate();
+        updateLivePreview();
     }
 
     /* ========================= HIRING ========================= */
@@ -4943,7 +6246,7 @@ if (builder) {
                     <div class="review-row"><span>Teaching approach</span><strong>${v.specialization||"—"}</strong></div>
                     <div class="review-row"><span>Relevant experience</span><strong>${exp}</strong></div>
                     <div class="review-row"><span>Qualification</span><strong>${v.required_qualification||"—"}</strong></div>
-                    <div class="review-row"><span>Language</span><strong>${v.required_language||"—"}</strong></div>
+                    <div class="review-row"><span>Required language</span><strong>${v.required_language||"—"}</strong></div>
                     <div class="review-row"><span>Work mode</span><strong>${v.work_mode||"—"}</strong></div>
                     <div class="review-row"><span>Employment</span><strong>${v.employment||"—"}</strong></div>
                     <div class="review-row"><span>Hourly budget</span><strong>${budget}</strong></div>
@@ -4965,7 +6268,7 @@ if (builder) {
     }
 
     backEl.onclick=()=>{
-        if(history.length<=1)return renderModeChooser();
+        if(history.length<=1)return transitionTo(()=>renderModeChooser(),"back");
         history.pop();state.path.pop();
         if(state.mode==="hire"){
             const last=history[history.length-1];
@@ -4999,143 +6302,61 @@ if (builder) {
 </script>
 
 
-
-
-
-
-
-
-<script id="bulbeni-dual-journey-script">
+<script>
 (function(){
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    window.toggleLanguageMenu = function(event){
+        if(event) event.stopPropagation();
+        const menu=document.getElementById("languageMenu");
+        const toggle=document.querySelector(".language-toggle");
+        if(!menu || !toggle) return;
+        const open=menu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded",String(open));
+    };
 
-    function getState(){
-        return window.state || {mode:"learn", values:{}, path:[]};
-    }
-
-    function isEmployer(){
-        const st = getState();
-        return st.mode === "hire";
-    }
-
-    function esc(v){
-        return String(v ?? '').replace(/[&<>"']/g, c => ({
-            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
-        }[c]);
-    }
-
-    function value(...keys){
-        const v = getState().values || {};
-        for(const k of keys){
-            if(v[k] !== undefined && v[k] !== null && String(v[k]).trim() !== '') return v[k];
+    document.addEventListener("click",function(e){
+        const menu=document.getElementById("languageMenu");
+        const control=document.querySelector(".language-control");
+        if(menu && control && !control.contains(e.target)){
+            menu.classList.remove("open");
+            const toggle=document.querySelector(".language-toggle");
+            if(toggle) toggle.setAttribute("aria-expanded","false");
         }
-        return '';
-    }
+    });
 
-    function row(label, val){
-        return `
-            <div class="bulbeni-live-item">
-                <span>${esc(label)}</span>
-                <strong class="${val ? '' : 'bulbeni-live-empty'}">${esc(val || 'Not selected yet')}</strong>
-            </div>`;
-    }
+    document.querySelectorAll(".language-option").forEach(function(option){
+        option.addEventListener("click",function(){
+            document.querySelectorAll(".language-option").forEach(x=>x.classList.remove("active"));
+            option.classList.add("active");
+            const menu=document.getElementById("languageMenu");
+            const toggle=document.querySelector(".language-toggle");
+            if(menu) menu.classList.remove("open");
+            if(toggle) toggle.setAttribute("aria-expanded","false");
 
-    function render(force=false){
-        const panel = document.querySelector('[data-bulbeni-live-panel]');
-        if(!panel) return;
-
-        const st = getState();
-        const employer = isEmployer();
-        const v = st.values || {};
-
-        const field = value('professional_area','field','category');
-        const subject = value('discipline','subject','language','role');
-        const specialization = value('specialization','language_purpose','language_exam');
-        const level = value('teaching_level','level');
-        const audience = value('learner_type','audience','student_type','target_group');
-        const goal = value('goal','objective','purpose');
-        const format = value('format','teaching_format','delivery','work_mode');
-        const location = value('location');
-        const experience = value('min_relevant_experience','experience','experience_range','required_experience');
-        const qualification = value('required_qualification');
-        const budget = value('budget','hourly_budget','salary','salary_range');
-
-        const details = employer
-            ? [field,subject,specialization,audience,level,goal,format,location,experience,qualification,budget]
-            : [field,subject,specialization,level,goal,format,location,budget];
-
-        const count = details.filter(Boolean).length;
-
-        const title = employer ? "Your Hiring Plan" : "Your Learning Plan";
-        const kicker = employer ? "Built for better hiring" : "Built around your needs";
-        const subtitle = employer
-            ? "Your requirements will shape the professionals we recommend."
-            : "Your choices will shape the professionals we recommend.";
-
-        const rows = employer ? [
-            row("HIRING FOR", field),
-            row("POSITION / DISCIPLINE", subject),
-            row("SPECIALIZATION", specialization),
-            row("TARGET GROUP", audience),
-            row("LEVEL", level),
-            row("OBJECTIVE", goal),
-            row("WORK FORMAT", format),
-            row("LOCATION", location),
-            row("MINIMUM EXPERIENCE", experience ? (String(experience).match(/^\\d+$/) ? experience + "+ years" : experience) : ""),
-            row("QUALIFICATION", qualification && qualification !== "none" ? qualification : ""),
-            row("HOURLY BUDGET", budget)
-        ].join("") : [
-            row("FIELD", field),
-            row("SUBJECT / LANGUAGE", subject),
-            row("SPECIALIZATION", specialization),
-            row("YOUR LEVEL", level),
-            row("GOAL", goal),
-            row("FORMAT", format),
-            row("LOCATION", location),
-            row("BUDGET", budget)
-        ].join("");
-
-        const chips = details.filter(Boolean).slice(0,5);
-
-        const markup = `
-            <div class="bulbeni-live-panel-inner">
-                <div class="bulbeni-live-panel-kicker">${esc(kicker)}</div>
-                <h3>${esc(title)}</h3>
-                <p>${esc(subtitle)}</p>
-                <div class="bulbeni-live-panel-grid">${rows}</div>
-                ${chips.length ? `<div class="bulbeni-live-chips">${chips.map(x=>`<span class="bulbeni-live-chip">${esc(x)}</span>`).join('')}</div>` : ''}
-                <div class="bulbeni-live-status">
-                    ${count
-                        ? `${count} detail${count===1?'':'s'} added · updating live`
-                        : (employer
-                            ? "Start choosing on the left and your hiring plan will build here."
-                            : "Start choosing on the left and your learning plan will build here.")}
-                </div>
-            </div>`;
-
-        const inner = panel.querySelector('.bulbeni-live-panel-inner');
-        if(!force && inner && inner.dataset.signature === markup) return;
-
-        panel.classList.add('is-changing');
-        setTimeout(() => {
-            panel.innerHTML = markup;
-            const next = panel.querySelector('.bulbeni-live-panel-inner');
-            if(next) next.dataset.signature = markup;
-            panel.classList.remove('is-changing');
-        }, 180);
-    }
-
-    // startMode() and the option callbacks mutate state synchronously, so a
-    // short post-click render reliably catches every employer/learner choice.
-    document.addEventListener('click', () => {
-        setTimeout(() => render(), 35);
-        setTimeout(() => render(), 240);
-    }, true);
-
-    window.addEventListener('load', () => render(true));
-    setTimeout(() => render(true), 100);
-    setInterval(() => render(), 500);
+            // Turkish routing can be connected when the Turkish homepage is finalized.
+            if(option.textContent.includes("Türkçe")){
+                window.location.href="tr/index.html";
+            }
+        });
+    });
 })();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    document.querySelectorAll('[data-organization-cta]').forEach(function(btn){
+        btn.addEventListener("click", function(){
+            try { sessionStorage.setItem("bulbeniAudience", "organization"); } catch(e) {}
+        });
+    });
+
+    document.querySelectorAll('a[href="#organizations"]').forEach(function(link){
+        link.addEventListener("click", function(){
+            const target=document.getElementById("organizations");
+            if(target) target.scrollIntoView({behavior:"smooth",block:"start"});
+        });
+    });
+});
 </script>
 
 </body>
