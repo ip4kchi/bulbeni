@@ -1928,6 +1928,502 @@ textarea{
 
 </style>
 
+
+<style id="bulbeni-teacher-header-update">
+.sign-in{text-decoration:none}
+.language-switch{position:relative;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid var(--border);border-radius:999px;background:#fff}
+.language-globe{width:38px;height:36px;padding:0;border:0;border-radius:999px;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s ease}
+.language-globe:hover,.language-globe:focus-visible{background:#f4f7f8;outline:none}
+.globe-icon{position:relative;width:18px;height:18px;display:block;border:1.7px solid currentColor;border-radius:50%;box-sizing:border-box}
+.globe-icon::before{content:"";position:absolute;left:3px;right:3px;top:-1px;bottom:-1px;border-left:1.2px solid currentColor;border-right:1.2px solid currentColor;border-radius:50%;opacity:.9}
+.globe-icon::after{content:"";position:absolute;left:1px;right:1px;top:7px;border-top:1.2px solid currentColor;box-shadow:0 -4px 0 -0.3px currentColor,0 4px 0 -0.3px currentColor;opacity:.9}
+.language-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:125px;padding:6px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.98);box-shadow:0 12px 30px rgba(20,35,65,.12);display:none;z-index:2000}
+.language-switch.is-open .language-menu{display:block}
+.language-menu a{display:block;padding:9px 11px;border-radius:8px;text-decoration:none;color:var(--text-soft);font-size:12px;font-weight:750}
+.language-menu a:hover,.language-menu a.active{background:var(--blue-light);color:var(--blue)}
+.upload-button{width:max-content !important;max-width:100%}
+</style>
+
+
+<style id="bulbeni-taxonomy-matching">
+.field-help{
+    margin:-6px 0 12px;
+    color:var(--text-soft);
+    font-size:12px;
+    line-height:1.55;
+}
+
+.taxonomy-specializations{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+
+.taxonomy-check{
+    position:relative;
+}
+
+.taxonomy-check input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.taxonomy-check label{
+    display:flex;
+    align-items:center;
+    min-height:46px;
+    padding:11px 13px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#fff;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:700;
+    transition:.2s ease;
+}
+
+.taxonomy-check label:hover{
+    border-color:#9bcfc8;
+    background:#f7fbfa;
+}
+
+.taxonomy-check input:checked + label{
+    border-color:#2A9D8F;
+    background:rgba(42,157,143,.08);
+    color:#217d73;
+}
+
+.taxonomy-empty{
+    grid-column:1/-1;
+    padding:14px;
+    border:1px dashed var(--border);
+    border-radius:10px;
+    color:var(--text-soft);
+    font-size:12px;
+    background:#fafcfc;
+}
+
+.compact-options{
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px !important;
+}
+
+.compact-options .option{
+    min-width:0;
+}
+
+.compact-options .option label{
+    min-height:42px;
+    padding:9px 11px;
+    font-size:12px;
+}
+
+@media(max-width:700px){
+    .taxonomy-specializations,
+    .compact-options{
+        grid-template-columns:1fr !important;
+    }
+}
+</style>
+
+
+<style id="portrait-upload-reliability">
+.portrait-info .portrait-upload-status{
+    margin-top:8px;
+    font-size:12px;
+    font-weight:700;
+    color:#2A9D8F;
+}
+</style>
+
+
+<style id="bulbeni-professional-uiux-pass">
+.step-kicker{
+    display:inline-flex;
+    align-items:center;
+    margin-bottom:10px;
+    color:var(--blue);
+    font-size:11px;
+    font-weight:850;
+    letter-spacing:1.1px;
+    text-transform:uppercase;
+}
+.field-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 18px;
+}
+.field-grid .field{min-width:0}
+.field-grid .field > input,
+.field-grid .field > select,
+.field-grid .field > textarea{width:100%}
+.taxonomy-area-options{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+.taxonomy-specializations{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+.compact-options{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+}
+.compact-options .option label{
+    width:100%;
+    min-height:44px;
+}
+.review-box{
+    overflow:hidden;
+}
+.review-row{
+    min-height:50px;
+}
+.upload-button{
+    width:max-content !important;
+}
+@media(max-width:900px){
+    .workspace{grid-template-columns:1fr}
+    .profile-column{
+        position:relative;
+        top:auto;
+        order:-1;
+    }
+}
+@media(max-width:700px){
+    .field-grid,
+    .taxonomy-area-options,
+    .taxonomy-specializations,
+    .compact-options{
+        grid-template-columns:1fr !important;
+    }
+}
+</style>
+
+
+<style id="multi-subject-course-ui">
+.taxonomy-specializations{
+    display:flex !important;
+    flex-direction:column;
+    gap:14px;
+}
+.taxonomy-group{
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#fff;
+    overflow:hidden;
+}
+.taxonomy-group-title{
+    padding:12px 14px;
+    background:#f7faf9;
+    border-bottom:1px solid var(--border);
+}
+.taxonomy-parent{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    font-weight:850;
+    cursor:pointer;
+}
+.taxonomy-parent input{
+    width:17px !important;
+    height:17px !important;
+    margin:0 !important;
+}
+.taxonomy-course-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    padding:12px;
+}
+.taxonomy-course{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    min-height:42px;
+    padding:9px 11px;
+    border:1px solid #e3e9e7;
+    border-radius:9px;
+    background:#fff;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.18s ease;
+}
+.taxonomy-course:hover{
+    border-color:#9bcfc8;
+    background:#f8fcfb;
+}
+.taxonomy-course:has(input:checked){
+    border-color:#2A9D8F;
+    background:rgba(42,157,143,.08);
+    color:#217d73;
+}
+.taxonomy-course input{
+    width:16px !important;
+    height:16px !important;
+    margin:0 !important;
+    flex:0 0 auto;
+}
+@media(max-width:700px){
+    .taxonomy-course-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+
+<style id="multi-main-area-ui">
+.taxonomy-area-options{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+}
+.taxonomy-area-options .option,
+.taxonomy-area-options .option label{
+    min-width:0;
+}
+.taxonomy-area-options .option label{
+    width:100%;
+    min-height:76px;
+}
+.taxonomy-area-options .option input:checked + label{
+    border-color:#2A9D8F;
+    background:rgba(42,157,143,.08);
+}
+.taxonomy-specializations{
+    display:flex !important;
+    flex-direction:column;
+    gap:16px;
+}
+.taxonomy-area-block{
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#fbfdfc;
+    overflow:hidden;
+}
+.taxonomy-area-title{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 16px;
+    background:#f2f8f6;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+    font-weight:850;
+}
+.taxonomy-area-title small{
+    color:var(--text-soft);
+    font-size:11px;
+    font-weight:600;
+}
+.taxonomy-group{
+    margin:10px;
+}
+@media(max-width:700px){
+    .taxonomy-area-options{
+        grid-template-columns:1fr !important;
+    }
+    .taxonomy-area-title{
+        flex-direction:column;
+        gap:3px;
+    }
+}
+</style>
+
+
+<style id="bulbeni-inline-hints">
+/* Subtle helper text inside fields */
+input::placeholder,
+textarea::placeholder{
+    color:rgba(65,78,78,.42);
+    opacity:1;
+    font-size:.88em;
+    font-weight:500;
+    transition:opacity .18s ease;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder{
+    opacity:0;
+}
+
+/* Password guidance now behaves like an unobtrusive inline hint.
+   It disappears as soon as the user starts typing. */
+.password-hint{
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    margin:0 !important;
+    padding:0 !important;
+    color:rgba(65,78,78,.42);
+    font-size:11px !important;
+    line-height:1;
+    font-weight:500 !important;
+    pointer-events:none;
+    z-index:2;
+    transition:opacity .16s ease;
+}
+
+.field:has(input[type="password"]){
+    position:relative;
+}
+
+.field:has(input[type="password"] input:focus) .password-hint{
+    opacity:0;
+}
+
+/* Browser-compatible fallback using a small JS class below */
+.password-hint.is-hidden{
+    opacity:0;
+}
+
+/* Keep the hint from visually competing with the input text */
+.field:has(.password-hint) input{
+    position:relative;
+    z-index:1;
+    background:transparent;
+}
+</style>
+
+
+<style id="password-hint-overlay-fix">
+.field:has(.password-hint) input::placeholder{
+    color:transparent;
+}
+.field:has(.password-hint) input:focus::placeholder{
+    color:transparent;
+}
+</style>
+
+
+<style id="complete-live-profile-ui">
+.preview-section{
+    margin-top:18px;
+}
+.preview-section-title{
+    margin-bottom:8px;
+    font-size:9px;
+    font-weight:850;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    color:var(--muted);
+}
+.live-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+.live-chips-secondary{
+    margin-top:6px;
+}
+.preview-empty{
+    color:var(--muted);
+    font-size:10px;
+    line-height:1.5;
+}
+.live-list{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+.expertise-row{
+    font-size:11px;
+    line-height:1.35;
+    padding:7px 9px;
+    border-radius:8px;
+    background:#f7faf9;
+}
+.expertise-row.area-row{
+    color:var(--blue);
+    font-weight:850;
+    background:#eef5ff;
+}
+.expertise-row.subject-row{
+    margin-left:8px;
+    font-weight:750;
+}
+.expertise-row.course-row{
+    margin-left:18px;
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    color:var(--text-soft);
+}
+.expertise-row.course-row strong{
+    color:var(--text);
+    font-weight:750;
+    text-align:right;
+}
+.preview-links a{
+    display:inline-block;
+    margin-right:10px;
+    color:var(--blue);
+    font-size:11px;
+    font-weight:800;
+    text-decoration:none;
+}
+.preview-links a:hover{
+    text-decoration:underline;
+}
+.live-info-grid{
+    margin-top:20px;
+}
+</style>
+
+
+<style id="live-preview-taxonomy-v2">
+.preview-taxonomy-area{
+    border:1px solid #e2e9e7;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:9px;
+    background:#fff;
+}
+.preview-taxonomy-area:last-child{
+    margin-bottom:0;
+}
+.preview-taxonomy-area-title{
+    padding:8px 10px;
+    background:#eef6f4;
+    color:var(--blue);
+    font-size:10px;
+    font-weight:850;
+    letter-spacing:.4px;
+}
+.preview-taxonomy-subject{
+    padding:8px 10px 9px;
+    border-top:1px solid #edf1f0;
+}
+.preview-taxonomy-subject:first-of-type{
+    border-top:0;
+}
+.preview-taxonomy-subject-title{
+    font-size:11px;
+    font-weight:800;
+    color:var(--text);
+}
+.preview-taxonomy-courses{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:6px;
+}
+.preview-course{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 7px;
+    border-radius:999px;
+    background:#f5f8f7;
+    border:1px solid #e3eae8;
+    color:var(--text-soft);
+    font-size:9px;
+    line-height:1.2;
+}
+</style>
+
 </head>
 
 
@@ -1961,16 +2457,21 @@ textarea{
             Already have an account?
         </div>
 
-        <button
+        <a
             class="sign-in"
-            type="button"
+            href="teacher-login.html"
         >
-            Sign in
-        </button>
+            Log in
+        </a>
 
         <div class="language-switch" aria-label="Language selection">
-            <a href="teacher-register.html" class="active">English</a>
-            <a href="tr/teacher-register.html">Türkçe</a>
+            <button type="button" class="language-globe" aria-label="Choose language" aria-haspopup="true" aria-expanded="false">
+                <span class="globe-icon" aria-hidden="true"></span>
+            </button>
+            <div class="language-menu" role="menu">
+                <a href="teacher-register.html" role="menuitem" class="active">English</a>
+                <a href="tr/teacher-register.html" role="menuitem">Türkçe</a>
+            </div>
         </div>
 
     </div>
@@ -2055,1658 +2556,322 @@ textarea{
 
             <!-- FORM -->
 
-            <form
-                class="form-card"
-                id="teacherForm"
-                novalidate
-            >
+            <form class="form-card" id="teacherForm" novalidate>
 
-
-                <!-- =========================================
-                     STEP 1
-                ========================================== -->
-
+                <!-- STEP 1: ACCOUNT + IDENTITY -->
                 <section class="step active">
-
                     <div class="step-header">
-
-                        <h2>
-                            Let's start with you
-                        </h2>
-
-                        <p>
-                            Create the foundation of your
-                            professional teacher identity.
-                        </p>
-
+                        <div class="step-kicker">01 · Profile</div>
+                        <h2>Start with the basics</h2>
+                        <p>Set up your professional identity so people know who they are connecting with.</p>
                     </div>
 
-
-                    <!-- PORTRAIT -->
-
                     <div class="field">
-
-                        <label>
-                            Professional portrait
-                        </label>
-
-
+                        <label>Professional portrait</label>
                         <div class="portrait-area">
-
-
-                            <div
-                                class="portrait-preview"
-                                id="portraitPreview"
-                            >
-
-                                <img
-                                    id="portraitImage"
-                                    alt="Teacher portrait"
-                                >
-
-                                <div
-                                    class="portrait-placeholder"
-                                    id="portraitPlaceholder"
-                                >
-                                    T
-                                </div>
-
+                            <div class="portrait-preview" id="portraitPreview">
+                                <img id="portraitImage" alt="Teacher portrait">
+                                <div class="portrait-placeholder" id="portraitPlaceholder">T</div>
                             </div>
-
-
                             <div class="portrait-info">
-
-                                <h3>
-                                    Add a professional photo
-                                </h3>
-
-                                <p>
-                                    A clear, friendly portrait helps
-                                    students feel confident when
-                                    choosing a teacher.
-                                    JPG or PNG recommended.
-                                </p>
-
-
-                                <label
-                                    class="upload-button"
-                                >
-
+                                <h3>Add a professional photo</h3>
+                                <p>A clear portrait helps people feel confident when choosing a professional. JPG, PNG or WEBP · up to 10 MB</p>
+                                <label class="upload-button">
                                     Upload portrait
-
-                                    <input
-                                        type="file"
-                                        id="portraitInput"
-                                        accept=".jpg,.jpeg,.png,.webp"
-                                    >
-
+                                    <input type="file" id="portraitInput" accept=".jpg,.jpeg,.png,.webp">
                                 </label>
-
                             </div>
-
-
                         </div>
-
                     </div>
 
-
-
-                    <div class="grid-2">
-
-
+                    <div class="field-grid">
                         <div class="field">
-
-                            <label>
-                                First name
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                type="text"
-                                id="firstName"
-                                placeholder="e.g. Sarah"
-                                required
-                            >
-
-                            <div class="error-message">
-                                Please enter your first name.
-                            </div>
-
+                            <label>First name <span class="required">*</span></label>
+                            <input type="text" id="firstName" placeholder="e.g. Sarah" required>
+                            <div class="error-message">Please enter your first name.</div>
                         </div>
-
-
                         <div class="field">
-
-                            <label>
-                                Last name
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                type="text"
-                                id="lastName"
-                                placeholder="e.g. Johnson"
-                                required
-                            >
-
-                            <div class="error-message">
-                                Please enter your last name.
-                            </div>
-
+                            <label>Last name <span class="required">*</span></label>
+                            <input type="text" id="lastName" placeholder="e.g. Johnson" required>
+                            <div class="error-message">Please enter your last name.</div>
                         </div>
-
                     </div>
 
-
-
-                    <div class="grid-2">
-
-
+                    <div class="field-grid">
                         <div class="field">
-
-                            <label>
-                                Email address
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="you@example.com"
-                                required
-                            >
-
-                            <div class="error-message">
-                                Please enter a valid email address.
-                            </div>
-
+                            <label>Email address <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="you@example.com" required>
+                            <div class="error-message">Please enter a valid email address.</div>
                         </div>
-
-
                         <div class="field">
-
-                            <label>
-                                Password
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Create a password"
-                                minlength="8"
-                                autocomplete="new-password"
-                                required
-                            >
-
-                            <div class="password-hint">
-                                At least 8 characters.
-                            </div>
-
-                            <div class="error-message">
-                                Password must be at least 8 characters.
-                            </div>
-
+                            <label>Phone number</label>
+                            <input type="tel" id="phone" placeholder="+90 5XX XXX XX XX">
                         </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Confirm password
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                placeholder="Repeat your password"
-                                minlength="8"
-                                autocomplete="new-password"
-                                required
-                            >
-
-                            <div class="password-hint">
-                                Enter the same password again.
-                            </div>
-
-                            <div class="error-message">
-                                Passwords do not match.
-                            </div>
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Phone number
-                            </label>
-
-                            <input
-                                type="tel"
-                                id="phone"
-                                placeholder="+90 5XX XXX XX XX"
-                            >
-
-                        </div>
-
                     </div>
 
-
-
-                    <div class="grid-2">
-
-
+                    <div class="field-grid">
                         <div class="field">
+                            <label>Password <span class="required">*</span></label>
+                            <input type="password" id="password" placeholder="Type your password · 8+ characters" minlength="8" autocomplete="new-password" required>
+                            <div class="password-hint">Type your password · 8+ characters</div>
+                            <div class="error-message">Password must be at least 8 characters.</div>
+                        </div>
+                        <div class="field">
+                            <label>Confirm password <span class="required">*</span></label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm your password" minlength="8" autocomplete="new-password" required>
+                            <div class="password-hint">Confirm your password</div>
+                            <div class="error-message">Passwords do not match.</div>
+                        </div>
+                    </div>
 
-                            <label>
-                                Country
-                                <span class="required">*</span>
-                            </label>
-
-                            <select
-                                id="country"
-                                required
-                            >
-
-                                <option value="">
-                                    Select country
-                                </option>
-
-                                <option>
-                                    Türkiye
-                                </option>
-
-                                <option>
-                                    United Kingdom
-                                </option>
-
-                                <option>
-                                    United States
-                                </option>
-
-                                <option>
-                                    Canada
-                                </option>
-
-                                <option>
-                                    Germany
-                                </option>
-
-                                <option>
-                                    Australia
-                                </option>
-
-                                <option>
-                                    Iran
-                                </option>
-
-                                <option>
-                                    Other
-                                </option>
-
+                    <div class="field-grid">
+                        <div class="field">
+                            <label>Country <span class="required">*</span></label>
+                            <select id="country" required>
+                                <option value="">Select country</option>
+                                <option>Türkiye</option><option>United Kingdom</option><option>United States</option>
+                                <option>Canada</option><option>Germany</option><option>Australia</option><option>Iran</option><option>Other</option>
                             </select>
-
                         </div>
-
-
                         <div class="field">
-
-                            <label>
-                                City
-                            </label>
-
-                            <input
-                                type="text"
-                                id="city"
-                                placeholder="e.g. Istanbul"
-                            >
-
+                            <label>City</label>
+                            <input type="text" id="city" placeholder="e.g. Istanbul">
                         </div>
-
                     </div>
-
                 </section>
 
-
-
-                <!-- =========================================
-                     STEP 2
-                ========================================== -->
-
+                <!-- STEP 2: MATCHING EXPERTISE -->
                 <section class="step">
-
                     <div class="step-header">
-
-                        <h2>
-                            What do you teach?
-                        </h2>
-
-                        <p>
-                            Select your main subject and all
-                            the levels you are comfortable teaching.
-                        </p>
-
+                        <div class="step-kicker">02 · Expertise</div>
+                        <h2>What can you help with?</h2>
+                        <p>This is the most important part of your profile. Your choices are used to match you with relevant requests.</p>
                     </div>
 
+                    <div class="field">
+                        <label>Main area <span class="required">*</span></label>
+                        <div class="options taxonomy-area-options">
+                            <div class="option"><input type="checkbox" name="subject" id="subjectLanguages" value="Languages"><label for="subjectLanguages"><div class="option-icon">A</div><div><div class="option-title">Languages</div><div class="option-description">Foreign languages</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="subject" id="subjectAcademic" value="Academic"><label for="subjectAcademic"><div class="option-icon">∑</div><div><div class="option-title">Academic</div><div class="option-description">School & academic subjects</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="subject" id="subjectExams" value="Exams"><label for="subjectExams"><div class="option-icon">A+</div><div><div class="option-title">Exams</div><div class="option-description">Exam & qualification preparation</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="subject" id="subjectProfessional" value="Professional"><label for="subjectProfessional"><div class="option-icon">↗</div><div><div class="option-title">Professional</div><div class="option-description">Business & professional skills</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="subject" id="subjectTechnology" value="Technology"><label for="subjectTechnology"><div class="option-icon">&lt;/&gt;</div><div><div class="option-title">Technology</div><div class="option-description">Technology & digital skills</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="subject" id="subjectCreative" value="Creative"><label for="subjectCreative"><div class="option-icon">✦</div><div><div class="option-title">Creative</div><div class="option-description">Arts, music & creative skills</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="subject" id="subjectPersonal" value="Personal"><label for="subjectPersonal"><div class="option-icon">+</div><div><div class="option-title">Personal</div><div class="option-description">Personal development & life skills</div></div></label></div>
+                        </div>
+                    </div>
 
                     <div class="field">
+                        <label>Specific expertise <span class="required">*</span></label>
+                        <p class="field-help">Choose all areas you confidently provide. The options change with your main area.</p>
+                        <div class="taxonomy-specializations" id="teacherSpecializations">
+                            <div class="taxonomy-empty">Choose a main area above.</div>
+                        </div>
+                    </div>
 
-                        <label>
-                            Main teaching subject
-                            <span class="required">*</span>
-                        </label>
+                    <div class="field">
+                        <label>Who can you work with? <span class="required">*</span></label>
+                        <div class="options compact-options">
+                            <div class="option"><input type="checkbox" name="audiences" id="audiencePreschool" value="Preschool"><label for="audiencePreschool">Preschool</label></div>
+                            <div class="option"><input type="checkbox" name="audiences" id="audiencePrimary" value="Primary"><label for="audiencePrimary">Primary</label></div>
+                            <div class="option"><input type="checkbox" name="audiences" id="audienceMiddle" value="Middle School"><label for="audienceMiddle">Middle School</label></div>
+                            <div class="option"><input type="checkbox" name="audiences" id="audienceHigh" value="High School"><label for="audienceHigh">High School</label></div>
+                            <div class="option"><input type="checkbox" name="audiences" id="audienceUniversity" value="University"><label for="audienceUniversity">University</label></div>
+                            <div class="option"><input type="checkbox" name="audiences" id="audienceAdults" value="Adults"><label for="audienceAdults">Adults</label></div>
+                        </div>
+                    </div>
 
+                    <div class="field">
+                        <label>Levels you can support <span class="required">*</span></label>
+                        <div class="options compact-options">
+                            <div class="option"><input type="checkbox" name="proficiencyLevels" value="Beginner" id="profBeginner"><label for="profBeginner">Beginner</label></div>
+                            <div class="option"><input type="checkbox" name="proficiencyLevels" value="Elementary" id="profElementary"><label for="profElementary">Elementary</label></div>
+                            <div class="option"><input type="checkbox" name="proficiencyLevels" value="Intermediate" id="profIntermediate"><label for="profIntermediate">Intermediate</label></div>
+                            <div class="option"><input type="checkbox" name="proficiencyLevels" value="Upper-intermediate" id="profUpper"><label for="profUpper">Upper-intermediate</label></div>
+                            <div class="option"><input type="checkbox" name="proficiencyLevels" value="Advanced" id="profAdvanced"><label for="profAdvanced">Advanced</label></div>
+                            <div class="option"><input type="checkbox" name="proficiencyLevels" value="Expert" id="profExpert"><label for="profExpert">Expert</label></div>
+                        </div>
+                    </div>
+                </section>
 
+                <!-- STEP 3: EXPERIENCE + CREDENTIALS -->
+                <section class="step">
+                    <div class="step-header">
+                        <div class="step-kicker">03 · Experience</div>
+                        <h2>Show your professional depth</h2>
+                        <p>Give Bulbeni enough structured information to distinguish relevant experience from general experience.</p>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field">
+                            <label>Total experience <span class="required">*</span></label>
+                            <select id="experience" required>
+                                <option value="">Select</option>
+                                <option>Less than 1 year</option><option>1–2 years</option><option>3–5 years</option>
+                                <option>6–10 years</option><option>11–15 years</option><option>16–20 years</option><option>20+ years</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Highest qualification</label>
+                            <select id="qualification">
+                                <option value="">Select</option>
+                                <option>Bachelor's Degree</option><option>Master's Degree</option>
+                                <option>Doctorate / PhD</option><option>Professional Certification</option><option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>University / Institution</label>
+                        <input type="text" id="institution" placeholder="e.g. University of Manchester">
+                    </div>
+
+                    <div class="field">
+                        <label>Professional introduction <span class="required">*</span></label>
+                        <textarea id="bio" required placeholder="Briefly describe your experience, expertise and the kind of results you help people achieve."></textarea>
+                        <div class="error-message">Please write a professional introduction.</div>
+                    </div>
+                </section>
+
+                <!-- STEP 4: DELIVERY + COMMERCIAL -->
+                <section class="step">
+                    <div class="step-header">
+                        <div class="step-kicker">04 · Delivery</div>
+                        <h2>How do you work?</h2>
+                        <p>Set the practical conditions that determine whether a request is a good fit.</p>
+                    </div>
+
+                    <div class="field">
+                        <label>Service format <span class="required">*</span></label>
                         <div class="options">
-
-
-                            <div class="option">
-
-                                <input
-                                    type="radio"
-                                    name="subject"
-                                    id="subjectEnglish"
-                                    value="English"
-                                >
-
-                                <label
-                                    for="subjectEnglish"
-                                >
-
-                                    <div class="option-icon">
-                                        EN
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            English
-                                        </div>
-
-                                        <div class="option-description">
-                                            General & academic English
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="radio"
-                                    name="subject"
-                                    id="subjectMath"
-                                    value="Mathematics"
-                                >
-
-                                <label
-                                    for="subjectMath"
-                                >
-
-                                    <div class="option-icon">
-                                        ∑
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Mathematics
-                                        </div>
-
-                                        <div class="option-description">
-                                            School & advanced mathematics
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="radio"
-                                    name="subject"
-                                    id="subjectScience"
-                                    value="Science"
-                                >
-
-                                <label
-                                    for="subjectScience"
-                                >
-
-                                    <div class="option-icon">
-                                        SCI
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Science
-                                        </div>
-
-                                        <div class="option-description">
-                                            Biology, chemistry & physics
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="radio"
-                                    name="subject"
-                                    id="subjectLanguages"
-                                    value="Languages"
-                                >
-
-                                <label
-                                    for="subjectLanguages"
-                                >
-
-                                    <div class="option-icon">
-                                        文
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Languages
-                                        </div>
-
-                                        <div class="option-description">
-                                            Modern & classical languages
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="radio"
-                                    name="subject"
-                                    id="subjectTest"
-                                    value="Test Preparation"
-                                >
-
-                                <label
-                                    for="subjectTest"
-                                >
-
-                                    <div class="option-icon">
-                                        A+
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Test Preparation
-                                        </div>
-
-                                        <div class="option-description">
-                                            IELTS, TOEFL, SAT & more
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="radio"
-                                    name="subject"
-                                    id="subjectOther"
-                                    value="Other"
-                                >
-
-                                <label
-                                    for="subjectOther"
-                                >
-
-                                    <div class="option-icon">
-                                        +
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Other
-                                        </div>
-
-                                        <div class="option-description">
-                                            Another subject
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
+                            <div class="option"><input type="checkbox" name="formats" id="formatOnline" value="Online"><label for="formatOnline"><div class="option-icon">↗</div><div><div class="option-title">Online</div><div class="option-description">Remote sessions</div></div></label></div>
+                            <div class="option"><input type="checkbox" name="formats" id="formatFace" value="Face-to-face"><label for="formatFace"><div class="option-icon">●</div><div><div class="option-title">Face-to-face</div><div class="option-description">In-person sessions</div></div></label></div>
                         </div>
-
                     </div>
-
-
 
                     <div class="field">
-
-                        <label>
-                            Teaching levels
-                            <span class="required">*</span>
-                        </label>
-
-
-                        <div class="level-grid">
-
-
-                            <div class="level-card">
-
-                                <input
-                                    type="checkbox"
-                                    name="levels"
-                                    id="levelPreschool"
-                                    value="Preschool"
-                                >
-
-                                <label
-                                    for="levelPreschool"
-                                >
-
-                                    <div class="level-code">
-                                        PK
-                                    </div>
-
-                                    <div class="level-name">
-                                        Preschool
-                                    </div>
-
-                                    <div class="level-description">
-                                        Early learners
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="level-card">
-
-                                <input
-                                    type="checkbox"
-                                    name="levels"
-                                    id="levelPrimary"
-                                    value="Primary"
-                                >
-
-                                <label
-                                    for="levelPrimary"
-                                >
-
-                                    <div class="level-code">
-                                        P
-                                    </div>
-
-                                    <div class="level-name">
-                                        Primary
-                                    </div>
-
-                                    <div class="level-description">
-                                        Elementary
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="level-card">
-
-                                <input
-                                    type="checkbox"
-                                    name="levels"
-                                    id="levelMiddle"
-                                    value="Middle School"
-                                >
-
-                                <label
-                                    for="levelMiddle"
-                                >
-
-                                    <div class="level-code">
-                                        M
-                                    </div>
-
-                                    <div class="level-name">
-                                        Middle School
-                                    </div>
-
-                                    <div class="level-description">
-                                        Ages 11–14
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="level-card">
-
-                                <input
-                                    type="checkbox"
-                                    name="levels"
-                                    id="levelHigh"
-                                    value="High School"
-                                >
-
-                                <label
-                                    for="levelHigh"
-                                >
-
-                                    <div class="level-code">
-                                        H
-                                    </div>
-
-                                    <div class="level-name">
-                                        High School
-                                    </div>
-
-                                    <div class="level-description">
-                                        Ages 14–18
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="level-card">
-
-                                <input
-                                    type="checkbox"
-                                    name="levels"
-                                    id="levelUniversity"
-                                    value="University"
-                                >
-
-                                <label
-                                    for="levelUniversity"
-                                >
-
-                                    <div class="level-code">
-                                        U
-                                    </div>
-
-                                    <div class="level-name">
-                                        University
-                                    </div>
-
-                                    <div class="level-description">
-                                        Higher education
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="level-card">
-
-                                <input
-                                    type="checkbox"
-                                    name="levels"
-                                    id="levelAdults"
-                                    value="Adults"
-                                >
-
-                                <label
-                                    for="levelAdults"
-                                >
-
-                                    <div class="level-code">
-                                        A
-                                    </div>
-
-                                    <div class="level-name">
-                                        Adults
-                                    </div>
-
-                                    <div class="level-description">
-                                        Adult learners
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-
-                <!-- =========================================
-                     STEP 3
-                ========================================== -->
-
-                <section class="step">
-
-                    <div class="step-header">
-
-                        <h2>
-                            Your experience
-                        </h2>
-
-                        <p>
-                            Help students understand your
-                            professional background.
-                        </p>
-
-                    </div>
-
-
-                    <div class="grid-2">
-
-
-                        <div class="field">
-
-                            <label>
-                                Teaching experience
-                                <span class="required">*</span>
-                            </label>
-
-                            <select
-                                id="experience"
-                                required
-                            >
-
-                                <option value="">
-                                    Select
-                                </option>
-
-                                <option>
-                                    Less than 1 year
-                                </option>
-
-                                <option>
-                                    1–2 years
-                                </option>
-
-                                <option>
-                                    3–5 years
-                                </option>
-
-                                <option>
-                                    6–10 years
-                                </option>
-
-                                <option>
-                                    11–15 years
-                                </option>
-
-                                <option>
-                                    16–20 years
-                                </option>
-
-                                <option>
-                                    20+ years
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                Highest qualification
-                            </label>
-
-                            <select
-                                id="qualification"
-                            >
-
-                                <option value="">
-                                    Select
-                                </option>
-
-                                <option>
-                                    Bachelor's Degree
-                                </option>
-
-                                <option>
-                                    Master's Degree
-                                </option>
-
-                                <option>
-                                    Doctorate / PhD
-                                </option>
-
-                                <option>
-                                    Professional Certification
-                                </option>
-
-                                <option>
-                                    Other
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="field">
-
-                        <label>
-                            University / Institution
-                        </label>
-
-                        <input
-                            type="text"
-                            id="institution"
-                            placeholder="e.g. University of Manchester"
-                        >
-
-                    </div>
-
-
-
-                    <div class="field">
-
-                        <label>
-                            Professional introduction
-                            <span class="required">*</span>
-                        </label>
-
-                        <textarea
-                            id="bio"
-                            required
-                            placeholder="Tell students about your experience, teaching philosophy and what makes your lessons effective..."
-                        ></textarea>
-
-                        <div class="error-message">
-                            Please write a professional introduction.
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-
-                <!-- =========================================
-                     STEP 4
-                ========================================== -->
-
-                <section class="step">
-
-                    <div class="step-header">
-
-                        <h2>
-                            How do you teach?
-                        </h2>
-
-                        <p>
-                            Help students understand what
-                            learning with you feels like.
-                        </p>
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Lesson format
-                        </label>
-
-
+                        <label>Teaching / service style</label>
                         <div class="options">
-
-
-                            <div class="option">
-
-                                <input
-                                    type="checkbox"
-                                    name="formats"
-                                    id="formatOnline"
-                                    value="Online"
-                                >
-
-                                <label
-                                    for="formatOnline"
-                                >
-
-                                    <div class="option-icon">
-                                        ↗
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Online
-                                        </div>
-
-                                        <div class="option-description">
-                                            Video lessons
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="checkbox"
-                                    name="formats"
-                                    id="formatFace"
-                                    value="Face-to-face"
-                                >
-
-                                <label
-                                    for="formatFace"
-                                >
-
-                                    <div class="option-icon">
-                                        ●
-                                    </div>
-
-                                    <div>
-
-                                        <div class="option-title">
-                                            Face-to-face
-                                        </div>
-
-                                        <div class="option-description">
-                                            In-person lessons
-                                        </div>
-
-                                    </div>
-
-                                </label>
-
-                            </div>
-
-
+                            <div class="option"><input type="checkbox" name="styles" id="styleStructured" value="Structured"><label for="styleStructured">Structured & systematic</label></div>
+                            <div class="option"><input type="checkbox" name="styles" id="styleInteractive" value="Interactive"><label for="styleInteractive">Interactive & engaging</label></div>
+                            <div class="option"><input type="checkbox" name="styles" id="styleExam" value="Exam focused"><label for="styleExam">Exam focused</label></div>
+                            <div class="option"><input type="checkbox" name="styles" id="styleConversation" value="Conversation based"><label for="styleConversation">Conversation based</label></div>
                         </div>
-
                     </div>
 
-
-
-                    <div class="field">
-
-                        <label>
-                            Teaching style
-                        </label>
-
-
-                        <div class="options">
-
-
-                            <div class="option">
-
-                                <input
-                                    type="checkbox"
-                                    name="styles"
-                                    id="styleStructured"
-                                    value="Structured"
-                                >
-
-                                <label
-                                    for="styleStructured"
-                                >
-                                    Structured & systematic
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="checkbox"
-                                    name="styles"
-                                    id="styleInteractive"
-                                    value="Interactive"
-                                >
-
-                                <label
-                                    for="styleInteractive"
-                                >
-                                    Interactive & engaging
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="checkbox"
-                                    name="styles"
-                                    id="styleExam"
-                                    value="Exam focused"
-                                >
-
-                                <label
-                                    for="styleExam"
-                                >
-                                    Exam focused
-                                </label>
-
-                            </div>
-
-
-
-                            <div class="option">
-
-                                <input
-                                    type="checkbox"
-                                    name="styles"
-                                    id="styleConversation"
-                                    value="Conversation based"
-                                >
-
-                                <label
-                                    for="styleConversation"
-                                >
-                                    Conversation based
-                                </label>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="grid-2">
-
-
+                    <div class="field-grid">
                         <div class="field">
-
-                            <label>
-                                Hourly rate
-                            </label>
-
-                            <input
-                                type="number"
-                                id="rate"
-                                placeholder="e.g. 750"
-                                min="0"
-                            >
-
+                            <label>Hourly rate</label>
+                            <input type="number" id="rate" placeholder="e.g. 750" min="0">
                         </div>
-
-
                         <div class="field">
-
-                            <label>
-                                Currency
-                            </label>
-
-                            <select
-                                id="currency"
-                            >
-
-                                <option>
-                                    TRY
-                                </option>
-
-                                <option>
-                                    USD
-                                </option>
-
-                                <option>
-                                    EUR
-                                </option>
-
-                                <option>
-                                    GBP
-                                </option>
-
-                            </select>
-
+                            <label>Currency</label>
+                            <select id="currency"><option>TRY</option><option>USD</option><option>EUR</option><option>GBP</option></select>
                         </div>
-
-
                     </div>
-
                 </section>
 
-
-
-                <!-- =========================================
-                     STEP 5 DOCUMENTS
-                ========================================== -->
-
+                <!-- STEP 5: VERIFICATION -->
                 <section class="step">
-
                     <div class="step-header">
-
-                        <h2>
-                            Verify your qualifications
-                        </h2>
-
-                        <p>
-                            Upload your professional documents.
-                            These documents are for verification
-                            and will not be displayed publicly.
-                        </p>
-
+                        <div class="step-kicker">05 · Verification</div>
+                        <h2>Verify your credentials</h2>
+                        <p>Upload the documents that help Bulbeni verify your professional profile. They are not displayed publicly.</p>
                     </div>
-
-
-                    <!-- DEGREE -->
 
                     <div class="upload-section">
-
-                        <div class="upload-title">
-                            Degree / Diploma
-                        </div>
-
-                        <div class="upload-description">
-                            Upload your highest relevant academic qualification.
-                        </div>
-
-
-                        <div
-                            class="upload-box"
-                            data-upload="degree"
-                        >
-
-                            <div class="upload-icon">
-                                ↑
-                            </div>
-
-                            <strong>
-                                Drop your document here
-                            </strong>
-
-                            <span>
-                                PDF, JPG or PNG · Maximum 10 MB
-                            </span>
-
-                            <br>
-
-                            <label class="upload-button">
-
-                                Choose file
-
-                                <input
-                                    type="file"
-                                    id="degreeInput"
-                                    accept=".pdf,.jpg,.jpeg,.png"
-                                >
-
-                            </label>
-
-                        </div>
-
-
-                        <div
-                            class="file-list"
-                            id="degreeFiles"
-                        ></div>
-
+                        <div class="upload-title">Degree / Diploma</div>
+                        <div class="upload-description">Your highest relevant academic qualification.</div>
+                        <div class="upload-box" data-upload="degree"><div class="upload-icon">↑</div><strong>Drop your document here</strong><span>PDF, JPG or PNG · Maximum 10 MB</span><br><label class="upload-button">Choose file<input type="file" id="degreeInput" accept=".pdf,.jpg,.jpeg,.png"></label></div>
+                        <div class="file-list" id="degreeFiles"></div>
                     </div>
-
-
-
-                    <!-- CERTIFICATES -->
 
                     <div class="upload-section">
-
-                        <div class="upload-title">
-                            Teaching certificates
-                        </div>
-
-                        <div class="upload-description">
-                            TEFL, TESOL, CELTA, teaching licenses,
-                            professional certificates, etc.
-                        </div>
-
-
-                        <div
-                            class="upload-box"
-                            data-upload="certificates"
-                        >
-
-                            <div class="upload-icon">
-                                ↑
-                            </div>
-
-                            <strong>
-                                Upload your certificates
-                            </strong>
-
-                            <span>
-                                Multiple files supported
-                            </span>
-
-                            <br>
-
-                            <label class="upload-button">
-
-                                Choose files
-
-                                <input
-                                    type="file"
-                                    id="certificateInput"
-                                    multiple
-                                    accept=".pdf,.jpg,.jpeg,.png"
-                                >
-
-                            </label>
-
-                        </div>
-
-
-                        <div
-                            class="file-list"
-                            id="certificateFiles"
-                        ></div>
-
+                        <div class="upload-title">Teaching / professional certificates</div>
+                        <div class="upload-description">TEFL, TESOL, CELTA, licenses and other relevant certifications.</div>
+                        <div class="upload-box" data-upload="certificates"><div class="upload-icon">↑</div><strong>Upload your certificates</strong><span>Multiple files supported</span><br><label class="upload-button">Choose files<input type="file" id="certificateInput" multiple accept=".pdf,.jpg,.jpeg,.png"></label></div>
+                        <div class="file-list" id="certificateFiles"></div>
                     </div>
-
-
-
-                    <!-- CV -->
 
                     <div class="upload-section">
-
-                        <div class="upload-title">
-                            CV / Resume
-                        </div>
-
-                        <div class="upload-description">
-                            Upload your current professional CV.
-                        </div>
-
-
-                        <div
-                            class="upload-box"
-                            data-upload="cv"
-                        >
-
-                            <div class="upload-icon">
-                                ↑
-                            </div>
-
-                            <strong>
-                                Upload your CV
-                            </strong>
-
-                            <span>
-                                PDF or DOCX · Maximum 10 MB
-                            </span>
-
-                            <br>
-
-                            <label class="upload-button">
-
-                                Choose file
-
-                                <input
-                                    type="file"
-                                    id="cvInput"
-                                    accept=".pdf,.doc,.docx"
-                                >
-
-                            </label>
-
-                        </div>
-
-
-                        <div
-                            class="file-list"
-                            id="cvFiles"
-                        ></div>
-
+                        <div class="upload-title">CV / Resume</div>
+                        <div class="upload-description">Your current professional CV.</div>
+                        <div class="upload-box" data-upload="cv"><div class="upload-icon">↑</div><strong>Upload your CV</strong><span>PDF or DOCX · Maximum 10 MB</span><br><label class="upload-button">Choose file<input type="file" id="cvInput" accept=".pdf,.doc,.docx"></label></div>
+                        <div class="file-list" id="cvFiles"></div>
                     </div>
-
-
 
                     <div class="check-row">
-
-                        <input
-                            type="checkbox"
-                            id="documentConsent"
-                        >
-
-                        <label
-                            for="documentConsent"
-                        >
-                            I confirm that the documents I upload
-                            belong to me and contain accurate information.
-                        </label>
-
+                        <input type="checkbox" id="documentConsent">
+                        <label for="documentConsent">I confirm that the documents I upload belong to me and contain accurate information.</label>
                     </div>
-
                 </section>
 
-
-
-                <!-- =========================================
-                     STEP 6
-                ========================================== -->
-
+                <!-- STEP 6: PROFESSIONAL LANGUAGE + PRESENCE -->
                 <section class="step">
-
                     <div class="step-header">
-
-                        <h2>
-                            Add your professional details
-                        </h2>
-
-                        <p>
-                            Give students a little more information
-                            about your expertise.
-                        </p>
-
+                        <div class="step-kicker">06 · Presence</div>
+                        <h2>Complete your professional profile</h2>
+                        <p>These final details help people understand how they can work with you.</p>
                     </div>
-
 
                     <div class="field">
-
-                        <label>
-                            Languages you can teach in
-                        </label>
-
-                        <input
-                            type="text"
-                            id="languages"
-                            placeholder="e.g. English, Turkish, Persian"
-                        >
-
+                        <label>Languages you can work in <span class="required">*</span></label>
+                        <p class="field-help">Select the languages in which you can deliver your service.</p>
+                        <div class="options compact-options language-options">
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="English" id="teachEnglish"><label for="teachEnglish">English</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="German" id="teachGerman"><label for="teachGerman">German</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="French" id="teachFrench"><label for="teachFrench">French</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="Spanish" id="teachSpanish"><label for="teachSpanish">Spanish</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="Italian" id="teachItalian"><label for="teachItalian">Italian</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="Turkish" id="teachTurkish"><label for="teachTurkish">Turkish</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="Arabic" id="teachArabic"><label for="teachArabic">Arabic</label></div>
+                            <div class="option"><input type="checkbox" name="teachingLanguages" value="Chinese" id="teachChinese"><label for="teachChinese">Chinese</label></div>
+                        </div>
+                        <input type="hidden" id="languages" value="">
                     </div>
-
-
 
                     <div class="field">
-
-                        <label>
-                            Areas of expertise
-                        </label>
-
-                        <textarea
-                            id="expertise"
-                            placeholder="e.g. IELTS preparation, academic writing, speaking, business English..."
-                        ></textarea>
-
+                        <label>Areas of expertise — optional detail</label>
+                        <textarea id="expertise" placeholder="Add context that structured selections cannot capture. Keep it concise."></textarea>
                     </div>
 
-
-
-                    <div class="grid-2">
-
-
-                        <div class="field">
-
-                            <label>
-                                Website
-                            </label>
-
-                            <input
-                                type="url"
-                                id="website"
-                                placeholder="https://"
-                            >
-
-                        </div>
-
-
-                        <div class="field">
-
-                            <label>
-                                LinkedIn
-                            </label>
-
-                            <input
-                                type="url"
-                                id="linkedin"
-                                placeholder="https://linkedin.com/in/..."
-                            >
-
-                        </div>
-
-
+                    <div class="field-grid">
+                        <div class="field"><label>Website</label><input type="url" id="website" placeholder="https://"></div>
+                        <div class="field"><label>LinkedIn</label><input type="url" id="linkedin" placeholder="https://linkedin.com/in/..."></div>
                     </div>
-
-
 
                     <div class="check-row">
-
-                        <input
-                            type="checkbox"
-                            id="profileConsent"
-                        >
-
-                        <label
-                            for="profileConsent"
-                        >
-                            I agree to Bulbeni.org creating a professional
-                            teacher profile using the information I provide.
-                        </label>
-
+                        <input type="checkbox" id="profileConsent">
+                        <label for="profileConsent">I agree to Bulbeni creating a professional profile using the information I provide.</label>
                     </div>
-
                 </section>
 
-
-
-                <!-- =========================================
-                     STEP 7 REVIEW
-                ========================================== -->
-
+                <!-- STEP 7: REVIEW -->
                 <section class="step">
-
                     <div class="step-header">
-
-                        <h2>
-                            Your profile is ready
-                        </h2>
-
-                        <p>
-                            Review your information before submitting.
-                            You can go back and edit anything.
-                        </p>
-
+                        <div class="step-kicker">07 · Review</div>
+                        <h2>Review your profile</h2>
+                        <p>Everything is organized for matching, verification and presentation. Review it once, then submit.</p>
                     </div>
-
 
                     <div class="review-box">
-
-                        <div class="review-title">
-                            Registration summary
-                        </div>
-
-
-                        <div class="review-row">
-
-                            <span class="review-label">
-                                Teacher
-                            </span>
-
-                            <span
-                                class="review-value"
-                                id="reviewName"
-                            >
-                                —
-                            </span>
-
-                        </div>
-
-
-                        <div class="review-row">
-
-                            <span class="review-label">
-                                Subject
-                            </span>
-
-                            <span
-                                class="review-value"
-                                id="reviewSubject"
-                            >
-                                —
-                            </span>
-
-                        </div>
-
-
-                        <div class="review-row">
-
-                            <span class="review-label">
-                                Teaching levels
-                            </span>
-
-                            <span
-                                class="review-value"
-                                id="reviewLevels"
-                            >
-                                —
-                            </span>
-
-                        </div>
-
-
-                        <div class="review-row">
-
-                            <span class="review-label">
-                                Experience
-                            </span>
-
-                            <span
-                                class="review-value"
-                                id="reviewExperience"
-                            >
-                                —
-                            </span>
-
-                        </div>
-
-
-                        <div class="review-row">
-
-                            <span class="review-label">
-                                Format
-                            </span>
-
-                            <span
-                                class="review-value"
-                                id="reviewFormats"
-                            >
-                                —
-                            </span>
-
-                        </div>
-
-
-                        <div class="review-row">
-
-                            <span class="review-label">
-                                Hourly rate
-                            </span>
-
-                            <span
-                                class="review-value"
-                                id="reviewRate"
-                            >
-                                —
-                            </span>
-
-                        </div>
-
+                        <div class="review-title">Profile summary</div>
+                        <div class="review-row"><span class="review-label">Professional</span><span class="review-value" id="reviewName">—</span></div>
+                        <div class="review-row"><span class="review-label">Main area</span><span class="review-value" id="reviewSubject">—</span></div>
+                        <div class="review-row"><span class="review-label">Expertise</span><span class="review-value" id="reviewSpecializations">—</span></div>
+                        <div class="review-row"><span class="review-label">Audience</span><span class="review-value" id="reviewLevels">—</span></div>
+                        <div class="review-row"><span class="review-label">Levels</span><span class="review-value" id="reviewProficiency">—</span></div>
+                        <div class="review-row"><span class="review-label">Experience</span><span class="review-value" id="reviewExperience">—</span></div>
+                        <div class="review-row"><span class="review-label">Format</span><span class="review-value" id="reviewFormats">—</span></div>
+                        <div class="review-row"><span class="review-label">Rate</span><span class="review-value" id="reviewRate">—</span></div>
                     </div>
-
                 </section>
 
-
-
-                <!-- =========================================
-                     BUTTONS
-                ========================================== -->
-
                 <div class="form-footer">
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        id="backBtn"
-                    >
-                        Back
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        id="nextBtn"
-                    >
-                        Continue
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-success hidden"
-                        id="submitBtn"
-                    >
-                        Submit profile
-                    </button>
-
+                    <button type="button" class="btn btn-secondary" id="backBtn">Back</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+                    <button type="submit" class="btn btn-success hidden" id="submitBtn">Submit profile</button>
                 </div>
-
 
             </form>
 
@@ -3720,147 +2885,88 @@ textarea{
 
         <aside class="profile-column">
 
-            <div class="profile-heading">
-                Live profile preview
-            </div>
-
+            <div class="profile-heading">Live profile preview</div>
 
             <div class="live-card">
 
-
                 <div class="live-cover">
-
                     <div class="live-status">
-
                         <span class="status-dot"></span>
-
-                        Profile preview
-
+                        Live preview
                     </div>
-
                 </div>
-
 
                 <div class="live-body">
 
-
-                    <div
-                        class="live-avatar"
-                        id="liveAvatar"
-                    >
-
-                        <img
-                            id="livePortrait"
-                            alt="Teacher"
-                        >
-
-                        <div
-                            class="live-avatar-placeholder"
-                            id="livePlaceholder"
-                        >
-                            T
-                        </div>
-
+                    <div class="live-avatar" id="liveAvatar">
+                        <img id="livePortrait" alt="Teacher portrait">
+                        <div class="live-avatar-placeholder" id="livePlaceholder">T</div>
                     </div>
 
-
-                    <div
-                        class="live-name"
-                        id="liveName"
-                    >
-                        Your Name
-                    </div>
-
-
-                    <div
-                        class="live-subject"
-                        id="liveSubject"
-                    >
-                        Your teaching subject
-                    </div>
-
-
-                    <div
-                        class="live-location"
-                        id="liveLocation"
-                    >
-                        Your location
-                    </div>
-
+                    <div class="live-name" id="liveName">Your Name</div>
+                    <div class="live-subject" id="liveSubject">Your professional areas</div>
+                    <div class="live-location" id="liveLocation">Your location</div>
 
                     <div class="live-divider"></div>
 
-
-                    <div
-                        class="live-bio"
-                        id="liveBio"
-                    >
-                        Your professional introduction will
-                        appear here as you complete the form.
+                    <div class="preview-section">
+                        <div class="preview-section-title">About</div>
+                        <div class="live-bio" id="liveBio">
+                            Your professional introduction will appear here.
+                        </div>
                     </div>
 
-
-                    <div
-                        class="live-tags"
-                        id="liveTags"
-                    >
-
-                        <span class="live-tag">
-                            Your teaching levels
-                        </span>
-
+                    <div class="preview-section">
+                        <div class="preview-section-title">Areas & expertise</div>
+                        <div class="live-list" id="liveExpertiseList">
+                            <div class="preview-empty">Your selected areas, subjects and courses will appear here.</div>
+                        </div>
                     </div>
 
+                    <div class="preview-section">
+                        <div class="preview-section-title">Who I work with</div>
+                        <div class="live-chips" id="liveAudience"></div>
+                    </div>
+
+                    <div class="preview-section">
+                        <div class="preview-section-title">Levels</div>
+                        <div class="live-chips" id="liveLevels"></div>
+                    </div>
+
+                    <div class="preview-section">
+                        <div class="preview-section-title">Languages</div>
+                        <div class="live-chips" id="liveLanguages"></div>
+                    </div>
+
+                    <div class="preview-section">
+                        <div class="preview-section-title">How I work</div>
+                        <div class="live-chips" id="liveFormats"></div>
+                        <div class="live-chips live-chips-secondary" id="liveStyles"></div>
+                    </div>
 
                     <div class="live-info-grid">
-
-
                         <div class="live-info">
-
-                            <div class="live-info-label">
-                                Experience
-                            </div>
-
-                            <div
-                                class="live-info-value"
-                                id="liveExperience"
-                            >
-                                —
-                            </div>
-
+                            <div class="live-info-label">Experience</div>
+                            <div class="live-info-value" id="liveExperience">—</div>
                         </div>
-
-
                         <div class="live-info">
-
-                            <div class="live-info-label">
-                                Rate
-                            </div>
-
-                            <div
-                                class="live-info-value"
-                                id="liveRate"
-                            >
-                                —
-                            </div>
-
+                            <div class="live-info-label">Rate</div>
+                            <div class="live-info-value" id="liveRate">—</div>
                         </div>
-
-
                     </div>
 
+                    <div class="preview-section preview-links" id="liveLinksSection">
+                        <div class="preview-section-title">Professional links</div>
+                        <div id="liveLinks">—</div>
+                    </div>
 
                     <div class="profile-note">
-
-                        This preview updates automatically
-                        as you build your profile.
-
+                        This is the profile summary learners and employers will see.
+                        It updates as you make your selections.
                     </div>
 
                 </div>
-
             </div>
-
         </aside>
 
 
@@ -3954,15 +3060,13 @@ let currentStep = 0;
 
 
 const stepNames = [
-
-    "Personal information",
-    "Teaching subjects",
-    "Teaching experience",
-    "Teaching style",
-    "Professional documents",
-    "Professional details",
-    "Review profile"
-
+    "Profile",
+    "Expertise",
+    "Experience",
+    "Delivery",
+    "Verification",
+    "Professional presence",
+    "Review"
 ];
 
 
@@ -4059,198 +3163,239 @@ function getValues(name){
    LIVE PROFILE
 ========================================================= */
 
-function updateLiveProfile(){
+function setPreviewChips(id, values, emptyText = "—"){
+    const box = document.getElementById(id);
+    if(!box) return;
 
-    const first =
-        document.getElementById("firstName")
-        .value
-        .trim();
+    box.innerHTML = "";
 
-
-    const last =
-        document.getElementById("lastName")
-        .value
-        .trim();
-
-
-    const name =
-        `${first} ${last}`.trim();
-
-
-    const subject =
-        document.querySelector(
-            'input[name="subject"]:checked'
-        )?.value;
-
-
-    const city =
-        document.getElementById("city")
-        .value
-        .trim();
-
-
-    const country =
-        document.getElementById("country")
-        .value;
-
-
-    const experience =
-        document.getElementById("experience")
-        .value;
-
-
-    const rate =
-        document.getElementById("rate")
-        .value;
-
-
-    const currency =
-        document.getElementById("currency")
-        .value;
-
-
-    const bio =
-        document.getElementById("bio")
-        .value
-        .trim();
-
-
-    /* NAME */
-
-    document.getElementById(
-        "liveName"
-    ).textContent =
-        name || "Your Name";
-
-
-    /* AVATAR INITIAL */
-
-    document.getElementById(
-        "livePlaceholder"
-    ).textContent =
-        first
-            ? first.charAt(0).toUpperCase()
-            : "T";
-
-
-    /* SUBJECT */
-
-    document.getElementById(
-        "liveSubject"
-    ).textContent =
-        subject
-            ? subject + " Teacher"
-            : "Your teaching subject";
-
-
-    /* LOCATION */
-
-    const location =
-        [city,country]
-        .filter(Boolean)
-        .join(", ");
-
-
-    document.getElementById(
-        "liveLocation"
-    ).textContent =
-        location ||
-        "Your location";
-
-
-    /* BIO */
-
-    document.getElementById(
-        "liveBio"
-    ).textContent =
-        bio ||
-        "Your professional introduction will appear here as you complete the form.";
-
-
-    /* EXPERIENCE */
-
-    document.getElementById(
-        "liveExperience"
-    ).textContent =
-        experience || "—";
-
-
-    /* RATE */
-
-    document.getElementById(
-        "liveRate"
-    ).textContent =
-        rate
-            ? `${rate} ${currency} / hour`
-            : "—";
-
-
-    /* TAGS */
-
-    const tags =
-        document.getElementById(
-            "liveTags"
-        );
-
-
-    tags.innerHTML = "";
-
-
-    const levels =
-        getValues("levels");
-
-
-    const formats =
-        getValues("formats");
-
-
-    const styles =
-        getValues("styles");
-
-
-    const allTags =
-        [
-            ...levels,
-            ...formats,
-            ...styles
-        ];
-
-
-    if(allTags.length === 0){
-
-        const placeholder =
-            document.createElement("span");
-
-        placeholder.className =
-            "live-tag";
-
-        placeholder.textContent =
-            "Your teaching levels";
-
-        tags.appendChild(
-            placeholder
-        );
-
+    if(!values.length){
+        const empty = document.createElement("span");
+        empty.className = "preview-empty";
+        empty.textContent = emptyText;
+        box.appendChild(empty);
+        return;
     }
 
+    values.forEach(value => {
+        const chip = document.createElement("span");
+        chip.className = "live-tag";
+        chip.textContent = value;
+        box.appendChild(chip);
+    });
+}
 
-    allTags.forEach(
-        value => {
+function updateLiveProfile(){
 
-            const tag =
-                document.createElement("span");
+    const first = document.getElementById("firstName")?.value.trim() || "";
+    const last = document.getElementById("lastName")?.value.trim() || "";
+    const city = document.getElementById("city")?.value.trim() || "";
+    const country = document.getElementById("country")?.value || "";
+    const experience = document.getElementById("experience")?.value || "";
+    const rate = document.getElementById("rate")?.value || "";
+    const currency = document.getElementById("currency")?.value || "TRY";
+    const bio = document.getElementById("bio")?.value.trim() || "";
+    const website = document.getElementById("website")?.value.trim() || "";
+    const linkedin = document.getElementById("linkedin")?.value.trim() || "";
 
-            tag.className =
-                "live-tag";
+    const areas = getSelectedMainAreas();
+    const subjects = Array.from(
+        document.querySelectorAll('input[name="teacherSubjects"]:checked')
+    ).map(el => el.value);
 
-            tag.textContent =
-                value;
+    const courses = getSelectedCourses();
+    const audiences = getValues("audiences");
+    const levels = getValues("proficiencyLevels");
+    const languages = getValues("teachingLanguages");
+    const formats = getValues("formats");
+    const styles = getValues("styles");
 
-            tags.appendChild(tag);
+    document.getElementById("liveName").textContent =
+        `${first} ${last}`.trim() || "Your Name";
 
-        }
+    document.getElementById("livePlaceholder").textContent =
+        first ? first.charAt(0).toUpperCase() : "T";
+
+    document.getElementById("liveSubject").textContent =
+        areas.length
+            ? areas.join(" • ")
+            : "Your professional areas";
+
+    document.getElementById("liveLocation").textContent =
+        [city,country].filter(Boolean).join(", ") || "Your location";
+
+    document.getElementById("liveBio").textContent =
+        bio || "Your professional introduction will appear here.";
+
+    setPreviewChips(
+        "liveAudience",
+        audiences,
+        "Your selected audiences"
     );
 
+    setPreviewChips(
+        "liveLevels",
+        levels,
+        "Your selected levels"
+    );
+
+    setPreviewChips(
+        "liveLanguages",
+        languages,
+        "Your working languages"
+    );
+
+    setPreviewChips(
+        "liveFormats",
+        formats,
+        "Your service formats"
+    );
+
+    setPreviewChips(
+        "liveStyles",
+        styles,
+        "Your service style"
+    );
+
+    const expertiseBox =
+        document.getElementById("liveExpertiseList");
+
+    expertiseBox.innerHTML = "";
+
+    if(!areas.length){
+
+        const empty = document.createElement("div");
+        empty.className = "preview-empty";
+        empty.textContent =
+            "Your selected areas, subjects and courses will appear here.";
+
+        expertiseBox.appendChild(empty);
+
+    }else{
+
+        areas.forEach(area => {
+
+            const areaBlock = document.createElement("div");
+            areaBlock.className = "preview-taxonomy-area";
+
+            const areaTitle = document.createElement("div");
+            areaTitle.className = "preview-taxonomy-area-title";
+            areaTitle.textContent = area;
+            areaBlock.appendChild(areaTitle);
+
+            const areaSubjects = subjects
+                .filter(value => value.startsWith(area + " > "))
+                .map(value => value.split(" > ").slice(1).join(" > "));
+
+            const areaCourses = courses
+                .filter(value => value.startsWith(area + " > "))
+                .map(value => value.split(" > "));
+
+            const subjectNames = new Set(areaSubjects);
+
+            // A subject can be selected even when no individual course is selected.
+            // In that case, show the subject itself rather than hiding it.
+            areaCourses.forEach(parts => {
+                if(parts.length >= 3){
+                    subjectNames.add(parts[1]);
+                }
+            });
+
+            if(!subjectNames.size){
+
+                const empty = document.createElement("div");
+                empty.className = "preview-empty";
+                empty.textContent = "No subject selected yet.";
+                areaBlock.appendChild(empty);
+
+            }else{
+
+                subjectNames.forEach(subjectName => {
+
+                    const subjectBlock =
+                        document.createElement("div");
+
+                    subjectBlock.className =
+                        "preview-taxonomy-subject";
+
+                    const subjectTitle =
+                        document.createElement("div");
+
+                    subjectTitle.className =
+                        "preview-taxonomy-subject-title";
+
+                    subjectTitle.textContent =
+                        subjectName;
+
+                    subjectBlock.appendChild(subjectTitle);
+
+                    const matchingCourses =
+                        areaCourses
+                            .filter(parts =>
+                                parts.length >= 3 &&
+                                parts[1] === subjectName
+                            )
+                            .map(parts => parts[2]);
+
+                    if(matchingCourses.length){
+
+                        const courseList =
+                            document.createElement("div");
+
+                        courseList.className =
+                            "preview-taxonomy-courses";
+
+                        matchingCourses.forEach(courseName => {
+
+                            const course =
+                                document.createElement("span");
+
+                            course.className =
+                                "preview-course";
+
+                            course.textContent =
+                                courseName;
+
+                            courseList.appendChild(course);
+                        });
+
+                        subjectBlock.appendChild(courseList);
+                    }
+
+                    areaBlock.appendChild(subjectBlock);
+                });
+            }
+
+            expertiseBox.appendChild(areaBlock);
+        });
+    }
+
+    document.getElementById("liveExperience").textContent =
+        experience || "—";
+
+    document.getElementById("liveRate").textContent =
+        rate ? `${rate} ${currency} / hour` : "—";
+
+    const linksBox = document.getElementById("liveLinks");
+    linksBox.innerHTML = "";
+
+    const links = [];
+    if(website) links.push(["Website", website]);
+    if(linkedin) links.push(["LinkedIn", linkedin]);
+
+    if(!links.length){
+        linksBox.innerHTML =
+            '<span class="preview-empty">No professional links added.</span>';
+    } else {
+        links.forEach(([label,url]) => {
+            const a = document.createElement("a");
+            a.href = url;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.textContent = label;
+            linksBox.appendChild(a);
+        });
+    }
 }
 
 
@@ -4357,7 +3502,22 @@ portraitInput.addEventListener(
         portraitFile = file;
 
         const portraitInfo = document.querySelector(".portrait-info p");
-        if(portraitInfo) portraitInfo.textContent = file.name + " selected";
+        if(portraitInfo) {
+            portraitInfo.textContent =
+                "JPG, PNG or WEBP · up to 10 MB";
+        }
+
+        let portraitStatus =
+            document.querySelector(".portrait-upload-status");
+
+        if(!portraitStatus){
+            portraitStatus = document.createElement("div");
+            portraitStatus.className = "portrait-upload-status";
+            portraitInfo?.parentElement?.appendChild(portraitStatus);
+        }
+
+        portraitStatus.textContent =
+            file.name + " selected ✓";
 
         const reader =
             new FileReader();
@@ -4493,35 +3653,39 @@ function validateStep(){
 
     if(currentStep === 1){
 
+        const selectedMainAreas =
+            getSelectedMainAreas();
+
         const subject =
-            document.querySelector(
-                'input[name="subject"]:checked'
-            );
+            selectedMainAreas[0] || null;
 
+        const specializations =
+            getSelectedCourses();
 
-        const levels =
-            getValues("levels");
+        const audiences =
+            getValues("audiences");
 
+        const proficiencyLevels =
+            getValues("proficiencyLevels");
 
         if(!subject){
-
-            alert(
-                "Please select your main teaching subject."
-            );
-
+            alert("Please select your main area.");
             valid = false;
-
         }
 
-
-        if(levels.length === 0){
-
-            alert(
-                "Please select at least one teaching level."
-            );
-
+        if(specializations.length === 0){
+            alert("Please select at least one specific area of expertise.");
             valid = false;
+        }
 
+        if(audiences.length === 0){
+            alert("Please select at least one audience you can work with.");
+            valid = false;
+        }
+
+        if(proficiencyLevels.length === 0){
+            alert("Please select at least one level you can teach.");
+            valid = false;
         }
 
     }
@@ -4553,6 +3717,328 @@ function validateStep(){
     return valid;
 
 }
+
+
+
+/* =========================================================
+   HOMEPAGE TAXONOMY — TEACHER MATCHING
+========================================================= */
+
+const teacherTaxonomy = {
+    Languages: {
+        English: [
+            "General English",
+            "Academic English",
+            "Business English",
+            "English for Specific Purposes",
+            "English Conversation",
+            "Academic Writing",
+            "Children & Teens"
+        ],
+        German: ["General German","Business German","German Conversation","German Exam Preparation"],
+        French: ["General French","Business French","French Conversation","French Exam Preparation"],
+        Spanish: ["General Spanish","Business Spanish","Spanish Conversation"],
+        Italian: ["General Italian","Italian Conversation"],
+        Turkish: ["General Turkish","Academic Turkish","Business Turkish","Turkish Conversation"],
+        Arabic: ["General Arabic","Business Arabic","Arabic Conversation"],
+        Chinese: ["Mandarin Chinese","Business Chinese","Chinese Conversation"]
+    },
+    Academic: {
+        Mathematics: ["General Mathematics","Algebra","Geometry","Trigonometry","Calculus","Statistics","Advanced Mathematics"],
+        Physics: ["General Physics","Mechanics","Electricity & Magnetism","Thermodynamics","Modern Physics"],
+        Chemistry: ["General Chemistry","Organic Chemistry","Inorganic Chemistry","Physical Chemistry"],
+        Biology: ["General Biology","Cell Biology","Genetics","Human Biology","Biochemistry"],
+        "Computer Science": ["Computer Science","Algorithms","Programming Fundamentals","Data Structures"],
+        Economics: ["Economics","Microeconomics","Macroeconomics","Econometrics"],
+        History: ["History","World History","European History","Modern History"],
+        Geography: ["Geography","Human Geography","Physical Geography"]
+    },
+    Exams: {
+        IELTS: ["IELTS Academic","IELTS General Training","IELTS Speaking","IELTS Writing"],
+        TOEFL: ["TOEFL iBT","TOEFL Speaking","TOEFL Writing"],
+        PTE: ["PTE Academic"],
+        YDS: ["YDS"],
+        YÖKDİL: ["YÖKDİL"],
+        SAT: ["SAT"],
+        ACT: ["ACT"],
+        GRE: ["GRE"],
+        GMAT: ["GMAT"],
+        AP: ["AP"],
+        IB: ["IB"],
+        "GCSE / IGCSE": ["GCSE / IGCSE"],
+        "A-Level": ["A-Level"]
+    },
+    Professional: {
+        "Business Communication": ["Business English","Business Writing","Professional Communication"],
+        "Public Speaking": ["Public Speaking","Presentation Skills"],
+        "Leadership & Management": ["Leadership","People Management","Team Management"],
+        "Sales & Negotiation": ["Sales","Negotiation","Client Communication"],
+        Marketing: ["Marketing","Digital Marketing","Content Marketing"],
+        "Project Management": ["Project Management","Agile","Scrum"],
+        "Career & Interviews": ["CV / Resume","Job Interviews","Career Development"]
+    },
+    Technology: {
+        Programming: ["Python","JavaScript","Java","C / C++","Programming Fundamentals"],
+        "Web Development": ["HTML / CSS","JavaScript","Frontend Development","Backend Development"],
+        "Data & Analytics": ["Excel","SQL","Data Analysis","Data Visualization"],
+        "AI & Machine Learning": ["Artificial Intelligence","Machine Learning","Generative AI"],
+        Cybersecurity: ["Cybersecurity","Network Security"],
+        "Cloud Computing": ["Cloud Computing","AWS","Azure"],
+        "Office & Productivity": ["Microsoft Excel","Microsoft Word","PowerPoint"]
+    },
+    Creative: {
+        Music: ["Instrument / Performance","Voice / Singing","Music Theory","Composition","Music Production"],
+        "Visual Arts": ["Drawing","Painting","Illustration"],
+        Design: ["Graphic Design","UI / UX Design","Interior Design"],
+        Photography: ["Photography","Photo Editing"],
+        "Film & Video": ["Video Production","Video Editing","Filmmaking"]
+    },
+    Personal: {
+        Communication: ["Communication Skills","Conversation"],
+        "Study Skills": ["Study Skills","Learning Strategies"],
+        "Critical Thinking": ["Critical Thinking","Problem Solving"],
+        "Time Management": ["Time Management","Productivity"],
+        "Presentation Skills": ["Presentation Skills","Public Speaking"],
+        "Interview Skills": ["Interview Skills","Mock Interviews"]
+    }
+};
+
+
+function updateMatchingReview(){
+    const areaReview = document.getElementById("reviewSubject");
+    if(areaReview){
+        const areas = getSelectedMainAreas();
+        areaReview.textContent = areas.length ? areas.join(" • ") : "—";
+    }
+
+    const courseReview = document.getElementById("reviewSpecializations");
+    if(courseReview){
+        const values = getSelectedCourses();
+        courseReview.textContent = values.length ? values.join(" • ") : "—";
+    }
+
+    const proficiencyReview = document.getElementById("reviewProficiency");
+    if(proficiencyReview){
+        const values = getValues("proficiencyLevels");
+        proficiencyReview.textContent = values.length ? values.join(" • ") : "—";
+    }
+}
+
+document.addEventListener("change", event => {
+    if(
+        event.target.matches('input[name="courses"]') ||
+        event.target.matches('input[name="proficiencyLevels"]')
+    ){
+        updateMatchingReview();
+    }
+});
+
+
+function renderTeacherSpecializations(){
+
+    const box = document.getElementById("teacherSpecializations");
+    if(!box) return;
+
+    // Preserve everything already selected before rebuilding the dependent UI.
+    const selectedSubjects = new Set(
+        Array.from(
+            document.querySelectorAll('input[name="teacherSubjects"]:checked')
+        ).map(el => el.value)
+    );
+
+    const selectedCourses = new Set(getSelectedCourses());
+
+    const selectedAreas = getSelectedMainAreas();
+
+    box.innerHTML = "";
+
+    if(!selectedAreas.length){
+        box.innerHTML =
+            '<div class="taxonomy-empty">Select one or more main areas above.</div>';
+        updateLiveProfile();
+        return;
+    }
+
+    selectedAreas.forEach((area, areaIndex) => {
+
+        const groups = teacherTaxonomy[area] || {};
+
+        const areaBlock = document.createElement("div");
+        areaBlock.className = "taxonomy-area-block";
+
+        const areaTitle = document.createElement("div");
+        areaTitle.className = "taxonomy-area-title";
+        areaTitle.innerHTML =
+            `<span>${area}</span><small>Select the subjects and courses you offer</small>`;
+
+        areaBlock.appendChild(areaTitle);
+
+        Object.entries(groups).forEach(([subject, courses], groupIndex) => {
+
+            const group = document.createElement("div");
+            group.className = "taxonomy-group";
+
+            const heading = document.createElement("div");
+            heading.className = "taxonomy-group-title";
+
+            const subjectValue = `${area} > ${subject}`;
+            const subjectId = `teacher_subject_${areaIndex}_${groupIndex}`;
+
+            heading.innerHTML = `
+                <label class="taxonomy-parent">
+                    <input type="checkbox"
+                           class="taxonomy-subject-check"
+                           name="teacherSubjects"
+                           id="${subjectId}"
+                           value="${subjectValue}">
+                    <span>${subject}</span>
+                </label>
+            `;
+
+            group.appendChild(heading);
+
+            const courseGrid = document.createElement("div");
+            courseGrid.className = "taxonomy-course-grid";
+
+            courses.forEach((course, courseIndex) => {
+
+                const id = `course_${areaIndex}_${groupIndex}_${courseIndex}`;
+                const courseValue = `${area} > ${subject} > ${course}`;
+
+                const item = document.createElement("label");
+                item.className = "taxonomy-course";
+
+                item.innerHTML = `
+                    <input type="checkbox"
+                           name="courses"
+                           value="${courseValue}"
+                           data-area="${area}"
+                           data-parent-subject="${subject}"
+                           id="${id}">
+                    <span>${course}</span>
+                `;
+
+                courseGrid.appendChild(item);
+            });
+
+            group.appendChild(courseGrid);
+            areaBlock.appendChild(group);
+
+            const parent = group.querySelector(".taxonomy-subject-check");
+
+            // Restore a previously selected subject.
+            parent.checked = selectedSubjects.has(subjectValue);
+
+            const courseInputs =
+                [...group.querySelectorAll('input[name="courses"]')];
+
+            // Restore previously selected courses.
+            courseInputs.forEach(courseInput => {
+                courseInput.checked =
+                    selectedCourses.has(courseInput.value);
+            });
+
+            // Keep parent checkbox synchronized with its children.
+            const syncParent = () => {
+                const checkedCount =
+                    courseInputs.filter(input => input.checked).length;
+
+                parent.checked =
+                    selectedSubjects.has(subjectValue) ||
+                    (courseInputs.length > 0 &&
+                     checkedCount === courseInputs.length);
+
+                parent.indeterminate =
+                    checkedCount > 0 &&
+                    checkedCount < courseInputs.length &&
+                    !parent.checked;
+            };
+
+            parent.addEventListener("change", () => {
+                courseInputs.forEach(courseInput => {
+                    courseInput.checked = parent.checked;
+                });
+
+                // Explicitly retain the subject selection in the UI state.
+                if(parent.checked){
+                    selectedSubjects.add(subjectValue);
+                }else{
+                    selectedSubjects.delete(subjectValue);
+                }
+
+                updateLiveProfile();
+            });
+
+            courseInputs.forEach(courseInput => {
+                courseInput.addEventListener("change", () => {
+
+                    const checkedCount =
+                        courseInputs.filter(input => input.checked).length;
+
+                    if(checkedCount === 0){
+                        selectedSubjects.delete(subjectValue);
+                    }else{
+                        selectedSubjects.add(subjectValue);
+                    }
+
+                    parent.checked =
+                        checkedCount === courseInputs.length;
+
+                    parent.indeterminate =
+                        checkedCount > 0 &&
+                        checkedCount < courseInputs.length;
+
+                    updateLiveProfile();
+                });
+            });
+
+            syncParent();
+        });
+
+        box.appendChild(areaBlock);
+    });
+
+    updateMatchingReview();
+    updateLiveProfile();
+}
+
+function getSelectedMainAreas(){
+    return Array.from(
+        document.querySelectorAll('input[name="subject"]:checked')
+    ).map(el => el.value);
+}
+
+function getSelectedCourses(){
+    return Array.from(
+        document.querySelectorAll('input[name="courses"]:checked')
+    ).map(el => el.value);
+}
+
+document.querySelectorAll('input[name="subject"]').forEach(input => {
+    input.addEventListener("change", function(){
+        renderTeacherSpecializations();
+    });
+});
+
+document.querySelectorAll('input[name="teachingLanguages"]').forEach(input => {
+    input.addEventListener("change", function(){
+        const values = Array.from(
+            document.querySelectorAll('input[name="teachingLanguages"]:checked')
+        ).map(el => el.value);
+
+        document.getElementById("languages").value = values.join(", ");
+    });
+});
+
+document.querySelectorAll('input[name="proficiencyLevels"]').forEach(input => {
+    input.addEventListener("change", function(){
+        const values = Array.from(
+            document.querySelectorAll('input[name="proficiencyLevels"]:checked')
+        ).map(el => el.value);
+
+        document.getElementById("matchingLevels").value = values.join(", ");
+    });
+});
 
 
 /* =========================================================
@@ -5124,7 +4610,13 @@ document
                     'input[name="subject"]:checked'
                 )?.value || null;
 
-            const levels = getValues("levels");
+            const specializations = getSelectedCourses();
+            const selectedSubjectParents = Array.from(
+                document.querySelectorAll('input[name="teacherSubjects"]:checked')
+            ).map(el => el.value);
+            const audiences = getValues("audiences");
+            const proficiencyLevels = getValues("proficiencyLevels");
+            const levels = audiences;
             const formats = getValues("formats");
 
             const languages =
@@ -5185,13 +4677,35 @@ document
                3. SAVE SUBJECTS
             ====================================================== */
 
-            if(subject){
+            const subjectRows = [];
+
+            selectedMainAreas.forEach(area => {
+                subjectRows.push({
+                    teacher_id: teacherId,
+                    subject: area
+                });
+            });
+
+            selectedSubjectParents.forEach(parentSubject => {
+                if(!subjectRows.some(row => row.subject === parentSubject)){
+                    subjectRows.push({
+                        teacher_id: teacherId,
+                        subject: parentSubject
+                    });
+                }
+            });
+
+            specializations.forEach(course => {
+                subjectRows.push({
+                    teacher_id: teacherId,
+                    subject: course
+                });
+            });
+
+            if(subjectRows.length){
                 const { error } = await supabase
                     .from("teacher_subjects")
-                    .insert({
-                        teacher_id: teacherId,
-                        subject
-                    });
+                    .insert(subjectRows);
 
                 if(error) throw error;
             }
@@ -5200,15 +4714,26 @@ document
                4. SAVE TEACHING LEVELS
             ====================================================== */
 
-            if(levels.length){
+            const levelRows = [];
+
+            audiences.forEach(level => {
+                levelRows.push({
+                    teacher_id: teacherId,
+                    level: `Audience: ${level}`
+                });
+            });
+
+            proficiencyLevels.forEach(level => {
+                levelRows.push({
+                    teacher_id: teacherId,
+                    level: `Proficiency: ${level}`
+                });
+            });
+
+            if(levelRows.length){
                 const { error } = await supabase
                     .from("teacher_levels")
-                    .insert(
-                        levels.map(level => ({
-                            teacher_id: teacherId,
-                            level
-                        }))
-                    );
+                    .insert(levelRows);
 
                 if(error) throw error;
             }
@@ -5406,9 +4931,16 @@ document
 
             console.error("Bulbeni registration error:", error);
 
+            const errorMessage =
+                error?.message ||
+                "Please try again.";
+
             alert(
                 "We couldn't complete your registration.\n\n" +
-                (error?.message || "Please try again.")
+                errorMessage +
+                "\n\nIf the problem happens while uploading the portrait, " +
+                "make sure the Supabase Storage bucket 'teacher-portraits' " +
+                "exists and allows authenticated teacher uploads."
             );
 
         } finally {
@@ -5433,6 +4965,83 @@ updateLiveProfile();
 </script>
 
 
+
+<script id="bulbeni-language-switch-update">
+document.addEventListener("DOMContentLoaded", function () {
+  var switcher = document.querySelector(".language-switch");
+  var button = document.querySelector(".language-globe");
+  if (!switcher || !button) return;
+  button.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var open = switcher.classList.toggle("is-open");
+    button.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.addEventListener("click", function (event) {
+    if (!switcher.contains(event.target)) {
+      switcher.classList.remove("is-open");
+      button.setAttribute("aria-expanded", "false");
+    }
+  });
+});
+</script>
+
+
+<script id="bulbeni-inline-hints-js">
+document.querySelectorAll('input, textarea').forEach(field => {
+    field.addEventListener('focus', () => {
+        field.classList.add('has-focus');
+    });
+
+    field.addEventListener('blur', () => {
+        field.classList.remove('has-focus');
+    });
+});
+
+document.querySelectorAll('input[type="password"]').forEach(field => {
+    const hint = field.closest('.field')?.querySelector('.password-hint');
+    if(!hint) return;
+
+    const syncPasswordHint = () => {
+        hint.classList.toggle('is-hidden', field.value.length > 0);
+    };
+
+    field.addEventListener('input', syncPasswordHint);
+    field.addEventListener('focus', syncPasswordHint);
+    field.addEventListener('blur', syncPasswordHint);
+    syncPasswordHint();
+});
+</script>
+
+
+document.addEventListener("change", function(event){
+    if(event.target.closest("#teacherForm")){
+        updateLiveProfile();
+    }
+});
+
+document.addEventListener("input", function(event){
+    if(event.target.closest("#teacherForm")){
+        updateLiveProfile();
+    }
+});
+
+
+<script id="live-preview-complete-listener">
+document.addEventListener("input", function(event){
+    if(event.target.closest("#teacherForm")){
+        updateLiveProfile();
+    }
+});
+
+document.addEventListener("change", function(event){
+    if(event.target.closest("#teacherForm")){
+        updateLiveProfile();
+    }
+});
+</script>
+
+<script>document.addEventListener("DOMContentLoaded",()=>{ renderTeacherSpecializations(); updateLiveProfile(); });</script>
 </body>
 
 </html>

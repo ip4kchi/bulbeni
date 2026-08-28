@@ -4823,6 +4823,35 @@ html{scroll-behavior:smooth;}
 }
 </style>
 
+
+<style id="bulbeni-professional-hero-line">
+.hero-accent-line{
+    display:flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    width:112px !important;
+    height:14px !important;
+    margin-top:2px !important;
+}
+.hero-accent-line .accent-line{
+    display:block !important;
+    width:58px !important;
+    height:1px !important;
+    background:#D7E3E6 !important;
+}
+.hero-accent-line .accent-line-short{
+    width:28px !important;
+}
+.hero-accent-line .accent-dot{
+    display:block !important;
+    width:6px !important;
+    height:6px !important;
+    flex:0 0 6px !important;
+    border-radius:50% !important;
+    background:#2A9D8F !important;
+}
+</style>
+
 </head>
 
 
@@ -4987,34 +5016,10 @@ html{scroll-behavior:smooth;}
 
 </div>
 
-                    <div class="trust-line">
-
-
-                        <div class="avatar-stack">
-
-                            <div class="avatar">
-                                A
-                            </div>
-
-                            <div class="avatar">
-                                M
-                            </div>
-
-                            <div class="avatar">
-                                S
-                            </div>
-
-                            <div class="avatar">
-                                E
-                            </div>
-
-                        </div>
-
-
-                        <span>
-                            Built for learners. Designed for teachers.
-                        </span>
-
+                    <div class="trust-line hero-accent-line" aria-hidden="true">
+                        <span class="accent-line"></span>
+                        <span class="accent-dot"></span>
+                        <span class="accent-line accent-line-short"></span>
                     </div>
 
 
