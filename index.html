@@ -5131,6 +5131,62 @@ body.page-ready{
 }
 </style>
 
+
+<style id="bulbeni-desktop-premium-refinement">
+@media (min-width:761px){
+
+  .navbar{
+    background:rgba(255,255,255,.88) !important;
+    backdrop-filter:blur(16px) saturate(125%) !important;
+    -webkit-backdrop-filter:blur(16px) saturate(125%) !important;
+    border-bottom:1px solid rgba(31,72,64,.08) !important;
+  }
+
+  .nav-inner{
+    min-height:64px !important;
+  }
+
+  .nav-primary,
+  .nav-actions{
+    align-items:center !important;
+  }
+
+  .nav-primary{
+    gap:28px !important;
+  }
+
+  .nav-actions{
+    gap:18px !important;
+  }
+
+  .nav-teacher-cta,
+  .nav-login,
+  .language-toggle{
+    transition:transform .22s ease,background .22s ease,color .22s ease,
+                box-shadow .22s ease !important;
+  }
+
+  .nav-teacher-cta:hover,
+  .nav-login:hover,
+  .language-toggle:hover{
+    transform:translateY(-1px) !important;
+  }
+
+  .hero{
+    animation:bulbeniDesktopHeroIn 1.35s cubic-bezier(.22,1,.36,1) both;
+  }
+
+  @keyframes bulbeniDesktopHeroIn{
+    from{opacity:0;transform:translateY(14px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  .hero-accent-line{
+    display:flex !important;
+  }
+}
+</style>
+
 </head>
 
 
