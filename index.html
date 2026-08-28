@@ -2012,7 +2012,1440 @@
 
         }
 
+    
+        /* =========================================================
+           PREMIUM COURSE-FINDER HOMEPAGE
+        ========================================================= */
+
+        .nav-links{
+            gap:30px;
+        }
+
+        .nav-actions{
+            gap:8px;
+        }
+
+        .btn-login{
+            border:1px solid var(--border);
+            padding:10px 15px;
+            border-radius:10px;
+            font-size:13px;
+        }
+
+        .btn-login:hover{
+            border-color:#CBD9DF;
+            background:var(--cream);
+        }
+
+        .hero{
+            padding:76px 0 92px;
+        }
+
+        .hero-grid{
+            grid-template-columns:1.08fr .92fr;
+            gap:64px;
+        }
+
+        .hero h1{
+            max-width:720px;
+        }
+
+        .hero-description{
+            max-width:600px;
+        }
+
+        /* The form is the main interaction on the homepage. */
+        .course-finder{
+            max-width:680px;
+            padding:18px;
+            background:rgba(255,255,255,.94);
+            border:1px solid #DCE5E9;
+            border-radius:18px;
+            box-shadow:
+                0 18px 55px rgba(16,42,67,.10),
+                0 2px 8px rgba(16,42,67,.04);
+            backdrop-filter:blur(12px);
+            margin-bottom:28px;
+        }
+
+        .finder-intro{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:2px 3px 14px;
+        }
+
+        .finder-kicker{
+            color:var(--navy);
+            font-size:12px;
+            font-weight:800;
+            letter-spacing:.2px;
+        }
+
+        .finder-caption{
+            color:#8797A1;
+            font-size:11px;
+            font-weight:600;
+        }
+
+        .finder-row{
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:10px;
+            margin-bottom:10px;
+        }
+
+        .finder-row-main{
+            grid-template-columns:1.35fr .85fr;
+        }
+
+        .finder-field{
+            min-width:0;
+            display:block;
+            padding:11px 13px 10px;
+            background:#FAFCFC;
+            border:1px solid #E1E8EB;
+            border-radius:11px;
+            transition:.2s ease;
+        }
+
+        .finder-field:focus-within{
+            border-color:var(--teal);
+            background:#fff;
+            box-shadow:0 0 0 3px rgba(42,157,143,.09);
+        }
+
+        .finder-field > span{
+            display:block;
+            margin-bottom:4px;
+            color:#728591;
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:.25px;
+            text-transform:uppercase;
+        }
+
+        .finder-field input,
+        .finder-field select{
+            width:100%;
+            border:0;
+            outline:0;
+            padding:0;
+            background:transparent;
+            color:var(--navy);
+            font-size:13px;
+            font-weight:600;
+            min-width:0;
+        }
+
+        .finder-field input::placeholder{
+            color:#9AA8B0;
+            font-weight:500;
+        }
+
+        .finder-field select{
+            cursor:pointer;
+        }
+
+        .finder-submit{
+            width:100%;
+            min-height:51px;
+            margin-top:2px;
+            border-radius:11px;
+            font-size:14px;
+            letter-spacing:.05px;
+            box-shadow:0 9px 22px rgba(16,42,67,.15);
+        }
+
+        .finder-submit span{
+            font-size:17px;
+            transition:transform .2s ease;
+        }
+
+        .finder-submit:hover span{
+            transform:translateX(3px);
+        }
+
+        .finder-footnote{
+            margin:9px 2px 0;
+            color:#84949D;
+            font-size:10px;
+            line-height:1.4;
+            text-align:center;
+        }
+
+        /* Replace the old dashboard with a polished matching preview. */
+        .hero-visual{
+            position:relative;
+            min-height:535px;
+        }
+
+        .match-preview{
+            position:absolute;
+            right:0;
+            top:5px;
+            width:min(100%,475px);
+            padding:22px;
+            background:#fff;
+            border:1px solid var(--border);
+            border-radius:24px;
+            box-shadow:
+                0 28px 75px rgba(16,42,67,.12),
+                0 3px 10px rgba(16,42,67,.04);
+        }
+
+        .preview-top{
+            display:flex;
+            justify-content:space-between;
+            gap:18px;
+            align-items:flex-start;
+            margin-bottom:19px;
+        }
+
+        .preview-eyebrow{
+            display:block;
+            margin-bottom:6px;
+            color:var(--teal);
+            font-size:10px;
+            font-weight:800;
+            text-transform:uppercase;
+            letter-spacing:.7px;
+        }
+
+        .preview-top h3{
+            color:var(--navy);
+            font-family:"Manrope",sans-serif;
+            font-size:21px;
+            line-height:1.2;
+            letter-spacing:-.5px;
+        }
+
+        .preview-status{
+            padding:5px 8px;
+            border-radius:7px;
+            background:var(--mint);
+            color:#277E73;
+            font-size:9px;
+            font-weight:800;
+            letter-spacing:.7px;
+        }
+
+        .preview-request{
+            padding:13px 14px;
+            border-radius:12px;
+            background:#F5FAF9;
+            border:1px solid #E0EFEC;
+        }
+
+        .request-label{
+            display:block;
+            margin-bottom:5px;
+            color:#7A8F97;
+            font-size:9px;
+            font-weight:800;
+            letter-spacing:.7px;
+        }
+
+        .preview-request strong{
+            display:block;
+            color:var(--navy);
+            font-size:12px;
+        }
+
+        .preview-request > span:last-child{
+            display:block;
+            margin-top:3px;
+            color:#78909A;
+            font-size:10px;
+        }
+
+        .preview-divider{
+            height:1px;
+            background:#EDF1F2;
+            margin:20px 0 15px;
+        }
+
+        .preview-heading{
+            display:flex;
+            justify-content:space-between;
+            margin-bottom:11px;
+            color:var(--navy);
+            font-size:11px;
+            font-weight:800;
+        }
+
+        .preview-heading small{
+            color:#8A9AA2;
+            font-size:9px;
+            font-weight:600;
+        }
+
+        .preview-teacher{
+            display:grid;
+            grid-template-columns:38px 1fr auto;
+            align-items:center;
+            gap:10px;
+            padding:12px 0;
+            border-top:1px solid #F0F3F4;
+        }
+
+        .preview-avatar{
+            width:38px;
+            height:38px;
+            border-radius:50%;
+            display:grid;
+            place-items:center;
+            background:#EAF6F8;
+            color:var(--blue);
+            font-size:10px;
+            font-weight:800;
+        }
+
+        .preview-avatar.avatar-2{
+            background:#F0F1F7;
+            color:#56617C;
+        }
+
+        .preview-avatar.avatar-3{
+            background:#EEF7F1;
+            color:#47765B;
+        }
+
+        .preview-teacher-info strong{
+            display:block;
+            color:var(--navy);
+            font-size:11px;
+        }
+
+        .preview-teacher-info span{
+            display:block;
+            margin-top:2px;
+            color:#748690;
+            font-size:9px;
+        }
+
+        .preview-teacher-info small{
+            display:block;
+            margin-top:2px;
+            color:#91A0A7;
+            font-size:9px;
+        }
+
+        .match-score{
+            padding:5px 7px;
+            border-radius:7px;
+            background:#F7FAFA;
+            color:var(--teal);
+            font-size:9px;
+            font-weight:800;
+        }
+
+        .preview-bottom{
+            display:flex;
+            justify-content:space-between;
+            gap:12px;
+            padding-top:14px;
+            margin-top:4px;
+            border-top:1px solid #EDF1F2;
+            color:#84949C;
+            font-size:9px;
+        }
+
+        .preview-bottom span:last-child{
+            color:var(--navy);
+            font-weight:800;
+        }
+
+        .floating-card{
+            border-radius:15px;
+            box-shadow:0 18px 50px rgba(16,42,67,.10);
+            border:1px solid #E2E9ED;
+        }
+
+        .teacher-audience-link{
+            display:inline-flex;
+            align-items:center;
+            gap:7px;
+            margin-top:auto;
+            padding-bottom:3px;
+            border-bottom:1px solid rgba(16,42,67,.18);
+            color:var(--navy);
+            font-size:13px;
+            font-weight:800;
+        }
+
+        .teacher-audience-link:hover{
+            border-color:var(--navy);
+        }
+
+        .cta-actions .btn{
+            min-width:185px;
+        }
+
+        @media(max-width:900px){
+            .hero-grid{
+                grid-template-columns:1fr;
+                gap:42px;
+            }
+
+            .hero-content{
+                max-width:720px;
+            }
+
+            .hero-visual{
+                min-height:500px;
+            }
+
+            .match-preview{
+                left:50%;
+                transform:translateX(-50%);
+                right:auto;
+            }
+        }
+
+        @media(max-width:700px){
+            .finder-row,
+            .finder-row-main{
+                grid-template-columns:1fr;
+            }
+
+            .course-finder{
+                padding:14px;
+            }
+
+            .finder-intro{
+                padding-bottom:11px;
+            }
+
+            .hero{
+                padding:58px 0 70px;
+            }
+
+            .hero-visual{
+                min-height:475px;
+            }
+
+            .match-preview{
+                width:100%;
+                padding:18px;
+            }
+
+            .floating-one,
+            .floating-two{
+                display:none;
+            }
+        }
+
     </style>
+
+
+<style>
+/* ===== HEADER REFINEMENT ===== */
+.navbar .nav-actions{
+    margin-right: 18px;
+    padding-right: 0;
+    gap: 10px;
+}
+
+.navbar .nav-links{
+    margin-right: 6px;
+}
+
+.nav-actions .login-button,
+.nav-actions .btn-login{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    padding:0 18px;
+    border:1px solid #163B68;
+    border-radius:10px;
+    background:#163B68;
+    color:#fff !important;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.1px;
+    box-shadow:0 7px 18px rgba(22,59,104,.18);
+    transition:all .22s ease;
+}
+
+.nav-actions .login-button:hover,
+.nav-actions .btn-login:hover{
+    background:#102F55;
+    border-color:#102F55;
+    color:#fff !important;
+    transform:translateY(-1px);
+    box-shadow:0 10px 22px rgba(22,59,104,.23);
+}
+
+/* Language control: Turkish flag + TR */
+.nav-actions .language-button,
+.nav-actions .lang-button,
+.nav-actions .language-switch,
+.nav-actions .lang-switch{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+}
+
+.tr-flag{
+    width:18px;
+    height:13px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:2px;
+    overflow:hidden;
+    font-size:14px;
+    line-height:1;
+    flex:0 0 auto;
+}
+
+/* Keep the right side comfortably inside the viewport. */
+@media (min-width:1101px){
+    .navbar{
+        padding-left:28px;
+        padding-right:30px;
+    }
+}
+
+@media (max-width:1100px){
+    .navbar .nav-actions{
+        margin-right:10px;
+    }
+}
+
+@media (max-width:700px){
+    .navbar{
+        padding-left:18px;
+        padding-right:18px;
+    }
+
+    .navbar .nav-actions{
+        margin-right:0;
+        gap:7px;
+    }
+
+    .nav-actions .login-button,
+    .nav-actions .btn-login{
+        min-height:38px;
+        padding:0 13px;
+    }
+}
+</style>
+
+
+<style>
+/* =========================================================
+   BULBENI GUIDED COURSE BUILDER
+========================================================= */
+
+.course-builder{
+    width:100%;
+    max-width:680px;
+    padding:22px;
+    background:rgba(255,255,255,.97);
+    border:1px solid #DCE5E9;
+    border-radius:22px;
+    box-shadow:
+        0 24px 70px rgba(16,42,67,.11),
+        0 3px 10px rgba(16,42,67,.04);
+    backdrop-filter:blur(14px);
+    margin-bottom:25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.builder-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:14px;
+}
+
+.builder-kicker{
+    display:block;
+    color:var(--teal);
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1px;
+    margin-bottom:5px;
+}
+
+.builder-header h2{
+    font-family:"Manrope",sans-serif;
+    color:var(--navy);
+    font-size:21px;
+    line-height:1.2;
+    letter-spacing:-.5px;
+}
+
+.builder-step{
+    flex:0 0 auto;
+    padding:6px 9px;
+    border-radius:8px;
+    background:#F3F7F8;
+    color:#7A8D97;
+    font-size:10px;
+    font-weight:800;
+}
+
+.builder-path{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    min-height:28px;
+    margin-bottom:14px;
+    color:#7B8E98;
+    font-size:10px;
+    font-weight:700;
+}
+
+.builder-path span{
+    padding:5px 8px;
+    border-radius:7px;
+    background:#F5F8F9;
+}
+
+.builder-path span:not(:last-child)::after{
+    content:"→";
+    margin-left:6px;
+    color:#A1AEB5;
+}
+
+.builder-content{
+    min-height:235px;
+    animation:builderFade .22s ease;
+}
+
+@keyframes builderFade{
+    from{opacity:0;transform:translateY(4px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.builder-question{
+    color:var(--navy);
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.builder-options{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+}
+
+.builder-options.three{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.builder-option{
+    min-height:56px;
+    padding:12px 13px;
+    border:1px solid #E0E8EB;
+    border-radius:12px;
+    background:#FBFCFC;
+    color:var(--navy);
+    text-align:left;
+    cursor:pointer;
+    transition:.2s ease;
+    position:relative;
+}
+
+.builder-option strong{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+}
+
+.builder-option small{
+    display:block;
+    margin-top:2px;
+    color:#83949D;
+    font-size:9px;
+    line-height:1.35;
+}
+
+.builder-option:hover{
+    border-color:#BFD6DC;
+    background:#fff;
+    transform:translateY(-1px);
+    box-shadow:0 7px 18px rgba(16,42,67,.06);
+}
+
+.builder-option.selected{
+    border-color:var(--teal);
+    background:#F2FAF8;
+    box-shadow:0 0 0 3px rgba(42,157,143,.08);
+}
+
+.builder-option.selected::after{
+    content:"✓";
+    position:absolute;
+    top:9px;
+    right:10px;
+    color:var(--teal);
+    font-size:11px;
+    font-weight:900;
+}
+
+.builder-multi-note{
+    margin-top:9px;
+    color:#8999A2;
+    font-size:9px;
+}
+
+.builder-review{
+    border:1px solid #DDEAE7;
+    border-radius:15px;
+    background:#F7FBFA;
+    padding:15px;
+}
+
+.review-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid #E7F0EE;
+}
+
+.review-row:last-child{
+    border-bottom:0;
+}
+
+.review-row span{
+    color:#84949C;
+    font-size:9px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+}
+
+.review-row strong{
+    color:var(--navy);
+    font-size:11px;
+    text-align:right;
+}
+
+.builder-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:13px;
+    padding-top:12px;
+    border-top:1px solid #EDF1F2;
+}
+
+.builder-back,
+.builder-skip{
+    border:0;
+    background:transparent;
+    color:#718590;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+    padding:7px 3px;
+}
+
+.builder-back:hover,
+.builder-skip:hover{
+    color:var(--navy);
+}
+
+.builder-skip{
+    margin-left:auto;
+}
+
+.builder-primary{
+    width:100%;
+    min-height:48px;
+    border:0;
+    border-radius:11px;
+    background:var(--navy);
+    color:#fff;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 9px 22px rgba(16,42,67,.14);
+    transition:.22s ease;
+}
+
+.builder-primary:hover{
+    background:var(--navy-dark);
+    transform:translateY(-1px);
+    box-shadow:0 12px 26px rgba(16,42,67,.19);
+}
+
+.builder-secondary{
+    width:100%;
+    min-height:43px;
+    border:1px solid #DCE5E9;
+    border-radius:10px;
+    background:#fff;
+    color:var(--navy);
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.builder-complete{
+    text-align:center;
+    padding:13px 4px 3px;
+}
+
+.builder-complete-mark{
+    width:42px;
+    height:42px;
+    margin:0 auto 10px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#EAF7F4;
+    color:var(--teal);
+    font-size:17px;
+    font-weight:900;
+}
+
+.builder-complete h3{
+    color:var(--navy);
+    font-family:"Manrope",sans-serif;
+    font-size:19px;
+    margin-bottom:5px;
+}
+
+.builder-complete p{
+    color:#758792;
+    font-size:10px;
+    line-height:1.5;
+    margin-bottom:14px;
+}
+
+/* Request preview */
+.request-preview-card{
+    position:absolute;
+    right:0;
+    top:10px;
+    width:min(100%,470px);
+    padding:23px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:
+        0 30px 80px rgba(16,42,67,.12),
+        0 3px 10px rgba(16,42,67,.04);
+}
+
+.request-preview-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:17px;
+}
+
+.request-preview-top span:first-child{
+    display:block;
+    color:#7A8D96;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.8px;
+    margin-bottom:3px;
+}
+
+.request-preview-top strong{
+    color:var(--navy);
+    font-family:"Manrope",sans-serif;
+    font-size:16px;
+}
+
+.preview-check{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:#EAF7F4;
+    color:var(--teal);
+    display:grid;
+    place-items:center;
+    font-weight:900;
+}
+
+.request-progress{
+    display:flex;
+    gap:5px;
+    margin-bottom:17px;
+}
+
+.request-progress span{
+    height:3px;
+    flex:1;
+    border-radius:3px;
+    background:#E9EFF1;
+}
+
+.request-progress span.active{
+    background:var(--teal);
+}
+
+.request-section{
+    padding:12px 0;
+    border-bottom:1px solid #EEF2F3;
+}
+
+.request-section small{
+    display:block;
+    color:#8A9AA2;
+    font-size:8px;
+    font-weight:800;
+    letter-spacing:.7px;
+    margin-bottom:3px;
+}
+
+.request-section strong{
+    color:var(--navy);
+    font-size:12px;
+}
+
+.request-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.muted-preview span{
+    display:block;
+    color:#72858F;
+    font-size:10px;
+    line-height:1.5;
+}
+
+.preview-note{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-top:14px;
+    color:#70858E;
+    font-size:9px;
+    font-weight:700;
+}
+
+.preview-note span:first-child{
+    width:19px;
+    height:19px;
+    display:grid;
+    place-items:center;
+    border-radius:6px;
+    background:#F0F8F6;
+    color:var(--teal);
+}
+
+.builder-floating{
+    position:absolute;
+    z-index:4;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:205px;
+    padding:11px 12px;
+    border:1px solid #E1E9EC;
+    border-radius:13px;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 16px 45px rgba(16,42,67,.10);
+}
+
+.builder-floating-one{
+    left:-20px;
+    bottom:65px;
+}
+
+.builder-floating-two{
+    right:-12px;
+    bottom:-4px;
+    width:220px;
+}
+
+.floating-mini-icon{
+    width:31px;
+    height:31px;
+    display:grid;
+    place-items:center;
+    flex:0 0 auto;
+    border-radius:9px;
+    background:#EAF6F8;
+    color:var(--blue);
+    font-size:8px;
+    font-weight:900;
+}
+
+.builder-floating strong{
+    display:block;
+    color:var(--navy);
+    font-size:10px;
+}
+
+.builder-floating small{
+    display:block;
+    margin-top:2px;
+    color:#84949D;
+    font-size:8px;
+    line-height:1.3;
+}
+
+@media(max-width:900px){
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-visual{
+        min-height:485px;
+        max-width:580px;
+        width:100%;
+        margin:auto;
+    }
+
+    .request-preview-card{
+        left:50%;
+        right:auto;
+        transform:translateX(-50%);
+    }
+}
+
+@media(max-width:650px){
+    .course-builder{
+        padding:16px;
+        border-radius:18px;
+    }
+
+    .builder-options,
+    .builder-options.three{
+        grid-template-columns:1fr;
+    }
+
+    .builder-content{
+        min-height:300px;
+    }
+
+    .request-preview-card{
+        width:100%;
+        padding:18px;
+    }
+
+    .builder-floating{
+        display:none;
+    }
+
+    .hero-visual{
+        min-height:425px;
+    }
+}
+</style>
+
+
+<style>
+/* Premium step transitions */
+.course-builder{
+    perspective:1200px;
+}
+.builder-content.step-enter-forward{
+    animation:builderForward .42s cubic-bezier(.22,.8,.22,1) both;
+}
+.builder-content.step-enter-back{
+    animation:builderBack .42s cubic-bezier(.22,.8,.22,1) both;
+}
+@keyframes builderForward{
+    0%{opacity:0;transform:translate3d(34px,0,0) scale(.985);filter:blur(2px)}
+    55%{opacity:1;filter:blur(0)}
+    100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+@keyframes builderBack{
+    0%{opacity:0;transform:translate3d(-28px,0,0) scale(.985);filter:blur(2px)}
+    55%{opacity:1;filter:blur(0)}
+    100%{opacity:1;transform:translate3d(0,0,0) scale(1)}
+}
+.builder-option{
+    animation:optionReveal .38s cubic-bezier(.22,.8,.22,1) both;
+}
+.builder-option:nth-child(2){animation-delay:.025s}
+.builder-option:nth-child(3){animation-delay:.05s}
+.builder-option:nth-child(4){animation-delay:.075s}
+.builder-option:nth-child(5){animation-delay:.10s}
+.builder-option:nth-child(6){animation-delay:.125s}
+.builder-option:nth-child(7){animation-delay:.15s}
+.builder-option:nth-child(8){animation-delay:.175s}
+.builder-option:nth-child(9){animation-delay:.20s}
+@keyframes optionReveal{
+    from{opacity:0;transform:translateY(8px)}
+    to{opacity:1;transform:translateY(0)}
+}
+.builder-option:active{
+    transform:scale(.975);
+}
+.builder-progress-fill{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:0;
+    border-radius:99px;
+    background:var(--teal);
+    transition:width .5s cubic-bezier(.22,.8,.22,1);
+}
+.builder-progress-wrap{
+    position:relative;
+    height:3px;
+    margin:0 0 17px;
+    border-radius:99px;
+    background:#E9EFF1;
+    overflow:hidden;
+}
+.budget-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+}
+.budget-option{
+    min-height:67px;
+    padding:12px 9px;
+    border:1px solid #E0E8EB;
+    border-radius:12px;
+    background:#FBFCFC;
+    color:var(--navy);
+    cursor:pointer;
+    transition:.2s ease;
+    text-align:center;
+}
+.budget-option strong{
+    display:block;
+    font-size:13px;
+    font-weight:850;
+}
+.budget-option small{
+    display:block;
+    margin-top:3px;
+    color:#84949D;
+    font-size:8px;
+}
+.budget-option:hover{
+    border-color:#BFD6DC;
+    background:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(16,42,67,.07);
+}
+.budget-option.selected{
+    border-color:var(--teal);
+    background:#F2FAF8;
+    box-shadow:0 0 0 3px rgba(42,157,143,.08);
+}
+.budget-custom{
+    margin-top:10px;
+    padding:12px 14px;
+    border:1px dashed #D8E3E6;
+    border-radius:12px;
+    color:#82929A;
+    font-size:9px;
+    text-align:center;
+}
+@media(max-width:650px){
+    .budget-options{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+    .builder-content,
+    .builder-option{animation:none!important}
+    .builder-progress-fill{transition:none}
+}
+</style>
+
+
+<style>
+/* Tighten the vertical rhythm between the banner and hero */
+.hero{
+    padding-top:28px !important;
+}
+</style>
+
+
+<style>
+.course-builder{overflow:hidden}
+.builder-options.three{grid-template-columns:repeat(3,1fr)}
+.builder-option{
+    min-height:78px;
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+.builder-option:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(16,42,67,.08);
+}
+.builder-option strong{font-size:12px}
+.builder-option small{font-size:9px;line-height:1.35}
+.builder-final h3{margin:7px 0 13px;color:var(--navy);font-size:20px}
+.final-badge{
+    display:inline-block;padding:6px 8px;border-radius:7px;background:#F0F8F6;color:var(--teal);
+    font-size:8px;font-weight:900;letter-spacing:.12em
+}
+.review-card{border:1px solid #E4EBEE;border-radius:14px;background:#FBFCFC;padding:8px 13px}
+.review-row{display:flex;justify-content:space-between;gap:18px;padding:9px 0;border-bottom:1px solid #EDF1F2}
+.review-row:last-child{border-bottom:0}
+.review-row span{text-transform:capitalize;color:#8A9AA2;font-size:9px}
+.review-row strong{text-align:right;color:var(--navy);font-size:10px}
+.final-note{font-size:9px;line-height:1.55;color:#7F919A;margin:12px 0}
+.builder-submit{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;padding:12px 14px;border-radius:10px;background:var(--navy);color:#fff;
+    font-size:10px;font-weight:850;transition:.22s ease
+}
+.builder-submit:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(16,42,67,.16)}
+@media(max-width:700px){.builder-options.three{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.builder-options.three{grid-template-columns:1fr}}
+</style>
+
+
+<style>
+.hard-requirements,.preference-grid{display:grid;gap:10px}
+.hard-requirements{grid-template-columns:1fr 1fr}
+.hr-field{padding:12px 13px;background:#FAFCFC;border:1px solid #E1E8EB;border-radius:11px}
+.hr-field label{display:block;margin-bottom:6px;color:#71838D;font-size:9px;font-weight:850;text-transform:uppercase;letter-spacing:.04em}
+.hr-field select{width:100%;border:0;background:transparent;outline:0;color:var(--navy);font:600 12px inherit}
+.hr-field small{font-size:8px;text-transform:none;letter-spacing:0;font-weight:600}
+.builder-next{width:100%;margin-top:11px;padding:12px;border:0;border-radius:10px;background:var(--navy);color:#fff;font-weight:850;font-size:10px;cursor:pointer}
+.builder-next span{font-size:15px;margin-left:5px}
+.preference-grid{grid-template-columns:1fr 1fr}
+.preference-item{display:flex;gap:9px;align-items:flex-start;padding:11px;border:1px solid #E1E8EB;border-radius:11px;background:#FAFCFC;cursor:pointer}
+.preference-item input{margin-top:3px;accent-color:#2A9D8F}
+.preference-item span{display:flex;flex-direction:column;gap:3px}
+.preference-item strong{font-size:10px;color:var(--navy)}
+.preference-item small{font-size:8px;color:#83939C;line-height:1.35}
+.matching-principles{margin-top:12px;display:grid;gap:7px}
+.matching-principles>div{display:flex;gap:9px;align-items:flex-start;padding:8px 9px;background:#F7FAFA;border-radius:9px}
+.matching-principles b{font-size:8px;color:var(--teal);padding-top:2px}
+.matching-principles span{font-size:8px;color:#71838D;line-height:1.45}
+.matching-principles strong{color:var(--navy)}
+@media(max-width:650px){.hard-requirements,.preference-grid{grid-template-columns:1fr}}
+</style>
+
+<style>
+.salary-card{padding:15px;border:1px solid #E1E8EB;border-radius:13px;background:#FAFCFC}
+.salary-values{display:flex;justify-content:space-between;gap:20px;margin-bottom:12px}
+.salary-values div{display:flex;flex-direction:column;gap:3px}
+.salary-values div:last-child{text-align:right}
+.salary-values small{font-size:8px;color:#84949C;text-transform:uppercase;letter-spacing:.05em;font-weight:850}
+.salary-values strong{font-size:14px;color:var(--navy)}
+.range-wrap{position:relative;padding:7px 0}
+.range-wrap input{width:100%;margin:0;accent-color:#2A9D8F}
+.range-wrap input+input{margin-top:-8px}
+.salary-scale{display:flex;justify-content:space-between;font-size:7px;color:#8A989F}
+.salary-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}
+.salary-presets button{border:1px solid #DCE5E8;background:#fff;border-radius:9px;padding:9px 5px;color:var(--navy);font:800 9px inherit;cursor:pointer}
+.salary-presets button:hover{border-color:#2A9D8F;transform:translateY(-1px)}
+.salary-presets small{display:block;color:#8A989F;font-size:7px;margin-top:2px}
+.budget-mode{display:grid;gap:7px;margin-top:11px}
+.budget-mode-title{font-size:9px;font-weight:850;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px}
+.budget-mode label{display:flex;gap:9px;padding:9px 10px;border:1px solid #E1E8EB;border-radius:9px;background:#fff;cursor:pointer}
+.budget-mode input{accent-color:#2A9D8F;margin-top:2px}
+.budget-mode span{display:flex;flex-direction:column;gap:2px}
+.budget-mode strong{font-size:9px;color:var(--navy)}
+.budget-mode small{font-size:8px;color:#7B8A92;line-height:1.35}
+.brief-line{font-size:9px;line-height:1.5;color:#75858D;margin:7px 0 12px}
+.brief-actions{display:flex;gap:8px;margin-top:12px}
+.builder-edit{flex:0 0 auto;padding:11px 13px;border:1px solid #D8E2E5;border-radius:10px;background:#fff;color:var(--navy);font:800 9px inherit;cursor:pointer}
+.brief-actions .builder-submit{flex:1;margin-top:0}
+@media(max-width:650px){.salary-presets{grid-template-columns:1fr 1fr}.brief-actions{flex-direction:column}.builder-edit{width:100%}}
+</style>
+
+<style id="bulbeni-dual-journey-styles">
+/* Bulbeni dual-journey live matching panel */
+.match-panel {
+    position: relative;
+    overflow: hidden;
+    transition: height .45s cubic-bezier(.22,1,.36,1), transform .35s ease, opacity .35s ease;
+}
+.match-panel .match-content {
+    transition: opacity .22s ease, transform .32s cubic-bezier(.22,1,.36,1);
+}
+.match-panel.is-changing .match-content {
+    opacity: 0;
+    transform: translateY(8px);
+}
+.match-kicker {
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: .72rem;
+    font-weight: 700;
+    opacity: .58;
+    margin-bottom: .55rem;
+}
+.match-title {
+    margin: 0 0 .45rem;
+}
+.match-subtitle {
+    margin: 0 0 1.25rem;
+    opacity: .68;
+    line-height: 1.55;
+}
+.match-rows {
+    display: grid;
+    gap: .65rem;
+}
+.match-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .72rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.match-row:last-child { border-bottom: 0; }
+.match-label { opacity: .58; font-size: .88rem; }
+.match-value { font-weight: 650; text-align: right; }
+.match-empty { opacity: .42; font-weight: 500; }
+.match-progress {
+    margin-top: 1rem;
+    font-size: .8rem;
+    opacity: .55;
+}
+.match-ready {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,.08);
+}
+.match-ready strong { display:block; margin-bottom:.3rem; }
+.match-chip-wrap {
+    display:flex;
+    flex-wrap:wrap;
+    gap:.45rem;
+    margin:.9rem 0;
+}
+.match-chip {
+    display:inline-flex;
+    align-items:center;
+    min-height:30px;
+    padding:0 .65rem;
+    border-radius:999px;
+    background:rgba(0,0,0,.045);
+    font-size:.78rem;
+    font-weight:650;
+}
+.match-mode-badge {
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    padding:.35rem .6rem;
+    border-radius:999px;
+    background:rgba(0,0,0,.045);
+    font-size:.72rem;
+    font-weight:700;
+    margin-bottom:.8rem;
+}
+</style>
+
+
+<style id="bulbeni-right-panel-fix">
+/* Dedicated right-side hero panel */
+.bulbeni-live-panel {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 280px;
+    padding: 30px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(15,23,42,.08);
+    box-shadow: 0 18px 55px rgba(15,23,42,.08);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.bulbeni-live-panel-inner {
+    width: 100%;
+    transition: opacity .22s ease, transform .32s cubic-bezier(.22,1,.36,1);
+}
+.bulbeni-live-panel.is-changing .bulbeni-live-panel-inner {
+    opacity: 0;
+    transform: translateY(9px);
+}
+.bulbeni-live-panel-kicker {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    opacity: .48;
+    margin-bottom: 10px;
+}
+.bulbeni-live-panel h3 {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 2.4vw, 34px);
+    line-height: 1.08;
+}
+.bulbeni-live-panel p {
+    margin: 0 0 22px;
+    line-height: 1.6;
+    opacity: .62;
+}
+.bulbeni-live-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 18px;
+}
+.bulbeni-live-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(15,23,42,.07);
+}
+.bulbeni-live-item span {
+    display: block;
+    font-size: 11px;
+    opacity: .48;
+    margin-bottom: 3px;
+}
+.bulbeni-live-item strong {
+    display: block;
+    font-size: 13px;
+    line-height: 1.35;
+}
+.bulbeni-live-empty {
+    opacity: .38;
+    font-weight: 500;
+}
+.bulbeni-live-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 16px;
+}
+.bulbeni-live-chip {
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: rgba(15,23,42,.045);
+    font-size: 11px;
+    font-weight: 700;
+}
+.bulbeni-live-status {
+    margin-top: 17px;
+    font-size: 12px;
+    opacity: .55;
+}
+@media (max-width: 760px) {
+    .bulbeni-live-panel {
+        min-height: 230px;
+        padding: 22px;
+    }
+    .bulbeni-live-panel-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+<style id="bulbeni-live-panel-visibility-fix">
+.hero-visual .bulbeni-live-panel {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+</style>
 
 </head>
 
@@ -2060,12 +3493,7 @@
                 <a href="#teachers">
                     For Teachers
                 </a>
-
-                <a href="#categories">
-                    Subjects
-                </a>
-
-            </nav>
+</nav>
 
 
             <!-- ACTIONS -->
@@ -2079,7 +3507,7 @@
                     href="tr/index.html"
                     class="language-switch"
                     aria-label="Türkçe"
-                >
+                ><span class="tr-flag" aria-hidden="true">🇹🇷</span>
                     TR
                 </a>
 
@@ -2087,18 +3515,7 @@
                <a href="teacher-login.html" class="login-button">
     Log in
 </a>
-                
-
-
-                <button
-                    class="btn btn-primary"
-                    type="button"
-                >
-                    Get Started
-                </button>
-
-
-                <button
+<button
                     class="mobile-menu"
                     aria-label="Open menu"
                     type="button"
@@ -2166,36 +3583,36 @@
                     </p>
 
 
-                    <div class="hero-buttons">
+                    <div class="course-builder" id="courseBuilder">
 
+    <div class="builder-header">
+        <div>
+            <span class="builder-kicker">BUILD YOUR LEARNING REQUEST</span>
+            <h2 id="builderTitle">What would you like to learn?</h2>
+        </div>
+        <span class="builder-step" id="builderStep">1 / 5</span>
+    </div>
 
-                        <button
-                            class="btn btn-primary hero-main-btn"
-                            type="button"
-                        >
+    <div class="builder-progress-wrap" aria-hidden="true">
+        <div class="builder-progress-fill" id="builderProgress"></div>
+    </div>
 
-                            Find My Teacher
+    <div class="builder-path" id="builderPath" aria-live="polite">
+        <span>Start here</span>
+    </div>
 
-                            <span>
-                                →
-                            </span>
+    <div class="builder-content" id="builderContent"></div>
 
-                        </button>
+    <div class="builder-footer">
+        <button type="button" class="builder-back" id="builderBack" hidden>
+            ← Back
+        </button>
+        <button type="button" class="builder-skip" id="builderSkip" hidden>
+            I'm not sure
+        </button>
+    </div>
 
-
-                        <button
-                            class="btn btn-outline hero-main-btn"
-                            type="button"
-                        onclick="window.location.href='teacher-register.html'"
-                            >
-
-                            I'm a Teacher
-
-                        </button>
-
-
-                    </div>
-
+</div>
 
                     <div class="trust-line">
 
@@ -2236,440 +3653,52 @@
 
                 <div class="hero-visual">
 
+                    <div class="bulbeni-live-panel" data-bulbeni-live-panel="true">
+                        <div class="bulbeni-live-panel-inner">
+                            <div class="bulbeni-live-panel-kicker">Built around your needs</div>
+                            <h3>Your Learning Plan</h3>
+                            <p>Your choices will shape the professionals we recommend.</p>
 
-                    <div class="dashboard-card">
-
-
-                        <div class="dashboard-top">
-
-
-                            <div>
-
-                                <div class="mini-title">
-                                    Find your teacher
+                            <div class="bulbeni-live-panel-grid">
+                                <div class="bulbeni-live-item">
+                                    <span>FIELD</span>
+                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
                                 </div>
-
-                                <div class="mini-label">
-                                    Recommended for you
+                                <div class="bulbeni-live-item">
+                                    <span>SUBJECT / LANGUAGE</span>
+                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
                                 </div>
-
+                                <div class="bulbeni-live-item">
+                                    <span>SPECIALIZATION</span>
+                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
+                                </div>
+                                <div class="bulbeni-live-item">
+                                    <span>LEVEL</span>
+                                    <strong class="bulbeni-live-empty">Not selected yet</strong>
+                                </div>
                             </div>
 
-
-                            <div class="notification">
-                                ♢
+                            <div class="bulbeni-live-status">
+                                Start choosing on the left and your plan will build here.
                             </div>
-
-
                         </div>
-
-
-                        <div class="search-box">
-
-                            <span>
-                                ⌕
-                            </span>
-
-                            <span>
-                                What would you like to learn?
-                            </span>
-
-                        </div>
-
-
-                        <div class="teacher-list">
-
-
-                            <!-- TEACHER 1 -->
-
-                            <div class="teacher">
-
-
-                                <div class="teacher-avatar">
-                                    SA
-                                </div>
-
-
-                                <div class="teacher-info">
-
-                                    <div class="teacher-name">
-                                        Sarah Anderson
-                                    </div>
-
-                                    <div class="teacher-sub">
-                                        English • IELTS • Adults
-                                    </div>
-
-                                    <div class="rating">
-
-                                        <strong>
-                                            ★ 4.9
-                                        </strong>
-
-                                        · 124 reviews
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="view-btn">
-                                    View
-                                </div>
-
-
-                            </div>
-
-
-
-                            <!-- TEACHER 2 -->
-
-                            <div class="teacher">
-
-
-                                <div class="teacher-avatar">
-                                    MK
-                                </div>
-
-
-                                <div class="teacher-info">
-
-                                    <div class="teacher-name">
-                                        Michael Kim
-                                    </div>
-
-                                    <div class="teacher-sub">
-                                        Mathematics • High School
-                                    </div>
-
-                                    <div class="rating">
-
-                                        <strong>
-                                            ★ 5.0
-                                        </strong>
-
-                                        · 87 reviews
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="view-btn">
-                                    View
-                                </div>
-
-
-                            </div>
-
-
-
-                            <!-- TEACHER 3 -->
-
-                            <div class="teacher">
-
-
-                                <div class="teacher-avatar">
-                                    EL
-                                </div>
-
-
-                                <div class="teacher-info">
-
-                                    <div class="teacher-name">
-                                        Emma Lewis
-                                    </div>
-
-                                    <div class="teacher-sub">
-                                        Science • Middle School
-                                    </div>
-
-                                    <div class="rating">
-
-                                        <strong>
-                                            ★ 4.8
-                                        </strong>
-
-                                        · 63 reviews
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="view-btn">
-                                    View
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-
                     </div>
 
-
-
-                    <!-- FLOATING CARD -->
-
-                    <div
-                        class="floating-card floating-one"
-                    >
-
-
-                        <div class="floating-icon">
-                            ✓
+                    <div class="builder-floating builder-floating-one">
+                        <span class="floating-mini-icon">01</span>
+                        <div>
+                            <strong>Click, don't type.</strong>
+                            <small>Your choices build the request.</small>
                         </div>
-
-
-                        <strong>
-                            Personalized matching
-                        </strong>
-
-
-                        <p>
-
-                            Tell us what you need and
-                            discover teachers who fit.
-
-                        </p>
-
-
                     </div>
 
-
-
-                    <!-- FLOATING CARD -->
-
-                    <div
-                        class="floating-card floating-two"
-                    >
-
-
-                        <div class="floating-icon">
-                            ✦
+                    <div class="builder-floating builder-floating-two">
+                        <span class="floating-mini-icon">02</span>
+                        <div>
+                            <strong>One request. One clear brief.</strong>
+                            <small>Your professional sees it before you connect.</small>
                         </div>
-
-
-                        <strong>
-                            Professional profiles
-                        </strong>
-
-
-                        <p>
-
-                            Compare experience, expertise,
-                            reviews and teaching style.
-
-                        </p>
-
-
                     </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             STATS
-        ====================================================== -->
-
-        <section class="stats">
-
-            <div class="container stats-grid">
-
-
-                <div class="stat">
-
-                    <strong>
-                        1:1
-                    </strong>
-
-                    <span>
-                        Personalized matching
-                    </span>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <strong>
-                        100%
-                    </strong>
-
-                    <span>
-                        Professional profiles
-                    </span>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <strong>
-                        Every Subject
-                    </strong>
-
-                    <span>
-                        Whatever you want to learn
-                    </span>
-
-                </div>
-
-
-                <div class="stat">
-
-                    <strong>
-                        Your Goals
-                    </strong>
-
-                    <span>
-                        Your learning journey
-                    </span>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             HOW IT WORKS
-        ====================================================== -->
-
-        <section
-            class="section"
-            id="how-it-works"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading center">
-
-
-                    <div class="section-label">
-                        Simple by design
-                    </div>
-
-
-                    <h2>
-
-                        Learning starts
-                        with the right connection.
-
-                    </h2>
-
-
-                    <p>
-
-                        Stop scrolling through endless teacher
-                        profiles. Tell us what you need,
-                        discover the right teachers and start
-                        learning.
-
-                    </p>
-
-
-                </div>
-
-
-
-                <div class="steps">
-
-
-                    <!-- STEP 1 -->
-
-                    <div class="step-card">
-
-
-                        <div class="step-number">
-                            01
-                        </div>
-
-
-                        <h3>
-                            Tell us what you need
-                        </h3>
-
-
-                        <p>
-
-                            Choose your subject, level, goals,
-                            preferred schedule, lesson format
-                            and other requirements.
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <!-- STEP 2 -->
-
-                    <div class="step-card">
-
-
-                        <div class="step-number">
-                            02
-                        </div>
-
-
-                        <h3>
-                            Discover your matches
-                        </h3>
-
-
-                        <p>
-
-                            Explore professional teacher profiles,
-                            compare experience, expertise, reviews
-                            and availability.
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <!-- STEP 3 -->
-
-                    <div class="step-card">
-
-
-                        <div class="step-number">
-                            03
-                        </div>
-
-
-                        <h3>
-                            Start learning
-                        </h3>
-
-
-                        <p>
-
-                            Connect with the teacher who fits
-                            your goals and build your own
-                            learning experience.
-
-                        </p>
-
-
-                    </div>
-
 
                 </div>
 
@@ -2796,9 +3825,9 @@
                         </p>
 
 
-                        <a href="teacher-register.html" class="btn btn-primary">
-    Join as a Teacher
-</a>
+                        <a href="teacher-register.html" class="audience-link teacher-audience-link">
+                            Join Bulbeni as a teacher <span>→</span>
+                        </a>
 
 
                         <div
@@ -3088,30 +4117,9 @@
 
 
                     <div class="cta-actions">
-
-
-                        <button
-                            class="btn btn-white"
-                            type="button"
-                        >
-
-                            Find a Teacher →
-
-                        </button>
-
-
-                        <button
-                            class="btn btn-ghost"
-                            type="button"
-                        onclick="window.location.href='teacher-register.html'"
-
->
-
-                            Become a Teacher
-
-                        </button>
-
-
+                        <a class="btn btn-white" href="#find-teacher">
+                            Find your teacher <span>→</span>
+                        </a>
                     </div>
 
 
@@ -3308,111 +4316,827 @@
     ========================================================== -->
 
     <script>
+/* =========================================================
+   BULBENI — ADAPTIVE LEARNING / HIRING BUILDER
+   Hiring path uses HARD REQUIREMENTS first, then preferences.
+========================================================= */
+
+const builder = document.getElementById("courseBuilder");
+
+if (builder) {
+    const titleEl = document.getElementById("builderTitle");
+    const stepEl = document.getElementById("builderStep");
+    const pathEl = document.getElementById("builderPath");
+    const contentEl = document.getElementById("builderContent");
+    const backEl = document.getElementById("builderBack");
+    const skipEl = document.getElementById("builderSkip");
+    const progressEl = document.getElementById("builderProgress");
+
+    const state = { mode:null, values:{}, path:[] };
+    const history = [];
+
+    const learnTaxonomy = {
+        learn:{title:"What are you looking for?",options:[
+            ["Languages","Foreign languages","languages"],["Academic","School & academic subjects","academic"],
+            ["Exams","Exam & qualification preparation","exams"],["Professional","Business & professional skills","business"],
+            ["Technology","Technology & digital skills","technology"],["Creative","Arts, music & creative skills","creative"],
+            ["Personal","Personal development & life skills","personal"]
+        ]},
+        languages:{title:"Which language?",options:[
+            ["English","General, academic, professional & exam English","english"],["German","German language & exam preparation","language"],
+            ["French","French language & exam preparation","language"],["Spanish","Spanish language & conversation","language"],
+            ["Italian","Italian language & conversation","language"],["Turkish","Turkish language & communication","language"],
+            ["Arabic","Arabic language & communication","language"],["Chinese","Mandarin Chinese","language"]
+        ]},
+        english:{title:"What kind of English?",options:[
+            ["General English","Everyday English, fluency & communication","level"],["Academic English","Academic writing & university English","level"],
+            ["Business English","Workplace communication","level"],["Exam Preparation","IELTS, TOEFL, PTE, YDS & more","english-exams"],
+            ["Children & Teens","Young learner English","level"]
+        ]},
+        "english-exams":{title:"Which English exam?",options:[
+            ["IELTS","Academic, General Training or UKVI","ielts"],["TOEFL","Academic English proficiency","level"],
+            ["PTE","PTE Academic preparation","level"],["YDS","YDS preparation","level"],["YÖKDİL","YÖKDİL preparation","level"],
+            ["Cambridge","A2 Key through C2 Proficiency","level"]
+        ]},
+        ielts:{title:"What is your IELTS goal?",options:[
+            ["First IELTS attempt","Build a complete preparation plan","level"],["Improve my score","Raise an existing result","level"],
+            ["University admission","Meet an academic entry requirement","level"],["Immigration","Prepare for an immigration requirement","level"],
+            ["Professional registration","Meet a professional requirement","level"]
+        ]},
+        academic:{title:"What academic area?",options:[
+            ["Mathematics","School, university & competitive mathematics","level"],["Physics","School & university physics","level"],
+            ["Chemistry","School & university chemistry","level"],["Biology","School & university biology","level"],
+            ["Computer Science","School & university computer science","level"],["Economics","School & university economics","level"],
+            ["History","School & university history","level"],["Geography","School & university geography","level"]
+        ]},
+        exams:{title:"Which exam or qualification?",options:[
+            ["SAT","University admission","level"],["ACT","University admission","level"],["GRE","Graduate admission","level"],
+            ["GMAT","Business school admission","level"],["AP","Advanced Placement","level"],["IB","International Baccalaureate","level"],
+            ["GCSE / IGCSE","Secondary qualifications","level"],["A-Level","Advanced secondary qualification","level"]
+        ]},
+        business:{title:"What professional skill?",options:[
+            ["Business Communication","Meetings, emails & workplace communication","level"],["Public Speaking","Presentations & confident speaking","level"],
+            ["Leadership & Management","Leadership & people management","level"],["Sales & Negotiation","Sales conversations & negotiation","level"],
+            ["Marketing","Marketing strategy & digital marketing","level"],["Project Management","Planning & delivery","level"],
+            ["Career & Interviews","CV, interviews & career development","level"]
+        ]},
+        technology:{title:"Which technology area?",options:[
+            ["Programming","Software development & coding","level"],["Web Development","Front-end, back-end & full-stack","level"],
+            ["Data & Analytics","Data analysis, SQL & visualization","level"],["AI & Machine Learning","AI, ML & generative AI","level"],
+            ["Cybersecurity","Security & defensive skills","level"],["Cloud Computing","Cloud platforms & infrastructure","level"],
+            ["Office & Productivity","Excel, PowerPoint & productivity tools","level"]
+        ]},
+        creative:{title:"What creative area?",options:[
+            ["Music","Instrument, voice, theory & production","level"],["Visual Arts","Drawing, painting & illustration","level"],
+            ["Design","Graphic, UI/UX & visual design","level"],["Photography","Photography & editing","level"],
+            ["Film & Video","Filmmaking, editing & animation","level"]
+        ]},
+        personal:{title:"What would you like to develop?",options:[
+            ["Communication","Communication & interpersonal skills","level"],["Study Skills","Learning & study strategies","level"],
+            ["Critical Thinking","Reasoning & analytical thinking","level"],["Time Management","Planning & productivity","level"],
+            ["Presentation Skills","Present with clarity and confidence","level"],["Interview Skills","Interview preparation","level"]
+        ]}
+    };
+
+    const levelOptions=[
+        ["Beginner","Starting from the foundations","level-beginner"],
+        ["Elementary","Basic knowledge, needs development","level-elementary"],
+        ["Intermediate","Comfortable but wants improvement","level-intermediate"],
+        ["Upper-intermediate","Strong working knowledge","level-upper"],
+        ["Advanced","High-level proficiency","level-advanced"],
+        ["Expert","Professional / specialist level","level-expert"],
+        ["Not sure","Let the professional assess this","level-unknown"]
+    ];
+
+    function animate(direction="forward"){
+        contentEl.classList.remove("step-enter-forward","step-enter-back");
+        void contentEl.offsetWidth;
+        contentEl.classList.add(direction==="back"?"step-enter-back":"step-enter-forward");
+    }
+
+    function update(){
+        const pct=Math.min(100,Math.max(8,((history.length+1)/7)*100));
+        if(progressEl) progressEl.style.width=pct+"%";
+        pathEl.innerHTML="";
+        (state.path.length?state.path:["Start here"]).slice(-6).forEach((x,i)=>{
+            const s=document.createElement("span");s.textContent=x;pathEl.appendChild(s);
+            if(i<Math.min(state.path.length,6)-1){const a=document.createElement("b");a.textContent="›";pathEl.appendChild(a);}
+        });
+    }
+
+    function header(title,n=1,total=7){
+        titleEl.textContent=title;stepEl.textContent=`${Math.min(n,total)} / ${total}`;update();
+    }
+
+    function options(items, callback){
+        contentEl.innerHTML=`<div class="builder-question">Choose the option that best describes your needs.</div><div class="builder-options three"></div>`;
+        const grid=contentEl.querySelector(".builder-options");
+        items.forEach(([label,sub,value])=>{
+            const b=document.createElement("button");b.type="button";b.className="builder-option";
+            b.innerHTML=`<strong>${label}</strong><small>${sub}</small>`;
+            b.onclick=()=>callback(label,value);grid.appendChild(b);
+        });
+        animate();
+    }
+
+    function startMode(mode){
+        state.mode=mode;state.values={};state.path=[mode==="learn"?"Learn":mode==="hire"?"Hire":"Work"];
+        history.length=0;history.push("mode");
+        if(mode==="learn") renderLearn("learn");
+        else if(mode==="hire") renderHiringStart();
+        else window.location.href="teacher-register.html";
+    }
+
+    function renderModeChooser(){
+        header("How can Bulbeni help you?",1);
+        options([
+            ["I want to learn","Find a teacher, tutor, trainer or coach.","learn"],
+            ["I want to hire","Find the right professional for your needs.","hire"],
+            ["I want to work","Create your professional profile and start your journey.","work"]
+        ],(label,value)=>startMode(value));
+        backEl.hidden=true;skipEl.hidden=true;
+    }
+
+    function renderLearn(key){
+        const node=learnTaxonomy[key]||learnTaxonomy.learn;
+        header(node.title,history.length+1);
+        options(node.options,(label,value)=>{
+            state.values[key]=label;state.path.push(label);history.push(key);
+            if(value==="level") return renderLearnLevel();
+            if(value==="english") return renderLearn("english");
+            if(value==="english-exams") return renderLearn("english-exams");
+            if(value==="ielts") return renderLearn("ielts");
+            if(learnTaxonomy[value]) return renderLearn(value);
+            return renderLearnLevel();
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderLearnLevel(){
+        header("What's the current level?",history.length+1);
+        options(levelOptions,(label)=>{
+            state.values.level=label;state.path.push(label);history.push("level");
+            renderLearnFormat();
+        });
+    }
+
+    function renderLearnFormat(){
+        header("How would you like to learn?",history.length+1);
+        options([
+            ["Online","Learn remotely from anywhere.","online"],
+            ["Face-to-face","Meet a teacher in person.","face"],
+            ["Either","Show both options.","either"]
+        ],(label)=>{
+            state.values.format=label;state.path.push(label);history.push("format");renderLearnBudget();
+        });
+    }
+
+    function renderLearnBudget(){
+        header("What's your hourly budget?",history.length+1);
+        contentEl.innerHTML=`<div class="builder-question">Choose a comfortable range.</div><div class="budget-options"></div>`;
+        const grid=contentEl.querySelector(".budget-options");
+        ["Under 500 TL","500–750 TL","750–1,000 TL","1,000–1,500 TL","1,500–2,000 TL","2,000+ TL"].forEach(x=>{
+            const b=document.createElement("button");b.className="budget-option";b.type="button";
+            b.innerHTML=`<strong>${x}</strong><small>${x} / hour</small>`;
+            b.onclick=()=>{state.values.budget=x;state.path.push(x);history.push("budget");renderFinal("learn");};
+            grid.appendChild(b);
+        });
+        backEl.hidden=false;skipEl.hidden=false;skipEl.textContent="Skip for now";animate();
+    }
+
+    /* ========================= HIRING ========================= */
+
+    function renderHiringStart(){
+        header("What are you hiring for?",2);
+        options([
+            ["Teachers & Tutors","Schools, academies and private education.","teachers"],
+            ["Trainers & Coaches","Corporate, professional or personal training.","trainers"],
+            ["Education Specialists","Instructional design, curriculum & EdTech.","education"],
+            ["Business Professionals","Marketing, sales, management & operations.","business"],
+            ["Technology Professionals","Development, data, AI & IT.","technology"],
+            ["Creative Professionals","Design, video, photography & content.","creative"]
+        ],(label,value)=>{
+            state.values.professional_area=label;state.path.push(label);history.push("hire-start");renderHiringRole(value);
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderHiringRole(area){
+        let items;
+        if(area==="teachers") items=[
+            ["General Subject Teacher","Teach a specific school subject","general-subject"],
+            ["Language Teacher","Teach a foreign or second language","language-teacher"],
+            ["Exam Preparation Teacher","Prepare learners for exams and qualifications","exam-teacher"],
+            ["Early Years / Kindergarten Teacher","Early childhood education","kindergarten"],
+            ["Special Education Teacher","Specialized learning support","special-education"],
+            ["University / Academic Instructor","Higher education & academic teaching","university"],
+            ["Adult Education Teacher","Adult learners & continuing education","adult"]
+        ];
+        else if(area==="trainers") items=[
+            ["Corporate Trainer","Employee learning & development","corporate"],["Language Trainer","Workplace language programs","language"],
+            ["Technical Trainer","Software & technology training","technical"],["Coach / Mentor","Professional or personal development","coach"]
+        ];
+        else if(area==="education") items=[
+            ["Instructional Designer","Learning experiences & digital courses","instructional"],["Curriculum Specialist","Curriculum design & development","curriculum"],
+            ["Educational Consultant","Education strategy & improvement","consultant"],["EdTech Specialist","Educational technology implementation","edtech"]
+        ];
+        else if(area==="business") items=[
+            ["Marketing Professional","Marketing strategy & execution","marketing"],["Sales Professional","Sales & business development","sales"],
+            ["Project Manager","Planning, delivery & coordination","project"],["Management Professional","Leadership & operations","management"],
+            ["HR / People Professional","People operations & development","hr"]
+        ];
+        else if(area==="technology") items=[
+            ["Software Developer","Application & software development","developer"],["Web Developer","Front-end, back-end or full-stack","web"],
+            ["Data Analyst / Scientist","Data, analytics & modeling","data"],["AI / ML Specialist","Artificial intelligence & machine learning","ai"],
+            ["Cybersecurity Specialist","Security & risk","cyber"],["IT Specialist","IT systems & support","it"]
+        ];
+        else items=[
+            ["Graphic Designer","Branding, layout & visual communication","graphic"],["UI/UX Designer","Digital product design","ux"],
+            ["Photographer","Portrait, commercial or editorial","photo"],["Video / Film Professional","Production & post-production","video"],
+            ["Content Creator","Digital content & media","content"],["Music Professional","Performance, production or teaching","music"]
+        ];
+        header("What position are you hiring for?",history.length+1);
+        options(items,(label,value)=>{
+            state.values.role=label;
+            state.path.push(label);
+            history.push("hire-role");
+            if(area==="teachers" && value==="general-subject") return renderTeacherSubject();
+            if(area==="teachers" && value==="language-teacher") return renderLanguage();
+            renderHiringSpecialization(area);
+        });
+    }
+
+    function renderTeacherSubject(){
+        header("Which subject or discipline?",history.length+1);
+        options([
+            ["Mathematics","Mathematics, algebra, geometry, calculus & statistics","Mathematics"],
+            ["Sciences","Physics, chemistry, biology & earth/environmental science","Sciences"],
+            ["Humanities & Social Sciences","History, geography, philosophy, sociology, psychology & civics","Humanities"],
+            ["Languages & Literature","School language, literature & language arts","Languages & Literature"],
+            ["Business & Economics","Economics, accounting, finance & business studies","Business & Economics"],
+            ["Arts & Creative Subjects","Art, design, drama & other creative school subjects","Arts & Creative"],
+            ["Music","Music theory, performance, composition & instruments","Music"],
+            ["Other Academic Subject","Another defined school or academic subject","Other"]
+        ],(label)=>{
+            state.values.subject=label;
+            state.path.push(label);
+            history.push("teacher-subject");
+            renderAcademicDiscipline();
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderAcademicDiscipline(){
+        const subject=state.values.subject;
+        const maps={
+            "Mathematics":[
+                ["General Mathematics","Core mathematics","General Mathematics"],
+                ["Algebra","Algebraic methods","Algebra"],
+                ["Geometry","Euclidean & analytical geometry","Geometry"],
+                ["Trigonometry","Trigonometry","Trigonometry"],
+                ["Calculus","Differential & integral calculus","Calculus"],
+                ["Statistics","Statistics & probability","Statistics"],
+                ["Advanced Mathematics","Advanced / higher-level mathematics","Advanced Mathematics"]
+            ],
+            "Sciences":[
+                ["Physics","General & advanced physics","Physics"],
+                ["Chemistry","General & advanced chemistry","Chemistry"],
+                ["Biology","General & advanced biology","Biology"],
+                ["Earth & Environmental Science","Earth, environment & related sciences","Earth & Environmental Science"]
+            ],
+            "Humanities & Social Sciences":[
+                ["History","History & historical studies","History"],
+                ["Geography","Physical & human geography","Geography"],
+                ["Philosophy","Philosophy & ethics","Philosophy"],
+                ["Sociology","Sociology & social studies","Sociology"],
+                ["Psychology","Psychology & behavioral studies","Psychology"],
+                ["Civics / Social Studies","Civics, citizenship & social studies","Civics / Social Studies"]
+            ],
+            "Languages & Literature":[
+                ["Turkish Language & Literature","Turkish language and literature","Turkish Language & Literature"],
+                ["English Literature","English literature","English Literature"],
+                ["Other Literature","Other literature subjects","Other Literature"]
+            ],
+            "Business & Economics":[
+                ["Economics","Economics","Economics"],
+                ["Accounting","Accounting","Accounting"],
+                ["Finance","Finance & financial studies","Finance"],
+                ["Business Studies","Business, commerce & entrepreneurship","Business Studies"]
+            ],
+            "Arts & Creative":[
+                ["Art","Visual art","Art"],
+                ["Design","School design subjects","Design"],
+                ["Drama","Drama & theatre","Drama"],
+                ["Other Creative Subject","Another creative academic subject","Other Creative Subject"]
+            ],
+            "Music":[
+                ["Instrument / Performance","Instrumental or performance teaching","Instrument / Performance"],
+                ["Voice / Singing","Vocal instruction","Voice / Singing"],
+                ["Music Theory","Theory, harmony & ear training","Music Theory"],
+                ["Composition","Composition & arranging","Composition"],
+                ["Music Production","Recording, production & digital music","Music Production"]
+            ],
+            "Other Academic Subject":[
+                ["Other","Another defined academic discipline","Other"]
+            ]
+        };
+        header("Which specific discipline?",history.length+1);
+        options(maps[subject]||maps["Other Academic Subject"],(label)=>{
+            state.values.discipline=label;
+            state.path.push(label);
+            history.push("academic-discipline");
+            renderTeacherLevel();
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderLanguage(){
+        header("Which language do you need?",history.length+1);
+        options([
+            ["English","English language instruction","English"],
+            ["Spanish","Spanish language instruction","Spanish"],
+            ["French","French language instruction","French"],
+            ["German","German language instruction","German"],
+            ["Italian","Italian language instruction","Italian"],
+            ["Portuguese","Portuguese language instruction","Portuguese"],
+            ["Arabic","Arabic language instruction","Arabic"],
+            ["Persian","Persian language instruction","Persian"],
+            ["Turkish","Turkish language instruction","Turkish"],
+            ["Russian","Russian language instruction","Russian"],
+            ["Chinese / Mandarin","Chinese language instruction","Chinese / Mandarin"],
+            ["Japanese","Japanese language instruction","Japanese"],
+            ["Korean","Korean language instruction","Korean"],
+            ["Dutch","Dutch language instruction","Dutch"],
+            ["Greek","Greek language instruction","Greek"],
+            ["Hebrew","Hebrew language instruction","Hebrew"],
+            ["Hindi","Hindi language instruction","Hindi"],
+            ["Urdu","Urdu language instruction","Urdu"],
+            ["Other language","Another language","Other"]
+        ],(label)=>{
+            state.values.language=label;
+            state.path.push(label);
+            history.push("language");
+            renderLanguagePurpose();
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderLanguagePurpose(){
+        header("What is the purpose of the language training?",history.length+1);
+        options([
+            ["General Language","Build overall language ability","General Language"],
+            ["Conversation & Fluency","Speaking, interaction & fluency","Conversation & Fluency"],
+            ["Academic","Academic study and university use","Academic"],
+            ["Business & Professional","Workplace and professional communication","Business & Professional"],
+            ["Travel","Practical language for travel","Travel"],
+            ["Young Learners","Children and younger learners","Young Learners"],
+            ["Specialized / Occupational","Language for a specific profession or industry","Specialized / Occupational"],
+            ["Exam Preparation","Prepare for a language examination","Exam Preparation"],
+            ["Other","Another defined purpose","Other"]
+        ],(label)=>{
+            state.values.language_purpose=label;
+            state.path.push(label);
+            history.push("language-purpose");
+            if(label==="Exam Preparation") return renderLanguageExam();
+            renderTeacherLevel();
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderLanguageExam(){
+        header("Which language exam?",history.length+1);
+        const lang=state.values.language;
+        const exams={
+            "English":[
+                ["IELTS","International English Language Testing System","IELTS"],
+                ["TOEFL","TOEFL iBT","TOEFL"],
+                ["PTE Academic","Pearson Test of English Academic","PTE Academic"],
+                ["Cambridge English","Cambridge English qualifications","Cambridge English"],
+                ["YDS","Türkiye Yabancı Dil Bilgisi Seviye Tespit Sınavı","YDS"],
+                ["e-YDS","Electronic YDS","e-YDS"],
+                ["YÖKDİL","Türkiye higher-education language examination","YÖKDİL"],
+                ["e-YÖKDİL","Electronic YÖKDİL","e-YÖKDİL"],
+                ["TOEIC","Test of English for International Communication","TOEIC"],
+                ["Duolingo English Test","Duolingo English Test","Duolingo English Test"],
+                ["Other English exam","Another English examination","Other"]
+            ],
+            "Spanish":[
+                ["DELE","Diplomas of Spanish as a Foreign Language","DELE"],
+                ["SIELE","International Spanish Language Evaluation Service","SIELE"],
+                ["Other Spanish exam","Another Spanish examination","Other"]
+            ],
+            "German":[
+                ["Goethe-Zertifikat","Goethe-Institut examinations","Goethe-Zertifikat"],
+                ["TestDaF","German language university entrance examination","TestDaF"],
+                ["telc","telc language examinations","telc"],
+                ["DSH","German university language examination","DSH"],
+                ["Other German exam","Another German examination","Other"]
+            ],
+            "French":[
+                ["DELF / DALF","French language qualifications","DELF / DALF"],
+                ["TCF","French language proficiency test","TCF"],
+                ["TEF","French evaluation test","TEF"],
+                ["Other French exam","Another French examination","Other"]
+            ]
+        };
+        const list=exams[lang]||[
+            ["Language proficiency exam","General language proficiency examination","Language proficiency exam"],
+            ["Other","Another language examination","Other"]
+        ];
+        options(list,(label)=>{
+            state.values.language_exam=label;
+            state.path.push(label);
+            history.push("language-exam");
+            renderTeacherLevel();
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderTeacherLevel(){
+        header("Which teaching level?",history.length+1);
+        options([
+            ["Primary School","Typically ages 6–11","primary"],
+            ["Middle School","Typically ages 11–14","middle"],
+            ["High School","Typically ages 14–18","high"],
+            ["University","Higher education","university"],
+            ["Adult / Continuing Education","Adult learners","adult"],
+            ["Mixed / Multiple levels","More than one learner level","mixed"]
+        ],(label)=>{
+            state.values.teaching_level=label;
+            state.path.push(label);
+            history.push("teacher-level");
+            renderHiringSpecialization("teachers");
+        });
+        backEl.hidden=false;skipEl.hidden=true;
+    }
+
+    function renderHiringSpecialization(area){
+        header("What should this person be able to do?",history.length+1);
+        let items;
+        if(area==="teachers") items=[
+            ["Classroom teaching","Deliver structured lessons to a class","classroom"],
+            ["One-to-one teaching","Individual lessons and targeted support","one-to-one"],
+            ["Small-group teaching","Small-group instruction","small-group"],
+            ["Exam preparation","Structured exam preparation","exam"],
+            ["Academic support","Academic progress & study support","academic"],
+            ["Curriculum delivery","Teach a defined curriculum","curriculum"]
+        ];
+        else if(area==="trainers") items=[
+            ["Deliver training","Structured workshops and courses","delivery"],["Design training","Create training programs","design"],
+            ["Corporate learning","Employee learning programs","corporate"],["Coaching","Individual development","coaching"]
+        ];
+        else if(area==="technology") items=[
+            ["Build products","Software and digital products","build"],["Analyze data","Analytics and insights","analysis"],
+            ["AI implementation","AI systems and workflows","ai"],["IT infrastructure","Systems, networks and support","infra"]
+        ];
+        else items=[
+            ["Specialist execution","Hands-on specialist work","execution"],["Strategy","Planning and strategic work","strategy"],
+            ["Management","Lead people or operations","management"],["Consulting","Advisory and specialist expertise","consulting"]
+        ];
+        options(items,(label)=>{state.values.specialization=label;state.path.push(label);history.push("specialization");renderHardRequirements();});
+    }
+
+    function renderHardRequirements(){
+        header("Set the must-have requirements",history.length+1);
+        contentEl.innerHTML=`
+            <div class="builder-question">These requirements are strict. A candidate who fails a must-have will be excluded from the qualified list.</div>
+            <div class="hard-requirements">
+                <div class="hr-field"><label>Minimum relevant experience</label>
+                    <select id="minExp"><option value="0">No minimum</option><option value="1">1+ year</option><option value="2">2+ years</option><option value="3">3+ years</option><option value="5">5+ years</option><option value="10">10+ years</option></select>
+                </div>
+                <div class="hr-field"><label>Maximum relevant experience <small>(optional)</small></label>
+                    <select id="maxExp"><option value="">No maximum</option><option value="2">Up to 2 years</option><option value="5">Up to 5 years</option><option value="10">Up to 10 years</option><option value="20">Up to 20 years</option></select>
+                </div>
+                <div class="hr-field"><label>Required qualification</label>
+                    <select id="qualification"><option value="none">No specific qualification</option><option>Bachelor's degree</option><option>Master's degree</option><option>Doctorate</option><option>Professional certification</option><option>Teaching qualification</option></select>
+                </div>
+                <div class="hr-field"><label>Language requirement</label>
+                    <select id="language"><option value="none">No specific requirement</option><option>English — B2+</option><option>English — C1+</option><option>English — C2</option><option>Turkish — C1+</option><option>Other / specify later</option></select>
+                </div>
+            </div>
+            <button type="button" class="builder-next">Continue to work requirements <span>→</span></button>
+        `;
+        contentEl.querySelector(".builder-next").onclick=()=>{
+            state.values.min_relevant_experience=document.getElementById("minExp").value;
+            state.values.max_relevant_experience=document.getElementById("maxExp").value;
+            state.values.required_qualification=document.getElementById("qualification").value;
+            state.values.required_language=document.getElementById("language").value;
+            state.path.push("Must-have requirements");history.push("hard");renderWorkRequirements();
+        };
+        backEl.hidden=false;skipEl.hidden=true;animate();
+    }
+
+    function renderWorkRequirements(){
+        header("Where and how will they work?",history.length+1);
+        options([
+            ["Remote","Fully remote","remote"],["On-site","At your school, office or organization","onsite"],
+            ["Hybrid","Remote + on-site","hybrid"],["Flexible","Open to suitable arrangements","flexible"]
+        ],(label)=>{state.values.work_mode=label;state.path.push(label);history.push("work-mode");renderEmployment();});
+    }
+
+    function renderEmployment(){
+        header("What type of engagement?",history.length+1);
+        options([
+            ["Full-time","Permanent full-time role","full-time"],["Part-time","Regular part-time role","part-time"],
+            ["Contract","Fixed-term or project","contract"],["Freelance","Independent professional","freelance"],
+            ["Temporary","Short-term / cover role","temporary"]
+        ],(label)=>{state.values.employment=label;state.path.push(label);history.push("employment");renderCompensation();});
+    }
+
+    function renderCompensation(){
+        header("What compensation do you have in mind?",history.length+1);
+        contentEl.innerHTML=`
+            <div class="builder-question">Set your expected hourly budget. Compensation is separate from professional quality and experience.</div>
+            <div class="salary-card">
+                <div class="salary-values">
+                    <div><small>Minimum</small><strong id="minSalaryValue">750 TL/hour</strong></div>
+                    <div><small>Maximum</small><strong id="maxSalaryValue">4,500+ TL/hour</strong></div>
+                </div>
+                <div class="range-wrap">
+                    <input id="minSalary" type="range" min="750" max="4500" step="250" value="750">
+                    <input id="maxSalary" type="range" min="750" max="4500" step="250" value="4500">
+                </div>
+                <div class="salary-scale"><span>750</span><span>1,500</span><span>2,500</span><span>3,500</span><span>4,500+</span></div>
+                <div class="salary-presets">
+                    ${["750–1,000 TL","1,000–1,500 TL","1,500–2,000 TL","2,000–3,000 TL","3,000–4,500 TL","4,500+ TL"].map(x=>`<button type="button" data-salary="${x}">${x}<small>/ hour</small></button>`).join("")}
+                </div>
+            </div>
+            <div class="budget-mode">
+                <div class="budget-mode-title">How should Bulbeni treat your budget?</div>
+                <label><input type="radio" name="budgetMode" value="strict"><span><strong>Strict budget</strong><small>Exclude candidates outside this range.</small></span></label>
+                <label><input type="radio" name="budgetMode" value="preferred" checked><span><strong>Budget preferred</strong><small>Prioritize candidates within range, but allow exceptional candidates slightly outside it.</small></span></label>
+                <label><input type="radio" name="budgetMode" value="flexible"><span><strong>Flexible / negotiable</strong><small>Do not use compensation as an exclusion criterion.</small></span></label>
+            </div>
+            <button type="button" class="builder-next">Continue <span>→</span></button>
+        `;
+        const min=document.getElementById("minSalary"), max=document.getElementById("maxSalary");
+        const minOut=document.getElementById("minSalaryValue"), maxOut=document.getElementById("maxSalaryValue");
+        function sync(){
+            let a=+min.value,b=+max.value;
+            if(a>b){a=b;min.value=a;}
+            minOut.textContent=a.toLocaleString()+" TL/hour";
+            maxOut.textContent=(b>=4500?"4,500+":b.toLocaleString())+" TL/hour";
+        }
+        min.oninput=sync; max.oninput=sync; sync();
+        contentEl.querySelectorAll("[data-salary]").forEach(btn=>{
+            btn.onclick=()=>{
+                const parts=btn.dataset.salary.replaceAll(" TL","").split("–");
+                if(btn.dataset.salary.startsWith("4,500+")){min.value=4500;max.value=4500;}
+                else {min.value=Number(parts[0].replace(",",""));max.value=Number(parts[1].replace(",",""));}
+                sync();
+            };
+        });
+        contentEl.querySelector(".builder-next").onclick=()=>{
+            state.values.compensation_type="hourly";
+            state.values.budget_min=+min.value;
+            state.values.budget_max=+max.value;
+            state.values.budget_max_plus=(+max.value>=4500);
+            state.values.budget_strategy=contentEl.querySelector("input[name=budgetMode]:checked").value;
+            state.path.push(`${min.value.toLocaleString()}–${max.value>=4500?"4,500+":max.value.toLocaleString()} TL/hour`);
+            history.push("compensation");renderPreferences();
+        };
+        backEl.hidden=false;skipEl.hidden=true;animate();
+    }
+
+    function renderPreferences(){
+        header("What would make a strong candidate even better?",history.length+1);
+        contentEl.innerHTML=`
+            <div class="builder-question">These are preferences, not hard requirements. They improve ranking but do not exclude a qualified candidate.</div>
+            <div class="preference-grid">
+                ${[
+                    ["Exact-role experience","Experience in the same role"],
+                    ["Industry experience","Relevant industry background"],
+                    ["Extra certifications","Additional professional credentials"],
+                    ["Additional languages","Useful language skills"],
+                    ["Curriculum experience","Relevant curriculum / exam experience"],
+                    ["Strong availability","Better schedule overlap"]
+                ].map((x,i)=>`<label class="preference-item"><input type="checkbox" value="${x[0]}"><span><strong>${x[0]}</strong><small>${x[1]}</small></span></label>`).join("")}
+            </div>
+            <button type="button" class="builder-next">Build my hiring request <span>→</span></button>
+        `;
+        contentEl.querySelector(".builder-next").onclick=()=>{
+            state.values.preferences=[...contentEl.querySelectorAll("input:checked")].map(x=>x.value);
+            state.path.push("Preferences set");history.push("preferences");renderHiringReview();
+        };
+        backEl.hidden=false;skipEl.hidden=true;animate();
+    }
+
+    function renderHiringReview(){
+        header("Your hiring request is ready",7,7);
+        const v=state.values;
+        const exp=v.max_relevant_experience?`${v.min_relevant_experience}+ to ${v.max_relevant_experience} years`:`${v.min_relevant_experience}+ years`;
+        const budget=v.budget_max_plus?`${Number(v.budget_min).toLocaleString()}–4,500+ TL/hour`:`${Number(v.budget_min).toLocaleString()}–${Number(v.budget_max).toLocaleString()} TL/hour`;
+        const strategy=v.budget_strategy==="strict"?"Strict budget":v.budget_strategy==="flexible"?"Flexible / negotiable":"Budget preferred";
+        contentEl.innerHTML=`
+            <div class="builder-final">
+                <div class="final-badge">BULBENI HIRING BRIEF</div>
+                <h3>Find the right professional — without sorting through irrelevant CVs.</h3>
+                <p class="brief-line">Your request is built from structured choices. Mandatory criteria will filter candidates first; preferences will rank the qualified candidates.</p>
+                <div class="review-card">
+                    <div class="review-row"><span>Position</span><strong>${v.role||"—"}</strong></div>
+                    ${v.subject?`<div class="review-row"><span>Subject field</span><strong>${v.subject}</strong></div>`:""}
+                    ${v.discipline?`<div class="review-row"><span>Discipline</span><strong>${v.discipline}</strong></div>`:""}
+                    ${v.language?`<div class="review-row"><span>Language</span><strong>${v.language}</strong></div>`:""}
+                    ${v.language_purpose?`<div class="review-row"><span>Language purpose</span><strong>${v.language_purpose}</strong></div>`:""}
+                    ${v.language_exam?`<div class="review-row"><span>Language exam</span><strong>${v.language_exam}</strong></div>`:""}
+                    ${v.teaching_level?`<div class="review-row"><span>Teaching level</span><strong>${v.teaching_level}</strong></div>`:""}
+                    <div class="review-row"><span>Teaching approach</span><strong>${v.specialization||"—"}</strong></div>
+                    <div class="review-row"><span>Relevant experience</span><strong>${exp}</strong></div>
+                    <div class="review-row"><span>Qualification</span><strong>${v.required_qualification||"—"}</strong></div>
+                    <div class="review-row"><span>Language</span><strong>${v.required_language||"—"}</strong></div>
+                    <div class="review-row"><span>Work mode</span><strong>${v.work_mode||"—"}</strong></div>
+                    <div class="review-row"><span>Employment</span><strong>${v.employment||"—"}</strong></div>
+                    <div class="review-row"><span>Hourly budget</span><strong>${budget}</strong></div>
+                    <div class="review-row"><span>Budget strategy</span><strong>${strategy}</strong></div>
+                </div>
+                <div class="matching-principles">
+                    <div><b>01</b><span><strong>Hard filters first.</strong> Candidates who fail a mandatory requirement are excluded.</span></div>
+                    <div><b>02</b><span><strong>Relevant experience matters.</strong> Total experience is not treated as a substitute for role-specific experience.</span></div>
+                    <div><b>03</b><span><strong>Best fit next.</strong> Qualified candidates are ranked using preferred criteria, availability, context and compensation fit.</span></div>
+                    <div><b>04</b><span><strong>Near matches stay separate.</strong> Strong candidates missing one non-critical preference can be reviewed without contaminating the qualified list.</span></div>
+                </div>
+                <div class="brief-actions">
+                    <button type="button" class="builder-edit" onclick="window.scrollTo({top:document.getElementById('courseBuilder').offsetTop-40,behavior:'smooth'})">Edit requirements</button>
+                    <a class="builder-submit" href="employer-candidates.html">Find matching candidates <span>→</span></a>
+                </div>
+            </div>
+        `;
+        backEl.hidden=false;skipEl.hidden=true;animate();
+    }
+
+    backEl.onclick=()=>{
+        if(history.length<=1)return renderModeChooser();
+        history.pop();state.path.pop();
+        if(state.mode==="hire"){
+            const last=history[history.length-1];
+            if(last==="hire-start")return renderHiringStart();
+            if(last==="hire-role")return renderHiringRole("teachers");
+            if(last==="teacher-subject")return renderTeacherSubject();
+            if(last==="academic-discipline")return renderAcademicDiscipline();
+            if(last==="language")return renderLanguage();
+            if(last==="language-purpose")return renderLanguagePurpose();
+            if(last==="language-exam")return renderLanguageExam();
+            if(last==="teacher-level")return renderTeacherLevel();
+            if(last==="specialization")return renderHiringSpecialization("teachers");
+            if(last==="hard")return renderHardRequirements();
+            if(last==="work-mode")return renderWorkRequirements();
+            if(last==="employment")return renderEmployment();
+            if(last==="compensation")return renderCompensation();
+            if(last==="preferences")return renderPreferences();
+            return renderHiringStart();
+        }
+        renderLearn("learn");
+    };
+
+    skipEl.onclick=()=>{
+        if(state.mode==="learn" && titleEl.textContent.includes("budget")){
+            state.values.budget="Not specified";state.path.push("Budget flexible");history.push("budget");renderFinal("learn");
+        } else renderModeChooser();
+    };
+
+    renderModeChooser();
+}
+</script>
 
 
-        /* =====================================================
-           SMOOTH INTERNAL NAVIGATION
-        ====================================================== */
-
-        document
-            .querySelectorAll('a[href^="#"]')
-            .forEach(link => {
-
-                link.addEventListener(
-                    "click",
-                    function(event) {
-
-                        const target =
-                            document.querySelector(
-                                this.getAttribute("href")
-                            );
-
-
-                        if (target) {
-
-                            event.preventDefault();
-
-
-                            target.scrollIntoView({
-                                behavior: "smooth"
-                            });
-
-                        }
-
-                    }
-                );
-
-            });
 
 
 
-        /* =====================================================
-           MOBILE NAVIGATION
-        ====================================================== */
-
-        const mobileMenu =
-            document.querySelector(
-                ".mobile-menu"
-            );
 
 
-        const navLinks =
-            document.querySelector(
-                ".nav-links"
-            );
 
+<script id="bulbeni-dual-journey-script">
+(function(){
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-        mobileMenu.addEventListener(
-            "click",
-            () => {
+    function getState(){
+        return window.state || {mode:"learn", values:{}, path:[]};
+    }
 
-                if (
-                    navLinks.style.display ===
-                    "flex"
-                ) {
+    function isEmployer(){
+        const st = getState();
+        return st.mode === "hire";
+    }
 
-                    navLinks.style.display =
-                        "none";
+    function esc(v){
+        return String(v ?? '').replace(/[&<>"']/g, c => ({
+            '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+        }[c]);
+    }
 
-                } else {
+    function value(...keys){
+        const v = getState().values || {};
+        for(const k of keys){
+            if(v[k] !== undefined && v[k] !== null && String(v[k]).trim() !== '') return v[k];
+        }
+        return '';
+    }
 
-                    navLinks.style.display =
-                        "flex";
+    function row(label, val){
+        return `
+            <div class="bulbeni-live-item">
+                <span>${esc(label)}</span>
+                <strong class="${val ? '' : 'bulbeni-live-empty'}">${esc(val || 'Not selected yet')}</strong>
+            </div>`;
+    }
 
-                    navLinks.style.position =
-                        "absolute";
+    function render(force=false){
+        const panel = document.querySelector('[data-bulbeni-live-panel]');
+        if(!panel) return;
 
-                    navLinks.style.top =
-                        "70px";
+        const st = getState();
+        const employer = isEmployer();
+        const v = st.values || {};
 
-                    navLinks.style.left =
-                        "0";
+        const field = value('professional_area','field','category');
+        const subject = value('discipline','subject','language','role');
+        const specialization = value('specialization','language_purpose','language_exam');
+        const level = value('teaching_level','level');
+        const audience = value('learner_type','audience','student_type','target_group');
+        const goal = value('goal','objective','purpose');
+        const format = value('format','teaching_format','delivery','work_mode');
+        const location = value('location');
+        const experience = value('min_relevant_experience','experience','experience_range','required_experience');
+        const qualification = value('required_qualification');
+        const budget = value('budget','hourly_budget','salary','salary_range');
 
-                    navLinks.style.right =
-                        "0";
+        const details = employer
+            ? [field,subject,specialization,audience,level,goal,format,location,experience,qualification,budget]
+            : [field,subject,specialization,level,goal,format,location,budget];
 
-                    navLinks.style.background =
-                        "white";
+        const count = details.filter(Boolean).length;
 
-                    navLinks.style.padding =
-                        "20px";
+        const title = employer ? "Your Hiring Plan" : "Your Learning Plan";
+        const kicker = employer ? "Built for better hiring" : "Built around your needs";
+        const subtitle = employer
+            ? "Your requirements will shape the professionals we recommend."
+            : "Your choices will shape the professionals we recommend.";
 
-                    navLinks.style.flexDirection =
-                        "column";
+        const rows = employer ? [
+            row("HIRING FOR", field),
+            row("POSITION / DISCIPLINE", subject),
+            row("SPECIALIZATION", specialization),
+            row("TARGET GROUP", audience),
+            row("LEVEL", level),
+            row("OBJECTIVE", goal),
+            row("WORK FORMAT", format),
+            row("LOCATION", location),
+            row("MINIMUM EXPERIENCE", experience ? (String(experience).match(/^\\d+$/) ? experience + "+ years" : experience) : ""),
+            row("QUALIFICATION", qualification && qualification !== "none" ? qualification : ""),
+            row("HOURLY BUDGET", budget)
+        ].join("") : [
+            row("FIELD", field),
+            row("SUBJECT / LANGUAGE", subject),
+            row("SPECIALIZATION", specialization),
+            row("YOUR LEVEL", level),
+            row("GOAL", goal),
+            row("FORMAT", format),
+            row("LOCATION", location),
+            row("BUDGET", budget)
+        ].join("");
 
-                    navLinks.style.alignItems =
-                        "flex-start";
+        const chips = details.filter(Boolean).slice(0,5);
 
-                    navLinks.style.borderBottom =
-                        "1px solid #E2E9ED";
+        const markup = `
+            <div class="bulbeni-live-panel-inner">
+                <div class="bulbeni-live-panel-kicker">${esc(kicker)}</div>
+                <h3>${esc(title)}</h3>
+                <p>${esc(subtitle)}</p>
+                <div class="bulbeni-live-panel-grid">${rows}</div>
+                ${chips.length ? `<div class="bulbeni-live-chips">${chips.map(x=>`<span class="bulbeni-live-chip">${esc(x)}</span>`).join('')}</div>` : ''}
+                <div class="bulbeni-live-status">
+                    ${count
+                        ? `${count} detail${count===1?'':'s'} added · updating live`
+                        : (employer
+                            ? "Start choosing on the left and your hiring plan will build here."
+                            : "Start choosing on the left and your learning plan will build here.")}
+                </div>
+            </div>`;
 
-                }
+        const inner = panel.querySelector('.bulbeni-live-panel-inner');
+        if(!force && inner && inner.dataset.signature === markup) return;
 
-            }
-        );
+        panel.classList.add('is-changing');
+        setTimeout(() => {
+            panel.innerHTML = markup;
+            const next = panel.querySelector('.bulbeni-live-panel-inner');
+            if(next) next.dataset.signature = markup;
+            panel.classList.remove('is-changing');
+        }, 180);
+    }
 
+    // startMode() and the option callbacks mutate state synchronously, so a
+    // short post-click render reliably catches every employer/learner choice.
+    document.addEventListener('click', () => {
+        setTimeout(() => render(), 35);
+        setTimeout(() => render(), 240);
+    }, true);
 
-    </script>
+    window.addEventListener('load', () => render(true));
+    setTimeout(() => render(true), 100);
+    setInterval(() => render(), 500);
+})();
+</script>
 
 </body>
 
