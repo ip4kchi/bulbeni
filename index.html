@@ -4396,6 +4396,433 @@ html{scroll-behavior:smooth;}
 }
 @media(min-width:761px){.mobile-nav-toggle,.mobile-menu{display:none!important}}
 </style>
+
+<style id="bulbeni-mobile-menu-working-fix">
+@media (max-width:760px){
+  .mobile-menu{
+    display:block !important;
+    visibility:visible !important;
+  }
+  .mobile-menu:not(.is-open){
+    opacity:0;
+    transform:translateY(-8px);
+    pointer-events:none;
+  }
+  .mobile-menu.is-open{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+    pointer-events:auto !important;
+  }
+  .mobile-nav-toggle{
+    position:relative;
+    z-index:1101;
+    display:flex !important;
+  }
+  .mobile-menu{
+    z-index:1100;
+  }
+}
+</style>
+
+
+<style id="bulbeni-mobile-menu-final-fix">
+@media (max-width:760px){
+    .navbar{
+        position:relative !important;
+        z-index:1200 !important;
+    }
+
+    .nav-inner{
+        position:relative !important;
+        display:flex !important;
+        align-items:center !important;
+        gap:10px !important;
+    }
+
+    .mobile-nav-toggle{
+        display:flex !important;
+        flex:0 0 42px !important;
+        order:-1 !important;
+        position:relative !important;
+        z-index:1301 !important;
+        cursor:pointer !important;
+        touch-action:manipulation !important;
+    }
+
+    .mobile-menu{
+        position:absolute !important;
+        top:calc(100% + 10px) !important;
+        left:16px !important;
+        right:16px !important;
+        z-index:1300 !important;
+        display:block !important;
+        visibility:visible !important;
+    }
+
+    .mobile-menu:not(.is-open){
+        opacity:0 !important;
+        transform:translateY(-8px) !important;
+        pointer-events:none !important;
+    }
+
+    .mobile-menu.is-open{
+        opacity:1 !important;
+        transform:translateY(0) !important;
+        pointer-events:auto !important;
+    }
+}
+</style>
+
+
+<style id="bulbeni-mobile-final-fix">
+/* Desktop keeps the full account CTA; mobile shows only "Log in". */
+.mobile-login-label{display:none}
+.desktop-login-label{display:inline}
+
+@media (max-width:760px){
+  .desktop-login-label{display:none !important}
+  .mobile-login-label{display:inline !important}
+
+  header, .navbar{
+    position:relative !important;
+    z-index:5000 !important;
+  }
+
+  #mobileNavToggle{
+    display:flex !important;
+    position:relative !important;
+    z-index:6001 !important;
+    pointer-events:auto !important;
+    touch-action:manipulation !important;
+    cursor:pointer !important;
+    flex:0 0 42px !important;
+  }
+
+  #mobileMenu{
+    display:block !important;
+    position:absolute !important;
+    top:calc(100% + 10px) !important;
+    left:16px !important;
+    right:16px !important;
+    z-index:6000 !important;
+    visibility:visible !important;
+    opacity:0 !important;
+    transform:translateY(-8px) !important;
+    pointer-events:none !important;
+  }
+
+  #mobileMenu.is-open{
+    opacity:1 !important;
+    transform:translateY(0) !important;
+    pointer-events:auto !important;
+  }
+}
+
+@media (min-width:761px){
+  #mobileNavToggle,#mobileMenu{
+    display:none !important;
+  }
+}
+</style>
+
+
+<style id="bulbeni-mobile-navigation-redesign">
+/* Desktop is untouched by this mobile navigation redesign. */
+@media (min-width: 761px){
+  #mobileNavToggle,
+  #mobileMenu{
+    display:none !important;
+  }
+}
+
+@media (max-width: 760px){
+  /* Mobile header: small logo + hamburger + globe only */
+  header,
+  .navbar{
+    position:relative !important;
+    z-index:9000 !important;
+  }
+
+  .nav-inner{
+    position:relative !important;
+    display:flex !important;
+    align-items:center !important;
+    min-height:64px;
+  }
+
+  #mobileNavToggle{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    flex-direction:column !important;
+    gap:5px !important;
+    width:38px !important;
+    height:38px !important;
+    min-width:38px !important;
+    margin-right:9px !important;
+    padding:0 !important;
+    border:0 !important;
+    background:transparent !important;
+    border-radius:10px !important;
+    cursor:pointer !important;
+    touch-action:manipulation !important;
+    -webkit-tap-highlight-color:transparent !important;
+    position:relative !important;
+    z-index:9101 !important;
+  }
+
+  #mobileNavToggle span{
+    display:block !important;
+    width:20px !important;
+    height:2px !important;
+    border-radius:4px !important;
+    background:#17252C !important;
+    transition:transform .25s ease, opacity .2s ease !important;
+  }
+
+  #mobileNavToggle.is-open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg) !important;
+  }
+  #mobileNavToggle.is-open span:nth-child(2){
+    opacity:0 !important;
+  }
+  #mobileNavToggle.is-open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg) !important;
+  }
+
+  /* Keep only the compact logo and language/globe control visible. */
+  .nav-inner .logo{
+    flex:1 1 auto !important;
+  }
+
+  .nav-inner .nav-primary,
+  .nav-inner .nav-teacher-cta,
+  .nav-inner .nav-login,
+  .nav-inner .login-btn,
+  .nav-inner .nav-actions > *:not(.language-control){
+    display:none !important;
+  }
+
+  .nav-inner .nav-actions{
+    display:flex !important;
+    align-items:center !important;
+    margin-left:auto !important;
+  }
+
+  .nav-inner .language-control{
+    display:flex !important;
+  }
+
+  /* Full-width translucent dropdown/panel, opening from left to right. */
+  #mobileMenu{
+    display:block !important;
+    position:absolute !important;
+    top:100% !important;
+    left:0 !important;
+    right:0 !important;
+    width:100% !important;
+    z-index:9100 !important;
+    visibility:visible !important;
+    overflow:hidden !important;
+    pointer-events:none !important;
+    background:rgba(255,255,255,.72) !important;
+    backdrop-filter:blur(18px) saturate(130%) !important;
+    -webkit-backdrop-filter:blur(18px) saturate(130%) !important;
+    border-top:1px solid rgba(23,37,44,.08) !important;
+    box-shadow:0 18px 40px rgba(23,37,44,.10) !important;
+    clip-path:inset(0 100% 0 0) !important;
+    opacity:0 !important;
+    transition:clip-path .34s cubic-bezier(.22,.61,.36,1), opacity .22s ease !important;
+  }
+
+  #mobileMenu.is-open{
+    pointer-events:auto !important;
+    clip-path:inset(0 0 0 0) !important;
+    opacity:1 !important;
+  }
+
+  .mobile-menu-panel{
+    display:flex !important;
+    flex-direction:column !important;
+    padding:9px 16px 14px !important;
+    background:transparent !important;
+  }
+
+  .mobile-menu-link{
+    display:flex !important;
+    align-items:center !important;
+    min-height:49px !important;
+    padding:0 12px !important;
+    border-radius:11px !important;
+    color:#17252C !important;
+    background:transparent !important;
+    text-decoration:none !important;
+    font-size:14px !important;
+    font-weight:750 !important;
+    -webkit-tap-highlight-color:transparent !important;
+    transition:background .2s ease, color .2s ease, transform .2s ease !important;
+  }
+
+  .mobile-menu-link:active,
+  .mobile-menu-link:hover{
+    background:rgba(42,157,143,.09) !important;
+    color:#2A9D8F !important;
+  }
+
+  .mobile-teacher-link{
+    color:#E87932 !important;
+    font-weight:800 !important;
+  }
+
+  .mobile-login-link{
+    margin-top:4px !important;
+    border:1px solid rgba(23,37,44,.10) !important;
+    background:rgba(255,255,255,.52) !important;
+  }
+}
+</style>
+
+
+<style id="bulbeni-mobile-corrections">
+@media (max-width:760px){
+
+  /* Header: hamburger at far left, logo truly centered, globe at far right. */
+  .nav-inner{
+    position:relative !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    min-height:64px !important;
+  }
+
+  #mobileNavToggle{
+    position:absolute !important;
+    left:0 !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    margin:0 !important;
+    z-index:9101 !important;
+  }
+
+  #mobileNavToggle.is-open{
+    transform:translateY(-50%) !important;
+  }
+
+  .nav-inner .logo{
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    margin:0 !important;
+    flex:none !important;
+  }
+
+  .nav-inner .nav-actions{
+    position:absolute !important;
+    right:0 !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    margin:0 !important;
+    display:flex !important;
+    align-items:center !important;
+  }
+
+  /* Solid, readable menu. Width is intentionally content-sized and capped by
+     the longest menu item ("Become a Teacher"). */
+  #mobileMenu{
+    left:0 !important;
+    right:auto !important;
+    width:max-content !important;
+    max-width:calc(100vw - 24px) !important;
+    min-width:0 !important;
+    background:#fff !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    border:1px solid rgba(23,37,44,.10) !important;
+    border-radius:0 0 16px 0 !important;
+    box-shadow:0 16px 38px rgba(23,37,44,.14) !important;
+    overflow:hidden !important;
+  }
+
+  #mobileMenu .mobile-menu-panel{
+    width:max-content !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    padding:8px !important;
+  }
+
+  #mobileMenu .mobile-menu-link{
+    width:max-content !important;
+    min-width:0 !important;
+    white-space:nowrap !important;
+    padding-left:14px !important;
+    padding-right:14px !important;
+  }
+}
+</style>
+
+
+<style id="bulbeni-mobile-logo-centering-final">
+@media (max-width:760px){
+  .nav-inner{
+    position:relative !important;
+    display:block !important;
+    min-height:64px !important;
+    width:100% !important;
+  }
+
+  #mobileNavToggle{
+    position:absolute !important;
+    left:12px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    margin:0 !important;
+  }
+
+  #mobileNavToggle.is-open{
+    transform:translateY(-50%) !important;
+  }
+
+  .nav-inner .logo{
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    margin:0 !important;
+    width:max-content !important;
+  }
+
+  .nav-inner .logo img{
+    display:block !important;
+    margin:0 auto !important;
+  }
+
+  .nav-inner .nav-actions{
+    position:absolute !important;
+    right:12px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    margin:0 !important;
+  }
+}
+</style>
+
+
+<style id="bulbeni-mobile-menu-transparency">
+@media (max-width:760px){
+  #mobileMenu{
+    background:rgba(255,255,255,.91) !important;
+    backdrop-filter:blur(14px) saturate(125%) !important;
+    -webkit-backdrop-filter:blur(14px) saturate(125%) !important;
+    border-color:rgba(23,37,44,.10) !important;
+  }
+
+  #mobileMenu .mobile-menu-panel{
+    background:transparent !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -4409,6 +4836,18 @@ html{scroll-behavior:smooth;}
     <header class="navbar">
 
         <div class="container nav-inner">
+<button
+  class="mobile-nav-toggle"
+  id="mobileNavToggle"
+  type="button"
+  aria-label="Open navigation"
+  aria-expanded="false"
+  aria-controls="mobileMenu">
+  <span></span><span></span><span></span>
+</button>
+
+
+            
 
 
             <!-- BRAND -->
@@ -4461,46 +4900,26 @@ html{scroll-behavior:smooth;}
             </div>
         </div>
 
-        <a href="teacher-login.html" class="nav-login">Log in / Sign up</a>
+        <a href="teacher-login.html" class="nav-login"><span class="desktop-login-label">Log in / Sign up</span><span class="mobile-login-label">Log in</span></a>
 
     </div>
 
 </nav>
 
-
-            <!-- ACTIONS -->
-
-            <div class="nav-actions">
-
-
-                <!-- LANGUAGE SWITCH -->
-
-                <a
-                    href="tr/index.html"
-                    class="language-switch"
-                    aria-label="Türkçe"
-                ><span class="tr-flag" aria-hidden="true">🇹🇷</span>
-                    TR
-                </a>
-
-
-               
-<button class="mobile-nav-toggle" id="mobileNavToggle" type="button"
-        aria-label="Open navigation" aria-expanded="false" onclick="toggleMobileNav(event)">
-        <span></span><span></span><span></span>
-    </button>
-
-            </div>
-
         </div>
 
-    </header>
+    
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <div class="mobile-menu-inner">
+  <nav class="mobile-menu-panel" aria-label="Mobile navigation">
     <a href="#courseBuilder" class="mobile-menu-link">Find Your Match</a>
     <a href="#organizations" class="mobile-menu-link">For Organizations</a>
     <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
-  </div>
+    <a href="teacher-register.html" class="mobile-menu-link mobile-teacher-link">Become a Teacher</a>
+    <a href="teacher-login.html" class="mobile-menu-link mobile-login-link">Log in</a>
+  </nav>
+</div>
+</header>
+
 </div>
 
     <!-- =========================================================
@@ -6551,34 +6970,71 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 
+
+
+
+
+
+
+
+
+
+
+
 <script id="bulbeni-mobile-nav-script">
-function toggleMobileNav(event){
-  if(event) event.stopPropagation();
-  const menu=document.getElementById("mobileMenu");
-  const toggle=document.getElementById("mobileNavToggle");
-  if(!menu||!toggle)return;
-  const open=!menu.classList.contains("is-open");
-  menu.classList.toggle("is-open",open);
-  toggle.classList.toggle("is-open",open);
-  menu.setAttribute("aria-hidden",String(!open));
-  toggle.setAttribute("aria-expanded",String(open));
-}
-document.addEventListener("click",function(e){
-  const menu=document.getElementById("mobileMenu"), toggle=document.getElementById("mobileNavToggle");
-  if(!menu||!toggle||!menu.classList.contains("is-open"))return;
-  if(!menu.contains(e.target)&&!toggle.contains(e.target)){
-    menu.classList.remove("is-open");toggle.classList.remove("is-open");
-    menu.setAttribute("aria-hidden","true");toggle.setAttribute("aria-expanded","false");
+document.addEventListener("DOMContentLoaded", function () {
+  var toggle = document.getElementById("mobileNavToggle");
+  var menu = document.getElementById("mobileMenu");
+
+  if (!toggle || !menu) return;
+
+  function closeMenu() {
+    menu.classList.remove("is-open");
+    toggle.classList.remove("is-open");
+    menu.setAttribute("aria-hidden", "true");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation");
   }
-});
-document.addEventListener("click",function(e){
-  const link=e.target.closest("#mobileMenu .mobile-menu-link");
-  if(!link)return;
-  const menu=document.getElementById("mobileMenu"),toggle=document.getElementById("mobileNavToggle");
-  menu?.classList.remove("is-open");toggle?.classList.remove("is-open");
-  menu?.setAttribute("aria-hidden","true");toggle?.setAttribute("aria-expanded","false");
+
+  function openMenu() {
+    menu.classList.add("is-open");
+    toggle.classList.add("is-open");
+    menu.setAttribute("aria-hidden", "false");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation");
+  }
+
+  toggle.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (menu.classList.contains("is-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menu.addEventListener("click", function (event) {
+    var link = event.target.closest(".mobile-menu-link");
+    if (link) closeMenu();
+  });
+
+  document.addEventListener("click", function (event) {
+    if (
+      menu.classList.contains("is-open") &&
+      !menu.contains(event.target) &&
+      !toggle.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 760) closeMenu();
+  });
 });
 </script>
+
 </body>
 
 </html>
