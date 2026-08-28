@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Availability | Bulbeni</title>
+<meta name="description" content="Manage your teaching availability on Bulbeni.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+--navy:#18324a;--blue:#2f6f8f;--blue-soft:#eaf3f7;--green:#5d927d;
+--green-soft:#edf7f2;--amber:#b48645;--amber-soft:#fbf5ea;
+--red:#b75b5b;--red-soft:#fff1f1;--text:#243444;--muted:#738091;
+--light-muted:#9ba6b0;--border:#dce4e9;--background:#f7f9fa;--white:#fff;
+--sidebar-width:250px;--shadow:0 18px 50px rgba(28,55,72,.07);
+--shadow-soft:0 8px 30px rgba(28,55,72,.05)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--background)}
+button,input,select{font:inherit}
+.loading-screen{position:fixed;inset:0;z-index:9999;background:var(--background);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:.35s}
+.loading-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loading-logo{width:150px;height:auto}.loading-spinner{width:30px;height:30px;border:3px solid #dfe7eb;border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.app{min-height:100vh;display:flex}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-width);background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100}
+.sidebar-top{padding:28px 24px 24px}.sidebar-logo{display:inline-flex;text-decoration:none}.sidebar-logo img{width:145px;height:auto;display:block}
+.sidebar-nav{padding:8px 14px}.nav-label{padding:16px 12px 8px;color:var(--light-muted);font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.nav-item{width:100%;display:flex;align-items:center;gap:12px;padding:11px 13px;margin-bottom:3px;border-radius:11px;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:13px;font-weight:650;text-align:left;text-decoration:none;cursor:pointer;transition:.2s}
+.nav-item:hover{background:#f5f8fa;color:var(--navy)}.nav-item.active{background:var(--blue-soft);color:var(--blue)}
+.nav-icon{width:20px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.sidebar-bottom{margin-top:auto;padding:18px;border-top:1px solid var(--border)}
+.user-mini{display:flex;align-items:center;gap:10px;margin-bottom:15px;padding:9px;border-radius:13px;background:#f7f9fa}
+.user-mini-photo{width:38px;height:38px;border-radius:50%;object-fit:cover;background:var(--blue-soft);border:1px solid var(--border);flex-shrink:0}
+.user-mini-info{min-width:0}.user-mini-name{font-size:12px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-mini-email{margin-top:2px;font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logout-button{width:100%;border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:10px;padding:10px;font-size:12px;font-weight:700;cursor:pointer}
+.logout-button:hover{color:var(--red);border-color:#eccccc;background:var(--red-soft)}
+.main{width:100%;margin-left:var(--sidebar-width);min-width:0}
+.topbar{height:76px;background:rgba(255,255,255,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 38px;position:sticky;top:0;z-index:80}
+.mobile-menu{display:none;border:0;background:transparent;font-size:22px;cursor:pointer;color:var(--navy)}
+.topbar-right{display:flex;align-items:center;gap:14px}.top-profile{display:flex;align-items:center;gap:9px;color:var(--text);font-size:12px;font-weight:700}
+.top-profile img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
+.content{max-width:1100px;margin:0 auto;padding:40px}
+.welcome{margin-bottom:28px}.welcome-eyebrow{color:var(--blue);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:7px}
+.welcome h1{margin:0;color:var(--navy);font-size:clamp(28px,4vw,40px);letter-spacing:-1.4px;line-height:1.1}
+.welcome p{margin:9px 0 0;color:var(--muted);font-size:14px}
+.card{background:#fff;border:1px solid var(--border);border-radius:19px;box-shadow:var(--shadow-soft);overflow:hidden;margin-bottom:20px}
+.card-header{padding:21px 23px 17px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid #edf1f3}
+.card-title{color:var(--navy);font-size:14px;font-weight:800}.card-description{margin-top:4px;color:var(--muted);font-size:11px}.card-body{padding:23px}
+.format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.option{position:relative}.option input{position:absolute;opacity:0;pointer-events:none}
+.option label{display:block;border:1px solid var(--border);border-radius:12px;padding:15px;cursor:pointer;transition:.2s;background:#fff}
+.option label strong{display:block;font-size:12px;margin-bottom:3px}.option label span{font-size:10px;color:var(--muted)}
+.option input:checked+label{border-color:#9ec1d0;background:var(--blue-soft);color:var(--blue)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day{position:relative}.day input{position:absolute;opacity:0}.day label{display:block;text-align:center;padding:12px 6px;border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:11px;font-weight:700;background:#fff;transition:.2s}
+.day input:checked+label{background:var(--blue-soft);border-color:#9ec1d0;color:var(--blue)}
+.schedule{display:flex;flex-direction:column;gap:10px}.slot{display:grid;grid-template-columns:1.1fr 1fr 1fr auto;gap:10px;align-items:end;padding:14px;border:1px solid #e8edf0;border-radius:12px;background:#fafcfd}
+.field label{display:block;font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.field select{width:100%;border:1px solid var(--border);background:#fff;border-radius:8px;padding:9px;font-size:12px;color:var(--text);outline:none}
+.field select:focus{border-color:#9ec1d0;box-shadow:0 0 0 3px var(--blue-soft)}
+.day-display{width:100%;border:1px solid var(--border);background:#f5f8fa;border-radius:8px;padding:9px;font-size:12px;color:var(--navy);font-weight:700}
+.remove{border:1px solid #e8cccc;background:#fff;color:var(--red);border-radius:8px;padding:9px 11px;cursor:pointer;font-size:11px;font-weight:700}
+.add{border:1px dashed #b9cbd4;background:#fbfdfe;color:var(--blue);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:11px;font-weight:800;margin-top:10px}
+.actions{display:flex;justify-content:flex-end;gap:10px;padding-top:5px}
+.save{border:0;background:var(--blue);color:#fff;border-radius:9px;padding:11px 18px;font-size:12px;font-weight:800;cursor:pointer}
+.save:hover{background:#285f7c}.save:disabled{opacity:.55;cursor:not-allowed}
+.note{background:#f7fafb;border:1px solid #e7eef1;border-radius:12px;padding:14px;color:var(--muted);font-size:11px;line-height:1.6}
+.toast{position:fixed;right:24px;bottom:24px;background:var(--navy);color:#fff;padding:12px 16px;border-radius:10px;font-size:11px;opacity:0;transform:translateY(10px);pointer-events:none;transition:.25s;z-index:10000}
+.toast.show{opacity:1;transform:none}
+@media(max-width:800px){:root{--sidebar-width:0px}.sidebar{transform:translateX(-100%);transition:transform .25s;box-shadow:20px 0 40px rgba(0,0,0,.08)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.mobile-menu{display:block}.topbar{padding:0 18px}.content{padding:25px 18px 50px}}
+@media(max-width:650px){.format-grid{grid-template-columns:1fr}.days{grid-template-columns:repeat(4,1fr)}.slot{grid-template-columns:1fr 1fr}.slot .remove{width:100%}.actions{flex-direction:column}.save{width:100%}}
+</style>
+</head>
+<body>
+<div class="loading-screen" id="loadingScreen">
+<img src="logo.jpg" alt="Bulbeni" class="loading-logo">
+<div class="loading-spinner"></div>
+</div>
+
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-top">
+<a href="index.html" class="sidebar-logo"><img src="logo.jpg" alt="Bulbeni"></a>
+</div>
+<nav class="sidebar-nav">
+<div class="nav-label">Workspace</div>
+<a href="teacher-dashboard.html" class="nav-item"><span class="nav-icon">⌂</span>Dashboard</a>
+<a href="teacher-profile-edit.html" class="nav-item"><span class="nav-icon">◎</span>My Profile</a>
+<a href="#" class="nav-item" onclick="showComingSoon('Documents');return false;"><span class="nav-icon">▤</span>Documents</a>
+<a href="teacher-availability.html" class="nav-item active"><span class="nav-icon">◷</span>Availability</a>
+<div class="nav-label">Students</div>
+<a href="#" class="nav-item" onclick="showComingSoon('Student Requests');return false;"><span class="nav-icon">◇</span>Student Requests</a>
+<a href="#" class="nav-item" onclick="showComingSoon('Messages');return false;"><span class="nav-icon">□</span>Messages</a>
+<div class="nav-label">Account</div>
+<a href="#" class="nav-item" onclick="showComingSoon('Settings');return false;"><span class="nav-icon">⚙</span>Settings</a>
+</nav>
+<div class="sidebar-bottom">
+<div class="user-mini">
+<img id="sidebarPhoto" class="user-mini-photo" src="logo.jpg" alt="">
+<div class="user-mini-info">
+<div class="user-mini-name" id="sidebarName">Teacher</div>
+<div class="user-mini-email" id="sidebarEmail">Loading...</div>
+</div>
+</div>
+<button class="logout-button" id="logoutButton">Sign out</button>
+</div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+<button class="mobile-menu" id="mobileMenu" type="button">☰</button>
+<div></div>
+<div class="topbar-right">
+<div class="top-profile"><span id="topName">Teacher</span><img id="topPhoto" src="logo.jpg" alt=""></div>
+</div>
+</header>
+
+<section class="content">
+<div class="welcome">
+<div class="welcome-eyebrow">Teacher Portal</div>
+<h1>Teaching availability.</h1>
+<p>Tell students when and how you are available to teach.</p>
+</div>
+
+<section class="card">
+<div class="card-header">
+<div>
+<div class="card-title">Teaching format</div>
+<div class="card-description">Choose the formats you are currently accepting. These preferences are saved separately from your weekly time slots.</div>
+</div>
+</div>
+<div class="card-body">
+<div class="format-grid">
+<div class="option"><input id="online" type="checkbox" value="Online"><label for="online"><strong>Online</strong><span>Teach remotely</span></label></div>
+<div class="option"><input id="face" type="checkbox" value="Face-to-face"><label for="face"><strong>Face-to-face</strong><span>Teach in person</span></label></div>
+<div class="option"><input id="both" type="checkbox" value="Both"><label for="both"><strong>Flexible</strong><span>Online & face-to-face</span></label></div>
+</div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-header">
+<div>
+<div class="card-title">Regular weekly availability</div>
+<div class="card-description">Select the days you normally accept lessons.</div>
+</div>
+</div>
+<div class="card-body">
+<div class="days">
+<div class="day"><input id="mon" type="checkbox" value="1"><label for="mon">Mon</label></div>
+<div class="day"><input id="tue" type="checkbox" value="2"><label for="tue">Tue</label></div>
+<div class="day"><input id="wed" type="checkbox" value="3"><label for="wed">Wed</label></div>
+<div class="day"><input id="thu" type="checkbox" value="4"><label for="thu">Thu</label></div>
+<div class="day"><input id="fri" type="checkbox" value="5"><label for="fri">Fri</label></div>
+<div class="day"><input id="sat" type="checkbox" value="6"><label for="sat">Sat</label></div>
+<div class="day"><input id="sun" type="checkbox" value="0"><label for="sun">Sun</label></div>
+</div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-header">
+<div>
+<div class="card-title">Teaching hours</div>
+<div class="card-description">Add one or more recurring time windows. You can use different hours on different days.</div>
+</div>
+</div>
+<div class="card-body">
+<div id="schedule" class="schedule"></div>
+<button class="add" id="addSlot" type="button">+ Add another time window</button>
+</div>
+</section>
+
+<section class="card">
+<div class="card-header">
+<div>
+<div class="card-title">How this works</div>
+<div class="card-description">Your availability will later be used by Bulbeni's student matching system.</div>
+</div>
+</div>
+<div class="card-body">
+<div class="note">These are your regular weekly hours. Later, Bulbeni can add temporary exceptions, holidays, individual lesson bookings and student-request matching without changing your regular schedule.</div>
+</div>
+</section>
+
+<div class="actions">
+<a href="teacher-dashboard.html" class="save" style="text-decoration:none;background:#fff;color:var(--blue);border:1px solid var(--border);">Back to dashboard</a>
+<button class="save" id="saveButton">Save availability</button>
+</div>
+</section>
+</main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL="https://bisufzfsziqsevmixtso.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_VdXkeGE870ajVyHph5Ak5Q_AujUOA9P";
+let supabaseClient;
+let teacherId=null;
+
+function initSupabase(){
+supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+}
+function toast(message){
+const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");
+setTimeout(()=>t.classList.remove("show"),2800);
+}
+function hideLoading(){document.getElementById("loadingScreen").classList.add("hidden");}
+function escapeHTML(v){return String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+
+function timeOptions(selected){
+let out="";
+for(let h=0;h<24;h++){
+for(let m of [0,30]){
+let value=`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`;
+let label=new Date(`2000-01-01T${value}`).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
+out+=`<option value="${value}" ${value===selected?"selected":""}>${label}</option>`;
+}}
+return out;
+}
+function dayName(day){
+const days={1:"Monday",2:"Tuesday",3:"Wednesday",4:"Thursday",5:"Friday",6:"Saturday",0:"Sunday"};
+return days[String(day)]||"Day";
+}
+
+function selectedDays(){
+return [...document.querySelectorAll(".day input:checked")].map(x=>Number(x.value));
+}
+
+function addSlot(data={}){
+const row=document.createElement("div");
+row.className="slot";
+const day=Number(data.day_of_week);
+row.dataset.day=String(day);
+
+row.innerHTML=`
+<div class="field">
+    <label>Day</label>
+    <div class="day-display">${dayName(day)}</div>
+</div>
+<div class="field">
+    <label>Starts</label>
+    <select class="slot-start">${timeOptions(data.start_time||"09:00")}</select>
+</div>
+<div class="field">
+    <label>Ends</label>
+    <select class="slot-end">${timeOptions(data.end_time||"12:00")}</select>
+</div>
+<button class="remove" type="button">Remove</button>`;
+
+row.querySelector(".remove").onclick=()=>{
+    row.remove();
+    syncScheduleRows();
+};
+
+document.getElementById("schedule").appendChild(row);
+}
+
+function createRowsForSelectedDays(){
+const schedule=document.getElementById("schedule");
+schedule.innerHTML="";
+selectedDays().forEach(day=>{
+    addSlot({
+        day_of_week:day,
+        start_time:"09:00",
+        end_time:"12:00"
+    });
+});
+}
+
+function syncScheduleRows(){
+const schedule=document.getElementById("schedule");
+const days=selectedDays();
+const existing=[...schedule.querySelectorAll(".slot")];
+
+days.forEach(day=>{
+    if(!existing.some(row=>Number(row.dataset.day)===day)){
+        addSlot({day_of_week:day,start_time:"09:00",end_time:"12:00"});
+    }
+});
+
+existing.forEach(row=>{
+    const day=Number(row.dataset.day);
+    if(!days.includes(day)){
+        row.remove();
+    }
+});
+}
+
+function handleDayChange(){
+syncScheduleRows();
+}
+
+async function load(){
+try{
+initSupabase();
+const {data:{session}}=await supabaseClient.auth.getSession();
+if(!session?.user){window.location.href="teacher-login.html?redirect=teacher-availability.html";return;}
+document.getElementById("sidebarEmail").textContent=session.user.email||"";
+const {data:teacher,error}=await supabaseClient.from("teachers").select("*").eq("user_id",session.user.id).maybeSingle();
+if(error) throw error;
+if(!teacher) throw new Error("Teacher profile not found.");
+teacherId=teacher.id;
+const fullName=[teacher.first_name,teacher.last_name].filter(Boolean).join(" ")||"Teacher";
+document.getElementById("sidebarName").textContent=fullName;
+document.getElementById("topName").textContent=teacher.first_name||"Teacher";
+if(teacher.profile_photo_path){
+const {data}=await supabaseClient.storage.from("teacher-portraits").createSignedUrl(teacher.profile_photo_path,3600);
+if(data?.signedUrl){document.getElementById("topPhoto").src=data.signedUrl;document.getElementById("sidebarPhoto").src=data.signedUrl;}
+}
+// Teaching formats are stored in teacher_modes.
+// teacher_modes uses: teacher_id + mode.
+const {data:modes,error:modesError}=await supabaseClient
+    .from("teacher_modes")
+    .select("mode")
+    .eq("teacher_id",teacher.id);
+
+if(modesError) throw modesError;
+
+const savedModes=(modes||[]).map(row=>String(row.mode).toLowerCase());
+const hasOnline=savedModes.includes("online");
+const hasFace=savedModes.includes("face-to-face") || savedModes.includes("face to face");
+const hasFlexible=hasOnline && hasFace;
+
+if(hasFlexible){
+    document.getElementById("both").checked=true;
+}else{
+    document.getElementById("online").checked=hasOnline;
+    document.getElementById("face").checked=hasFace;
+}
+
+// teacher_availability has only:
+// id, teacher_id, day_of_week, start_time, end_time, created_at.
+const {data:rows,error:rowsError}=await supabaseClient
+    .from("teacher_availability")
+    .select("id,teacher_id,day_of_week,start_time,end_time,created_at")
+    .eq("teacher_id",teacher.id)
+    .order("day_of_week")
+    .order("start_time");
+
+if(rowsError) throw rowsError;
+
+if(rows?.length){
+    const savedDays=[...new Set(rows.map(r=>Number(r.day_of_week)))];
+    savedDays.forEach(day=>{
+        const checkbox=document.querySelector(`.day input[value="${day}"]`);
+        if(checkbox) checkbox.checked=true;
+    });
+    rows.forEach(addSlot);
+}else{
+    document.getElementById("schedule").innerHTML="";
+}
+}catch(e){
+console.error(e);toast("We couldn't load your availability.");
+}finally{setTimeout(hideLoading,150);}
+}
+async function save(){
+if(!teacherId){toast("Your teacher profile is not ready.");return;}
+
+const button=document.getElementById("saveButton");
+button.disabled=true;
+button.textContent="Saving...";
+
+try{
+    const selectedFormatLabels=[...document.querySelectorAll(".format-grid input:checked")]
+        .map(x=>x.value);
+
+    const days=selectedDays();
+
+    const slots=[...document.querySelectorAll(".slot")].map(row=>({
+        day_of_week:Number(row.dataset.day),
+        start_time:row.querySelector(".slot-start").value,
+        end_time:row.querySelector(".slot-end").value
+    }));
+
+    if(!selectedFormatLabels.length)
+        throw new Error("Please select at least one teaching format.");
+
+    if(!days.length)
+        throw new Error("Please select at least one available day.");
+
+    for(const slot of slots){
+        if(slot.start_time>=slot.end_time)
+            throw new Error("End time must be later than start time.");
+
+        if(!days.includes(slot.day_of_week))
+            throw new Error("Every time window must use a selected day.");
+    }
+
+    // ---------------------------------------------------------
+    // TEACHING MODES
+    // Stored in teacher_modes: teacher_id + mode.
+    // Flexible = Online + Face-to-face.
+    // ---------------------------------------------------------
+    const modesToSave=selectedFormatLabels.includes("Both")
+        ? ["Online","Face-to-face"]
+        : selectedFormatLabels;
+
+    const {error:modesDeleteError}=await supabaseClient
+        .from("teacher_modes")
+        .delete()
+        .eq("teacher_id",teacherId);
+
+    if(modesDeleteError) throw modesDeleteError;
+
+    const {error:modesInsertError}=await supabaseClient
+        .from("teacher_modes")
+        .insert(
+            modesToSave.map(mode=>({
+                teacher_id:teacherId,
+                mode
+            }))
+        );
+
+    if(modesInsertError) throw modesInsertError;
+
+    // ---------------------------------------------------------
+    // WEEKLY AVAILABILITY
+    // Exact schema from your Supabase table:
+    // id, teacher_id, day_of_week, start_time, end_time, created_at
+    //
+    // No teaching modes and no status column are sent.
+    // ---------------------------------------------------------
+    const {error:delError}=await supabaseClient
+        .from("teacher_availability")
+        .delete()
+        .eq("teacher_id",teacherId);
+
+    if(delError) throw delError;
+
+    if(slots.length){
+        const payload=slots.map(slot=>({
+            teacher_id:teacherId,
+            day_of_week:slot.day_of_week,
+            start_time:slot.start_time,
+            end_time:slot.end_time
+        }));
+
+        const {error:insError}=await supabaseClient
+            .from("teacher_availability")
+            .insert(payload);
+
+        if(insError) throw insError;
+    }
+
+    toast("Availability saved successfully.");
+
+}catch(e){
+    console.error(e);
+    toast(e.message||"Unable to save availability.");
+}finally{
+    button.disabled=false;
+    button.textContent="Save availability";
+}
+}
+// Teaching-format behavior:
+// Online and Face-to-face may be selected together.
+// Flexible represents both formats, so selecting it clears the
+// individual Online / Face-to-face selections.
+const onlineOption = document.getElementById("online");
+const faceOption = document.getElementById("face");
+const flexibleOption = document.getElementById("both");
+
+onlineOption.addEventListener("change", function () {
+    if (this.checked) {
+        flexibleOption.checked = false;
+    }
+});
+
+faceOption.addEventListener("change", function () {
+    if (this.checked) {
+        flexibleOption.checked = false;
+    }
+});
+
+flexibleOption.addEventListener("change", function () {
+    if (this.checked) {
+        onlineOption.checked = false;
+        faceOption.checked = false;
+    }
+});
+
+document.querySelectorAll(".day input").forEach(input=>{
+    input.addEventListener("change", handleDayChange);
+});
+
+document.getElementById("addSlot").onclick=()=>{
+    const days=selectedDays();
+    if(!days.length){
+        toast("Select at least one weekly availability day first.");
+        return;
+    }
+
+    // Add an additional time window for the first selected day that currently
+    // has the fewest time rows. This keeps the day selection automatic.
+    const counts={};
+    days.forEach(d=>counts[d]=0);
+    document.querySelectorAll(".slot").forEach(row=>{
+        const d=Number(row.dataset.day);
+        if(d in counts) counts[d]++;
+    });
+
+    const target=days.sort((a,b)=>counts[a]-counts[b])[0];
+    addSlot({day_of_week:target,start_time:"09:00",end_time:"12:00"});
+};
+
+document.getElementById("saveButton").onclick=save;
+document.getElementById("mobileMenu").onclick=()=>document.getElementById("sidebar").classList.toggle("open");
+document.getElementById("logoutButton").onclick=async()=>{await supabaseClient.auth.signOut();window.location.href="teacher-login.html";};
+function showComingSoon(feature){toast(feature+" will be available in a future Bulbeni update.");}
+load();
+</script>
+</body>
+</html>

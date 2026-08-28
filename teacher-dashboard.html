@@ -1,0 +1,3589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Teacher Dashboard | Bulbeni</title>
+
+<meta
+    name="description"
+    content="Manage your Bulbeni teacher profile, documents, availability and student requests."
+>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+/* =========================================================
+   BULBENI TEACHER DASHBOARD
+========================================================= */
+
+:root {
+
+    --navy: #18324a;
+    --navy-2: #214764;
+
+    --blue: #2f6f8f;
+    --blue-soft: #eaf3f7;
+
+    --green: #5d927d;
+    --green-soft: #edf7f2;
+
+    --amber: #b48645;
+    --amber-soft: #fbf5ea;
+
+    --red: #b75b5b;
+    --red-soft: #fff1f1;
+
+    --text: #243444;
+    --muted: #738091;
+    --light-muted: #9ba6b0;
+
+    --border: #dce4e9;
+
+    --background: #f7f9fa;
+    --white: #ffffff;
+
+    --sidebar-width: 250px;
+
+    --shadow:
+        0 18px 50px rgba(28, 55, 72, 0.07);
+
+    --shadow-soft:
+        0 8px 30px rgba(28, 55, 72, 0.05);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    background: var(--background);
+}
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+.loading-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background: var(--background);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+
+.loading-screen.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.loading-logo {
+
+    width: 150px;
+
+    height: auto;
+}
+
+
+.loading-spinner {
+
+    width: 30px;
+
+    height: 30px;
+
+    border:
+        3px solid #dfe7eb;
+
+    border-top-color:
+        var(--blue);
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.8s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: var(--sidebar-width);
+
+    background: var(--white);
+
+    border-right:
+        1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    z-index: 100;
+}
+
+
+.sidebar-top {
+
+    padding:
+        28px 24px 24px;
+}
+
+
+.sidebar-logo {
+
+    display: inline-flex;
+
+    text-decoration: none;
+}
+
+
+.sidebar-logo img {
+
+    width: 145px;
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.sidebar-nav {
+
+    padding:
+        8px 14px;
+}
+
+
+.nav-label {
+
+    padding:
+        16px 12px 8px;
+
+    color: var(--light-muted);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+}
+
+
+.nav-item {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        11px 13px;
+
+    margin-bottom: 3px;
+
+    border-radius: 11px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+    text-align: left;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-item:hover {
+
+    background:
+        #f5f8fa;
+
+    color:
+        var(--navy);
+}
+
+
+.nav-item.active {
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--blue);
+}
+
+
+.nav-icon {
+
+    width: 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+}
+
+
+.sidebar-bottom {
+
+    margin-top: auto;
+
+    padding: 18px 18px 22px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+/* =========================================================
+   USER MINI CARD
+========================================================= */
+
+.user-mini {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+
+    padding:
+        9px;
+
+    border-radius: 13px;
+
+    background:
+        #f7f9fa;
+}
+
+
+.user-mini-photo {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background:
+        var(--blue-soft);
+
+    border:
+        1px solid var(--border);
+
+    flex-shrink: 0;
+}
+
+
+.user-mini-info {
+
+    min-width: 0;
+}
+
+
+.user-mini-name {
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    color: var(--text);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.user-mini-email {
+
+    margin-top: 2px;
+
+    font-size: 10px;
+
+    color: var(--muted);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.logout-button {
+
+    width: 100%;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--white);
+
+    color: var(--muted);
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.logout-button:hover {
+
+    color: var(--red);
+
+    border-color:
+        #eccccc;
+
+    background:
+        var(--red-soft);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+
+    width: 100%;
+
+    margin-left:
+        var(--sidebar-width);
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+
+    height: 76px;
+
+    background:
+        rgba(255,255,255,0.86);
+
+    backdrop-filter:
+        blur(16px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 38px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 80;
+}
+
+
+.mobile-menu {
+
+    display: none;
+
+    border: 0;
+
+    background: transparent;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    color: var(--navy);
+}
+
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.notification-button {
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+
+.notification-dot {
+
+    position: absolute;
+
+    top: 7px;
+
+    right: 7px;
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        var(--green);
+
+    border:
+        2px solid white;
+}
+
+
+.top-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+.top-profile img {
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border:
+        1px solid var(--border);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+
+    max-width: 1450px;
+
+    margin: 0 auto;
+
+    padding:
+        40px;
+}
+
+
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 28px;
+}
+
+
+.welcome-eyebrow {
+
+    color: var(--blue);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 7px;
+}
+
+
+.welcome h1 {
+
+    margin: 0;
+
+    color: var(--navy);
+
+    font-size:
+        clamp(28px, 4vw, 40px);
+
+    letter-spacing:
+        -1.4px;
+
+    line-height: 1.1;
+}
+
+
+.welcome p {
+
+    margin:
+        9px 0 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   APPLICATION STATUS
+========================================================= */
+
+.status-card {
+
+    min-width: 270px;
+
+    padding:
+        17px 19px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 15px;
+
+    background:
+        var(--white);
+
+    box-shadow:
+        var(--shadow-soft);
+}
+
+
+.status-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 9px;
+}
+
+
+.status-label {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+}
+
+
+.status-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding:
+        6px 9px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .4px;
+}
+
+
+.status-badge::before {
+
+    content: "";
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+}
+
+
+.status-submitted,
+.status-under_review {
+
+    color: var(--amber);
+
+    background:
+        var(--amber-soft);
+}
+
+
+.status-approved {
+
+    color: var(--green);
+
+    background:
+        var(--green-soft);
+}
+
+
+.status-rejected {
+
+    color: var(--red);
+
+    background:
+        var(--red-soft);
+}
+
+
+.status-draft {
+
+    color: var(--muted);
+
+    background:
+        #f1f4f6;
+}
+
+
+.status-text {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+
+.stat-card {
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding:
+        19px;
+
+    box-shadow:
+        var(--shadow-soft);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.stat-card:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.stat-icon {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--blue);
+
+    margin-bottom: 13px;
+
+    font-size: 14px;
+}
+
+
+.stat-value {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: -.7px;
+
+    color: var(--navy);
+}
+
+
+.stat-title {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(310px, .8fr);
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card {
+
+    background:
+        var(--white);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    box-shadow:
+        var(--shadow-soft);
+
+    overflow: hidden;
+}
+
+
+.card-header {
+
+    padding:
+        21px 23px 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-bottom:
+        1px solid #edf1f3;
+}
+
+
+.card-title {
+
+    color: var(--navy);
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+
+.card-description {
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.card-action {
+
+    color: var(--blue);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 750;
+}
+
+
+.card-body {
+
+    padding: 23px;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-card {
+
+    margin-bottom: 20px;
+}
+
+
+.profile-main {
+
+    display: flex;
+
+    gap: 22px;
+
+    align-items: flex-start;
+}
+
+
+.profile-photo-wrap {
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+.profile-photo {
+
+    width: 112px;
+
+    height: 112px;
+
+    border-radius: 18px;
+
+    object-fit: cover;
+
+    background:
+        var(--blue-soft);
+
+    border:
+        1px solid var(--border);
+}
+
+
+.profile-initials {
+
+    width: 112px;
+
+    height: 112px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--blue);
+
+    font-size: 32px;
+
+    font-weight: 800;
+}
+
+
+.profile-name {
+
+    margin: 2px 0 5px;
+
+    color: var(--navy);
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    letter-spacing: -.5px;
+}
+
+
+.profile-headline {
+
+    color: var(--blue);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+
+.profile-meta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+}
+
+
+.meta-pill {
+
+    padding:
+        6px 9px;
+
+    background:
+        #f5f8fa;
+
+    border:
+        1px solid #e6ecef;
+
+    border-radius: 8px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 650;
+}
+
+
+.profile-bio {
+
+    margin:
+        20px 0 0;
+
+    padding-top:
+        18px;
+
+    border-top:
+        1px solid #edf1f3;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   COMPLETION
+========================================================= */
+
+.completion {
+
+    margin-top: 23px;
+
+    padding:
+        17px;
+
+    border-radius: 14px;
+
+    background:
+        #f7fafb;
+
+    border:
+        1px solid #e7eef1;
+}
+
+
+.completion-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+}
+
+
+.completion-title {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    color: var(--text);
+}
+
+
+.completion-percent {
+
+    color: var(--blue);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+.progress {
+
+    height: 7px;
+
+    border-radius: 999px;
+
+    background:
+        #e5ecef;
+
+    overflow: hidden;
+}
+
+
+.progress-bar {
+
+    height: 100%;
+
+    width: 0;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
+
+    transition:
+        width .8s ease;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+
+.quick-action {
+
+    min-height: 76px;
+
+    padding:
+        13px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background:
+        var(--white);
+
+    text-decoration: none;
+
+    color: var(--text);
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.quick-action:hover {
+
+    border-color:
+        #c8dce5;
+
+    background:
+        #fbfdfe;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.quick-action-icon {
+
+    margin-bottom: 7px;
+
+    color: var(--blue);
+
+    font-size: 14px;
+}
+
+
+.quick-action-title {
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+
+.quick-action-text {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+.document-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid #edf1f3;
+}
+
+
+.document-row:last-child {
+
+    border-bottom: 0;
+
+    padding-bottom: 0;
+}
+
+
+.document-icon {
+
+    width: 37px;
+
+    height: 37px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        #f3f7f9;
+
+    color:
+        var(--blue);
+
+    font-size: 13px;
+}
+
+
+.document-info {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.document-name {
+
+    color: var(--text);
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.document-type {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+.document-status {
+
+    flex-shrink: 0;
+
+    padding:
+        5px 8px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+}
+
+
+.doc-pending {
+
+    color: var(--amber);
+
+    background:
+        var(--amber-soft);
+}
+
+
+.doc-approved {
+
+    color: var(--green);
+
+    background:
+        var(--green-soft);
+}
+
+
+.doc-rejected {
+
+    color: var(--red);
+
+    background:
+        var(--red-soft);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty {
+
+    text-align: center;
+
+    padding:
+        22px 10px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skill-section {
+
+    margin-bottom: 20px;
+}
+
+
+.skill-section:last-child {
+
+    margin-bottom: 0;
+}
+
+
+.skill-title {
+
+    margin-bottom: 9px;
+
+    color: var(--text);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
+}
+
+
+.chips {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.chip {
+
+    padding:
+        7px 9px;
+
+    border-radius: 8px;
+
+    background:
+        var(--blue-soft);
+
+    color:
+        var(--blue);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    :root {
+        --sidebar-width: 0px;
+    }
+
+    .sidebar {
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform .25s ease;
+
+        box-shadow:
+            20px 0 40px rgba(0,0,0,.08);
+    }
+
+    .sidebar.open {
+
+        transform:
+            translateX(0);
+    }
+
+    .main {
+
+        margin-left: 0;
+    }
+
+    .mobile-menu {
+
+        display: block;
+    }
+
+    .topbar {
+
+        padding:
+            0 18px;
+    }
+
+    .content {
+
+        padding:
+            25px 18px 50px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .welcome {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .status-card {
+
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .stats {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .stat-card {
+
+        padding: 15px;
+    }
+
+    .stat-value {
+
+        font-size: 21px;
+    }
+
+    .profile-main {
+
+        flex-direction: column;
+    }
+
+    .profile-photo,
+    .profile-initials {
+
+        width: 88px;
+
+        height: 88px;
+
+        border-radius: 15px;
+    }
+
+    .quick-actions {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADING
+===================================================== -->
+
+<div
+    class="loading-screen"
+    id="loadingScreen"
+>
+
+    <img
+        src="logo.jpg"
+        alt="Bulbeni"
+        class="loading-logo"
+    >
+
+    <div class="loading-spinner"></div>
+
+</div>
+
+
+<div class="app">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+    <div class="sidebar-top">
+
+        <a
+            href="index.html"
+            class="sidebar-logo"
+        >
+
+            <img
+                src="logo.jpg"
+                alt="Bulbeni"
+            >
+
+        </a>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+        <div class="nav-label">
+            Workspace
+        </div>
+
+
+        <a
+            href="teacher-dashboard.html"
+            class="nav-item active"
+        >
+
+            <span class="nav-icon">⌂</span>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="teacher-profile-edit.html"
+            class="nav-item"
+        >
+
+            <span class="nav-icon">◎</span>
+
+            My Profile
+
+        </a>
+
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="showComingSoon('Documents')"
+        >
+
+            <span class="nav-icon">▤</span>
+
+            Documents
+
+        </button>
+
+
+        <a
+            href="teacher-availability.html"
+            class="nav-item"
+        >
+
+            <span class="nav-icon">◷</span>
+
+            Availability
+
+        </a>
+
+
+        <div class="nav-label">
+            Students
+        </div>
+
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="showComingSoon('Student Requests')"
+        >
+
+            <span class="nav-icon">◇</span>
+
+            Student Requests
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="showComingSoon('Messages')"
+        >
+
+            <span class="nav-icon">□</span>
+
+            Messages
+
+        </button>
+
+
+        <div class="nav-label">
+            Account
+        </div>
+
+
+        <button
+            class="nav-item"
+            type="button"
+            onclick="showComingSoon('Settings')"
+        >
+
+            <span class="nav-icon">⚙</span>
+
+            Settings
+
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="user-mini">
+
+            <img
+                id="sidebarPhoto"
+                class="user-mini-photo"
+                src="logo.jpg"
+                alt=""
+            >
+
+            <div class="user-mini-info">
+
+                <div
+                    class="user-mini-name"
+                    id="sidebarName"
+                >
+                    Teacher
+                </div>
+
+                <div
+                    class="user-mini-email"
+                    id="sidebarEmail"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            id="logoutButton"
+        >
+            Sign out
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+            type="button"
+            aria-label="Open menu"
+        >
+            ☰
+        </button>
+
+
+        <div></div>
+
+
+        <div class="topbar-right">
+
+            <button
+                class="notification-button"
+                type="button"
+                onclick="showComingSoon('Notifications')"
+                aria-label="Notifications"
+            >
+
+                ♧
+
+                <span
+                    class="notification-dot"
+                ></span>
+
+            </button>
+
+
+            <div class="top-profile">
+
+                <span id="topName">
+                    Teacher
+                </span>
+
+                <img
+                    id="topPhoto"
+                    src="logo.jpg"
+                    alt=""
+                >
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <div>
+
+                <div class="welcome-eyebrow">
+                    Teacher Portal
+                </div>
+
+                <h1>
+                    Welcome back,
+                    <span id="welcomeName">
+                        Teacher
+                    </span>.
+                </h1>
+
+                <p>
+                    Here's an overview of your Bulbeni teaching profile.
+                </p>
+
+            </div>
+
+
+            <div class="status-card">
+
+                <div class="status-top">
+
+                    <span class="status-label">
+                        Application
+                    </span>
+
+                    <span
+                        id="statusBadge"
+                        class="status-badge status-draft"
+                    >
+                        Draft
+                    </span>
+
+                </div>
+
+                <div
+                    id="statusText"
+                    class="status-text"
+                >
+                    Your profile has not been submitted yet.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ◉
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="completionValue"
+                >
+                    0%
+                </div>
+
+                <div class="stat-title">
+                    Profile completion
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ▤
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="documentCount"
+                >
+                    0
+                </div>
+
+                <div class="stat-title">
+                    Documents
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ◇
+                </div>
+
+                <div class="stat-value">
+                    0
+                </div>
+
+                <div class="stat-title">
+                    Student requests
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    □
+                </div>
+
+                <div class="stat-value">
+                    0
+                </div>
+
+                <div class="stat-title">
+                    Messages
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- DASHBOARD GRID -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- LEFT -->
+
+            <div>
+
+
+                <!-- PROFILE -->
+
+                <section class="card profile-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Your Professional Profile
+                            </div>
+
+                            <div class="card-description">
+                                This is how your profile is represented on Bulbeni.
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="teacher-profile-edit.html"
+                            class="card-action"
+                        >
+                            Edit profile →
+                        </a>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="profile-main">
+
+
+                            <div class="profile-photo-wrap">
+
+                                <img
+                                    id="profilePhoto"
+                                    class="profile-photo"
+                                    src="logo.jpg"
+                                    alt="Teacher portrait"
+                                    style="display:none;"
+                                >
+
+                                <div
+                                    id="profileInitials"
+                                    class="profile-initials"
+                                >
+                                    —
+                                </div>
+
+                            </div>
+
+
+                            <div>
+
+                                <div
+                                    class="profile-name"
+                                    id="profileName"
+                                >
+                                    Loading...
+                                </div>
+
+                                <div
+                                    class="profile-headline"
+                                    id="profileHeadline"
+                                >
+                                    Teacher
+                                </div>
+
+
+                                <div
+                                    class="profile-meta"
+                                    id="profileMeta"
+                                >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="profile-bio"
+                            id="profileBio"
+                        >
+                            Your professional introduction will appear here.
+                        </div>
+
+
+                        <div class="completion">
+
+                            <div class="completion-top">
+
+                                <span class="completion-title">
+                                    Profile completion
+                                </span>
+
+                                <span
+                                    class="completion-percent"
+                                    id="completionPercent"
+                                >
+                                    0%
+                                </span>
+
+                            </div>
+
+
+                            <div class="progress">
+
+                                <div
+                                    class="progress-bar"
+                                    id="progressBar"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SKILLS -->
+
+                <section class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Teaching Profile
+                            </div>
+
+                            <div class="card-description">
+                                Your subjects, levels and teaching preferences.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="skill-section">
+
+                            <div class="skill-title">
+                                Subjects
+                            </div>
+
+                            <div
+                                class="chips"
+                                id="subjectChips"
+                            >
+                                <span class="chip">
+                                    Loading...
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-section">
+
+                            <div class="skill-title">
+                                Teaching levels
+                            </div>
+
+                            <div
+                                class="chips"
+                                id="levelChips"
+                            >
+                                <span class="chip">
+                                    Loading...
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-section">
+
+                            <div class="skill-title">
+                                Languages
+                            </div>
+
+                            <div
+                                class="chips"
+                                id="languageChips"
+                            >
+                                <span class="chip">
+                                    Loading...
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-section">
+
+                            <div class="skill-title">
+                                Teaching modes
+                            </div>
+
+                            <div
+                                class="chips"
+                                id="modeChips"
+                            >
+                                <span class="chip">
+                                    Loading...
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <section class="card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Quick Actions
+                            </div>
+
+                            <div class="card-description">
+                                Manage the important parts of your account.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="quick-actions">
+
+
+                            <a
+                                href="teacher-profile-edit.html"
+                                class="quick-action"
+                            >
+
+                                <div class="quick-action-icon">
+                                    ◎
+                                </div>
+
+                                <div class="quick-action-title">
+                                    Edit Profile
+                                </div>
+
+                                <div class="quick-action-text">
+                                    Update your information
+                                </div>
+
+                            </a>
+
+
+                            <a
+                                href="teacher-availability.html"
+                                class="quick-action"
+                            >
+
+                                <div class="quick-action-icon">
+                                    ◷
+                                </div>
+
+                                <div class="quick-action-title">
+                                    Availability
+                                </div>
+
+                                <div class="quick-action-text">
+                                    Set your teaching hours
+                                </div>
+
+                            </a>
+
+
+                            <a
+                                href="#"
+                                class="quick-action"
+                                onclick="showComingSoon('Documents'); return false;"
+                            >
+
+                                <div class="quick-action-icon">
+                                    ▤
+                                </div>
+
+                                <div class="quick-action-title">
+                                    Documents
+                                </div>
+
+                                <div class="quick-action-text">
+                                    Manage qualifications
+                                </div>
+
+                            </a>
+
+
+                            <a
+                                href="#"
+                                class="quick-action"
+                                onclick="showComingSoon('Student Requests'); return false;"
+                            >
+
+                                <div class="quick-action-icon">
+                                    ◇
+                                </div>
+
+                                <div class="quick-action-title">
+                                    Student Requests
+                                </div>
+
+                                <div class="quick-action-text">
+                                    View incoming requests
+                                </div>
+
+                            </a>
+
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- DOCUMENTS -->
+
+                <section
+                    class="card"
+                    style="margin-top:20px;"
+                >
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Documents
+                            </div>
+
+                            <div class="card-description">
+                                Qualification verification.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="card-body"
+                        id="documentsList"
+                    >
+
+                        <div class="empty">
+                            Loading documents...
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- LOCATION -->
+
+                <section
+                    class="card"
+                    style="margin-top:20px;"
+                >
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <div class="card-title">
+                                Location & Teaching
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div
+                            class="chips"
+                            id="locationInfo"
+                        >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   BULBENI SUPABASE CONFIG
+========================================================= */
+
+const SUPABASE_URL =
+    "https://bisufzfsziqsevmixtso.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_VdXkeGE870ajVyHph5Ak5Q_AujUOA9P";
+
+
+let supabaseClient;
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeSupabase() {
+
+    if (
+        !window.supabase ||
+        typeof window.supabase.createClient !== "function"
+    ) {
+
+        throw new Error(
+            "Supabase library could not be loaded."
+        );
+
+    }
+
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function initials(firstName, lastName) {
+
+    const first =
+        (firstName || "").trim();
+
+    const last =
+        (lastName || "").trim();
+
+
+    return (
+        (first.charAt(0) || "") +
+        (last.charAt(0) || "")
+    ).toUpperCase() || "T";
+
+}
+
+
+function setChips(elementId, values) {
+
+    const element =
+        document.getElementById(elementId);
+
+
+    if (!element) return;
+
+
+    if (!values || !values.length) {
+
+        element.innerHTML =
+            '<span class="chip">Not specified</span>';
+
+        return;
+
+    }
+
+
+    element.innerHTML =
+        values
+            .map(
+                value =>
+                    `<span class="chip">${escapeHTML(value)}</span>`
+            )
+            .join("");
+
+}
+
+
+function setLoadingHidden() {
+
+    document
+        .getElementById("loadingScreen")
+        .classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function updateStatus(status) {
+
+    const badge =
+        document.getElementById("statusBadge");
+
+    const text =
+        document.getElementById("statusText");
+
+
+    const cleanStatus =
+        status || "draft";
+
+
+    badge.className =
+        "status-badge status-" +
+        cleanStatus;
+
+
+    const labels = {
+
+        draft:
+            "Draft",
+
+        submitted:
+            "Submitted",
+
+        under_review:
+            "Under Review",
+
+        approved:
+            "Approved",
+
+        rejected:
+            "Rejected"
+
+    };
+
+
+    const descriptions = {
+
+        draft:
+            "Your profile has not been submitted yet.",
+
+        submitted:
+            "Your application has been submitted and is waiting for review.",
+
+        under_review:
+            "Your profile is currently being reviewed by the Bulbeni team.",
+
+        approved:
+            "Your teacher profile has been approved.",
+
+        rejected:
+            "Your application needs attention. Please review your profile."
+
+    };
+
+
+    badge.textContent =
+        labels[cleanStatus] ||
+        cleanStatus;
+
+
+    text.textContent =
+        descriptions[cleanStatus] ||
+        "Your application status is being processed.";
+
+}
+
+
+/* =========================================================
+   PROFILE COMPLETION
+========================================================= */
+
+function calculateCompletion(
+    teacher,
+    subjects,
+    levels,
+    languages,
+    modes,
+    documents
+) {
+
+    const checks = [
+
+        !!teacher.first_name,
+
+        !!teacher.last_name,
+
+        !!teacher.email,
+
+        !!teacher.phone,
+
+        !!teacher.country,
+
+        !!teacher.city,
+
+        !!teacher.headline,
+
+        !!teacher.bio,
+
+        !!teacher.education,
+
+        !!teacher.experience,
+
+        !!teacher.methodology,
+
+        !!teacher.why_me,
+
+        teacher.price !== null &&
+        teacher.price !== undefined,
+
+        subjects.length > 0,
+
+        levels.length > 0,
+
+        languages.length > 0,
+
+        modes.length > 0,
+
+        documents.length > 0,
+
+        !!teacher.profile_photo_path
+
+    ];
+
+
+    const completed =
+        checks.filter(Boolean).length;
+
+
+    return Math.round(
+        (completed / checks.length) * 100
+    );
+
+}
+
+
+/* =========================================================
+   PORTRAIT
+========================================================= */
+
+async function loadPortrait(
+    teacher,
+    userId
+) {
+
+    const profilePhoto =
+        document.getElementById("profilePhoto");
+
+    const profileInitials =
+        document.getElementById("profileInitials");
+
+    const topPhoto =
+        document.getElementById("topPhoto");
+
+    const sidebarPhoto =
+        document.getElementById("sidebarPhoto");
+
+
+    const fallback =
+        "logo.jpg";
+
+
+    if (!teacher.profile_photo_path) {
+
+        profileInitials.textContent =
+            initials(
+                teacher.first_name,
+                teacher.last_name
+            );
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .storage
+                .from("teacher-portraits")
+                .createSignedUrl(
+                    teacher.profile_photo_path,
+                    3600
+                );
+
+
+        if (error || !data?.signedUrl) {
+
+            throw error ||
+                new Error(
+                    "Could not create portrait URL."
+                );
+
+        }
+
+
+        const url =
+            data.signedUrl;
+
+
+        profilePhoto.src = url;
+
+        profilePhoto.style.display =
+            "block";
+
+        profileInitials.style.display =
+            "none";
+
+
+        topPhoto.src =
+            url;
+
+        sidebarPhoto.src =
+            url;
+
+
+    } catch (error) {
+
+        console.warn(
+            "Portrait could not be loaded:",
+            error
+        );
+
+
+        profileInitials.textContent =
+            initials(
+                teacher.first_name,
+                teacher.last_name
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   DOCUMENTS
+========================================================= */
+
+function renderDocuments(documents) {
+
+    const container =
+        document.getElementById("documentsList");
+
+
+    document.getElementById(
+        "documentCount"
+    ).textContent =
+        documents.length;
+
+
+    if (!documents.length) {
+
+        container.innerHTML = `
+            <div class="empty">
+                No documents have been uploaded yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        documents
+            .map(document => {
+
+                let statusClass =
+                    "doc-pending";
+
+                let statusLabel =
+                    "Pending";
+
+
+                if (
+                    document.verification_status ===
+                    "approved"
+                ) {
+
+                    statusClass =
+                        "doc-approved";
+
+                    statusLabel =
+                        "Approved";
+
+                }
+
+
+                if (
+                    document.verification_status ===
+                    "rejected"
+                ) {
+
+                    statusClass =
+                        "doc-rejected";
+
+                    statusLabel =
+                        "Rejected";
+
+                }
+
+
+                return `
+                    <div class="document-row">
+
+                        <div class="document-icon">
+                            ▤
+                        </div>
+
+                        <div class="document-info">
+
+                            <div class="document-name">
+                                ${escapeHTML(document.file_name)}
+                            </div>
+
+                            <div class="document-type">
+                                ${escapeHTML(document.document_type)}
+                            </div>
+
+                        </div>
+
+                        <span
+                            class="document-status ${statusClass}"
+                        >
+                            ${statusLabel}
+                        </span>
+
+                    </div>
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/* =========================================================
+   LOAD DASHBOARD
+========================================================= */
+
+async function loadDashboard() {
+
+    initializeSupabase();
+
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (!session || !session.user) {
+
+        window.location.href =
+            "teacher-login.html";
+
+        return;
+
+    }
+
+
+    const user =
+        session.user;
+
+
+    document.getElementById(
+        "sidebarEmail"
+    ).textContent =
+        user.email || "";
+
+
+    /* -----------------------------------------------------
+       TEACHER PROFILE
+    ----------------------------------------------------- */
+
+    const {
+        data: teacher,
+        error: teacherError
+    } =
+        await supabaseClient
+            .from("teachers")
+            .select("*")
+            .eq("user_id", user.id)
+            .maybeSingle();
+
+
+    if (teacherError) {
+
+        console.error(
+            "Teacher profile error:",
+            teacherError
+        );
+
+        throw teacherError;
+
+    }
+
+
+    if (!teacher) {
+
+        setLoadingHidden();
+
+        alert(
+            "Your teacher profile could not be found."
+        );
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       RELATED DATA
+    ----------------------------------------------------- */
+
+    const [
+        subjectsResult,
+        levelsResult,
+        languagesResult,
+        modesResult,
+        documentsResult
+    ] =
+        await Promise.all([
+
+            supabaseClient
+                .from("teacher_subjects")
+                .select("*")
+                .eq("teacher_id", teacher.id),
+
+            supabaseClient
+                .from("teacher_levels")
+                .select("*")
+                .eq("teacher_id", teacher.id),
+
+            supabaseClient
+                .from("teacher_languages")
+                .select("*")
+                .eq("teacher_id", teacher.id),
+
+            supabaseClient
+                .from("teacher_modes")
+                .select("*")
+                .eq("teacher_id", teacher.id),
+
+            supabaseClient
+                .from("teacher_documents")
+                .select("*")
+                .eq("teacher_id", teacher.id)
+                .order(
+                    "uploaded_at",
+                    {
+                        ascending: false
+                    }
+                )
+
+        ]);
+
+
+    if (subjectsResult.error)
+        throw subjectsResult.error;
+
+    if (levelsResult.error)
+        throw levelsResult.error;
+
+    if (languagesResult.error)
+        throw languagesResult.error;
+
+    if (modesResult.error)
+        throw modesResult.error;
+
+    if (documentsResult.error)
+        throw documentsResult.error;
+
+
+    const subjects =
+        subjectsResult.data || [];
+
+    const levels =
+        levelsResult.data || [];
+
+    const languages =
+        languagesResult.data || [];
+
+    const modes =
+        modesResult.data || [];
+
+    const documents =
+        documentsResult.data || [];
+
+
+    /* -----------------------------------------------------
+       NAME
+    ----------------------------------------------------- */
+
+    const fullName =
+        [
+            teacher.first_name,
+            teacher.last_name
+        ]
+            .filter(Boolean)
+            .join(" ")
+        ||
+        "Teacher";
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        teacher.first_name ||
+        "Teacher";
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        fullName;
+
+
+    document.getElementById(
+        "sidebarName"
+    ).textContent =
+        fullName;
+
+
+    document.getElementById(
+        "topName"
+    ).textContent =
+        teacher.first_name ||
+        "Teacher";
+
+
+    /* -----------------------------------------------------
+       HEADLINE
+    ----------------------------------------------------- */
+
+    document.getElementById(
+        "profileHeadline"
+    ).textContent =
+        teacher.headline ||
+        "Teacher";
+
+
+    /* -----------------------------------------------------
+       BIO
+    ----------------------------------------------------- */
+
+    document.getElementById(
+        "profileBio"
+    ).textContent =
+        teacher.bio ||
+        "Your professional introduction has not been added yet.";
+
+
+    /* -----------------------------------------------------
+       META
+    ----------------------------------------------------- */
+
+    const meta = [];
+
+
+    if (teacher.city)
+        meta.push(teacher.city);
+
+
+    if (teacher.country)
+        meta.push(teacher.country);
+
+
+    if (teacher.price !== null &&
+        teacher.price !== undefined) {
+
+        meta.push(
+            `${teacher.price} ${teacher.currency || "TRY"} / hour`
+        );
+
+    }
+
+
+    if (modes.length) {
+
+        modes.forEach(
+            item => {
+
+                if (
+                    item.mode &&
+                    !meta.includes(item.mode)
+                ) {
+
+                    meta.push(item.mode);
+
+                }
+
+            }
+        );
+
+    }
+
+
+    document.getElementById(
+        "profileMeta"
+    ).innerHTML =
+        meta
+            .map(
+                item =>
+                    `<span class="meta-pill">${escapeHTML(item)}</span>`
+            )
+            .join("");
+
+
+    /* -----------------------------------------------------
+       CHIPS
+    ----------------------------------------------------- */
+
+    setChips(
+        "subjectChips",
+        subjects.map(
+            item => item.subject
+        )
+    );
+
+
+    setChips(
+        "levelChips",
+        levels.map(
+            item => item.level
+        )
+    );
+
+
+    setChips(
+        "languageChips",
+        languages.map(
+            item => {
+
+                if (
+                    item.proficiency
+                ) {
+
+                    return (
+                        item.language +
+                        " · " +
+                        item.proficiency
+                    );
+
+                }
+
+                return item.language;
+
+            }
+        )
+    );
+
+
+    setChips(
+        "modeChips",
+        modes.map(
+            item => item.mode
+        )
+    );
+
+
+    /* -----------------------------------------------------
+       LOCATION
+    ----------------------------------------------------- */
+
+    const locationItems = [];
+
+
+    if (teacher.city)
+        locationItems.push(
+            "City: " + teacher.city
+        );
+
+
+    if (teacher.country)
+        locationItems.push(
+            "Country: " + teacher.country
+        );
+
+
+    if (teacher.currency)
+        locationItems.push(
+            "Currency: " + teacher.currency
+        );
+
+
+    document.getElementById(
+        "locationInfo"
+    ).innerHTML =
+        locationItems
+            .map(
+                item =>
+                    `<span class="chip">${escapeHTML(item)}</span>`
+            )
+            .join("")
+        ||
+        '<span class="chip">Not specified</span>';
+
+
+    /* -----------------------------------------------------
+       STATUS
+    ----------------------------------------------------- */
+
+    updateStatus(
+        teacher.profile_status
+    );
+
+
+    /* -----------------------------------------------------
+       DOCUMENTS
+    ----------------------------------------------------- */
+
+    renderDocuments(
+        documents
+    );
+
+
+    /* -----------------------------------------------------
+       COMPLETION
+    ----------------------------------------------------- */
+
+    const completion =
+        calculateCompletion(
+            teacher,
+            subjects,
+            levels,
+            languages,
+            modes,
+            documents
+        );
+
+
+    document.getElementById(
+        "completionValue"
+    ).textContent =
+        completion + "%";
+
+
+    document.getElementById(
+        "completionPercent"
+    ).textContent =
+        completion + "%";
+
+
+    setTimeout(
+        function() {
+
+            document.getElementById(
+                "progressBar"
+            ).style.width =
+                completion + "%";
+
+        },
+        100
+    );
+
+
+    /* -----------------------------------------------------
+       PORTRAIT
+    ----------------------------------------------------- */
+
+    await loadPortrait(
+        teacher,
+        user.id
+    );
+
+
+    /* -----------------------------------------------------
+       FINISH
+    ----------------------------------------------------- */
+
+    setLoadingHidden();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document.getElementById(
+    "logoutButton"
+).addEventListener(
+    "click",
+    async function() {
+
+        this.disabled = true;
+
+        this.textContent =
+            "Signing out...";
+
+
+        try {
+
+            initializeSupabase();
+
+            await supabaseClient.auth.signOut();
+
+        } finally {
+
+            window.location.href =
+                "teacher-login.html";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+document.getElementById(
+    "mobileMenu"
+).addEventListener(
+    "click",
+    function() {
+
+        document
+            .getElementById("sidebar")
+            .classList.toggle("open");
+
+    }
+);
+
+
+/* =========================================================
+   COMING SOON
+========================================================= */
+
+function showComingSoon(feature) {
+
+    alert(
+        feature +
+        " will be available in the next Bulbeni dashboard update."
+    );
+
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+async function startDashboard() {
+
+    try {
+
+        await loadDashboard();
+
+    } catch (error) {
+
+        console.error(
+            "Bulbeni dashboard error:",
+            error
+        );
+
+
+        setLoadingHidden();
+
+
+        alert(
+            "We couldn't load your teacher dashboard. Please sign in again."
+        );
+
+
+        try {
+
+            if (supabaseClient) {
+
+                await supabaseClient.auth.signOut();
+
+            }
+
+        } catch (_) {}
+
+
+        window.location.href =
+            "teacher-login.html";
+
+    }
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+startDashboard();
+
+
+/* =========================================================
+   AVAILABILITY CONNECTION
+   ========================================================= */
+(function(){
+    const availabilityPage = "teacher-availability.html";
+
+    // Keep dashboard navigation connected even if a browser cached an older
+    // inline handler.
+    document.querySelectorAll(".nav-item").forEach(function(item){
+        const text=(item.textContent||"").trim();
+        if(text === "Availability" && item.tagName === "BUTTON"){
+            const link=document.createElement("a");
+            link.className=item.className;
+            link.href=availabilityPage;
+            link.innerHTML=item.innerHTML;
+            item.replaceWith(link);
+        }
+    });
+
+    document.querySelectorAll(".quick-action").forEach(function(item){
+        const title=item.querySelector(".quick-action-title");
+        if(title && title.textContent.trim()==="Availability"){
+            item.href=availabilityPage;
+            item.onclick=null;
+        }
+    });
+})();
+
+</script>
+
+</body>
+</html>
