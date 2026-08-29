@@ -5401,7 +5401,10 @@ document
                2. CREATE TEACHER PROFILE
             ====================================================== */
 
+            const selectedMainAreas = getSelectedMainAreas();
+
             const subject =
+                selectedMainAreas[0] ||
                 document.querySelector(
                     'input[name="subject"]:checked'
                 )?.value || null;
@@ -5507,30 +5510,25 @@ document
             }
 
             /* =====================================================
-               4. SAVE TEACHER EXPERTISE
+               3B. SAVE AREAS OF EXPERTISE
             ====================================================== */
 
-            const expertiseRows = [];
-
-            // Save the specific expertise/courses selected in the
-            // interactive taxonomy to the dedicated teacher_expertise table.
-            specializations.forEach(expertise => {
-                expertiseRows.push({
+            if(specializations.length){
+                const expertiseRows = specializations.map(expertise => ({
                     teacher_id: teacherId,
                     expertise
-                });
-            });
+                }));
 
-            if(expertiseRows.length){
-                const { error: expertiseError } = await supabase
-                    .from("teacher_expertise")
-                    .insert(expertiseRows);
+                const { error: expertiseError } =
+                    await supabase
+                        .from("teacher_expertise")
+                        .insert(expertiseRows);
 
                 if(expertiseError) throw expertiseError;
             }
 
             /* =====================================================
-               5. SAVE TEACHING LEVELS
+               4. SAVE TEACHING LEVELS
             ====================================================== */
 
             const levelRows = [];
@@ -5558,7 +5556,7 @@ document
             }
 
             /* =====================================================
-               6. SAVE LANGUAGES
+               5. SAVE LANGUAGES
             ====================================================== */
 
             if(languages.length){
@@ -5575,7 +5573,7 @@ document
             }
 
             /* =====================================================
-               7. SAVE TEACHING MODES
+               6. SAVE TEACHING MODES
             ====================================================== */
 
             if(formats.length){
@@ -5592,7 +5590,7 @@ document
             }
 
             /* =====================================================
-               8. UPLOAD PORTRAIT
+               7. UPLOAD PORTRAIT
             ====================================================== */
 
             if(portraitFile){
@@ -5633,7 +5631,7 @@ document
             }
 
             /* =====================================================
-               9. UPLOAD DOCUMENTS + SAVE DOCUMENT RECORDS
+               8. UPLOAD DOCUMENTS + SAVE DOCUMENT RECORDS
             ====================================================== */
 
             const documentGroups = [
