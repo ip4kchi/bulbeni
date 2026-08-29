@@ -5507,7 +5507,30 @@ document
             }
 
             /* =====================================================
-               4. SAVE TEACHING LEVELS
+               4. SAVE TEACHER EXPERTISE
+            ====================================================== */
+
+            const expertiseRows = [];
+
+            // Save the specific expertise/courses selected in the
+            // interactive taxonomy to the dedicated teacher_expertise table.
+            specializations.forEach(expertise => {
+                expertiseRows.push({
+                    teacher_id: teacherId,
+                    expertise
+                });
+            });
+
+            if(expertiseRows.length){
+                const { error: expertiseError } = await supabase
+                    .from("teacher_expertise")
+                    .insert(expertiseRows);
+
+                if(expertiseError) throw expertiseError;
+            }
+
+            /* =====================================================
+               5. SAVE TEACHING LEVELS
             ====================================================== */
 
             const levelRows = [];
@@ -5535,7 +5558,7 @@ document
             }
 
             /* =====================================================
-               5. SAVE LANGUAGES
+               6. SAVE LANGUAGES
             ====================================================== */
 
             if(languages.length){
@@ -5552,7 +5575,7 @@ document
             }
 
             /* =====================================================
-               6. SAVE TEACHING MODES
+               7. SAVE TEACHING MODES
             ====================================================== */
 
             if(formats.length){
@@ -5569,7 +5592,7 @@ document
             }
 
             /* =====================================================
-               7. UPLOAD PORTRAIT
+               8. UPLOAD PORTRAIT
             ====================================================== */
 
             if(portraitFile){
@@ -5610,7 +5633,7 @@ document
             }
 
             /* =====================================================
-               8. UPLOAD DOCUMENTS + SAVE DOCUMENT RECORDS
+               9. UPLOAD DOCUMENTS + SAVE DOCUMENT RECORDS
             ====================================================== */
 
             const documentGroups = [
