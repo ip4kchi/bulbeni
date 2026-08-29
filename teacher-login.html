@@ -689,15 +689,104 @@ const SUPABASE_URL="https://bisufzfsziqsevmixtso.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY="sb_publishable_VdXkeGE870ajVyHph5Ak5Q_AujUOA9P";
 let supabaseClient=null;
 function init(){if(!window.supabase||typeof window.supabase.createClient!=="function")return false;if(!supabaseClient)supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);return true}
-function msg(el,text,type){el.textContent=text;el.className="message "+type}
+function msg(el,text,type){if(!el)return;el.textContent=text;el.className="message "+type}
 
-const loginForm=document.getElementById("loginForm"),email=document.getElementById("email"),password=document.getElementById("password"),loginButton=document.getElementById("loginButton"),teacherMessage=document.getElementById("teacherMessage"),forgot=document.getElementById("forgotPassword");
-loginForm.addEventListener("submit",async e=>{e.preventDefault();if(!email.value.trim())return msg(teacherMessage,"Please enter your email address.","error");if(!password.value)return msg(teacherMessage,"Please enter your password.","error");if(!init())return msg(teacherMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");loginButton.disabled=true;loginButton.textContent="Signing in...";try{const {data,error}=await supabaseClient.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error)throw error;if(!data?.user)throw new Error("No user account was returned.");loginButton.textContent="Signed in ✓";msg(teacherMessage,"Welcome back. Redirecting to your teacher dashboard...","success");setTimeout(()=>location.href="teacher-dashboard.html",700)}catch(error){console.error(error);msg(teacherMessage,error.message?.toLowerCase().includes("email not confirmed")?"Your email address has not been confirmed yet.":"We couldn't sign you in. Please check your email and password.","error");loginButton.disabled=false;loginButton.textContent="Sign in as Teacher"}});
-forgot.addEventListener("click",async()=>{const value=email.value.trim();if(!value)return msg(teacherMessage,"Enter your email address first, then click “Forgot password?”.","error");if(!init())return msg(teacherMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");forgot.disabled=true;try{const {error}=await supabaseClient.auth.resetPasswordForEmail(value,{redirectTo:location.origin+"/teacher-reset-password.html"});if(error)throw error;msg(teacherMessage,"If an account exists for this email, a password reset link has been sent.","success")}catch(error){console.error(error);msg(teacherMessage,"We couldn't send the reset email. Please try again.","error")}finally{forgot.disabled=false}});
+/* Teacher portal */
+const loginForm=document.getElementById("teacherTabLoginForm");
+const email=document.getElementById("teacherTabEmail");
+const password=document.getElementById("teacherTabPassword");
+const loginButton=loginForm ? loginForm.querySelector('button[type="submit"]') : null;
+const teacherMessage=document.getElementById("teacherTabMessage");
+const forgot=document.getElementById("teacherTabForgot");
 
-const studentForm=document.getElementById("studentLoginForm"),studentEmail=document.getElementById("studentEmail"),studentPassword=document.getElementById("studentPassword"),studentButton=document.getElementById("studentLoginButton"),studentMessage=document.getElementById("studentMessage"),studentForgot=document.getElementById("studentForgotPassword");
-studentForm.addEventListener("submit",async e=>{e.preventDefault();if(!studentEmail.value.trim())return msg(studentMessage,"Please enter your email address.","error");if(!studentPassword.value)return msg(studentMessage,"Please enter your password.","error");if(!init())return msg(studentMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");studentButton.disabled=true;studentButton.textContent="Signing in...";try{const {data,error}=await supabaseClient.auth.signInWithPassword({email:studentEmail.value.trim(),password:studentPassword.value});if(error)throw error;if(!data?.user)throw new Error("No user account was returned.");studentButton.textContent="Signed in ✓";msg(studentMessage,"Your account was authenticated successfully. The student portal is being prepared.","success")}catch(error){console.error(error);msg(studentMessage,error.message?.toLowerCase().includes("email not confirmed")?"Your email address has not been confirmed yet.":"We couldn't sign you in. Please check your email and password.","error");studentButton.disabled=false;studentButton.textContent="Sign in as Student"}});
-studentForgot.addEventListener("click",async()=>{const value=studentEmail.value.trim();if(!value)return msg(studentMessage,"Enter your email address first, then click “Forgot password?”.","error");if(!init())return msg(studentMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");studentForgot.disabled=true;try{const {error}=await supabaseClient.auth.resetPasswordForEmail(value,{redirectTo:location.origin+"/student-reset-password.html"});if(error)throw error;msg(studentMessage,"If an account exists for this email, a password reset link has been sent.","success")}catch(error){console.error(error);msg(studentMessage,"We couldn't send the reset email. Please try again.","error")}finally{studentForgot.disabled=false}});
+if(loginForm && email && password && loginButton){
+    loginForm.addEventListener("submit",async e=>{
+        e.preventDefault();
+        if(!email.value.trim())return msg(teacherMessage,"Please enter your email address.","error");
+        if(!password.value)return msg(teacherMessage,"Please enter your password.","error");
+        if(!init())return msg(teacherMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+        loginButton.disabled=true;
+        loginButton.textContent="Signing in...";
+        try{
+            const {data,error}=await supabaseClient.auth.signInWithPassword({email:email.value.trim(),password:password.value});
+            if(error)throw error;
+            if(!data?.user)throw new Error("No user account was returned.");
+            loginButton.textContent="Signed in ✓";
+            msg(teacherMessage,"Welcome back. Redirecting to your teacher dashboard...","success");
+            setTimeout(()=>location.href="teacher-dashboard.html",700);
+        }catch(error){
+            console.error(error);
+            msg(teacherMessage,error.message?.toLowerCase().includes("email not confirmed")?"Your email address has not been confirmed yet.":"We couldn't sign you in. Please check your email and password.","error");
+            loginButton.disabled=false;
+            loginButton.textContent="Sign in as Teacher";
+        }
+    });
+}
+
+if(forgot && email){
+    forgot.addEventListener("click",async()=>{
+        const value=email.value.trim();
+        if(!value)return msg(teacherMessage,"Enter your email address first, then click “Forgot password?”.","error");
+        if(!init())return msg(teacherMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+        forgot.disabled=true;
+        try{
+            const {error}=await supabaseClient.auth.resetPasswordForEmail(value,{redirectTo:location.origin+"/teacher-reset-password.html"});
+            if(error)throw error;
+            msg(teacherMessage,"If an account exists for this email, a password reset link has been sent.","success");
+        }catch(error){
+            console.error(error);
+            msg(teacherMessage,"We couldn't send the reset email. Please try again.","error");
+        }finally{forgot.disabled=false;}
+    });
+}
+
+/* Student portal */
+const studentForm=document.getElementById("studentTabLoginForm");
+const studentEmail=document.getElementById("studentTabEmail");
+const studentPassword=document.getElementById("studentTabPassword");
+const studentButton=studentForm ? studentForm.querySelector('button[type="submit"]') : null;
+const studentMessage=document.getElementById("studentTabMessage");
+const studentForgot=document.getElementById("studentTabForgot");
+
+if(studentForm && studentEmail && studentPassword && studentButton){
+    studentForm.addEventListener("submit",async e=>{
+        e.preventDefault();
+        if(!studentEmail.value.trim())return msg(studentMessage,"Please enter your email address.","error");
+        if(!studentPassword.value)return msg(studentMessage,"Please enter your password.","error");
+        if(!init())return msg(studentMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+        studentButton.disabled=true;
+        studentButton.textContent="Signing in...";
+        try{
+            const {data,error}=await supabaseClient.auth.signInWithPassword({email:studentEmail.value.trim(),password:studentPassword.value});
+            if(error)throw error;
+            if(!data?.user)throw new Error("No user account was returned.");
+            studentButton.textContent="Signed in ✓";
+            msg(studentMessage,"Your account was authenticated successfully. The student portal is being prepared.","success");
+        }catch(error){
+            console.error(error);
+            msg(studentMessage,error.message?.toLowerCase().includes("email not confirmed")?"Your email address has not been confirmed yet.":"We couldn't sign you in. Please check your email and password.","error");
+            studentButton.disabled=false;
+            studentButton.textContent="Sign in as Student";
+        }
+    });
+}
+
+if(studentForgot && studentEmail){
+    studentForgot.addEventListener("click",async()=>{
+        const value=studentEmail.value.trim();
+        if(!value)return msg(studentMessage,"Enter your email address first, then click “Forgot password?”.","error");
+        if(!init())return msg(studentMessage,"Unable to connect to Bulbeni. Please refresh the page and try again.","error");
+        studentForgot.disabled=true;
+        try{
+            const {error}=await supabaseClient.auth.resetPasswordForEmail(value,{redirectTo:location.origin+"/student-reset-password.html"});
+            if(error)throw error;
+            msg(studentMessage,"If an account exists for this email, a password reset link has been sent.","success");
+        }catch(error){
+            console.error(error);
+            msg(studentMessage,"We couldn't send the reset email. Please try again.","error");
+        }finally{studentForgot.disabled=false;}
+    });
+}
 </script>
 
 
@@ -777,8 +866,9 @@ studentForgot.addEventListener("click",async()=>{const value=studentEmail.value.
         }
     });
 
-    forgot.addEventListener("click", async function(){
-        const value = email.value.trim();
+    if(forgot){
+        forgot.addEventListener("click", async function(){
+            const value = email.value.trim();
 
         if(!value){
             showOrgMessage("Enter your work email address first, then click “Forgot password?”.","error");
@@ -811,7 +901,8 @@ studentForgot.addEventListener("click",async()=>{const value=studentEmail.value.
         }finally{
             forgot.disabled = false;
         }
-    });
+        });
+    }
 })();
 </script>
 
