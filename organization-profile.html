@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organization Profile | Bulbeni</title>
+<meta name="description" content="Create an organization profile on Bulbeni to connect with teachers and manage applications.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --navy:#102a43;--green:#17604f;--teal:#2a9d8f;--mint:#eaf7f4;
+ --bg:#f7faf9;--text:#17313f;--muted:#71818b;--line:#e1e9e6;
+ --white:#fff;--shadow:0 18px 50px rgba(16,42,67,.08)
+}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif}
+button,input,select,textarea{font:inherit}a{text-decoration:none;color:inherit}
+.container{width:min(1180px,calc(100% - 40px));margin:auto}
+.navbar{height:68px;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.nav-inner{height:100%;display:flex;align-items:center}
+.logo img{width:108px;display:block}
+.nav-links{display:flex;gap:30px;margin-left:auto;margin-right:30px}
+.nav-links a{font-size:13px;font-weight:700;color:#536772}
+.nav-actions{display:flex;align-items:center;gap:9px}
+.login{background:var(--navy);color:#fff;border:0;border-radius:999px;padding:9px 14px;font-size:11px;font-weight:800}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:#fff}
+.lang a{font-size:10px;font-weight:800;padding:6px 8px;border-radius:999px;color:#87949b}
+.lang .active{background:var(--green);color:#fff}
+
+.hero{padding:52px 0 28px;animation:fade .9s ease both}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--teal);font-size:10px;font-weight:800;margin-bottom:10px}
+h1{font-family:"Manrope",sans-serif;font-size:clamp(35px,5vw,54px);line-height:1.04;letter-spacing:-.045em;color:var(--navy);margin:0;max-width:760px}
+.hero p{max-width:680px;color:var(--muted);font-size:14px;line-height:1.7;margin:14px 0 0}
+
+.layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);gap:24px;padding-bottom:70px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px}
+.card-title h2{font-family:"Manrope";font-size:19px;color:var(--navy);margin:0}
+.card-title p{font-size:12px;color:var(--muted);margin:6px 0 22px}
+.section{border-top:1px solid var(--line);padding:22px 0}
+.section:first-of-type{border-top:0;padding-top:0}
+.section-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:13px}
+.section-head h3{font-size:13px;margin:0;color:var(--navy)}
+.hint{font-size:10px;color:#8b999f;font-style:italic}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+label{font-size:10.5px;font-weight:800;color:#465d69;display:block;margin-bottom:7px}
+input,select,textarea{width:100%;border:1px solid var(--line);background:#fbfcfc;border-radius:11px;padding:11px 12px;color:var(--text);font-size:12px;outline:0}
+textarea{min-height:95px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#a0abb0;font-style:italic;font-size:11px}
+input:focus,select:focus,textarea:focus{border-color:rgba(42,157,143,.45);box-shadow:0 0 0 4px rgba(42,157,143,.07)}
+
+.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.choice{position:relative;margin:0}
+.choice input{position:absolute;opacity:0}
+.choice-box{min-height:42px;display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-radius:11px;background:#fbfcfc;cursor:pointer;transition:.18s}
+.choice-box:hover{background:#fff;transform:translateY(-1px)}
+.choice input:checked + .choice-box{background:var(--mint);border-color:rgba(42,157,143,.4)}
+.check{width:15px;height:15px;border-radius:5px;border:1px solid #c5d0d0;color:transparent;display:grid;place-items:center;font-size:9px;flex:none}
+.choice input:checked + .choice-box .check{background:var(--teal);border-color:var(--teal);color:#fff}
+.choice-text{font-size:10.5px;font-weight:700;line-height:1.2}
+.language-options{animation:reveal .28s ease both}
+.language-options[hidden]{display:none}
+@keyframes reveal{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+.submit{width:100%;margin-top:19px;border:0;border-radius:12px;background:var(--navy);color:#fff;padding:13px;font-size:12px;font-weight:800;cursor:pointer}
+.note{text-align:center;color:#929da1;font-size:9px;font-style:italic;margin-top:8px}
+
+.preview{position:sticky;top:88px}
+.preview-card{padding:0;overflow:hidden}
+.preview-top{padding:27px;background:linear-gradient(145deg,#eaf6f3,#fff)}
+.mark{width:64px;height:64px;border-radius:18px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--teal);font:800 22px Manrope;margin-bottom:14px}
+.badge{display:inline-block;background:#e4f2ee;color:#17604f;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:800;margin-bottom:8px}
+.preview h2{font:800 23px Manrope;color:var(--navy);margin:0;letter-spacing:-.035em}
+.meta{font-size:11px;color:var(--muted);margin-top:5px}
+.preview-body{padding:22px 27px}.tags,.meta,.profile-note{transition:opacity .16s ease}
+.pblock{border-top:1px solid var(--line);padding:15px 0}
+.pblock:first-child{border-top:0;padding-top:0}
+.plabel{text-transform:uppercase;letter-spacing:.1em;font-size:9px;font-weight:800;color:#89979d;margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:#f1f5f4;color:#4b625e;padding:5px 7px;border-radius:7px;font-size:9.5px;font-weight:700}
+.empty{font-size:10px;color:#9aa5aa;font-style:italic}
+.profile-note{background:#f7faf9;border:1px solid var(--line);border-radius:12px;padding:11px;font-size:10px;color:#697b83;line-height:1.5}
+.profile-note strong{color:var(--navy)}
+
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(max-width:820px){
+ .container{width:min(calc(100% - 24px),650px)}
+ #hireCount{width:100%}
+ .nav-links{display:none}.nav-actions{margin-left:auto}
+ .layout{grid-template-columns:1fr}.preview{position:static;order:-1}
+ .choices{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+ .navbar{height:62px}.logo img{width:96px}
+ .login{padding:8px 10px;font-size:10px}.lang a{padding:6px 7px}
+ .hero{padding:35px 0 22px}h1{font-size:37px}
+ .card{padding:20px;border-radius:18px}.fields{grid-template-columns:1fr}
+ .choices{grid-template-columns:repeat(2,1fr);gap:7px}
+ .choice-box{min-height:40px;padding:8px}.choice-text{font-size:10px}
+}
+
+.account-note{margin-top:10px;padding:10px 12px;border:1px solid var(--line);background:#f7faf9;border-radius:10px;color:#75858a;font-size:9px;line-height:1.45}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+ <div class="container nav-inner">
+  <a class="logo" href="index.html"><img src="logo.jpg" alt="Bulbeni"></a>
+  <nav class="nav-links">
+   <a href="index.html">Find Your Match</a>
+   <a href="teacher-register.html">Become a Teacher</a>
+   <a href="organization-profile.html">For Organizations</a>
+  </nav>
+  <div class="nav-actions">
+   <a class="login" href="teacher-login.html">Log in / Sign up</a>
+   <div class="lang"><a class="active" href="organization-profile.html">EN</a><a href="tr/organization-profile.html">TR</a></div>
+  </div>
+ </div>
+</header>
+
+<main class="container">
+<section class="hero">
+ <div class="eyebrow">Bulbeni · Organizations</div>
+ <h1>Your organization. Your team.</h1>
+ <p>Create a professional organization profile so you can connect with teachers and other professionals, contact candidates, and manage applications through Bulbeni.</p>
+</section>
+
+<div class="layout">
+<form class="card" id="organizationForm">
+ <div class="card-title">
+  <h2>Create your organization profile</h2>
+  <p>This profile represents your organization on Bulbeni. You can use it to build your team — it is not an advertising page.</p>
+ </div>
+
+ <section class="section">
+  <div class="section-head"><h3>Organization information</h3><span class="hint">Basic details</span></div>
+  <div class="fields">
+   <div><label>Organization name</label><input id="orgName" placeholder="e.g. Bright Future Academy"></div>
+   <div><label>Organization type</label><select id="orgType">
+    <option value="">Choose organization type</option>
+    <option>School</option><option>Language School</option><option>University</option>
+    <option>College</option><option>Training Center</option><option>Private Education Center</option>
+    <option>Online Education Provider</option><option>Educational Organization</option><option>Other</option>
+   </select></div>
+  </div>
+  <div style="margin-top:13px;max-width:50%">
+   <label>How many teachers or staff are you looking to hire?</label>
+   <select id="hireCount">
+    <option value="">Choose number</option>
+    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+    <option>6–10</option><option>11–20</option><option>21–50</option><option>50+</option>
+   </select>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="section-head"><h3>School levels</h3><span class="hint">Select all that apply</span></div>
+  <div class="choices">
+   <label class="choice"><input type="checkbox" data-group="levels" value="Kindergarten"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Kindergarten</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="levels" value="Primary School"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Primary School</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="levels" value="Middle School"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Middle School</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="levels" value="High School"><span class="choice-box"><span class="check">✓</span><span class="choice-text">High School</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="levels" value="University"><span class="choice-box"><span class="check">✓</span><span class="choice-text">University</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="levels" value="Adult Education"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Adult Education</span></span></label>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="section-head"><h3>What kind of professionals are you looking for?</h3><span class="hint">Select areas</span></div>
+  <div class="choices">
+   <label class="choice"><input type="checkbox" data-group="needs" value="Teachers"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Teachers</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="needs" value="Academic Staff"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Academic Staff</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="needs" value="Administrative Staff"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Administrative Staff</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="needs" value="Coordinators"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Coordinators</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="needs" value="Tutors"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Tutors</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="needs" value="Other Staff"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Other Staff</span></span></label>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="section-head">
+   <h3>Teaching areas / expertise</h3>
+   <span class="hint">Select all that apply</span>
+  </div>
+  <div class="choices">
+   <label class="choice"><input type="checkbox" data-group="areas" value="Languages" id="languagesArea"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Languages</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="areas" value="STEM"><span class="choice-box"><span class="check">✓</span><span class="choice-text">STEM</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="areas" value="Humanities"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Humanities</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="areas" value="Exam Preparation"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Exam Preparation</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="areas" value="Arts & Creative"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Arts & Creative</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="areas" value="Business English"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Business English</span></span></label>
+  </div>
+
+  <div id="languageOptions" class="language-options" hidden>
+   <div class="section-head" style="margin-top:18px">
+    <h3>Which languages are you looking for?</h3>
+    <span class="hint">Select all that apply</span>
+   </div>
+   <div class="choices">
+    <label class="choice"><input type="checkbox" data-group="languages" value="English"><span class="choice-box"><span class="check">✓</span><span class="choice-text">English</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Spanish"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Spanish</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="German"><span class="choice-box"><span class="check">✓</span><span class="choice-text">German</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="French"><span class="choice-box"><span class="check">✓</span><span class="choice-text">French</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Turkish"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Turkish</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Persian"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Persian</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Arabic"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Arabic</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Italian"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Italian</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Russian"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Russian</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Chinese"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Chinese</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Japanese"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Japanese</span></span></label>
+    <label class="choice"><input type="checkbox" data-group="languages" value="Korean"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Korean</span></span></label>
+  </div>
+ </div>
+ </section>
+
+ <section class="section">
+  <div class="section-head">
+   <h3>Who are you looking for?</h3>
+   <span class="hint">Select what matters to your organization</span>
+  </div>
+  <p style="font-size:11px;color:#71818b;margin:-4px 0 15px;line-height:1.6">
+   These preferences help Bulbeni understand the kind of professional who will fit your organization.
+   Specific hiring requirements can be defined when you create a hiring request.
+  </p>
+
+  <div class="section-head"><h3>Teaching environment</h3><span class="hint">Select all that apply</span></div>
+  <div class="choices">
+   <label class="choice"><input type="checkbox" data-group="environment" value="Large / crowded classes"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Large / crowded classes</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Small classes"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Small classes</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Mixed-ability students"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Mixed-ability students</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Young learners"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Young learners</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Teenagers"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Teenagers</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Adults"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Adults</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Exam-focused environment"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Exam-focused</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="environment" value="Fast-paced environment"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Fast-paced environment</span></span></label>
+  </div>
+
+  <div class="section-head" style="margin-top:20px"><h3>Skills & qualities</h3><span class="hint">Select all that apply</span></div>
+  <div class="choices">
+   <label class="choice"><input type="checkbox" data-group="skills" value="Strong classroom management"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Strong classroom management</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Large-class management"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Large-class management</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Behaviour management"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Behaviour management</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Differentiated instruction"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Differentiated instruction</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Lesson planning"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Lesson planning</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Student engagement"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Student engagement</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Assessment skills"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Assessment skills</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Exam preparation"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Exam preparation</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Parent communication"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Parent communication</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Teamwork"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Teamwork</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Digital teaching skills"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Digital teaching skills</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="skills" value="Adaptability"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Adaptability</span></span></label>
+  </div>
+
+  <div class="section-head" style="margin-top:20px"><h3>Working style</h3><span class="hint">Select all that apply</span></div>
+  <div class="choices">
+   <label class="choice"><input type="checkbox" data-group="style" value="Independent"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Independent</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="style" value="Collaborative"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Collaborative</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="style" value="Flexible"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Flexible</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="style" value="Highly organized"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Highly organized</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="style" value="Flexible with changing schedules"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Flexible with schedules</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="style" value="Strong communication skills"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Strong communication</span></span></label>
+  </div>
+
+  <div style="margin-top:20px">
+   <div class="section-head"><h3>Anything else?</h3><span class="hint">Optional</span></div>
+   <textarea id="requirements" placeholder="Add any specific details that aren't covered above..."></textarea>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="section-head"><h3>Location & working format</h3><span class="hint">For matching</span></div>
+  <div class="fields">
+   <div><label>City</label><input id="city" placeholder="e.g. Istanbul"></div>
+   <div><label>Website <span class="hint">optional</span></label><input placeholder="https://..."></div>
+  </div>
+  <div class="choices" style="margin-top:13px">
+   <label class="choice"><input type="checkbox" data-group="formats" value="Online"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Online</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="formats" value="Face-to-face"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Face-to-face</span></span></label>
+   <label class="choice"><input type="checkbox" data-group="formats" value="Hybrid"><span class="choice-box"><span class="check">✓</span><span class="choice-text">Hybrid</span></span></label>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="section-head">
+    <h3>Account & contact</h3>
+    <span class="hint">Required</span>
+  </div>
+  <div class="fields">
+    <div>
+      <label for="contactName">Contact person</label>
+      <input id="contactName" type="text" autocomplete="name" placeholder="e.g. Sarah Demir">
+    </div>
+    <div>
+      <label for="phone">Telephone number</label>
+      <input id="phone" type="tel" autocomplete="tel" placeholder="+90 5xx xxx xx xx">
+    </div>
+    <div>
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="email" placeholder="e.g. hr@yourorganization.com">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="new-password" placeholder="Create a password">
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm password</label>
+      <input id="confirmPassword" type="password" autocomplete="new-password" placeholder="Repeat your password">
+    </div>
+  </div>
+  <div class="account-note">Your email will be used to sign in to your Bulbeni organization account. Contact details are kept separate from the public profile preview.</div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h3>About your organization</h3><span class="hint">Optional</span></div>
+  <textarea id="about" placeholder="Briefly introduce your organization and the kind of team you are building..."></textarea>
+ </section>
+
+ <button class="submit" id="createProfileBtn" type="button">Create organization profile</button>
+ <div class="note">Once created, your organization can contact teachers and follow applications from its Bulbeni profile.</div>
+</form>
+
+<aside class="preview">
+ <div class="card preview-card">
+  <div class="preview-top">
+   <div class="mark" id="initial">O</div>
+   <div class="badge">Organization profile</div>
+   <h2 id="pName">Your organization</h2>
+   <div class="meta" id="pMeta">Organization type · Location</div>
+  </div>
+  <div class="preview-body">
+   <div class="pblock"><div class="plabel">School levels</div><div class="tags" id="pLevels"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Hiring needs</div><div class="tags" id="pNeeds"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Number of positions</div><div class="meta" id="pCount">Not specified</div></div>
+   <div class="pblock"><div class="plabel">Teaching areas / expertise</div><div class="tags" id="pAreas"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Teaching environment</div><div class="tags" id="pEnvironment"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Skills & qualities</div><div class="tags" id="pSkills"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Working style</div><div class="tags" id="pStyle"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Working format</div><div class="tags" id="pFormats"><span class="empty">Not selected</span></div></div>
+   <div class="pblock"><div class="plabel">Additional details</div><div id="pExtra"><span class="empty">Not provided</span></div></div>
+   <div class="pblock"><div class="plabel">About the organization</div><div id="pAbout"><span class="empty">Not provided</span></div></div>
+   <div class="pblock"><div class="plabel">How Bulbeni helps</div>
+    <div class="profile-note"><strong>Connect with teachers.</strong><br>Contact candidates and follow their applications through your organization profile.</div>
+   </div>
+  </div>
+ </div>
+</aside>
+</div>
+</main>
+
+<script>
+(function () {
+  if (new URLSearchParams(window.location.search).get("mode") === "create") {
+    try {
+    localStorage.removeItem("bulbeniOrganizationName");
+    localStorage.removeItem("bulbeniOrganizationProfile");
+    } catch (e) {}
+  }
+})();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("organizationForm");
+  if (!form) return;
+
+  const get = id => document.getElementById(id);
+
+  const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+  }[char]));
+
+  const selected = group =>
+    [...form.querySelectorAll(`input[data-group="${group}"]:checked`)].map(el => el.value);
+
+  const renderTags = (id, items, empty = "Not selected") => {
+    const el = get(id);
+    if (!el) return;
+    el.innerHTML = items.length
+      ? items.map(item => `<span class="tag">${escapeHTML(item)}</span>`).join("")
+      : `<span class="empty">${empty}</span>`;
+  };
+
+  const updatePreview = () => {
+    const orgName = get("orgName")?.value.trim() || "";
+    const orgType = get("orgType")?.value || "";
+    const city = get("city")?.value.trim() || "";
+    const hireCount = get("hireCount")?.value || "";
+    const about = get("about")?.value.trim() || "";
+    const requirements = get("requirements")?.value.trim() || "";
+
+    // Organization identity
+    get("pName").textContent = orgName || "Your organization";
+    get("initial").textContent = orgName ? orgName.charAt(0).toUpperCase() : "O";
+
+    const meta = [orgType, city].filter(Boolean);
+    get("pMeta").textContent = meta.length
+      ? meta.join(" · ")
+      : "Organization type · Location";
+
+    get("pCount").textContent = hireCount
+      ? `${hireCount} position${hireCount === "1" ? "" : "s"}`
+      : "Not specified";
+
+    // Progressive languages
+    const languageArea = get("languagesArea");
+    const languageOptions = get("languageOptions");
+    const languagesOn = !!languageArea?.checked;
+
+    if (languageOptions) languageOptions.hidden = !languagesOn;
+
+    if (!languagesOn) {
+      form.querySelectorAll('input[data-group="languages"]').forEach(input => {
+        input.checked = false;
+      });
+    }
+
+    const areas = selected("areas");
+    const languages = selected("languages");
+    const needs = selected("needs");
+    const environment = selected("environment");
+    const skills = selected("skills");
+    const style = selected("style");
+    const formats = selected("formats");
+
+    renderTags("pLevels", selected("levels"));
+    renderTags(
+      "pNeeds",
+      [...needs, ...languages.map(language => `${language} Teacher`)]
+    );
+    renderTags("pAreas", areas);
+    renderTags("pEnvironment", environment);
+    renderTags("pSkills", skills);
+    renderTags("pStyle", style);
+    renderTags("pFormats", formats);
+
+    const extra = get("pExtra");
+    if (extra) {
+      extra.innerHTML = requirements
+        ? `<div class="profile-note">${escapeHTML(requirements)}</div>`
+        : `<span class="empty">Not provided</span>`;
+    }
+
+    // About section, if a preview element exists.
+    const aboutPreview = get("pAbout");
+    if (aboutPreview) {
+      aboutPreview.innerHTML = about
+        ? `<div class="profile-note">${escapeHTML(about)}</div>`
+        : `<span class="empty">Not provided</span>`;
+    }
+  };
+
+  // Event delegation catches all current and future form controls.
+  form.addEventListener("input", updatePreview);
+  form.addEventListener("change", updatePreview);
+  form.addEventListener("click", event => {
+    if (event.target.closest("label.choice")) {
+      requestAnimationFrame(updatePreview);
+    }
+  });
+
+  updatePreview();
+
+  // Restore the organization's previously saved profile when returning to this page.
+  // This keeps the form editable instead of presenting a blank form.
+  (function restoreSavedProfile() {
+    try {
+      const raw = localStorage.getItem("bulbeniOrganizationProfile");
+      if (!raw) return;
+
+      const profile = JSON.parse(raw);
+
+      const setValue = (id, value) => {
+        const el = document.getElementById(id);
+        if (!el || value === undefined || value === null) return;
+        el.value = Array.isArray(value) ? value.join(", ") : String(value);
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      };
+
+      setValue("orgName", profile.orgName);
+      setValue("orgType", profile.orgType);
+      setValue("hireCount", profile.hireCount);
+      setValue("languagesArea", profile.languagesArea);
+      setValue("requirements", profile.requirements);
+      setValue("city", profile.city);
+      setValue("contactName", profile.contactName);
+      setValue("phone", profile.phone);
+      setValue("email", profile.email);
+      setValue("about", profile.about);
+
+      document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach((el) => {
+        const key = el.name || el.id;
+        const saved = profile[key];
+        if (saved === undefined) return;
+        const values = Array.isArray(saved) ? saved.map(String) : [String(saved)];
+        el.checked = values.includes(String(el.value)) || values.includes("selected");
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+
+      // Let the page's existing preview listeners update after restoration.
+      document.querySelectorAll("input, select, textarea").forEach((el) => {
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+        el.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    } catch (error) {
+      console.error("Could not restore organization profile:", error);
+    }
+  })();
+
+  const createProfileBtn = document.getElementById("createProfileBtn");
+  if (createProfileBtn) {
+    createProfileBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const value = (id) => {
+        const el = document.getElementById(id);
+        return el ? String(el.value || "").trim() : "";
+      };
+
+      // Use the actual field ID in this page.
+      const organizationName = value("orgName");
+      const email = value("email");
+      const phone = value("phone");
+      const password = document.getElementById("password")?.value || "";
+      const confirmPassword = document.getElementById("confirmPassword")?.value || "";
+
+      if (!organizationName) {
+        alert("Please enter your organization name.");
+        document.getElementById("orgName")?.focus();
+        return;
+      }
+
+      if (!email) {
+        alert("Please enter your email address.");
+        document.getElementById("email")?.focus();
+        return;
+      }
+
+      if (!password || !confirmPassword) {
+        alert("Please create and confirm your password.");
+        return;
+      }
+
+      if (password.length < 8) {
+        alert("Your password should be at least 8 characters.");
+        document.getElementById("password")?.focus();
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("The passwords do not match.");
+        document.getElementById("confirmPassword")?.focus();
+        return;
+      }
+
+      const profile = {
+        savedAt: new Date().toISOString()
+      };
+
+      // Save every named form field automatically, so newly added profile fields
+      // don't get lost because of a hard-coded list.
+      document.querySelectorAll("input, select, textarea").forEach((el) => {
+        if (!el.name && !el.id) return;
+
+        const key = el.name || el.id;
+
+        if (el.type === "password") return;
+
+        if (el.type === "checkbox") {
+          if (!el.checked) return;
+          if (!profile[key]) profile[key] = [];
+          if (!Array.isArray(profile[key])) profile[key] = [profile[key]];
+          profile[key].push(el.value || "selected");
+          return;
+        }
+
+        if (el.type === "radio") {
+          if (el.checked) profile[key] = el.value;
+          return;
+        }
+
+        profile[key] = String(el.value || "").trim();
+      });
+
+      // Ensure the core values are present under stable keys for the dashboard.
+      profile.orgName = organizationName;
+      profile.email = email;
+      profile.phone = phone;
+      profile.contactName = value("contactName");
+
+      try {
+        localStorage.setItem("bulbeniOrganizationProfile", JSON.stringify(profile));
+      } catch (error) {
+        console.error(error);
+        alert("We couldn't save your profile. Please try again.");
+        return;
+      }
+
+      window.location.href = "organization-dashboard.html";
+    });
+  }
+});
+
+  if (new URLSearchParams(window.location.search).get("mode") !== "create") {
+    restoreSavedProfile();
+  }
+</script>
+
+<script>
+(function () {
+  function restoreOrganizationProfile() {
+    if (new URLSearchParams(window.location.search).get("mode") === "create") return;
+
+    try {
+      const raw = localStorage.getItem("bulbeniOrganizationProfile");
+      if (!raw) return;
+      const profile = JSON.parse(raw);
+
+      const setField = (key, value) => {
+        if (value === undefined || value === null) return;
+        const values = Array.isArray(value) ? value.map(String) : [String(value)];
+
+        document.querySelectorAll("#" + CSS.escape(key) + ', [name="' + key.replace(/"/g, '\\"') + '"]').forEach(el => {
+          if (el.type === "checkbox" || el.type === "radio") {
+            el.checked = values.includes(String(el.value)) || values.includes("selected");
+            el.dispatchEvent(new Event("change", {bubbles:true}));
+          } else {
+            el.value = Array.isArray(value) ? values.join(", ") : values[0];
+            el.dispatchEvent(new Event("input", {bubbles:true}));
+            el.dispatchEvent(new Event("change", {bubbles:true}));
+          }
+        });
+      };
+
+      Object.keys(profile).forEach(key => {
+        if (key !== "password" && key !== "confirmPassword" && key !== "savedAt") {
+          setField(key, profile[key]);
+        }
+      });
+
+      // Common aliases used by the form.
+      if (profile.orgName) setField("orgName", profile.orgName);
+      if (profile.orgType) setField("orgType", profile.orgType);
+      if (profile.hireCount) setField("hireCount", profile.hireCount);
+      if (profile.languagesArea) setField("languagesArea", profile.languagesArea);
+      if (profile.requirements) setField("requirements", profile.requirements);
+      if (profile.city) setField("city", profile.city);
+      if (profile.contactName) setField("contactName", profile.contactName);
+      if (profile.phone) setField("phone", profile.phone);
+      if (profile.email) setField("email", profile.email);
+      if (profile.about) setField("about", profile.about);
+    } catch (e) {
+      console.error("Organization profile restore failed:", e);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", restoreOrganizationProfile);
+  } else {
+    restoreOrganizationProfile();
+  }
+})();
+</script>
+
+
+<script>
+(function () {
+  function wireOrganizationSave() {
+    const btn = document.getElementById("createProfileBtn");
+    if (!btn || btn.dataset.profileSaveWired === "1") return;
+    btn.dataset.profileSaveWired = "1";
+
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const profile = { savedAt: new Date().toISOString() };
+
+      // Standard fields.
+      document.querySelectorAll("input, select, textarea").forEach(el => {
+        if (el.type === "password") return;
+
+        const key = el.id || el.name;
+        if (!key) return;
+
+        if (el.type === "checkbox" || el.type === "radio") {
+          return; // handled below by data-group
+        }
+
+        profile[key] = String(el.value || "").trim();
+      });
+
+      // The form uses data-group for its selectable profile categories.
+      const groups = {};
+      document.querySelectorAll('input[type="checkbox"][data-group]').forEach(el => {
+        const group = el.dataset.group;
+        if (!groups[group]) groups[group] = [];
+        if (el.checked) groups[group].push(el.value);
+      });
+
+      profile.schoolLevels = groups.levels || [];
+      profile.hiringNeeds = groups.needs || [];
+      profile.teachingAreas = groups.areas || [];
+      profile.languages = groups.languages || [];
+      profile.teachingEnvironment = groups.environment || [];
+      profile.skills = groups.skills || [];
+      profile.workingStyle = groups.style || [];
+      profile.workingFormats = groups.formats || [];
+
+      // Stable names used by the dashboard.
+      profile.organizationName = profile.orgName || "";
+      profile.organizationType = profile.orgType || "";
+      profile.hiringCount = profile.hireCount || "";
+      profile.extraDetails = profile.requirements || "";
+
+      if (!profile.orgName) {
+        alert("Please enter your organization name.");
+        document.getElementById("orgName")?.focus();
+        return;
+      }
+
+      if (!profile.email) {
+        alert("Please enter your email address.");
+        document.getElementById("email")?.focus();
+        return;
+      }
+
+      const password = document.getElementById("password")?.value || "";
+      const confirmPassword = document.getElementById("confirmPassword")?.value || "";
+
+      if (!password || !confirmPassword) {
+        alert("Please create and confirm your password.");
+        return;
+      }
+
+      if (password.length < 8) {
+        alert("Your password should be at least 8 characters.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("The passwords do not match.");
+        return;
+      }
+
+      try {
+        localStorage.setItem("bulbeniOrganizationProfile", JSON.stringify(profile));
+        window.location.href = "organization-dashboard.html";
+      } catch (error) {
+        console.error(error);
+        alert("We couldn't save your organization profile. Please try again.");
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", wireOrganizationSave);
+  } else {
+    wireOrganizationSave();
+  }
+})();
+</script>
+
+</body>
+</html>

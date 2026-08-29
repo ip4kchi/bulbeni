@@ -533,14 +533,6 @@ html.translated-rtl{
 }
 </style>
 
-<style id="definitive-language-switch">
-.language-switch{display:flex;align-items:center;gap:3px;padding:3px;border:1px solid rgba(31,72,64,.18);border-radius:999px;background:rgba(255,255,255,.84)}
-.language-option{display:inline-flex;align-items:center;justify-content:center;min-width:34px;padding:7px 10px;border-radius:999px;text-decoration:none;color:rgba(31,72,64,.52);font-size:11px;font-weight:800;line-height:1;transition:background .22s ease,color .22s ease,transform .22s ease}
-.language-option:hover{color:#174F45;background:rgba(31,72,64,.07)}
-.language-option.active{background:#174F45;color:#fff;box-shadow:0 3px 10px rgba(23,79,69,.18)}
-.language-option:active{transform:scale(.96)}
-@media(max-width:700px){.language-option{min-width:32px;padding:7px 9px;font-size:10px}}
-</style>
 </head>
 
 <body>
@@ -560,9 +552,21 @@ html.translated-rtl{
     </a>
 
     <nav class="language-switch" aria-label="Language">
-    <a href="teacher-login.html" class="language-option active" aria-current="page">EN</a>
-    <a href="tr/teacher-login.html" class="language-option">TR</a>
-</nav>
+
+        <a
+            href="teacher-login.html"
+            class="active"
+        >
+            EN
+        </a>
+
+        <a
+            href="tr/teacher-login.html"
+        >
+            TR
+        </a>
+
+    </nav>
 
 </header>
 
@@ -606,7 +610,7 @@ html.translated-rtl{
                 </div>
                 <input type="password" id="teacherTabPassword" placeholder="Enter your password" autocomplete="current-password" required>
             </div>
-            <button class="login-button" type="submit">Log in</button>
+            <button class="login-button" type="submit">Log in as Teacher</button>
         </form>
 
         <div class="panel-signup">
@@ -634,7 +638,7 @@ html.translated-rtl{
                 </div>
                 <input type="password" id="studentTabPassword" placeholder="Enter your password" autocomplete="current-password" required>
             </div>
-            <button class="login-button student-login-button" type="submit">Log in</button>
+            <button class="login-button student-login-button" type="submit">Log in as Student</button>
         </form>
 
         <div class="panel-signup">
@@ -662,11 +666,11 @@ html.translated-rtl{
                 </div>
                 <input type="password" id="organizationTabPassword" placeholder="Enter your password" autocomplete="current-password" required>
             </div>
-            <button class="login-button organization-button" type="submit">Log in</button>
+            <button class="login-button organization-button" type="submit">Log in as Organization</button>
         </form>
 
         <div class="panel-signup">
-            New to Bulbeni? <a href="organization-register.html">Create an organization account →</a>
+            New to Bulbeni? <a href="organization-profile.html?mode=create">Create an organization account →</a>
         </div>
         <div id="organizationTabMessage" class="message" role="alert"></div>
     </section>
@@ -769,7 +773,7 @@ studentForgot.addEventListener("click",async()=>{const value=studentEmail.value.
 
             showOrgMessage(text,"error");
             button.disabled = false;
-            button.textContent = "Log in";
+            button.textContent = "Log in as Organization";
         }
     });
 
